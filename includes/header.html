@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <nav class="navbar navbar-expand-xl navbar-light fixed-top">
     <div class="container-fluid px-3 px-lg-4">
         <!-- Brand -->
@@ -74,3 +75,81 @@ body {
     padding-top: 92px; 
 }
 </style>
+=======
+<nav class="navbar navbar-expand-xl navbar-light fixed-top">
+    <div class="container-fluid px-3 px-lg-4">
+        <!-- Brand -->
+        <a class="navbar-brand" href="index.html">
+            <span style="font-size: 1.5rem; font-weight: 600; color: var(--text-bright);">Bullard Locks</span>
+        </a>
+        
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navigation -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="services.html">All Services</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="services/emergency-locksmith.html">Emergency Locksmith</a></li>
+                        <li><a class="dropdown-item" href="services/auto-locksmith.html">Auto Locksmith</a></li>
+                        <li><a class="dropdown-item" href="services/safe-engineer.html">Safe Engineer</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="locations.html" id="locationsDropdown" role="button" data-bs-toggle="dropdown">
+                        Locations
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="locations.html">All Locations</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="locations/north-london-locksmith.html">North London</a></li>
+                        <li><a class="dropdown-item" href="locations/central-london-locksmith.html">Central London</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+            <!-- Contact Buttons (Mobile) -->
+            <div class="d-xl-none mt-3">
+                <button class="btn btn-danger w-100 mb-2" onclick="showEmergencyModal()">
+                    <i class="fas fa-phone me-2"></i>Emergency
+                </button>
+                <a href="https://wa.me/447809887883" class="btn btn-success w-100" target="_blank" aria-label="Contact us on WhatsApp">
+                    <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                </a>
+            </div>
+        </div>
+        <!-- Emergency Button (Desktop) -->
+        <div class="d-none d-xl-block">
+            <button class="btn btn-danger me-2" onclick="showEmergencyModal()">
+                <i class="fas fa-phone me-2"></i>Emergency
+            </button>
+            <a href="https://wa.me/447809887883" class="btn btn-success" target="_blank" aria-label="Contact us on WhatsApp">
+                <i class="fab fa-whatsapp me-2"></i>WhatsApp
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Add top margin to body to account for fixed navbar -->
+<style>
+body { 
+    padding-top: 92px; 
+}
+</style>
+>>>>>>> 0893043f5fc35d670edaaafb595b75363df4fd3c
