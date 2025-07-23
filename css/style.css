@@ -1,0 +1,1657 @@
+/* Custom CSS for Lock Pros Website */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables - Dark Tech Color Scheme */
+:root {
+    --primary-color: #48fdfe;        /* Cyan */
+    --secondary-color: #ff2a6d;      /* Neon pink */
+    --dark-bg: #1e0c2d;             /* Dark purple background */
+    --dark-lighter: #2d1445;        /* Slightly lighter purple */
+    --dark-darker: #160820;         /* Darker purple */
+    --text-bright: #ffffff;         /* White text */
+    --text-dim: rgba(255, 255, 255, 0.7); /* Dimmed white text */
+    --border-color: rgba(72, 253, 254, 0.2); /* Subtle cyan border */
+    --success-color: #48fdfe;       /* Cyan for success/WhatsApp */
+    --danger-color: #ff2a6d;        /* Neon pink for danger/emergency */
+    --glow-shadow: 0 0 15px rgba(72, 253, 254, 0.3); /* Cyan glow */
+    --danger-glow: 0 0 15px rgba(255, 42, 109, 0.3); /* Pink glow */
+    --transition: all 0.3s ease;
+    --border-radius: 3px;
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 2.08;
+    color: var(--text-bright);
+    font-size: 16px;
+    background-color: var(--dark-bg);
+    padding-top: 80px; /* Add padding for fixed navbar */
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600; /* Reduced from 800 (extra bold) to 600 (semi-bold) */
+    text-transform: capitalize;
+    color: var(--text-bright);
+}
+
+h1 { 
+    font-size: 3rem;
+    line-height: 1.35;
+    margin: 1rem 0;
+    padding: 0.5em 0;
+}
+
+h2 { 
+    font-size: 2.3rem;
+    line-height: 1.4;
+}
+
+h3 { 
+    font-size: 2rem;
+    line-height: 1.47;
+}
+
+h4 { 
+    font-size: 1.5rem;
+    line-height: 1.52;
+}
+
+h5 { 
+    font-size: 1.25rem;
+    line-height: 1.58;
+}
+
+h6 { 
+    font-size: 1rem;
+    line-height: 1.63;
+}
+
+/* Body Text Consistency */
+p, li, td, th, dt, dd, blockquote, label, span, .form-control {
+    font-size: 1.125rem; /* Increased from 1rem (16px) to 1.125rem (18px) */
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-dim);
+}
+
+.lead {
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-bright) !important;
+}
+
+/* List Styles */
+ul:not(.navbar-nav):not(.dropdown-menu):not(.list-unstyled) li,
+ol li {
+    margin-bottom: 0.5rem;
+}
+
+/* Override any specific styles that might affect text consistency */
+.service-card p,
+.testimonial-card p,
+.about-preview p,
+.footer-section p,
+.contact-info-list li,
+.feature-item span,
+.process-step p,
+.timeline-item p {
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Ensure .lead text is always white throughout the site */
+.lead,
+p.lead,
+div.lead,
+span.lead,
+section .lead,
+.hero-section .lead,
+.services-overview .lead,
+.testimonials .lead,
+.cta-section .lead,
+.about-preview .lead {
+    color: var(--text-bright) !important;
+}
+
+/* Bootstrap Override - Base Button Styles */
+.btn {
+    border-radius: var(--border-radius) !important;
+    font-weight: 500 !important;
+    padding: 0.75rem 1.5rem !important;
+    transition: var(--transition) !important;
+    border: none !important;
+    text-transform: capitalize !important;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 1.125rem !important;
+    line-height: 1.6 !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Removed redundant button variant definitions - now handled by comprehensive override below */
+
+/* Large button variants - Global override for all .btn-lg */
+.btn-lg,
+.btn.btn-lg {
+    padding: 1rem 2rem !important;
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    height: 60px !important;
+    min-height: 60px !important;
+    text-transform: capitalize !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Small button variants - Global override for all .btn-sm */
+.btn-sm,
+.btn.btn-sm {
+    padding: 0.5rem 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    text-transform: capitalize !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Comprehensive button height enforcement for ALL button variants */
+.btn-primary,
+.btn-secondary, 
+.btn-success,
+.btn-danger,
+.btn-warning,
+.btn-info,
+.btn-light,
+.btn-dark,
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-success,
+.btn-outline-danger,
+.btn-outline-warning,
+.btn-outline-info,
+.btn-outline-light,
+.btn-outline-dark,
+button.btn,
+a.btn,
+input[type="button"].btn,
+input[type="submit"].btn {
+    height: 52px !important;
+    min-height: 52px !important;
+    font-size: 1.125rem !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Large button variants height enforcement */
+.btn-lg.btn-primary,
+.btn-lg.btn-secondary,
+.btn-lg.btn-success,
+.btn-lg.btn-danger,
+.btn-lg.btn-warning,
+.btn-lg.btn-info,
+.btn-lg.btn-light,
+.btn-lg.btn-dark,
+.btn-lg.btn-outline-primary,
+.btn-lg.btn-outline-secondary,
+.btn-lg.btn-outline-success,
+.btn-lg.btn-outline-danger,
+.btn-lg.btn-outline-warning,
+.btn-lg.btn-outline-info,
+.btn-lg.btn-outline-light,
+.btn-lg.btn-outline-dark,
+.btn.btn-lg {
+    height: 60px !important;
+    min-height: 60px !important;
+    font-size: 1.25rem !important;
+}
+
+/* Small button variants height enforcement */
+.btn-sm.btn-primary,
+.btn-sm.btn-secondary,
+.btn-sm.btn-success,
+.btn-sm.btn-danger,
+.btn-sm.btn-warning,
+.btn-sm.btn-info,
+.btn-sm.btn-light,
+.btn-sm.btn-dark,
+.btn-sm.btn-outline-primary,
+.btn-sm.btn-outline-secondary,
+.btn-sm.btn-outline-success,
+.btn-sm.btn-outline-danger,
+.btn-sm.btn-outline-warning,
+.btn-sm.btn-outline-info,
+.btn-sm.btn-outline-light,
+.btn-sm.btn-outline-dark,
+.btn.btn-sm {
+    height: 44px !important;
+    min-height: 44px !important;
+    font-size: 1rem !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    box-shadow: var(--glow-shadow);
+}
+
+.btn-primary:hover {
+    background-color: var(--text-bright);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    background-color: transparent;
+    box-shadow: var(--glow-shadow);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-cyan {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-dark {
+    background-color: var(--dark-darker) !important;
+}
+
+/* Header Styles */
+.navbar {
+    background-color: var(--dark-darker) !important;
+    box-shadow: var(--box-shadow);
+    padding: 1rem 0;
+    transition: var(--transition);
+}
+
+/* Full width navbar container styling */
+.navbar .container-fluid {
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ensure navbar brand stays on the left */
+.navbar-brand {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    transition: var(--transition);
+    flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+.navbar-brand:hover {
+    color: var(--text-bright) !important;
+    text-shadow: var(--glow-shadow);
+}
+
+/* Navigation links styling */
+.navbar-nav .nav-link {
+    color: var(--text-dim) !important;
+    font-weight: 500;
+    padding: 0.5rem 0.5rem !important;
+    transition: var(--transition);
+    text-transform: capitalize;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    background-color: var(--dark-darker) !important;
+    border: 2px solid var(--primary-color) !important; /* Cyan border */
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow) !important; /* Added cyan glow */
+    padding: 0 !important; /* Removed top and bottom padding */
+    margin-top: 0 !important; /* Removed 4px top margin */
+    margin-bottom: 0 !important; /* Removed 4px bottom margin */
+    
+    /* Custom fade-in animation */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-10px) !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
+}
+
+/* Show dropdown with fade-in effect */
+.dropdown-menu.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+/* Override Bootstrap's default dropdown animation */
+.dropdown-menu[data-bs-popper] {
+    margin-top: 0 !important;
+}
+
+.dropdown-item {
+    color: var(--text-dim) !important;
+    font-size: 1.125rem !important;
+    font-weight: 500 !important;
+    line-height: 1.646 !important; /* Reduced by further 15% from 1.936 for tighter spacing */
+    padding: 0.75rem 1.5rem !important; /* Increased padding for better touch targets */
+    transition: var(--transition) !important;
+    text-transform: capitalize !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--primary-color) !important; /* Cyan background on hover */
+    color: var(--dark-bg) !important; /* Dark text for contrast */
+}
+
+.dropdown-item:active {
+    background-color: var(--primary-color) !important;
+    color: var(--dark-bg) !important;
+}
+
+.dropdown-divider {
+    border-top: 1px solid var(--border-color) !important;
+    margin: 0.5rem 0 !important;
+}
+
+/* Breadcrumb Styling */
+.breadcrumb {
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 1rem !important;
+    font-size: 0.95rem !important;
+}
+
+.breadcrumb-item {
+    color: var(--text-dim) !important; /* Grey font color */
+}
+
+.breadcrumb-item a {
+    color: var(--text-dim) !important; /* Grey links */
+    text-decoration: none !important;
+    transition: var(--transition) !important;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--primary-color) !important; /* Cyan hover state */
+    text-decoration: none !important;
+}
+
+.breadcrumb-item.active {
+    color: var(--text-bright) !important; /* Active item is bright */
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">" !important; /* Custom separator */
+    color: var(--text-dim) !important;
+    margin: 0 0.5rem !important;
+    font-weight: 500 !important;
+}
+
+/* Desktop button group positioning */
+.navbar .d-none.d-xl-block {
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+    margin-left: auto;
+}
+
+/* Ensure proper spacing on larger screens */
+@media (min-width: 1200px) {
+    .navbar .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+/* Mobile menu positioning */
+@media (max-width: 1199.98px) {
+    .navbar-toggler {
+        order: 2;
+        margin-left: auto;
+    }
+    
+    .navbar-brand {
+        order: 1;
+    }
+    
+    .navbar-collapse {
+        order: 3;
+        width: 100%;
+        
+        /* Fade-in animation */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+    }
+    
+    .navbar-collapse.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .navbar-collapse.collapsing {
+        opacity: 0.5;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease, height 0.4s ease;
+    }
+}
+
+/* Mobile Menu Toggle Button */
+.navbar-toggler {
+    border: none !important;
+    padding: 6px 0.5rem 0.25rem 0.5rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2348fdfe' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Form select dropdown menu */
+.form-select + .dropdown-menu,
+.form-select option {
+    border-radius: 0 !important;
+}
+
+/* Form select styling */
+.form-select {
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1rem;
+    transition: var(--transition);
+    background-color: var(--dark-lighter);
+    color: var(--text-bright);
+    font-size: 1.125rem;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2348fdfe' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+    background-size: 16px 16px !important;
+}
+
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: var(--glow-shadow);
+    background-color: var(--dark-lighter);
+    color: var(--text-bright);
+}
+
+/* Form select dropdown items */
+.form-select option {
+    background-color: var(--dark-lighter);
+    color: var(--text-bright);
+    padding: 0.75rem;
+}
+
+/* Form select option selected/hover state */
+.form-select option:checked,
+.form-select option:hover {
+    background-color: var(--primary-color) !important;
+    color: var(--dark-bg) !important;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.contact-info a {
+    color: var(--text-bright);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.contact-info a:hover {
+    color: var(--primary-color);
+}
+
+.contact-info i {
+    color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: linear-gradient(rgba(22, 8, 32, 0.3), rgba(22, 8, 32, 0.3)), url('../images/locksmith-crouch-end-n8.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* Better for mobile performance */
+    padding: 3rem 0 3rem 0;
+    overflow: hidden;
+}
+
+/* Mobile hero section adjustments */
+@media (max-width: 767.98px) {
+    .hero-section {
+        background-size: contain;
+        background-position: center top;
+        background-repeat: repeat-y;
+        padding: 1rem 0 4rem 0;
+    }
+}
+
+.hero-section .row {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 2.6rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 0;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    color: var(--text-bright);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.hero-features {
+    margin-bottom: 0.75rem;
+}
+
+.hero-features .feature-item {
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.hero-features .feature-item i {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+}
+
+.hero-features .feature-item span {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-bright);
+}
+
+.hero-cta {
+    gap: 1.5rem;
+}
+
+.hero-image {
+    max-height: 300px; /* Reduced image height */
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+/* Service Cards */
+.service-card {
+    background: var(--dark-darker);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    height: 100%;
+    border: 2px solid var(--border-color);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card .btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--primary-color);
+    background: transparent !important;
+}
+
+.service-icon i {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.service-card h3 {
+    color: var(--text-bright);
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    color: var(--text-bright);
+    margin-bottom: 1.5rem;
+}
+
+/* About Preview Section */
+.about-preview {
+    padding: 5rem 0;
+    background: var(--dark-lighter);
+}
+
+.about-preview img {
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.about-preview h2 {
+    color: var(--text-bright);
+    margin-bottom: 0.5rem;
+}
+
+.about-preview h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.about-preview .list-unstyled li {
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--text-bright);
+}
+
+/* Testimonials */
+.testimonial-card {
+    background: var(--dark-darker);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    height: 100%;
+    border: 2px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    color: var(--text-bright);
+}
+
+.testimonial-author strong {
+    color: var(--text-bright);
+    display: block;
+}
+
+.testimonial-author .text-muted {
+    font-size: 0.9rem;
+    color: var(--text-dim) !important;
+}
+
+.stars {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 4rem 0;
+    background: var(--dark-lighter);
+    color: var(--text-bright);
+}
+
+.cta-section:hover {
+    border-color: var(--primary-color);
+}
+
+.cta-section h2 {
+    margin-bottom: 1rem;
+    color: var(--text-bright);
+}
+
+.cta-section p {
+    color: var(--text-dim);
+}
+
+.cta-buttons {
+    margin-top: 2rem;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--dark-darker);
+    color: var(--text-dim);
+    padding: 3rem 0 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    color: var(--text-bright);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a,
+.footer-section a {
+    color: var(--text-dim) !important;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section ul li a:hover,
+.footer-section a:hover {
+    color: var(--text-bright) !important;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--dark-lighter);
+    color: var(--text-dim);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: var(--text-bright);
+    color: var(--dark-bg);
+    box-shadow: var(--glow-shadow);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    text-align: center;
+    color: var(--text-bright);
+}
+
+/* Footer Bottom Links */
+.footer-bottom a {
+    color: var(--text-dim) !important;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-bottom a:hover {
+    color: var(--text-bright) !important;
+}
+
+.footer-bottom p {
+    color: var(--text-bright) !important;
+}
+
+/* Column Spacing Override - Increase by 50% */
+.g-4, .gx-4, .gy-4 {
+    --bs-gutter-x: 2.25rem !important; /* Increased from 1.5rem by 50% */
+    --bs-gutter-y: 2.25rem !important;
+}
+
+.g-3, .gx-3, .gy-3 {
+    --bs-gutter-x: 1.5rem !important; /* Increased from 1rem by 50% */
+    --bs-gutter-y: 1.5rem !important;
+}
+
+.g-2, .gx-2, .gy-2 {
+    --bs-gutter-x: 0.75rem !important; /* Increased from 0.5rem by 50% */
+    --bs-gutter-y: 0.75rem !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--dark-darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--text-dim);
+    border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-bright);
+}
+
+/* Selection */
+::selection {
+    background-color: var(--text-bright);
+    color: var(--dark-bg);
+}
+
+/* Update success and danger button styles */
+.btn-success {
+    background-color: var(--success-color);
+    border: none;
+    color: var(--dark-bg);
+}
+
+.btn-success:hover {
+    background-color: var(--text-bright);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), 0 0 15px var(--success-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--text-bright);
+    box-shadow: var(--danger-glow);
+}
+
+.btn-danger:hover {
+    background-color: var(--text-bright);
+    color: var(--danger-color);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), var(--danger-glow);
+}
+
+/* Update outline button variants */
+.btn-outline-success {
+    color: var(--success-color);
+    border: 2px solid var(--success-color);
+    background-color: transparent;
+    box-shadow: var(--glow-shadow);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
+}
+
+.btn-outline-danger {
+    color: var(--danger-color);
+    border: 2px solid var(--danger-color);
+    background-color: transparent;
+    box-shadow: var(--danger-glow);
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    color: var(--text-bright);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), var(--danger-glow);
+}
+
+/* WhatsApp specific styles */
+[href*="wa.me"].btn-success {
+    background-color: var(--success-color) !important;
+    color: var(--dark-bg) !important;
+    box-shadow: var(--glow-shadow) !important;
+}
+
+[href*="wa.me"].btn-success:hover {
+    background-color: var(--text-bright) !important;
+    color: var(--dark-bg) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow) !important;
+}
+
+[href*="wa.me"].btn-primary {
+    background-color: var(--primary-color) !important;
+    color: var(--dark-bg) !important;
+    box-shadow: var(--glow-shadow) !important;
+}
+
+/* WhatsApp button large variant */
+[href*="wa.me"].btn-primary.btn-lg {
+    height: 60px !important;
+    font-size: 1.25rem !important;
+}
+
+[href*="wa.me"].btn-primary:hover {
+    background-color: var(--text-bright) !important;
+    color: var(--dark-bg) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow) !important;
+}
+
+/* Emergency button specific styles */
+[onclick*="showEmergencyModal"] {
+    background-color: var(--danger-color) !important;
+    color: var(--text-bright) !important;
+    box-shadow: var(--danger-glow) !important;
+}
+
+[onclick*="showEmergencyModal"]:hover {
+    background-color: var(--text-bright) !important;
+    color: var(--danger-color) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), var(--danger-glow) !important;
+}
+
+/* Icon Circle Styles */
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--primary-color);
+    color: var(--dark-bg);
+    border-radius: 50%;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--glow-shadow);
+}
+
+.icon-circle:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-shadow), var(--box-shadow);
+}
+
+/* General Icon Styles */
+.fas, .fab, .far, .fal, .fad {
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* Ensure icons display properly */
+i[class*="fa-"] {
+    font-style: normal;
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Button Icons */
+.btn i {
+    margin-right: 0.5rem;
+}
+
+.btn i:only-child {
+    margin-right: 0;
+}
+
+/* Social Media Icons */
+.text-cyan {
+    color: var(--primary-color) !important;
+}
+
+/* List Icons */
+li > i[class*="fa-"] {
+    width: 1.5rem;
+    text-align: center;
+    margin-right: 0.75rem;
+}
+
+/* Check Icon Styles */
+.fa-check,
+.fa-check-circle,
+.fa-check-double {
+    color: #ffffff !important;
+    background: none !important;
+}
+
+/* Remove any existing check backgrounds */
+.text-success[class*="fa-check"] {
+    color: #ffffff !important;
+    background: none !important;
+}
+
+/* List items with check icons */
+li > .fa-check,
+li > .fa-check-circle,
+li > .fa-check-double {
+    margin-right: 0.75rem;
+}
+
+.bg-dark-purple {
+    background-color: var(--dark-darker) !important;
+    color: var(--text-light);
+}
+
+/* Services Intro */
+
+/* ========================================
+   MOBILE TEXT ALIGNMENT OVERRIDES
+   ======================================== */
+
+/* Mobile-first approach: Left align all text on small screens (768px and below) */
+@media (max-width: 767.98px) {
+    /* Reset all text alignment to left on mobile */
+    *,
+    h1, h2, h3, h4, h5, h6,
+    p, span, div, section,
+    .text-center,
+    .text-md-center,
+    .text-lg-center {
+        text-align: left !important;
+    }
+    
+    /* Hero section mobile alignment */
+    .hero-section .hero-title,
+    .hero-section p,
+    .hero-section .lead {
+        text-align: left !important;
+    }
+    
+    /* Add vertical space below hero text column on mobile */
+    .hero-section .col-lg-6:first-child {
+        margin-bottom: 3rem;
+    }
+    
+    /* Service cards mobile alignment */
+    .service-card,
+    .service-card h3,
+    .service-card p,
+    .service-card .service-icon {
+        text-align: left !important;
+    }
+    
+    /* Service icon alignment fix for mobile */
+    .service-card .service-icon {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+    }
+    
+    /* Testimonial cards mobile alignment */
+    .testimonial-card,
+    .testimonial-card p,
+    .testimonial-card .testimonial-author {
+        text-align: left !important;
+    }
+    
+    /* Stars alignment for testimonials */
+    .testimonial-card .stars {
+        text-align: left !important;
+        margin-bottom: 1rem;
+    }
+    
+    /* CTA sections mobile alignment */
+    .cta-section,
+    .cta-section h2,
+    .cta-section p,
+    .cta-section .lead {
+        text-align: left !important;
+    }
+    
+    /* Button containers on mobile */
+    .cta-buttons,
+    .hero-cta {
+        text-align: left !important;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    /* Ensure buttons stack properly on mobile */
+    .cta-buttons .btn,
+    .hero-cta .btn {
+        margin-right: 0 !important;
+        margin-bottom: 0.5rem;
+        width: auto;
+    }
+    
+    /* Services intro section */
+    .services-intro,
+    .services-intro h2,
+    .services-intro p,
+    .services-intro .lead {
+        text-align: left !important;
+    }
+    
+    /* About section mobile alignment */
+    .about-preview h2,
+    .about-preview h3,
+    .about-preview p,
+    .about-preview .lead {
+        text-align: left !important;
+    }
+    
+    /* Contact form sections */
+    .contact-form h2,
+    .contact-form h3,
+    .contact-form p {
+        text-align: left !important;
+    }
+    
+    /* Feature items mobile alignment */
+    .hero-features {
+        text-align: left !important;
+    }
+    
+    .feature-item {
+        text-align: left !important;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+    }
+    
+    .feature-item .icon-circle {
+        margin-right: 0.75rem;
+        margin-bottom: 0;
+    }
+    
+    /* Navigation and header mobile fixes */
+    .navbar-brand {
+        text-align: left !important;
+    }
+    
+    /* Breadcrumb mobile alignment */
+    .breadcrumb {
+        text-align: left !important;
+    }
+    
+    /* Footer content mobile alignment */
+    footer h4,
+    footer h5,
+    footer p,
+    footer li {
+        text-align: left !important;
+    }
+    
+    /* List items mobile alignment */
+    .list-unstyled,
+    .list-unstyled li {
+        text-align: left !important;
+    }
+    
+    /* Form labels and inputs */
+    .form-label {
+        text-align: left !important;
+    }
+    
+    /* Quote form mobile alignment */
+    #quoteForm h3,
+    #contactForm h3 {
+        text-align: left !important;
+    }
+    
+    /* Page section titles */
+    .page-title,
+    .section-title {
+        text-align: left !important;
+    }
+    
+    /* Override any remaining center-aligned elements */
+    .text-center {
+        text-align: left !important;
+    }
+    
+    /* Location and service page specific fixes */
+    .location-card,
+    .location-card h3,
+    .location-card p {
+        text-align: left !important;
+    }
+    
+    /* Emergency and service specific sections */
+    .emergency-info,
+    .service-info {
+        text-align: left !important;
+    }
+    
+    /* Preserve center alignment only for specific elements that need it */
+    .btn-center-mobile {
+        text-align: center !important;
+    }
+    
+    /* Loading spinners and icons that should stay centered */
+    .fa-spinner,
+    .loading-icon {
+        text-align: center !important;
+    }
+    
+    /* Stars rating should stay as intended */
+    .stars {
+        text-align: left !important;
+    }
+    
+    /* Additional mobile-specific improvements */
+    
+    /* Ensure quote form security text is left-aligned */
+    .small.text-center {
+        text-align: left !important;
+    }
+    
+    /* Mobile navigation improvements */
+    .navbar-nav {
+        text-align: left !important;
+    }
+    
+    .navbar-nav .nav-link {
+        text-align: left !important;
+    }
+    
+    /* Dropdown menu mobile alignment */
+    .dropdown-menu {
+        text-align: left !important;
+    }
+    
+    .dropdown-item {
+        text-align: left !important;
+    }
+    
+    /* Badge and small text mobile fixes */
+    .badge {
+        text-align: center !important; /* Keep badges centered */
+    }
+    
+    /* Review stars and ratings */
+    .text-warning {
+        text-align: left !important;
+    }
+    
+    /* Social media links in footer */
+    .social-links {
+        text-align: left !important;
+    }
+    
+    /* Contact info in footer */
+    .contact-info {
+        text-align: left !important;
+    }
+    
+    /* Ensure proper spacing for left-aligned content */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Hero section mobile-specific adjustments */
+    .hero-section .container {
+        text-align: left !important;
+    }
+    
+    /* Mobile: Ensure form elements are properly aligned */
+    .needs-validation {
+        text-align: left !important;
+    }
+    
+    .form-control,
+    .form-select {
+        text-align: left !important;
+    }
+    
+    /* Mobile: Service icons should be inline with text */
+    .service-icon i {
+        margin-right: 0.5rem;
+    }
+    
+    /* Mobile breadcrumb styling */
+    .breadcrumb-item {
+        text-align: left !important;
+    }
+    
+    /* Mobile specific section headings */
+    section h2,
+    section h3 {
+        text-align: left !important;
+    }
+    
+    /* Testimonial author info */
+    .testimonial-author strong,
+    .testimonial-author .text-muted {
+        text-align: left !important;
+    }
+}
+
+/* ========================================
+   RESPONSIVE TEXT ALIGNMENT UTILITIES
+   ======================================== */
+
+/* Utility classes for responsive text alignment */
+.text-left-mobile {
+    text-align: left !important;
+}
+
+@media (max-width: 767.98px) {
+    .text-left-mobile {
+        text-align: left !important;
+    }
+    
+    .text-center-desktop {
+        text-align: left !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .text-center-desktop {
+        text-align: center !important;
+    }
+}
+
+/* ========================================
+   MOBILE BUTTON AND CTA IMPROVEMENTS
+   ======================================== */
+
+@media (max-width: 767.98px) {
+    /* Stack buttons vertically on mobile with proper spacing */
+    .btn-group-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        width: 100%;
+    }
+    
+    .btn-group-mobile .btn {
+        width: 100%;
+        margin: 0;
+    }
+    
+    /* Hero CTA button improvements */
+    .hero-cta {
+        width: 100%;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+        margin-bottom: 0.75rem;
+        margin-right: 0 !important;
+    }
+    
+    /* CTA section button improvements */
+    .cta-buttons {
+        width: 100%;
+    }
+    
+    .cta-buttons .btn {
+        width: 100%;
+        margin-bottom: 0.75rem;
+        margin-right: 0 !important;
+    }
+    
+    /* Quote form button full width */
+    .btn-danger.w-100,
+    .btn-primary.w-100 {
+        width: 100% !important;
+    }
+}
+
+/* Desktop overrides - Center alignment on desktop screens */
+@media (min-width: 992px) {
+    /* CTA section center alignment on desktop */
+    .cta-section,
+    .cta-section h2,
+    .cta-section p,
+    .cta-section .lead {
+        text-align: center !important;
+    }
+    
+    .cta-buttons {
+        text-align: center !important;
+        display: block;
+        align-items: center;
+    }
+    
+    .cta-buttons .btn {
+        margin-right: 0.75rem !important;
+    }
+    
+    /* Service cards center alignment on desktop */
+    .service-card,
+    .service-card h3,
+    .service-card p {
+        text-align: center !important;
+    }
+    
+    .service-card .service-icon {
+        text-align: center !important;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+    
+    /* Services intro section center alignment on desktop */
+    .services-overview .services-intro,
+    .services-overview .services-intro h2,
+    .services-overview .services-intro p,
+    .services-overview .services-intro .lead,
+    .services-intro,
+    .services-intro h2,
+    .services-intro p,
+    .services-intro .lead {
+        text-align: center !important;
+    }
+    
+    /* Testimonials section center alignment on desktop */
+    .testimonials .text-center,
+    .testimonials .text-center h2,
+    .testimonials .text-center p,
+    .testimonials .text-center .lead {
+        text-align: center !important;
+    }
+}
+
+/* ========================================
+   CUSTOM ACCORDION STYLING
+   ======================================== */
+
+/* Accordion container */
+.accordion {
+    --bs-accordion-border-width: 0;
+    --bs-accordion-border-radius: var(--border-radius);
+}
+
+/* Accordion item */
+.accordion-item {
+    background-color: var(--dark-darker);
+    border: 2px solid transparent;
+    border-top: 3px solid transparent;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+/* Accordion item when expanded - fallback class approach */
+.accordion-item.expanded {
+    background-color: var(--dark-lighter);
+    border-color: var(--primary-color) !important;
+    border-top-color: var(--primary-color) !important;
+}
+
+/* Additional styling for Bootstrap's native open state using :has() selector */
+.accordion-item:has(.accordion-collapse.show) {
+    background-color: var(--dark-lighter);
+    border-color: var(--primary-color) !important;
+    border-top-color: var(--primary-color) !important;
+}
+
+/* Alternative for browsers that don't support :has() - target by button state */
+.accordion-item:has(.accordion-button:not(.collapsed)) {
+    background-color: var(--dark-lighter);
+    border-color: var(--primary-color) !important;
+    border-top-color: var(--primary-color) !important;
+}
+
+/* Additional fallback using aria-expanded attribute */
+.accordion-item:has(.accordion-button[aria-expanded="true"]) {
+    background-color: var(--dark-lighter);
+    border-color: var(--primary-color) !important;
+    border-top-color: var(--primary-color) !important;
+}
+
+.accordion-item:hover {
+    border-color: var(--primary-color) !important;
+    border-top-color: var(--primary-color) !important;
+    box-shadow: var(--box-shadow-lg);
+    transform: translateY(-2px);
+}
+
+.accordion-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Accordion header */
+.accordion-header {
+    margin-bottom: 0;
+}
+
+/* Accordion button */
+.accordion-button {
+    background-color: var(--dark-darker);
+    color: var(--text-bright);
+    border: none;
+    padding: 1.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-transform: none;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    box-shadow: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--dark-darker);
+    color: var(--primary-color);
+    box-shadow: none;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: var(--primary-color);
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2348fdfe'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    transition: var(--transition);
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2348fdfe'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    transform: rotate(-180deg);
+}
+
+/* Accordion body */
+.accordion-body {
+    background-color: var(--dark-darker);
+    color: var(--text-dim);
+    padding: 1.5rem;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+/* Accordion collapse */
+.accordion-collapse {
+    border: none;
+}
+
+.accordion-item {
+    position: relative;
+}
+
+/* Check icon styling within accordion */
+.accordion-button .fa-check {
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+/* Responsive accordion styling */
+@media (max-width: 767.98px) {
+    .accordion-button {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .accordion-body {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+}
