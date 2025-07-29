@@ -31,12 +31,510 @@
 }
 
 body {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
     line-height: 2.08;
     color: var(--text-bright);
     font-size: 16px;
     background-color: var(--dark-bg);
-    padding-top: 80px; /* Add padding for fixed navbar */
+    padding-top: 92px; /* Add padding for fixed navbar */
+}
+
+/* Prevent layout shifts */
+.navbar {
+    min-height: 92px; /* Ensure consistent navbar height */
+}
+
+#header-placeholder.loading {
+    background-color: var(--dark-darker);
+    border-bottom: 1px solid var(--border-color);
+}
+
+#footer-placeholder {
+    min-height: 200px; /* Reserve space for footer before it loads */
+}
+
+#footer-placeholder.loading {
+    background-color: var(--dark-darker);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Ensure images don't cause layout shifts */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Reserve space for hero images */
+.hero-section img {
+    aspect-ratio: 4/3; /* Maintain consistent aspect ratio */
+    object-fit: cover;
+    width: 100%;
+    min-height: 300px; /* Prevent jumping while loading */
+}
+
+/* Service and about section images */
+.about-preview img, 
+.why-choose-us img,
+.service-card img {
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    width: 100%;
+    min-height: 200px;
+}
+
+/* Testimonial/card images */
+.testimonial-card img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    width: 100%;
+    min-height: 150px;
+}
+
+/* Add sufficient bottom padding for images in single column view */
+@media (max-width: 991.98px) {
+    /* General content images */
+    .about-preview img,
+    .why-choose-us img,
+    .hero-section img,
+    .content-image,
+    section img:not(.service-card img):not(.testimonial-card img):not(.navbar-brand img) {
+        margin-bottom: 2rem !important;
+    }
+    
+    /* Service and feature images */
+    .service-card img,
+    .feature-card img {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Testimonial images */
+    .testimonial-card img {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Ensure images inside text content have proper spacing */
+    p img,
+    .content img,
+    .article-content img {
+        margin-bottom: 1.5rem !important;
+        margin-top: 1rem !important;
+    }
+}
+
+/* Prevent button text wrapping causing layout shifts */
+.btn {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Ensure consistent button heights */
+.btn-lg {
+    min-height: 48px;
+    line-height: 1.5;
+}
+
+.btn {
+    min-height: 38px;
+    line-height: 1.5;
+}
+
+/* Prevent content jumping during font load */
+body {
+    font-display: swap;
+}
+
+/* Prevent layout shifts in sections */
+.py-5 {
+    min-height: 400px; /* Ensure consistent minimum section heights */
+}
+
+.hero-section {
+    min-height: 500px; /* Larger minimum for hero sections */
+}
+
+/* Prevent navbar height changes */
+.navbar {
+    height: 92px !important; /* Fixed height instead of min-height */
+}
+
+/* Ensure consistent card heights */
+.service-card,
+.testimonial-card,
+.feature-card {
+    min-height: 280px;
+}
+
+.service-card.h-100,
+.testimonial-card.h-100 {
+    min-height: 320px;
+}
+
+/* Smooth transitions for any layout changes */
+* {
+    transition: height 0.3s ease, min-height 0.3s ease;
+}
+
+/* Disable transitions on page load to prevent flash */
+.preload * {
+    transition: none !important;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* Chatbot Styles */
+.chat-float-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    border: none;
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    animation: pulse 2s infinite;
+}
+
+.chat-float-button:hover {
+    transform: scale(1.1);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow), 0 0 30px rgba(72, 253, 254, 0.5);
+}
+
+.chat-float-button i {
+    font-size: 1.5rem;
+    color: var(--dark-bg);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(72, 253, 254, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(72, 253, 254, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(72, 253, 254, 0); }
+}
+
+.chatbot-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatbot-overlay.show {
+    display: flex;
+}
+
+.chatbot-container {
+    background: var(--dark-bg);
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.chatbot-header {
+    background: var(--dark-darker);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-header h3 {
+    color: var(--text-bright);
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.chat-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.chat-close-btn:hover {
+    color: var(--primary-color);
+}
+
+.chatbot-body {
+    padding: 1rem;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-log {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+}
+
+.bot-message {
+    background: var(--dark-lighter);
+    color: var(--text-bright);
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.user-message {
+    background: var(--primary-color);
+    color: var(--dark-bg);
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+    text-align: right;
+    margin-left: 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.chat-options {
+    margin: 0.75rem 0;
+}
+
+.chat-option-button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border: 2px solid var(--border-color);
+    background: var(--dark-lighter);
+    color: var(--text-bright);
+    cursor: pointer;
+    text-align: left;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+.chat-option-button:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: var(--dark-bg);
+    transform: translateY(-1px);
+}
+
+.chat-radio-group {
+    margin: 0.75rem 0;
+}
+
+.chat-radio-option {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    color: var(--text-bright);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.chat-radio-option:hover {
+    background: var(--dark-lighter);
+}
+
+.chat-radio-option input[type="radio"] {
+    margin-right: 0.75rem;
+    accent-color: var(--primary-color);
+}
+
+.chat-submit-button {
+    padding: 0.75rem 1.5rem;
+    margin-top: 0.75rem;
+    border: 2px solid var(--primary-color);
+    background: var(--primary-color);
+    color: var(--dark-bg);
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.chat-submit-button:hover {
+    background: transparent;
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.chat-form-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: 2px solid var(--border-color);
+    background: var(--dark-lighter);
+    color: var(--text-bright);
+    border-radius: var(--border-radius);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.chat-form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(72, 253, 254, 0.1);
+}
+
+.chat-form-input::placeholder {
+    color: var(--text-dim);
+}
+
+/* Scrollbar styling for chat log */
+.chat-log::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-log::-webkit-scrollbar-track {
+    background: var(--dark-darker);
+    border-radius: 3px;
+}
+
+.chat-log::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.chat-log::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .chatbot-container {
+        width: 95%;
+        max-height: 95vh;
+        margin: 0;
+    }
+    
+    .chatbot-body {
+        padding: 0.75rem;
+    }
+    
+    .chat-log {
+        max-height: 250px;
+    }
+    
+    .chat-float-button {
+        width: 55px;
+        height: 55px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .chat-float-button i {
+        font-size: 1.3rem;
+    }
+    
+    .user-message {
+        margin-left: 1rem;
+    }
+    
+    .chatbot-header {
+        padding: 0.75rem;
+    }
+    
+    .chatbot-header h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chatbot-container {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        animation: slideUp 0.3s ease-out;
+    }
+    
+    .chatbot-body {
+        padding: 0.5rem;
+    }
+    
+    .chat-log {
+        max-height: calc(100vh - 200px);
+    }
+    
+    .user-message {
+        margin-left: 0.5rem;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ensure chat button doesn't interfere with other elements */
+@media (max-width: 768px) {
+    .chat-float-button {
+        z-index: 9999 !important; /* Keep same high z-index on mobile */
+        bottom: 20px !important;
+        right: 20px !important;
+        display: flex !important;
+    }
+    
+    /* Add bottom padding to pages to prevent overlap */
+    main {
+        padding-bottom: 80px;
+    }
 }
 
 /* Typography */
@@ -461,25 +959,81 @@ input[type="submit"].btn {
     
     .navbar-collapse {
         order: 3;
-        width: 100%;
-        
-        /* Fade-in animation */
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-20px);
-        transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+        width: 100vw !important;
+        background-color: var(--dark-darker) !important;
+        padding: 1rem 1rem; /* Match main container padding (px-3) */
+        margin-top: 0;
+        margin-left: -1rem !important; /* Offset the px-3 container padding */
+        margin-right: -1rem !important; /* Offset the px-3 container padding */
+        border-radius: 0;
+        box-shadow: var(--box-shadow);
     }
     
-    .navbar-collapse.show {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+    /* Remove individual navbar-nav padding since we're using container-level padding */
+    .navbar-collapse .navbar-nav {
+        padding-left: 0;
+        padding-right: 0;
     }
     
-    .navbar-collapse.collapsing {
-        opacity: 0.5;
-        transform: translateY(-10px);
-        transition: opacity 0.4s ease, transform 0.4s ease, height 0.4s ease;
+    /* Ensure buttons container also respects the same padding */
+    .navbar-collapse .d-xl-none {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Match lg padding for larger mobile screens */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .navbar-collapse {
+        padding-left: 1.5rem !important; /* Match px-lg-4 */
+        padding-right: 1.5rem !important;
+        margin-left: -1.5rem !important; /* Offset the px-lg-4 container padding */
+        margin-right: -1.5rem !important; /* Offset the px-lg-4 container padding */
+    }
+}
+
+/* Mobile dropdown menu adjustments for smaller screens */
+@media (max-width: 1199.98px) {
+    .dropdown-menu {
+        position: static !important;
+        float: none !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+        background-color: var(--dark-lighter) !important;
+        border-left: 3px solid var(--primary-color) !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
+        display: none !important; /* Start hidden */
+    }
+    
+    .dropdown-menu.show {
+        display: block !important; /* Show when toggled */
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .dropdown-item {
+        padding: 0.75rem 2rem !important;
+        font-size: 1rem !important;
+        background-color: transparent !important;
+    }
+    
+    .dropdown-item:hover,
+    .dropdown-item:focus {
+        background-color: var(--primary-color) !important;
+        color: var(--dark-bg) !important;
+    }
+    
+    /* Ensure dropdown toggles are clickable on mobile */
+    .dropdown-toggle {
+        cursor: pointer !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -khtml-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
     }
 }
 

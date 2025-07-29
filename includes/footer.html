@@ -84,17 +84,40 @@
             </div>
         </div>
         
-        <!-- Footer Bottom -->
-        <div class="footer-bottom text-center py-3 border-top border-secondary">
+        <div class="footer-bottom pt-4 mt-4 border-top border-secondary">
             <div class="row align-items-center">
-                <div class="col-md-6 text-md-start">
-                    <p class="mb-0">&copy; 2025 Bullard Locks. All rights reserved.</p>
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2024 Bullard Locks. All rights reserved.</p>
                 </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="./contact.html" class="text-muted text-decoration-none me-3">Privacy Policy</a>
-                    <a href="./contact.html" class="text-muted text-decoration-none me-3">Terms of Service</a>
+                <div class="col-md-6 text-center text-md-end">
+                    <p>Professional Locksmith Services | William Bullard</p>
                 </div>
             </div>
         </div>
     </div>
 </footer>
+
+<!-- Floating Chat Button -->
+<button class="chat-float-button" onclick="openChatbot()" aria-label="Open Chat Assistant">
+    <i class="fas fa-comments"></i>
+</button>
+
+<!-- Chatbot Overlay -->
+<div class="chatbot-overlay" id="chatbotOverlay" onclick="closeChatbotOnOverlay(event)">
+    <div class="chatbot-container" onclick="event.stopPropagation()">
+        <div class="chatbot-header">
+            <h3><i class="fas fa-robot me-2"></i>Locksmith Assistant</h3>
+            <button class="chat-close-btn" onclick="closeChatbot()" aria-label="Close Chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-body">
+            <div class="chat-log" id="chatLog">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div id="currentInteraction">
+                <!-- Current question/interaction will appear here -->
+            </div>
+        </div>
+    </div>
+</div>
