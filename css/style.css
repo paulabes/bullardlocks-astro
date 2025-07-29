@@ -1,3 +1,9 @@
+/* Cyan phone link in chatbot thank you message */
+.chatbot-thankyou-link {
+  color: var(--primary-color) !important;
+  font-weight: bold;
+  text-decoration: underline;
+}
 /* Custom CSS for Lock Pros Website */
 
 /* Import Google Fonts */
@@ -192,7 +198,7 @@ body {
     right: 20px;
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--danger-color); /* Match .btn-danger color */
     border-radius: 50%;
     border: none;
     box-shadow: var(--box-shadow-lg), var(--glow-shadow);
@@ -212,13 +218,13 @@ body {
 
 .chat-float-button i {
     font-size: 1.5rem;
-    color: var(--dark-bg);
+    color: #fff;
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(72, 253, 254, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(72, 253, 254, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(72, 253, 254, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(255, 42, 42, 0.7); }
+    70% { box-shadow: 0 0 0 30px rgba(255, 42, 42, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 42, 42, 0); }
 }
 
 .chatbot-overlay {
@@ -321,15 +327,16 @@ body {
     color: var(--text-bright);
     padding: 0.75rem 1rem;
     border-radius: var(--border-radius);
-    border-left: 3px solid var(--primary-color);
+    /* border-left removed for cleaner look */
     margin-bottom: 0.5rem;
     font-size: 0.95rem;
     line-height: 1.5;
 }
 
 .user-message {
-    background: var(--primary-color);
-    color: var(--dark-bg);
+    border: none;
+    background: var(--dark-lighter);
+    color: var(--text-bright);
     padding: 0.75rem 1rem;
     border-radius: var(--border-radius);
     margin-bottom: 0.5rem;

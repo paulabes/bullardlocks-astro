@@ -475,7 +475,7 @@ function showEmergencyTypeSelection() {
                 <i class="fas fa-building me-2"></i>Commercial Emergency
             </label>
         </div>
-        <button class="chat-submit-button" onclick="submitEmergencyType()">Continue</button>
+        <button class="chat-submit-button" onclick="submitEmergencyType()">Submit</button>
     `;
     
     document.getElementById('currentInteraction').innerHTML = optionsHtml;
@@ -540,9 +540,7 @@ function showEmergencyForm(type) {
     }
     
     formHtml += `
-            <button class="chat-submit-button" onclick="submitEmergencyRequest()">
-                <i class="fas fa-phone me-2"></i>Request Emergency Service
-            </button>
+            <button class="chat-submit-button" onclick="submitEmergencyRequest()">Submit</button>
         </div>
     `;
     
@@ -594,62 +592,111 @@ function submitEmergencyRequest() {
 
 // Show auto locksmith form
 function showAutoLocksmithForm() {
-    addChatMessage('I\'ll help you with auto locksmith services. Please provide some details:');
-    
+    addChatMessage('I\'ll help you with auto locksmith services. What service do you need?');
+
     const formHtml = `
         <div class="auto-form">
-            <input type="text" class="chat-form-input" placeholder="Car make and model *" id="carMake" required>
-            <input type="text" class="chat-form-input" placeholder="Year" id="carYear">
-            <select class="chat-form-input" id="serviceNeeded">
-                <option value="">What service do you need?</option>
-                <option value="lockout">Locked out of car</option>
-                <option value="keyLost">Lost car keys</option>
-                <option value="keyBroken">Broken key</option>
-                <option value="ignition">Ignition problems</option>
-                <option value="keyCopy">Spare key needed</option>
-            </select>
-            <input type="tel" class="chat-form-input" placeholder="Your phone number *" id="autoPhone" required>
-            <input type="text" class="chat-form-input" placeholder="Your location/postcode *" id="autoLocation" required>
-            <button class="chat-submit-button" onclick="submitAutoRequest()">
-                <i class="fas fa-paper-plane me-2"></i>Submit Request
-            </button>
+            <div class="mb-3">
+                <label class="form-label">What service do you need?</label>
+                <div class="chat-options">
+                    <button class="chat-option-button" onclick="selectAutoService('Locked out of car')">
+                        <i class="fas fa-car me-2"></i>Locked out of car
+                    </button>
+                    <button class="chat-option-button" onclick="selectAutoService('Lost car keys')">
+                        <i class="fas fa-key me-2"></i>Lost car keys
+                    </button>
+                    <button class="chat-option-button" onclick="selectAutoService('Broken key')">
+                        <i class="fas fa-unlock-alt me-2"></i>Broken key
+                    </button>
+                    <button class="chat-option-button" onclick="selectAutoService('Ignition problems')">
+                        <i class="fas fa-bolt me-2"></i>Ignition problems
+                    </button>
+                    <button class="chat-option-button" onclick="selectAutoService('Spare key needed')">
+                        <i class="fas fa-plus me-2"></i>Spare key needed
+                    </button>
+                </div>
+            </div>
         </div>
     `;
-    
     document.getElementById('currentInteraction').innerHTML = formHtml;
+}
+
+// Called when a service button is clicked in auto locksmith popup
+function selectAutoService(service) {
+    // Save selected service for later use
+    window.selectedAutoService = service;
+    showAutoLocksmithDetailsForm(service);
+}
+
+// Show the details form after service selection
+function showAutoLocksmithDetailsForm(service) {
+    addChatMessage('Please provide your vehicle and contact details:');
+    const formHtml = `
+        <div class="auto-form">
+            <div class="mb-2"><strong>Service:</strong> ${service}</div>
+            <input type="text" class="chat-form-input" placeholder="Car make and model *" id="carMake" required>
+            <input type="text" class="chat-form-input" placeholder="Registration No." id="carRegNo">
+            <input type="text" class="chat-form-input" placeholder="Year" id="carYear">
+            <input type="tel" class="chat-form-input" placeholder="Your phone number *" id="autoPhone" required>
+            <input type="text" class="chat-form-input" placeholder="Your location/postcode *" id="autoLocation" required>
+            <button class="chat-submit-button" onclick="submitAutoRequest()">Submit</button>
+        </div>
+    `;
+    document.getElementById('currentInteraction').innerHTML = formHtml;
+    // Set the selected service in a hidden field if needed
+    setTimeout(() => {
+        if (document.getElementById('serviceNeeded')) {
+            document.getElementById('serviceNeeded').value = service;
+        }
+    }, 100);
 }
 
 // Submit auto request
 function submitAutoRequest() {
     const carMake = document.getElementById('carMake').value;
+    const carRegNo = document.getElementById('carRegNo') ? document.getElementById('carRegNo').value : '';
+    const carYear = document.getElementById('carYear') ? document.getElementById('carYear').value : '';
     const phone = document.getElementById('autoPhone').value;
     const location = document.getElementById('autoLocation').value;
-    
+    const service = document.getElementById('serviceNeeded') ? document.getElementById('serviceNeeded').value : '';
+
     if (!carMake || !phone || !location) {
         alert('Please fill in all required fields');
         return;
     }
-    
-    clearChatInteraction();
-    
-    addChatMessage('Auto locksmith request submitted!', true);
-    addChatMessage('Thank you! We\'ll contact you shortly with service details and pricing.');
-    
-    console.log('Auto Request:', {
-        carMake: carMake,
-        carYear: document.getElementById('carYear').value,
-        service: document.getElementById('serviceNeeded').value,
-        phone: phone,
-        location: location
-    });
-    
-    setTimeout(() => {
+
+    // Send SMS via backend
+    fetch('http://localhost:3001/api/send-sms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name: '',
+            phone: phone,
+            carMake: carMake,
+            carModel: carRegNo,
+            carYear: carYear,
+            reg: carRegNo,
+            service: service,
+            location: location
+        })
+    }).catch(() => {/* ignore errors for UI */}).finally(() => {
+        clearChatInteraction();
+        // Show thank you screen with call-to-action
         document.getElementById('currentInteraction').innerHTML = `
-            <button class="chat-submit-button" onclick="restartChat()">
-                <i class="fas fa-redo me-2"></i>Start New Request
-            </button>
+            <div class="thankyou-message text-center p-4">
+                <h5 class="mb-3">Thank you for your enquiry</h5>
+                <p>A locksmith will call you shortly.<br>Alternatively, please call <a href="tel:07809887883" class="chatbot-thankyou-link">078 0988 7883</a>.</p>
+                <button class="chat-submit-button mt-3" onclick="restartChat()">Submit another request</button>
+            </div>
         `;
-    }, 2000);
+        console.log('Auto Request:', {
+            carMake: carMake,
+            carYear: carYear,
+            service: service,
+            phone: phone,
+            location: location
+        });
+    });
 }
 
 // Show quotation form
