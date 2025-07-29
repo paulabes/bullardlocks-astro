@@ -1121,11 +1121,7 @@ input[type="submit"].btn {
 /* Hero Section */
 .hero-section {
     position: relative;
-    background: linear-gradient(rgba(22, 8, 32, 0.3), rgba(22, 8, 32, 0.3)), url('../images/locksmith-crouch-end-n8.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: scroll; /* Better for mobile performance */
+    background-color: var(--dark-darker);
     padding: 3rem 0 3rem 0;
     overflow: hidden;
 }
@@ -1133,9 +1129,6 @@ input[type="submit"].btn {
 /* Mobile hero section adjustments */
 @media (max-width: 767.98px) {
     .hero-section {
-        background-size: contain;
-        background-position: center top;
-        background-repeat: repeat-y;
         padding: 1rem 0 4rem 0;
     }
 }
