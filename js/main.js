@@ -433,26 +433,23 @@ function showInitialQuestion() {
 // Handle initial service selection
 function selectInitialService(service) {
     chatbotState.serviceType = service;
-    
+
     const serviceText = {
         'auto': 'Auto Locksmith',
         'emergency': 'Emergency Locksmith',
         'quotation': 'Get a Quote'
     };
     addChatMessage(serviceText[service], true);
-    
+
     clearChatInteraction();
-    
-    switch(service) {
-        case 'auto':
-            showAutoLocksmithForm();
-            break;
-        case 'emergency':
-            showEmergencyTypeSelection();
-            break;
-        case 'quotation':
-            showQuotationForm();
-            break;
+
+    if (service === 'auto') {
+        showAutoLocksmithForm();
+    } else if (service === 'emergency') {
+        // Only show emergency type selection, not auto form
+        showEmergencyTypeSelection();
+    } else if (service === 'quotation') {
+        showQuotationForm();
     }
 }
 
@@ -461,29 +458,42 @@ function showEmergencyTypeSelection() {
     addChatMessage('What type of emergency locksmith service do you need?');
     
     const optionsHtml = `
-        <div class="chat-radio-group">
-            <label class="chat-radio-option">
-                <input type="radio" name="emergencyType" value="auto">
+        <div class="chat-options">
+            <button class="chat-option-button" onclick="selectEmergencyType('auto')">
                 <i class="fas fa-car me-2"></i>Auto Locksmith Emergency
-            </label>
-            <label class="chat-radio-option">
-                <input type="radio" name="emergencyType" value="residential">
+            </button>
+            <button class="chat-option-button" onclick="selectEmergencyType('residential')">
                 <i class="fas fa-home me-2"></i>Residential Emergency
-            </label>
-            <label class="chat-radio-option">
-                <input type="radio" name="emergencyType" value="commercial">
+            </button>
+            <button class="chat-option-button" onclick="selectEmergencyType('commercial')">
                 <i class="fas fa-building me-2"></i>Commercial Emergency
-            </label>
+            </button>
         </div>
-        <button class="chat-submit-button" onclick="submitEmergencyType()">Submit</button>
     `;
     
     document.getElementById('currentInteraction').innerHTML = optionsHtml;
 }
 
+// Make selectEmergencyType global so inline onclick works
+window.selectEmergencyType = function(type) {
+    chatbotState.emergencyType = type;
+    const typeText = {
+        'auto': 'Auto Locksmith Emergency',
+        'residential': 'Residential Emergency',
+        'commercial': 'Commercial Emergency'
+    };
+    addChatMessage(typeText[type], true);
+    clearChatInteraction();
+    if (type === 'auto') {
+        showAutoLocksmithForm();
+    } else {
+        showEmergencyForm(type);
+    }
+}
+
 // Submit emergency type
 function submitEmergencyType() {
-    const selectedType = document.querySelector('input[name="emergencyType"]:checked');
+    const selectedType = chatbotState.emergencyType;
     
     if (!selectedType) {
         alert('Please select an emergency type');
@@ -507,25 +517,40 @@ function submitEmergencyType() {
 function showEmergencyForm(type) {
     addChatMessage('I need some quick details to dispatch a locksmith immediately.');
     
-    let formHtml = `
-        <div class="emergency-form">
-            <input type="tel" class="chat-form-input" placeholder="Your phone number *" id="phone" required>
-            <input type="text" class="chat-form-input" placeholder="Your location/postcode *" id="location" required>
+    let formHtml = `<div class="emergency-form">`;
+    if (type === 'residential') {
+        formHtml += `
+            <div class="chat-options d-grid gap-2">
+                <button class="chat-option-button d-flex align-items-center" onclick="selectPropertyType('house')">
+                    <span class="me-2"><i class="fas fa-home"></i></span> House
+                </button>
+                <button class="chat-option-button d-flex align-items-center" onclick="selectPropertyType('flat')">
+                    <span class="me-2"><i class="fas fa-building"></i></span> Flat
+                </button>
+                <button class="chat-option-button d-flex align-items-center" onclick="selectPropertyType('other')">
+                    <span class="me-2"><i class="fas fa-question-circle"></i></span> Other
+                </button>
+            </div>
+        `;
+        formHtml += `<div id="residentialDetailsForm"></div>`;
+        document.getElementById('currentInteraction').innerHTML = formHtml;
+        // Expose selectPropertyType globally
+        window.selectPropertyType = function(propertyType) {
+            chatbotState.propertyType = propertyType;
+            const typeLabels = { house: 'House', flat: 'Flat', other: 'Other' };
+            addChatMessage(typeLabels[propertyType] || propertyType, true);
+            showResidentialDetailsForm(propertyType);
+        };
+        return;
+    }
+    formHtml += `
+        <input type="tel" class="chat-form-input" placeholder="Your phone number *" id="phone" required>
+        <input type="text" class="chat-form-input" placeholder="Your location/postcode *" id="location" required>
     `;
-    
     if (type === 'auto') {
         formHtml += `
             <input type="text" class="chat-form-input" placeholder="Car make and model" id="carInfo">
             <input type="text" class="chat-form-input" placeholder="Registration number (optional)" id="registration">
-        `;
-    } else if (type === 'residential') {
-        formHtml += `
-            <select class="chat-form-input" id="propertyType">
-                <option value="">Property type</option>
-                <option value="house">House</option>
-                <option value="flat">Flat</option>
-                <option value="other">Other</option>
-            </select>
         `;
     } else if (type === 'commercial') {
         formHtml += `
@@ -538,13 +563,29 @@ function showEmergencyForm(type) {
             </select>
         `;
     }
-    
     formHtml += `
-            <button class="chat-submit-button" onclick="submitEmergencyRequest()">Submit</button>
-        </div>
+        <button class="chat-submit-button" onclick="submitEmergencyRequest()">Submit</button>
+    </div>
     `;
-    
     document.getElementById('currentInteraction').innerHTML = formHtml;
+}
+
+// Show the rest of the residential form after property type selection
+function showResidentialDetailsForm(propertyType) {
+    // Remove property type buttons after selection
+    const optionsDiv = document.querySelector('.chat-options');
+    if (optionsDiv && optionsDiv.parentNode) optionsDiv.parentNode.removeChild(optionsDiv);
+    // Show property type as a summary, like service
+    const typeLabels = { house: 'House', flat: 'Flat', other: 'Other' };
+    const summaryHtml = `<div class='mb-2'><strong>Property type:</strong> ${typeLabels[propertyType] || propertyType}</div>`;
+    // Show only the next fields
+    const detailsHtml = `
+        ${summaryHtml}
+        <input type="tel" class="chat-form-input" placeholder="Your phone number *" id="phone" required>
+        <input type="text" class="chat-form-input" placeholder="Your location/postcode *" id="location" required>
+        <button class="chat-submit-button" onclick="submitEmergencyRequest()">Submit</button>
+    `;
+    document.getElementById('residentialDetailsForm').innerHTML = detailsHtml;
 }
 
 // Submit emergency request
@@ -681,12 +722,23 @@ function submitAutoRequest() {
         })
     }).catch(() => {/* ignore errors for UI */}).finally(() => {
         clearChatInteraction();
-        // Show thank you screen with call-to-action
-        document.getElementById('currentInteraction').innerHTML = `
-            <div class="thankyou-message text-center p-4">
+    // Show thank you page in the popup
+    const refNum = '#EMG-' + Date.now().toString().slice(-6);
+    document.getElementById('currentInteraction').innerHTML = `
+        <div class="thankyou-page text-center p-4">
+            <div class="mb-3">
+                <i class="fas fa-check-circle fa-3x text-success mb-2"></i>
+                <h4 class="mb-2">Thank you!</h4>
+                <p class="mb-2">A locksmith will call <strong>${phone}</strong> within 5 minutes.<br>They are being notified right now.</p>
+                <p class="mb-2">Reference number: <strong>${refNum}</strong></p>
+            </div>
+            <button class="chat-submit-button mt-3" onclick="restartChat()">
+                <i class="fas fa-redo me-2"></i>Start New Request
+            </button>
+        </div>
+    `;
                 <h5 class="mb-3">Thank you for your enquiry</h5>
                 <p>A locksmith will call you shortly.<br>Alternatively, please call <a href="tel:07809887883" class="chatbot-thankyou-link">078 0988 7883</a>.</p>
-                <button class="chat-submit-button mt-3" onclick="restartChat()">Submit another request</button>
             </div>
         `;
         console.log('Auto Request:', {
