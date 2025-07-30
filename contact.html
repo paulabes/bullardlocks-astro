@@ -143,38 +143,43 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="p-4 rounded shadow-lg" style="background-color: rgb(44, 39, 56);">
+                        <div class="p-4 rounded shadow-lg" style="background-color: var(--dark-lighter);">
                             <h3 class="mb-4">Get a Free Quote</h3>
                             <form id="quoteForm" class="needs-validation" novalidate>
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Full Name *</label>
-                                    <input type="text" class="form-control bg-white" id="name" name="name" required>
+                                    <label for="name" class="form-label" style="padding-bottom:0;">Full Name *</label>
+                                    <input type="text" class="chat-form-input" id="name" name="name" required style="margin-bottom:0;">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phone" class="form-label">Phone Number *</label>
-                                    <input type="tel" class="form-control bg-white" id="phone" name="phone" required>
+                                    <label for="phone" class="form-label" style="padding-bottom:0;">Phone Number *</label>
+                                    <input type="tel" class="chat-form-input" id="phone" name="phone" required style="margin-bottom:0;">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="postcode" class="form-label">Postcode *</label>
-                                    <input type="text" class="form-control bg-white" id="postcode" name="postcode"
-                                        required>
+                                    <label for="postcode" class="form-label" style="padding-bottom:0;">Postcode *</label>
+                                    <input type="text" class="chat-form-input" id="postcode" name="postcode" required style="margin-bottom:0;">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="service" class="form-label">Service Required *</label>
-                                    <select class="form-select bg-white" id="service" name="service" required
-                                        style="height: calc(3rem + 2px); border-radius: 0;">
+                                    <label for="service" class="form-label" style="padding-bottom:0;">Service Required *</label>
+                                    <select class="chat-form-input" id="service" name="service" required style="margin-bottom:0;">
                                         <option value="">Select a service...</option>
                                         <option value="residential">Residential Locksmith</option>
                                         <option value="auto">Auto Locksmith</option>
                                         <option value="safe">Safe Engineer</option>
                                     </select>
+                                    <style>
+                                    /* Make the dropdown menu dark for visibility */
+                                    #service.chat-form-input, #service.chat-form-input option {
+                                        background: #2d1445 !important;
+                                        color: #fff !important;
+                                    }
+                                    </style>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="message" class="form-label">Brief Description</label>
-                                    <textarea class="form-control bg-white" id="message" name="message" rows="2"
-                                        placeholder="Please describe your issue..."></textarea>
+                                    <label for="message" class="form-label" style="padding-bottom:0;">Brief Description</label>
+                                    <textarea class="chat-form-input" id="message" name="message" rows="2" placeholder="Please describe your issue..." style="margin-bottom:0;"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-danger w-100">
+                                <button type="submit" class="chat-submit-button">
                                     <i class="fas fa-paper-plane me-2"></i>Get Quote Now
                                 </button>
                                 <div class="small mt-2 text-center">
