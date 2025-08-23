@@ -1,43 +1,46 @@
-/* Cyan phone link in chatbot thank you message */
-.chatbot-thankyou-link {
-  color: var(--primary-color) !important;
-  font-weight: bold;
-  text-decoration: underline;
-}
-/* Custom CSS for Lock Pros Website */
+/* ========================================
+   /* BULLARD LOCKS WEBSITE - MAIN STYLESHEET
+======================================== */
 
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* CSS Variables - Cohesive Color Scheme */
+/* ========================================
+   /* CSS VARIABLES - COHESIVE COLOUR SCHEME
+======================================== */
+
 :root {
-    --primary-color: #4a5568;        /* Muted slate blue - primary brand color */
-    --secondary-color: #718096;      /* Soft gray-blue - secondary color */
+    /* Primary brand colours */
+    --primary-color: #4a5568;        /* Muted slate blue - primary brand colour */
+    --secondary-color: #718096;      /* Soft grey-blue - secondary colour */
     --success-color: #38a169;        /* Muted forest green - WhatsApp */
     --warning-color: #d69e2e;        /* Muted amber orange */
-    --light-bg: #f7fafc;            /* Very light cool gray */
-    --darker-bg: #e2e8f0;           /* Light cool gray */
+    
+    /* Background colours */
+    --light-bg: #f7fafc;            /* Very light cool grey */
+    --darker-bg: #e2e8f0;           /* Light cool grey */
     --dark-bg: #2d3748;             /* Muted dark slate */
+    
+    /* Text colours */
     --text-dark: #2d3748;            /* Muted dark text */
     --text-light: #f7fafc;           /* Light text for dark backgrounds */
-    --text-dim: #718096;             /* Muted gray text */
+    --text-dim: #718096;             /* Muted grey text */
+    
+    /* Border and shadow colours */
     --border-color: rgba(74, 85, 104, 0.2); /* Subtle muted border */
     --glow-shadow: 0 0 15px rgba(74, 85, 104, 0.15); /* Muted glow */
     --success-glow: 0 0 15px rgba(56, 161, 105, 0.15); /* Muted green glow */
     --warning-glow: 0 0 15px rgba(214, 158, 46, 0.15); /* Muted amber glow */
     
-    /* New systematic background color system for proper contrast */
+    /* Systematic background colour system for proper contrast */
     --bg-white: #ffffff;             /* Pure white for maximum contrast */
-    --bg-ultra-light: #f8fafc;      /* Ultra light gray (lighter than light-bg) */
-    --bg-light: #f7fafc;             /* Your existing light-bg */
-    --bg-light-medium: #e2e8f0;     /* Your existing darker-bg */
-    --bg-medium: #cbd5e1;            /* Medium gray (between light and dark) */
-    --bg-medium-dark: #94a3b8;      /* Medium dark gray */
-    --bg-dark: #2d3748;              /* Your existing dark-bg */
+    --bg-light: #f7fafc;             /* Existing light-bg */
+    --bg-medium: #cbd5e1;            /* Medium grey (between light and dark) */
+    --bg-medium-dark: #94a3b8;      /* Medium dark grey */
+    --bg-dark: #2d3748;              /* Existing dark-bg */
     --bg-ultra-dark: #1e293b;       /* Ultra dark (darker than dark-bg) */
     
-    /* Opaque versions of your brand colors for subtle backgrounds */
+    /* Subtle brand colour backgrounds */
     --bg-primary-subtle: rgba(74, 85, 104, 0.05);    /* Very light primary */
     --bg-primary-light: rgba(74, 85, 104, 0.1);      /* Light primary */
     --bg-secondary-subtle: rgba(113, 128, 150, 0.05); /* Very light secondary */
@@ -47,27 +50,36 @@
     --bg-warning-subtle: rgba(214, 158, 46, 0.05);  /* Very light warning */
     --bg-warning-light: rgba(214, 158, 46, 0.1);    /* Light warning */
     
+    /* Transitions and effects */
     --transition: all 0.3s ease;
     --border-radius: 3px;
     --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     --box-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Base Styles */
+/* ========================================
+   /* BASE STYLES
+======================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body and typography base styles */
 body {
-    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    font-family: 'PT Sans', system-ui, -apple-system, sans-serif;
     line-height: 2.08;
     color: var(--text-dark);
     font-size: 16px;
     background-color: var(--light-bg);
     padding-top: 92px; /* Add padding for fixed navbar */
 }
+
+/* ========================================
+   NAVBAR AND HEADER STYLES
+   ======================================== */
 
 /* Prevent layout shifts */
 .navbar {
@@ -88,6 +100,10 @@ body {
     border-top: 1px solid var(--border-color);
 }
 
+/* ========================================
+   IMAGE AND LAYOUT STYLES
+   ======================================== */
+
 /* Ensure images don't cause layout shifts */
 img {
     max-width: 100%;
@@ -96,7 +112,7 @@ img {
 
 /* Reserve space for hero images */
 .hero-section img {
-    aspect-ratio: 4/3; /* Maintain consistent aspect ratio */
+    height: 100%; /* Full column height */
     object-fit: cover;
     width: 100%;
     min-height: 300px; /* Prevent jumping while loading */
@@ -151,6 +167,10 @@ img {
     }
 }
 
+/* ========================================
+   BUTTON STYLES
+   ======================================== */
+
 /* Prevent button text wrapping causing layout shifts */
 .btn {
     white-space: nowrap;
@@ -180,6 +200,26 @@ body {
 
 .hero-section {
     min-height: 500px; /* Larger minimum for hero sections */
+}
+
+/* Ensure hero section columns stretch to full height */
+.hero-section .row {
+    min-height: 500px;
+}
+
+.hero-section .col-lg-6,
+.hero-section .col-md-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Ensure hero images fill their column height */
+.hero-section .col-lg-6 img,
+.hero-section .col-md-6 img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
 }
 
 /* Prevent navbar height changes */
@@ -215,7 +255,18 @@ body {
     pointer-events: none;
 }
 
-/* Chatbot Styles */
+/* ========================================
+   CHATBOT FUNCTIONALITY
+   ======================================== */
+
+/* Chatbot thank you message link styling */
+.chatbot-thankyou-link {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Chatbot float button */
 .chat-float-button {
     position: fixed;
     bottom: 20px;
@@ -457,7 +508,7 @@ body {
     margin-top: 0.75rem;
     border: 2px solid var(--primary-color);
     background: var(--primary-color);
-    color: var(--light-bg);
+    color: white;
     cursor: pointer;
     border-radius: var(--border-radius);
     font-weight: 600;
@@ -600,13 +651,17 @@ body {
     }
 }
 
-/* Typography */
+/* ========================================
+   TYPOGRAPHY STYLES
+   ======================================== */
+
+/* Heading styles */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 900 !important;
+    font-family: 'PT Sans', sans-serif !important;
+    font-weight: 700 !important;
     text-transform: uppercase !important;
     color: var(--dark-bg) !important;
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
 }
 
 h1, body h1, .container h1, section h1 { 
@@ -614,28 +669,28 @@ h1, body h1, .container h1, section h1 {
     line-height: 1.03845;
     margin: 1rem 0;
     padding: 0.5em 0;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
     font-weight: 700 !important;
     color: #2c3647 !important;
-    letter-spacing: 0.009em;
+    letter-spacing: 0.00525em;
 }
 
 h2, body h2, .container h2, section h2 { 
     font-size: 2.3rem;
     line-height: 1.1249875;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
     font-weight: 700 !important;
     color: #2c3647 !important;
-    letter-spacing: 0.0105em;
+    letter-spacing: -0.02em;
 }
 
 h3, body h3, .container h3, section h3 { 
     font-size: 2rem;
     line-height: 1.16825625;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
     font-weight: 700 !important;
     color: #2c3647 !important;
-    letter-spacing: 0.0084em;
+    letter-spacing: -0.02em;
 }
 
 h4 { 
@@ -659,7 +714,7 @@ p, li, td, th, dt, dd, blockquote, label, span, .form-control {
     font-weight: 400;
     line-height: 1.6;
     color: var(--text-dim);
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
 }
 
 .lead {
@@ -667,7 +722,7 @@ p, li, td, th, dt, dd, blockquote, label, span, .form-control {
     font-weight: 400;
     line-height: 1.7;
     color: var(--text-dark) !important;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
 }
 
 /* List Styles */
@@ -688,7 +743,7 @@ ol li {
     font-size: 1.125rem;
     font-weight: 400;
     line-height: 1.6;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
 }
 
 /* Ensure .lead text is always white throughout the site */
@@ -705,7 +760,22 @@ section .lead,
     color: var(--text-dark) !important;
 }
 
-/* Bootstrap Override - Base Button Styles */
+/* ========================================
+   FONT-SPECIFIC STYLES
+   ======================================== */
+
+/* PT Sans font styling for all text */
+h1, h2, h3, h4, h5, h6,
+body, p, li, .form-control {
+    font-feature-settings: "liga" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+}
+
+/* ========================================
+   BUTTON VARIANT STYLES
+   ======================================== */
+
+/* Bootstrap override - base button styles */
 .btn {
     border-radius: var(--border-radius) !important;
     font-weight: 500 !important;
@@ -713,7 +783,7 @@ section .lead,
     transition: var(--transition) !important;
     border: 2px solid !important;
     text-transform: capitalize !important;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
     font-size: 1.125rem !important;
     line-height: 1.6 !important;
     height: 52px !important;
@@ -739,7 +809,7 @@ section .lead,
     align-items: center !important;
     justify-content: center !important;
     box-sizing: border-box !important;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
 }
 
 /* Small button variants - Global override for all .btn-sm */
@@ -912,7 +982,7 @@ input[type="submit"].btn {
     font-size: 1.5rem !important;
     font-weight: 500 !important;
     color: #2c3647 !important;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
     text-transform: capitalize !important;
     letter-spacing: 0.012em;
 }
@@ -934,7 +1004,11 @@ input[type="submit"].btn {
     color: var(--warning-color) !important;
 }
 
-/* Dropdown Menu Styling */
+/* ========================================
+   DROPDOWN MENU STYLES
+   ======================================== */
+
+/* Dropdown menu container */
 .dropdown-menu {
     background-color: var(--dark-bg) !important;
     border: 2px solid var(--primary-color) !important; /* Blue border */
@@ -981,7 +1055,7 @@ input[type="submit"].btn {
 
 .dropdown-item:active {
     background-color: var(--warning-color) !important;
-    color: #ffffff !important;
+    color: #ffffff !important; 
 }
 
 .dropdown-divider {
@@ -989,18 +1063,22 @@ input[type="submit"].btn {
     margin: 0.5rem 0 !important;
 }
 
-/* Breadcrumb Styling */
+/* ========================================
+   BREADCRUMB STYLES
+   ======================================== */
+
+/* Breadcrumb container */
 .breadcrumb {
     background-color: transparent !important;
     padding: 0 !important;
     margin-bottom: 1rem !important;
     font-size: 0.95rem !important;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
 }
 
 .breadcrumb-item {
     color: var(--text-dim) !important; /* Grey font color */
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
 }
 
 .breadcrumb-item a {
@@ -1039,7 +1117,7 @@ input[type="submit"].btn {
     }
 }
 
-/* Mobile menu positioning */
+/* Mobile menu positioning and layout */
 @media (max-width: 1199.98px) {
     .navbar-toggler {
         order: 2;
@@ -1085,7 +1163,7 @@ input[type="submit"].btn {
     }
 }
 
-/* Mobile dropdown menu adjustments for smaller screens */
+/* Mobile dropdown menu adjustments for smaller screen sizes */
 @media (max-width: 1199.98px) {
     .dropdown-menu {
         position: static !important;
@@ -1130,7 +1208,11 @@ input[type="submit"].btn {
     }
 }
 
-/* Mobile Menu Toggle Button */
+/* ========================================
+   MOBILE MENU TOGGLE BUTTON STYLES
+   ======================================== */
+
+/* Mobile menu toggle button */
 .navbar-toggler {
     border: none !important;
     padding: 6px 0.5rem 0.25rem 0.5rem;
@@ -1149,16 +1231,18 @@ input[type="submit"].btn {
     background-color: var(--light-bg) !important;
 }
 
+/* Mobile menu toggle icon */
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23007bff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
     transition: var(--transition);
 }
 
+/* Mobile menu toggle hover icon */
 .navbar-toggler:hover .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2348fdfe' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
-/* Mobile menu improvements */
+/* Mobile menu improvements and enhancements */
 @media (max-width: 1199.98px) {
     .navbar-toggler {
         order: 2;
@@ -1203,11 +1287,11 @@ input[type="submit"].btn {
         overflow-y: auto;
     }
     
-    /* Ensure proper mobile menu animation */
-    .navbar-collapse.collapsing {
-        height: auto !important;
-        transition: height 0.35s ease !important;
-    }
+    /* Mobile menu animation and transitions */
+.navbar-collapse.collapsing {
+    height: auto !important;
+    transition: height 0.35s ease !important;
+}
     
     .navbar-collapse.show {
         height: auto !important;
@@ -1225,22 +1309,23 @@ input[type="submit"].btn {
         margin-right: 0;
     }
     
-    /* Mobile dropdown menu adjustments */
-    .dropdown-menu {
-        position: static !important;
-        float: none !important;
-        width: 100% !important;
-        margin-top: 0 !important;
-        background-color: var(--dark-bg) !important;
-        border-left: 3px solid var(--primary-color) !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        transform: none !important;
-        border: none !important;
-        border-top: 1px solid var(--border-color) !important;
-        border-bottom: 1px solid var(--border-color) !important;
-    }
+    /* Mobile dropdown menu adjustments and styling */
+.dropdown-menu {
+    position: static !important;
+    float: none !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    background-color: var(--dark-bg) !important;
+    border-left: 3px solid var(--primary-color) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    border: none !important;
+    border-top: 1px solid var(--border-color) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
     
+    /* Mobile dropdown item styling */
     .dropdown-item {
         padding: 0.75rem 2rem !important;
         font-size: 1rem !important;
@@ -1249,13 +1334,14 @@ input[type="submit"].btn {
         color: var(--light-bg) !important;
     }
     
+    /* Mobile dropdown item hover and focus states */
     .dropdown-item:hover,
     .dropdown-item:focus {
         background-color: var(--warning-color) !important;
         color: var(--text-dark) !important;
     }
     
-    /* Ensure dropdown toggles are clickable on mobile */
+    /* Mobile dropdown toggle clickability improvements */
     .dropdown-toggle {
         cursor: pointer !important;
         -webkit-touch-callout: none !important;
@@ -1266,47 +1352,52 @@ input[type="submit"].btn {
         user-select: none !important;
     }
     
-    /* Mobile menu close button for better UX */
-    .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23007bff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24l18-18'/%3e%3c/svg%3e") !important;
-    }
+    /* Mobile menu close button icon for better UX */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23007bff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24l18-18'/%3e%3c/svg%3e") !important;
+}
     
-    .navbar-toggler[aria-expanded="true"]:hover .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24l18-18'/%3e%3c/svg%3e") !important;
-    }
+    /* Mobile menu toggle hover icon styles */
+.navbar-toggler[aria-expanded="true"]:hover .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24l18-18'/%3e%3c/svg%3e") !important;
+}
     
-    /* Mobile navigation improvements */
-    .navbar-nav .nav-link {
-        padding: 0.75rem 0 !important;
-        border-bottom: 1px solid var(--border-color);
-        font-size: 1.1rem !important;
-        color: var(--light-bg) !important;
-    }
+    /* Mobile navigation link improvements and styling */
+.navbar-nav .nav-link {
+    padding: 0.75rem 0 !important;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.1rem !important;
+    color: var(--light-bg) !important;
+}
     
     .navbar-nav .nav-link:last-child {
         border-bottom: none;
     }
     
+    /* Mobile navigation dropdown toggle arrow positioning */
     .navbar-nav .dropdown-toggle::after {
         float: right;
         margin-top: 8px;
     }
 }
 
-/* Touch-friendly mobile improvements */
+/* Touch-friendly mobile interface improvements */
 @media (max-width: 1199.98px) and (pointer: coarse) {
+    /* Touch-friendly navbar toggle button */
     .navbar-toggler {
         min-height: 44px;
         min-width: 44px;
         padding: 8px 12px;
     }
     
+    /* Touch-friendly dropdown toggles */
     .dropdown-toggle {
         min-height: 44px;
         display: flex;
         align-items: center;
     }
     
+    /* Touch-friendly dropdown items */
     .dropdown-item {
         min-height: 44px;
         display: flex;
@@ -1314,13 +1405,17 @@ input[type="submit"].btn {
     }
 }
 
+/* ========================================
+   FORM STYLES
+   ======================================== */
+
 /* Form select dropdown menu */
 .form-select + .dropdown-menu,
 .form-select option {
     border-radius: 0 !important;
 }
 
-/* Form select styling */
+/* Form select input styling */
 .form-select {
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius);
@@ -1333,6 +1428,7 @@ input[type="submit"].btn {
     background-size: 16px 16px !important;
 }
 
+/* Form select focus state styling */
 .form-select:focus {
     border-color: var(--primary-color);
     box-shadow: var(--glow-shadow);
@@ -1340,26 +1436,32 @@ input[type="submit"].btn {
     color: var(--text-dark);
 }
 
-/* Form select dropdown items */
+/* Form select dropdown option styling */
 .form-select option {
     background-color: var(--light-bg);
     color: var(--text-dark);
     padding: 0.75rem;
 }
 
-/* Form select option selected/hover state */
+/* Form select option selected and hover states */
 .form-select option:checked,
 .form-select option:hover {
     background-color: var(--primary-color) !important;
     color: var(--light-bg) !important;
 }
 
+/* ========================================
+   CONTACT INFO STYLES
+   ======================================== */
+
+/* Contact info container */
 .contact-info {
     display: flex;
     align-items: center;
     gap: 1.5rem;
 }
 
+/* Contact info link styling */
 .contact-info a {
     color: var(--text-dark);
     text-decoration: none;
@@ -1371,41 +1473,48 @@ input[type="submit"].btn {
     color: var(--primary-color);
 }
 
+/* Contact info icon styling */
 .contact-info i {
     color: var(--primary-color);
 }
 
-/* Hero Section */
+/* ========================================
+   HERO SECTION STYLES
+   ======================================== */
+
+/* Hero section container */
 .hero-section {
     position: relative;
-    background-color: var(--darker-bg);
     padding: 3rem 0 3rem 0;
     overflow: hidden;
 }
 
-/* Mobile hero section adjustments */
+/* Hero section mobile responsive adjustments */
 @media (max-width: 767.98px) {
     .hero-section {
         padding: 1rem 0 4rem 0;
     }
 }
 
+/* Hero section row positioning */
 .hero-section .row {
     position: relative;
     z-index: 2;
 }
 
+/* Hero title typography styling */
 .hero-title, .hero-section .hero-title, section .hero-title {
     font-size: 3.12rem;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
     font-weight: 700 !important;
     color: #2c3647 !important;
     margin-bottom: 0;
     text-transform: capitalize;
-    letter-spacing: 0.0105em;
+    letter-spacing: -0.02em;
     line-height: 1.08171875;
 }
 
+/* Hero subtitle typography styling */
 .hero-subtitle {
     font-size: 1rem;
     color: var(--text-dark);
@@ -1416,16 +1525,19 @@ input[type="submit"].btn {
     letter-spacing: 0.05em;
 }
 
+/* Hero features container styling */
 .hero-features {
     margin-bottom: 0.75rem;
 }
 
+/* Hero feature item layout styling */
 .hero-features .feature-item {
     margin-bottom: 0.25rem;
     display: flex;
     align-items: center;
 }
 
+/* Hero feature icon sizing and positioning */
 .hero-features .feature-item i {
     width: 42px;
     height: 42px;
@@ -1436,21 +1548,39 @@ input[type="submit"].btn {
     margin-right: 0.75rem;
 }
 
+/* Hero feature icon styling */
+.hero-feature-icon {
+    background-color: transparent;
+    color: var(--text-dark) !important; /* Changed to dark colour */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+}
+
+/* Hero feature text styling */
 .hero-features .feature-item span {
     font-size: 1.125rem;
     font-weight: 500;
     color: var(--text-dark);
 }
 
+/* Hero call-to-action button spacing */
 .hero-cta {
     gap: 1.5rem;
 }
 
+/* Hero image container styling */
 .hero-image {
     height: 100%;
     overflow: hidden;
 }
 
+/* Hero image styling */
 .hero-image img {
     width: 100% !important;
     height: 100% !important;
@@ -1459,6 +1589,7 @@ input[type="submit"].btn {
     border-radius: var(--border-radius);
 }
 
+/* Hero image fluid styling */
 .hero-image img,
 .hero-image .img-fluid {
     width: 100% !important;
@@ -1468,7 +1599,7 @@ input[type="submit"].btn {
     border-radius: var(--border-radius);
 }
 
-/* Ensure all column images are top-aligned */
+/* Column image alignment and sizing */
 .col img,
 .column img,
 [class*="col-"] img,
@@ -1479,7 +1610,11 @@ input[type="submit"].btn {
     object-position: top !important;
 }
 
-/* Service Cards */
+/* ========================================
+   SERVICE CARD STYLES
+   ======================================== */
+
+/* Service card container */
 .service-card {
     background: var(--darker-bg);
     padding: 2.5rem 2rem;
@@ -1492,17 +1627,20 @@ input[type="submit"].btn {
     flex-direction: column;
 }
 
+/* Service card button styling */
 .service-card .btn {
     width: 100%;
     margin-top: auto;
 }
 
+/* Service card hover effects */
 .service-card:hover {
     transform: translateY(-5px);
     border-color: var(--primary-color);
     box-shadow: var(--box-shadow-lg), var(--glow-shadow);
 }
 
+/* Service icon container styling */
 .service-icon {
     width: 80px;
     height: 80px;
@@ -1510,54 +1648,103 @@ input[type="submit"].btn {
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    color: var(--primary-color);
+    color: var(--warning-color);
     background: transparent !important;
 }
 
+/* Service icon styling */
 .service-icon i {
     font-size: 3rem;
-    color: var(--primary-color);
+    color: var(--warning-color);
 }
 
+/* Service card heading styling */
 .service-card h3 {
     color: var(--text-dark);
     margin-bottom: 1rem;
 }
 
+/* Service card paragraph styling */
 .service-card p {
     color: var(--text-dark);
     margin-bottom: 1.5rem;
 }
 
-/* About Preview Section */
+/* ========================================
+   ABOUT PREVIEW SECTION STYLES
+   ======================================== */
+
+/* About preview section container */
 .about-preview {
     padding: 5rem 0;
     background: var(--light-bg);
 }
 
+/* About preview image styling */
 .about-preview img {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
 
+/* About Preview Image - Full Height with Logo Overlay */
+.about-preview-image {
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: stretch;
+}
+
+.about-preview-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-lg);
+    flex: 1;
+}
+
+.about-preview-image::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    height: 80px;
+    background: url('../images/bullard-locks-retina-logo.png') no-repeat center center;
+    background-size: contain;
+    z-index: 10;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 10px;
+}
+
+/* About preview heading styling */
 .about-preview h2 {
     color: var(--text-dark);
     margin-bottom: 0.5rem;
 }
 
+/* About preview subheading styling */
 .about-preview h3 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--primary-color);
 }
 
+/* About preview list item styling */
 .about-preview .list-unstyled li {
     padding: 0.5rem 0;
     font-size: 1.1rem;
     color: var(--text-dark);
 }
 
-/* Testimonials */
+/* ========================================
+   TESTIMONIAL STYLES
+   ======================================== */
+
+/* Testimonial card container */
 .testimonial-card {
     background: var(--darker-bg);
     padding: 2rem;
@@ -1569,34 +1756,43 @@ input[type="submit"].btn {
     transition: var(--transition);
 }
 
+/* Testimonial card hover effects */
 .testimonial-card:hover {
     transform: translateY(-3px);
     border-color: var(--primary-color);
     box-shadow: var(--box-shadow-lg), var(--glow-shadow);
 }
 
+/* Testimonial card paragraph styling */
 .testimonial-card p {
     font-style: italic;
     margin-bottom: 1.5rem;
     color: var(--text-dark);
 }
 
+/* Testimonial author name styling */
 .testimonial-author strong {
     color: var(--text-dark);
     display: block;
 }
 
+/* Testimonial author location styling */
 .testimonial-author .text-muted {
     font-size: 0.9rem;
     color: var(--text-dim) !important;
 }
 
+/* Review stars styling */
 .stars {
     font-size: 1.25rem;
     color: var(--primary-color);
 }
 
-/* CTA Section */
+/* ========================================
+   CTA SECTION STYLES
+   ======================================== */
+
+/* CTA section container */
 .cta-section {
     padding: 4rem 0;
     margin: 0;
@@ -1607,24 +1803,32 @@ input[type="submit"].btn {
     min-height: 100%;
 }
 
+/* CTA section hover effects */
 .cta-section:hover {
     border-color: var(--primary-color);
 }
 
+/* CTA section heading styling */
 .cta-section h2 {
     margin-bottom: 1rem;
     color: var(--text-dark);
 }
 
+/* CTA section paragraph styling */
 .cta-section p {
     color: var(--text-dim);
 }
 
+/* CTA buttons container styling */
 .cta-buttons {
     margin-top: 2rem;
 }
 
-/* Footer Styles */
+/* ========================================
+   FOOTER STYLES
+   ======================================== */
+
+/* Footer container */
 footer {
     background-color: var(--dark-bg);
     color: var(--text-light);
@@ -1632,25 +1836,30 @@ footer {
     border-top: 1px solid var(--border-color);
 }
 
+/* Footer content container styling */
 .footer-content {
     margin-bottom: 2rem;
 }
 
+/* Footer section heading styling */
 .footer-section h4 {
-    color: var(--text-light);
+    color: white !important;
     margin-bottom: 1rem;
     font-size: 1.25rem;
 }
 
+/* Footer section list styling */
 .footer-section ul {
     list-style: none;
     padding: 0;
 }
 
+/* Footer section list item spacing */
 .footer-section ul li {
     margin-bottom: 0.5rem;
 }
 
+/* Footer section link styling */
 .footer-section ul li a,
 .footer-section a {
     color: var(--text-light) !important;
@@ -1658,17 +1867,20 @@ footer {
     transition: var(--transition);
 }
 
+/* Footer section link hover effects */
 .footer-section ul li a:hover,
 .footer-section a:hover {
-    color: var(--primary-color) !important;
+    color: var(--warning-color) !important; /* Use yellow for better visibility */
 }
 
+/* Social media links container styling */
 .social-links {
     display: flex;
     gap: 1.5rem;
     margin-top: 1rem;
 }
 
+/* Social media link styling */
 .social-links a {
     display: inline-flex;
     align-items: center;
@@ -1681,6 +1893,7 @@ footer {
     transition: var(--transition);
 }
 
+/* Social media link hover effects */
 .social-links a:hover {
     background-color: var(--warning-color);
     color: var(--light-bg);
@@ -1688,6 +1901,7 @@ footer {
     transform: translateY(-2px);
 }
 
+/* Footer bottom section styling */
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
     padding-top: 1rem;
@@ -1695,17 +1909,91 @@ footer {
     color: var(--text-light);
 }
 
-/* Footer Bottom Links */
+/* Footer bottom link styling */
 .footer-bottom a {
     color: var(--text-light) !important;
     text-decoration: none;
     transition: var(--transition);
 }
 
-.footer-bottom a:hover {
-    color: var(--primary-color) !important;
+/* Ensure all footer headings are white - highest specificity */
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6,
+.footer-section h1, .footer-section h2, .footer-section h3, .footer-section h4, .footer-section h5, .footer-section h6,
+html body footer h1, html body footer h2, html body footer h3, html body footer h4, html body footer h5, html body footer h6,
+html body .footer-section h1, html body .footer-section h2, html body .footer-section h3, html body .footer-section h4, html body .footer-section h5, html body .footer-section h6 {
+    color: white !important;
 }
 
+/* ========================================
+   REVIEW STARS STYLES
+   ======================================== */
+
+/* Review stars - use button yellow colour */
+/* Review stars colour styling */
+/* Review stars colour styling */
+.testimonials .text-warning,
+.testimonials .fas.fa-star,
+.testimonials .stars .fas.fa-star {
+    color: var(--warning-color) !important;
+}
+
+/* ========================================
+   GOOGLE BRAND TEXT STYLES
+   ======================================== */
+
+/* Google text colours while maintaining font styling */
+.google-o1, .google-o2, .google-g, .google-l, .google-e {
+    color: inherit;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    text-transform: inherit !important;
+    letter-spacing: inherit !important;
+    line-height: inherit !important;
+}
+
+/* Google brand text colour definitions */
+.google-o1 { color: #4285F4 !important; } /* Google blue */
+.google-o2 { color: #EA4335 !important; } /* Google red */
+.google-g { color: #FBBC05 !important; }  /* Google yellow */
+.google-l { color: #4285F4 !important; } /* Google blue */
+.google-e { color: #34A853 !important; } /* Google green */
+
+/* ========================================
+   LEARN MORE BUTTON STYLES
+   ======================================== */
+
+/* Learn more button colour styling */
+.service-card .btn-primary,
+.testimonials .btn-danger,
+.about-preview .btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+/* Learn more button hover effects */
+.service-card .btn-primary:hover,
+.testimonials .btn-danger:hover,
+.about-preview .btn-primary:hover {
+    background-color: transparent !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg), var(--glow-shadow) !important;
+}
+
+/* ========================================
+   FOOTER BOTTOM LINK STYLES
+   ======================================== */
+
+/* Footer bottom link hover effects */
+/* Footer bottom link hover effects */
+.footer-bottom a:hover {
+    color: var(--warning-color) !important; /* Use yellow for better visibility */
+}
+
+/* Footer bottom paragraph typography styling */
 .footer-bottom p {
     color: var(--text-light) !important;
     font-size: 0.875rem !important;
@@ -1714,7 +2002,11 @@ footer {
     font-weight: 500 !important;
 }
 
-/* Column Spacing Override - Increase by 50% */
+/* ========================================
+   UTILITY AND SPACING STYLES
+   ======================================== */
+
+/* Column spacing override - increase by 50% */
 .g-4, .gx-4, .gy-4 {
     --bs-gutter-x: 2.25rem !important; /* Increased from 1.5rem by 50% */
     --bs-gutter-y: 2.25rem !important;
@@ -1730,7 +2022,11 @@ footer {
     --bs-gutter-y: 0.75rem !important;
 }
 
-/* Custom Scrollbar */
+/* ========================================
+   SCROLLBAR AND SELECTION STYLES
+   ======================================== */
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
     background-color: var(--darker-bg);
@@ -1751,13 +2047,18 @@ footer {
     color: var(--light-bg);
 }
 
-/* Update success and danger button styles */
+/* ========================================
+   SUCCESS AND DANGER BUTTON STYLES
+   ======================================== */
+
+/* Success button styling */
 .btn-success {
     background-color: var(--success-color);
     border-color: var(--success-color) !important;
     color: var(--light-bg);
 }
 
+/* Success button hover effects */
 .btn-success:hover {
     background-color: transparent;
     color: var(--success-color);
@@ -1766,6 +2067,7 @@ footer {
     box-shadow: var(--box-shadow-lg), 0 0 15px var(--success-color);
 }
 
+/* Danger button styling */
 .btn-danger {
     background-color: var(--warning-color);
     color: var(--light-bg);
@@ -1773,6 +2075,7 @@ footer {
     box-shadow: var(--warning-glow);
 }
 
+/* Danger button hover effects */
 .btn-danger:hover {
     background-color: transparent;
     color: var(--warning-color);
@@ -1781,7 +2084,11 @@ footer {
     box-shadow: var(--box-shadow-lg), var(--warning-glow);
 }
 
-/* Update outline button variants */
+/* ========================================
+   OUTLINE BUTTON STYLES
+   ======================================== */
+
+/* Outline success button styling */
 .btn-outline-success {
     color: var(--success-color);
     border: 2px solid var(--success-color);
@@ -1789,6 +2096,7 @@ footer {
     box-shadow: var(--glow-shadow);
 }
 
+/* Outline success button hover effects */
 .btn-outline-success:hover {
     background-color: transparent;
     border-color: var(--success-color);
@@ -1797,6 +2105,7 @@ footer {
     box-shadow: var(--box-shadow-lg), var(--glow-shadow);
 }
 
+/* Outline danger button styling */
 .btn-outline-danger {
     color: var(--warning-color);
     border: 2px solid var(--warning-color);
@@ -1804,6 +2113,7 @@ footer {
     box-shadow: var(--warning-glow);
 }
 
+/* Outline danger button hover effects */
 .btn-outline-danger:hover {
     background-color: transparent;
     border-color: var(--warning-color);
@@ -1812,49 +2122,44 @@ footer {
     box-shadow: var(--box-shadow-lg), var(--warning-glow);
 }
 
-/* WhatsApp specific styles */
-[href*="wa.me"].btn-success {
+/* ========================================
+   WHATSAPP BUTTON STYLES
+   ======================================== */
+
+/* WhatsApp button styling */
+[href*="wa.me"].btn-success,
+[href*="wa.me"].btn-primary {
     background-color: var(--success-color) !important;
     color: var(--light-bg) !important;
     border-color: var(--success-color) !important;
-    box-shadow: var(--glow-shadow) !important;
+    box-shadow: var(--success-glow) !important;
     text-transform: capitalize !important;
 }
 
-[href*="wa.me"].btn-success:hover {
+/* WhatsApp button hover effects */
+[href*="wa.me"].btn-success:hover,
+[href*="wa.me"].btn-primary:hover {
     background-color: transparent !important;
     color: var(--success-color) !important;
     border-color: var(--success-color) !important;
     transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow) !important;
+    box-shadow: var(--box-shadow-lg), var(--success-glow) !important;
     text-transform: capitalize !important;
 }
 
-[href*="wa.me"].btn-primary {
-    background-color: var(--primary-color) !important;
-    color: var(--light-bg) !important;
-    border-color: var(--primary-color) !important;
-    box-shadow: var(--glow-shadow) !important;
-    text-transform: capitalize !important;
-}
-
-/* WhatsApp button large variant */
+/* WhatsApp button large variant styling */
+[href*="wa.me"].btn-success.btn-lg,
 [href*="wa.me"].btn-primary.btn-lg {
     height: 60px !important;
     font-size: 1.25rem !important;
     text-transform: capitalize !important;
 }
 
-[href*="wa.me"].btn-primary:hover {
-    background-color: transparent !important;
-    color: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow) !important;
-    text-transform: capitalize !important;
-}
+/* ========================================
+   EMERGENCY BUTTON STYLES
+   ======================================== */
 
-/* Emergency button specific styles */
+/* Emergency button styling */
 [onclick*="showEmergencyModal"] {
     background-color: var(--warning-color) !important;
     color: var(--light-bg) !important;
@@ -1863,6 +2168,7 @@ footer {
     text-transform: capitalize !important;
 }
 
+/* Emergency button hover effects */
 [onclick*="showEmergencyModal"]:hover {
     background-color: transparent !important;
     color: var(--warning-color) !important;
@@ -1872,7 +2178,11 @@ footer {
     text-transform: capitalize !important;
 }
 
-/* Icon Circle Styles */
+/* ========================================
+   ICON STYLES
+   ======================================== */
+
+/* Icon circle container styling */
 .icon-circle {
     display: inline-flex;
     align-items: center;
@@ -1890,18 +2200,23 @@ footer {
     box-shadow: var(--glow-shadow);
 }
 
+/* Icon circle hover effects */
 .icon-circle:hover {
     transform: scale(1.05);
     box-shadow: var(--glow-shadow), var(--box-shadow);
 }
 
-/* General Icon Styles */
+/* ========================================
+   GENERAL ICON STYLES
+   ======================================== */
+
+/* General icon typography styling */
 .fas, .fab, .far, .fal, .fad {
     font-weight: 900;
     line-height: 1;
 }
 
-/* Ensure icons display properly */
+/* Icon display and rendering improvements */
 i[class*="fa-"] {
     font-style: normal;
     display: inline-block;
@@ -1909,57 +2224,95 @@ i[class*="fa-"] {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Button Icons */
+/* ========================================
+   BUTTON ICON STYLES
+   ======================================== */
+
+/* Button icon spacing and positioning */
 .btn i {
     margin-right: 0.5rem;
 }
 
+/* Button icon only child spacing */
 .btn i:only-child {
     margin-right: 0;
 }
 
-/* Social Media Icons */
+/* ========================================
+   SOCIAL MEDIA ICON STYLES
+   ======================================== */
+
+/* Social media icon colour styling */
 .text-cyan {
     color: var(--primary-color) !important;
 }
 
-/* List Icons */
+/* ========================================
+   LIST ICON STYLES
+   ======================================== */
+
+/* List icon spacing and alignment styling */
 li > i[class*="fa-"] {
     width: 1.5rem;
     text-align: center;
     margin-right: 0.75rem;
 }
 
-/* Check Icon Styles */
+/* ========================================
+   CHECK ICON STYLES
+   ======================================== */
+
+/* Check icon colour and typography styling */
 .fa-check,
 .fa-check-circle,
 .fa-check-double {
-    color: var(--success-color) !important;
+    color: var(--primary-color) !important;
     background: none !important;
+    font-weight: 900 !important;
+    font-size: 1.1em !important;
 }
 
-/* Remove any existing check backgrounds */
+/* Check icon background removal */
 .text-success[class*="fa-check"] {
     color: var(--success-color) !important;
     background: none !important;
 }
 
-/* List items with check icons */
+/* List item check icon spacing */
 li > .fa-check,
 li > .fa-check-circle,
 li > .fa-check-double {
     margin-right: 0.75rem;
 }
 
-.bg-dark-purple {
-    background-color: var(--darker-bg) !important;
-    color: var(--text-light);
+/* ========================================
+   ABOUT SECTION CHECK ICON STYLES
+   ======================================== */
+
+/* About section check icon prominence styling */
+.about-preview .fa-check,
+.about-preview .fa-check-circle,
+.about-preview .fa-check-double {
+    color: var(--primary-color) !important;
+    font-weight: 900 !important;
+    font-size: 1.2em !important;
+    text-shadow: 0 0 5px rgba(74, 85, 104, 0.3);
 }
 
-/* Services Intro */
+/* ========================================
+   BACKGROUND COLOUR UTILITY CLASSES
+   ======================================== */
+
+
 
 /* ========================================
-   MOBILE TEXT ALIGNMENT OVERRIDES
+   SERVICES INTRO STYLES
+   ======================================== */
+
+/* Services introduction section styling */
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
    ======================================== */
 
 /* Mobile-first approach: Left align all text on small screens (768px and below) */
@@ -2273,6 +2626,7 @@ li > .fa-check-double {
    MOBILE BUTTON AND CTA IMPROVEMENTS
    ======================================== */
 
+/* Mobile button improvements */
 @media (max-width: 767.98px) {
     /* Stack buttons vertically on mobile with proper spacing */
     .btn-group-mobile {
@@ -2317,7 +2671,11 @@ li > .fa-check-double {
     }
 }
 
-/* Desktop overrides - Center alignment on desktop screens */
+/* ========================================
+   DESKTOP OVERRIDE STYLES
+   ======================================== */
+
+/* Desktop overrides - centre alignment on desktop screens */
 @media (min-width: 992px) {
     /* CTA section center alignment on desktop */
     .cta-section,
@@ -2373,7 +2731,7 @@ li > .fa-check-double {
 }
 
 /* ========================================
-   CUSTOM ACCORDION STYLING
+   ACCORDION STYLES
    ======================================== */
 
 /* Accordion container */
@@ -2449,7 +2807,7 @@ li > .fa-check-double {
     border-radius: var(--border-radius);
     transition: var(--transition);
     box-shadow: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .accordion-button:not(.collapsed) {
@@ -2512,27 +2870,39 @@ li > .fa-check-double {
     }
 }
 
-/* Typography - More specific selectors to ensure they take precedence */
+/* ========================================
+   TYPOGRAPHY OVERRIDE STYLES
+   ======================================== */
+
+/* Typography - more specific selectors to ensure they take precedence */
 h1, h2, h3, h4, h5, h6,
 body h1, body h2, body h3, body h4, body h5, body h6,
 .container h1, .container h2, .container h3, .container h4, .container h5, .container h6,
 section h1, section h2, section h3, section h4, section h5, section h6 {
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
     font-weight: 700 !important;
     text-transform: capitalize !important;
     color: #2c3647 !important;
     letter-spacing: 0.00225em;
 }
 
-/* Force all headings to use the correct color - highest specificity */
+/* ========================================
+   FOOTER HEADING OVERRIDE STYLES
+   ======================================== */
+
+/* Force all headings to use the correct colour - highest specificity */
 html body h1, html body h2, html body h3, html body h4, html body h5, html body h6,
 html body .hero-title,
 html body .navbar-brand span {
     color: #2c3647 !important;
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
     font-weight: 700 !important;
     text-transform: capitalize !important;
 }
+
+/* ========================================
+   DARK BACKGROUND HEADING OVERRIDE STYLES
+   ======================================== */
 
 /* Ensure headings on dark backgrounds are white for contrast */
 .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6,
@@ -2550,6 +2920,10 @@ footer .hero-title,
     color: #ffffff !important;
 }
 
+/* ========================================
+   FOOTER SOCIAL ICON OVERRIDE STYLES
+   ======================================== */
+
 /* Override Bootstrap text-warning class for footer icons */
 footer .text-warning,
 .footer-section .text-warning,
@@ -2565,7 +2939,7 @@ footer .social-links a,
 }
 
 /* ========================================
-   SYSTEMATIC SECTION BACKGROUND SYSTEM
+   SYSTEMATIC BACKGROUND SYSTEM
    ======================================== */
 
 /* Section background classes for systematic contrast */
@@ -2656,12 +3030,17 @@ footer .social-links a,
     background-color: var(--bg-light-medium) !important;
 }
 
-/* Navbar Logo Styling */
+/* ========================================
+   LOGO AND BRANDING STYLES
+   ======================================== */
+
+/* Navbar logo styling */
 .navbar-logo {
     height: 75px;
     width: auto;
     max-width: 300px;
     object-fit: contain;
+    margin-top: -9.375px; /* Move logo down by 10% from previous position (-18.75px + 9.375px = -9.375px) */
 }
 
 /* Responsive logo sizing */
@@ -2669,19 +3048,26 @@ footer .social-links a,
     .navbar-logo {
         height: 60px;
         max-width: 225px;
+        margin-top: -15px; /* Move logo up by 25% of its mobile height (60px * 0.25 = 15px) */
     }
 }
 
-/* Logo overlay on images */
+/* ========================================
+   LOGO OVERLAY STYLES
+   ======================================== */
+
+/* Logo overlay image container styling */
 .image-with-logo {
     position: relative;
     display: inline-block;
 }
 
+/* Logo overlay content positioning and styling */
+/* Alternative logo overlay content styling */
 .image-with-logo .logo-overlay {
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     z-index: 10;
     background: rgba(255, 255, 255, 0.9);
     padding: 10px;
@@ -2689,6 +3075,8 @@ footer .social-links a,
     box-shadow: var(--box-shadow);
 }
 
+/* Logo overlay image sizing and positioning */
+/* Alternative logo overlay image styling */
 .image-with-logo .logo-overlay img {
     width: auto;
     height: auto;
@@ -2697,14 +3085,14 @@ footer .social-links a,
     object-fit: contain;
 }
 
-/* Ensure the logo is visible on all image types */
+/* Logo overlay image type positioning */
 .hero-image.image-with-logo,
 .service-card .image-with-logo,
 .about-preview .image-with-logo {
     position: relative;
 }
 
-/* Logo overlay on all large images in sections */
+/* Logo overlay pseudo-element positioning */
 .hero-image,
 .service-card img,
 .about-preview img,
@@ -2715,6 +3103,7 @@ section img:not(.logo-overlay img):not(.navbar-logo) {
     position: relative;
 }
 
+/* Logo overlay pseudo-element content styling */
 .hero-image::after,
 .service-card img::after,
 .about-preview img::after,
@@ -2725,7 +3114,7 @@ section img:not(.logo-overlay img):not(.navbar-logo)::after {
     content: '';
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     width: 200px;
     height: 80px;
     background: url('../images/bullard-locks-retina-logo.png') no-repeat center center;
@@ -2736,7 +3125,7 @@ section img:not(.logo-overlay img):not(.navbar-logo)::after {
     padding: 10px;
 }
 
-/* Alternative approach using pseudo-elements for better control */
+/* Alternative logo overlay approach styling */
 .image-with-logo {
     position: relative;
     display: inline-block;
@@ -2745,7 +3134,7 @@ section img:not(.logo-overlay img):not(.navbar-logo)::after {
 .image-with-logo .logo-overlay {
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     z-index: 10;
     background: rgba(255, 255, 255, 0.9);
     padding: 10px;

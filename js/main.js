@@ -1,6 +1,9 @@
 /**
  * Bullard Locks Website - JavaScript
- * Handles header/footer inclusion and basic form validation
+ * Handles header/footer inclusion, form validation, and chatbot functionality
+ * 
+ * @author William Bullard
+ * @version 1.0.0
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -77,6 +80,7 @@ function loadIncludes() {
                 footerPlaceholder.classList.remove('loading');
             });
     }
+
 }
 
 /**
@@ -107,6 +111,8 @@ function updateImagePaths(container, basePath) {
         }
     });
 }
+
+
 
 /**
  * Update navigation links for subdirectories
@@ -146,11 +152,8 @@ function highlightCurrentPage() {
  * Initialize mobile menu functionality
  */
 function initializeMobileMenu() {
-    console.log('Initializing mobile menu...');
-    
     // Wait for Bootstrap to be available
     if (typeof bootstrap === 'undefined') {
-        console.log('Bootstrap not available, retrying in 100ms...');
         setTimeout(initializeMobileMenu, 100);
         return;
     }
@@ -159,30 +162,22 @@ function initializeMobileMenu() {
     const navbarCollapse = document.querySelector('.navbar-collapse');
     
     if (navbarToggler && navbarCollapse) {
-        console.log('Found navbar elements');
-        console.log('Navbar toggler:', navbarToggler);
-        console.log('Navbar collapse:', navbarCollapse);
-        
         try {
             // Initialize Bootstrap collapse for mobile menu
             const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
                 toggle: false
             });
-            console.log('Bootstrap collapse initialized:', bsCollapse);
             
             // Handle mobile menu toggle
             navbarToggler.addEventListener('click', function(e) {
-                console.log('Mobile menu toggle clicked');
-                console.log('Current aria-expanded:', this.getAttribute('aria-expanded'));
+                // Mobile menu toggle logic
             });
             
             // Close mobile menu when clicking on regular nav links (not dropdown toggles)
             const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
-            console.log('Found nav links:', navLinks.length);
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     if (window.innerWidth <= 1199) {
-                        console.log('Nav link clicked, closing mobile menu');
                         bsCollapse.hide();
                     }
                 });
@@ -190,23 +185,17 @@ function initializeMobileMenu() {
             
             // Handle mobile dropdown toggles
             const dropdownToggles = document.querySelectorAll('.navbar-nav .dropdown-toggle');
-            console.log('Found dropdown toggles:', dropdownToggles.length);
             
             dropdownToggles.forEach((toggle, index) => {
-                console.log(`Setting up dropdown toggle ${index}:`, toggle.textContent);
-                
                 try {
                     // Initialize Bootstrap dropdown
                     const dropdown = new bootstrap.Dropdown(toggle, {
                         autoClose: true
                     });
-                    console.log(`Dropdown ${index} initialized:`, dropdown);
                     
                     // Handle mobile-specific dropdown behavior
                     toggle.addEventListener('click', function(e) {
                         if (window.innerWidth <= 1199) {
-                            console.log('Mobile dropdown clicked:', this.textContent);
-                            
                             // Close other dropdowns first
                             document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(openDropdown => {
                                 if (openDropdown !== this.nextElementSibling) {
@@ -228,11 +217,9 @@ function initializeMobileMenu() {
             
             // Close dropdowns when clicking dropdown items
             const dropdownItems = document.querySelectorAll('.dropdown-item');
-            console.log('Found dropdown items:', dropdownItems.length);
             dropdownItems.forEach(item => {
                 item.addEventListener('click', () => {
                     if (window.innerWidth <= 1199) {
-                        console.log('Dropdown item clicked, closing mobile menu');
                         // Close the mobile menu after navigation
                         bsCollapse.hide();
                     }
@@ -243,7 +230,6 @@ function initializeMobileMenu() {
             const isMobile = window.innerWidth <= 1199;
             if (isMobile) {
                 document.body.classList.add('mobile-view');
-                console.log('Mobile view detected');
             }
             
             // Handle window resize
@@ -255,25 +241,16 @@ function initializeMobileMenu() {
                     if (newIsMobile !== isMobile) {
                         if (newIsMobile) {
                             document.body.classList.add('mobile-view');
-                            console.log('Switched to mobile view');
                         } else {
                             document.body.classList.remove('mobile-view');
-                            console.log('Switched to desktop view');
                         }
                     }
                 }, 250);
             });
             
-            console.log('Mobile menu initialization completed successfully');
-            
         } catch (error) {
             console.error('Error during mobile menu initialization:', error);
         }
-        
-    } else {
-        console.log('Navbar elements not found');
-        console.log('Navbar toggler found:', !!navbarToggler);
-        console.log('Navbar collapse found:', !!navbarCollapse);
     }
 }
 
@@ -303,7 +280,7 @@ function initializeFormValidation() {
             }
             
             // Form is valid - you can add email functionality here
-            showMessage('Thank you for your message! We will contact you soon.', 'success');
+            showMessage('Thank you for your message! I will contact you soon.', 'success');
             contactForm.reset();
         });
     }
@@ -331,7 +308,7 @@ function initializeFormValidation() {
             }
             
             // Form is valid - you can add email functionality here
-            showMessage('Thank you for your quote request! We will contact you soon.', 'success');
+            showMessage('Thank you for your quote request! I will contact you soon.', 'success');
             quoteForm.reset();
         });
     }
@@ -376,7 +353,17 @@ function showMessage(message, type) {
    CHATBOT FUNCTIONALITY
    ====================== */
 
-// Initialize chatbot
+// Chatbot state management
+let chatbotState = {
+    step: 'initial',
+    serviceType: null,
+    emergencyType: null,
+    responses: []
+};
+
+/**
+ * Initialize chatbot
+ */
 function initializeChatbot() {
     // Add accessibility attributes
     const chatButton = document.querySelector('.chat-float-button');
@@ -393,11 +380,13 @@ function initializeChatbot() {
         });
     }
     
-    // Add resize handler for mobile optimization
+    // Add resize handler for mobile optimisation
     window.addEventListener('resize', handleChatbotResize);
 }
 
-// Handle chatbot resize for different screen sizes
+/**
+ * Handle chatbot resize for different screen sizes
+ */
 function handleChatbotResize() {
     const overlay = document.getElementById('chatbotOverlay');
     if (overlay && overlay.classList.contains('show')) {
@@ -411,15 +400,9 @@ function handleChatbotResize() {
     }
 }
 
-// Chatbot state management
-let chatbotState = {
-    step: 'initial',
-    serviceType: null,
-    emergencyType: null,
-    responses: []
-};
-
-// Open chatbot
+/**
+ * Open chatbot
+ */
 function openChatbot() {
     const overlay = document.getElementById('chatbotOverlay');
     overlay.classList.add('show');
@@ -432,21 +415,27 @@ function openChatbot() {
     }
 }
 
-// Close chatbot
+/**
+ * Close chatbot
+ */
 function closeChatbot() {
     const overlay = document.getElementById('chatbotOverlay');
     overlay.classList.remove('show');
     document.body.style.overflow = ''; // Restore scrolling
 }
 
-// Close chatbot when clicking overlay
+/**
+ * Close chatbot when clicking overlay
+ */
 function closeChatbotOnOverlay(event) {
     if (event.target === event.currentTarget) {
         closeChatbot();
     }
 }
 
-// Add message to chat log
+/**
+ * Add message to chat log
+ */
 function addChatMessage(message, isUser = false) {
     const chatLog = document.getElementById('chatLog');
     const messageDiv = document.createElement('div');
@@ -456,12 +445,16 @@ function addChatMessage(message, isUser = false) {
     chatLog.scrollTop = chatLog.scrollHeight;
 }
 
-// Clear current interaction
+/**
+ * Clear current interaction
+ */
 function clearChatInteraction() {
     document.getElementById('currentInteraction').innerHTML = '';
 }
 
-// Initial question
+/**
+ * Initial question
+ */
 function showInitialQuestion() {
     addChatMessage('Hello! How can I help you today?');
     
@@ -482,6 +475,7 @@ function showInitialQuestion() {
         </div>
     `;
     document.getElementById('currentInteraction').innerHTML = optionsHtml;
+    
     // Expose openQuoteContactPage globally
     window.openQuoteContactPage = function() {
         closeChatbot();
@@ -489,7 +483,9 @@ function showInitialQuestion() {
     };
 }
 
-// Handle initial service selection
+/**
+ * Handle initial service selection
+ */
 function selectInitialService(service) {
     chatbotState.serviceType = service;
 
@@ -517,7 +513,9 @@ function selectInitialService(service) {
     }
 }
 
-// Emergency type selection
+/**
+ * Emergency type selection
+ */
 function showEmergencyTypeSelection() {
     addChatMessage('What type of emergency locksmith service do you need?');
     
@@ -538,7 +536,9 @@ function showEmergencyTypeSelection() {
     document.getElementById('currentInteraction').innerHTML = optionsHtml;
 }
 
-// Make selectEmergencyType global so inline onclick works
+/**
+ * Make selectEmergencyType global so inline onclick works
+ */
 window.selectEmergencyType = function(type) {
     chatbotState.emergencyType = type;
     const typeText = {
@@ -553,31 +553,11 @@ window.selectEmergencyType = function(type) {
     } else {
         showEmergencyForm(type);
     }
-}
+};
 
-// Submit emergency type
-function submitEmergencyType() {
-    const selectedType = chatbotState.emergencyType;
-    
-    if (!selectedType) {
-        alert('Please select an emergency type');
-        return;
-    }
-    
-    chatbotState.emergencyType = selectedType.value;
-    
-    const typeText = {
-        'auto': 'Auto Locksmith Emergency',
-        'residential': 'Residential Emergency',
-        'commercial': 'Commercial Emergency'
-    };
-    addChatMessage(typeText[selectedType.value], true);
-    
-    clearChatInteraction();
-    showEmergencyForm(selectedType.value);
-}
-
-// Show emergency form based on type
+/**
+ * Show emergency form based on type
+ */
 function showEmergencyForm(type) {
     // Ask the relevant question for each emergency type
     if (type === 'residential') {
@@ -597,6 +577,7 @@ function showEmergencyForm(type) {
             <div id="residentialDetailsForm"></div>
         </div>`;
         document.getElementById('currentInteraction').innerHTML = formHtml;
+        
         // Expose selectPropertyType globally
         window.selectPropertyType = function(propertyType) {
             chatbotState.propertyType = propertyType;
@@ -606,6 +587,7 @@ function showEmergencyForm(type) {
         };
         return;
     }
+    
     if (type === 'commercial') {
         addChatMessage('How urgent is your commercial emergency?');
         let formHtml = `<div class="emergency-form">
@@ -623,6 +605,7 @@ function showEmergencyForm(type) {
             <div id="commercialDetailsForm"></div>
         </div>`;
         document.getElementById('currentInteraction').innerHTML = formHtml;
+        
         // Only show urgency buttons first, then show details form after selection
         window.selectUrgency = function(urgency) {
             chatbotState.urgency = urgency;
@@ -646,11 +629,13 @@ function showEmergencyForm(type) {
         };
         return;
     }
+    
     if (type === 'auto') {
         addChatMessage('Please provide your phone number and location for the auto emergency.');
     } else {
         addChatMessage('I need some quick details to dispatch a locksmith immediately.');
     }
+    
     let formHtml = `<div class="emergency-form">`;
     formHtml += `
         <input type="tel" class="chat-form-input" placeholder="Your phone number *" id="phone" required>
@@ -667,11 +652,16 @@ function showEmergencyForm(type) {
     </div>
     `;
     document.getElementById('currentInteraction').innerHTML = formHtml;
-// Show the rest of the commercial form after urgency selection
+}
+
+/**
+ * Show the rest of the commercial form after urgency selection
+ */
 function showCommercialDetailsForm() {
     // Remove urgency buttons
     const urgencyDiv = document.getElementById('urgencyButtons');
     if (urgencyDiv && urgencyDiv.parentNode) urgencyDiv.parentNode.removeChild(urgencyDiv);
+    
     // Ask the next question
     addChatMessage('Please provide your contact details for the commercial emergency.');
     const detailsHtml = `
@@ -682,15 +672,18 @@ function showCommercialDetailsForm() {
     `;
     document.getElementById('commercialDetailsForm').innerHTML = detailsHtml;
 }
-}
 
-// Show the rest of the residential form after property type selection
+/**
+ * Show the rest of the residential form after property type selection
+ */
 function showResidentialDetailsForm(propertyType) {
     // Remove property type buttons after selection
     const optionsDiv = document.querySelector('.chat-options');
     if (optionsDiv && optionsDiv.parentNode) optionsDiv.parentNode.removeChild(optionsDiv);
+    
     // Ask the next question
     addChatMessage('Please provide your contact details for the residential emergency.');
+    
     // Show only the next fields (no summary)
     const detailsHtml = `
         <input type="tel" class="chat-form-input" placeholder="Your phone number *" id="phone" required>
@@ -700,19 +693,24 @@ function showResidentialDetailsForm(propertyType) {
     document.getElementById('residentialDetailsForm').innerHTML = detailsHtml;
 }
 
-// Submit emergency request
+/**
+ * Submit emergency request
+ */
 function submitEmergencyRequest() {
     const phone = document.getElementById('phone').value;
     const location = document.getElementById('location').value;
+    
     if (!phone || !location) {
         alert('Please provide your phone number and location');
         return;
     }
+    
     const formData = {
         phone: phone,
         location: location,
         type: chatbotState.emergencyType
     };
+    
     if (chatbotState.emergencyType === 'auto') {
         formData.carInfo = document.getElementById('carInfo').value;
         formData.registration = document.getElementById('registration').value;
@@ -723,20 +721,9 @@ function submitEmergencyRequest() {
         formData.businessName = document.getElementById('businessName').value;
         formData.urgency = chatbotState.urgency || '';
     }
-// Handle urgency button selection for commercial emergency
-window.selectUrgency = function(urgency) {
-    chatbotState.urgency = urgency;
-    // Highlight selected button
-    const buttons = document.querySelectorAll('#urgencyButtons .chat-option-button');
-    buttons.forEach(btn => {
-        if (btn.getAttribute('data-urgency') === urgency) {
-            btn.classList.add('selected');
-        } else {
-            btn.classList.remove('selected');
-        }
-    });
-};
+    
     clearChatInteraction();
+    
     // Show thank you page in the popup
     const refNum = '#BL-' + Date.now().toString().slice(-6);
     document.getElementById('currentInteraction').innerHTML = `
@@ -747,17 +734,20 @@ window.selectUrgency = function(urgency) {
                 <p class="mb-2">A locksmith will call <strong>${phone}</strong> within 5 minutes.<br>They are being notified right now.</p>
                 <p class="mb-2">Reference number: <strong>${refNum}</strong></p>
                 <h5 class="mb-3">Thank you for your enquiry</h5>
-                <p>Alternatively, please call <a href=\"tel:07809887883\" class=\"chatbot-thankyou-link\">078 0988 7883</a>.</p>
+                <p>Alternatively, please call <a href="tel:07809887883" class="chatbot-thankyou-link">078 0988 7883</a>.</p>
             </div>
             <button class="chat-submit-button mt-3" onclick="restartChat()">
                 <i class="fas fa-redo me-2"></i>Start New Request
             </button>
         </div>
     `;
-    console.log('Emergency Request:', formData);
+    
+
 }
 
-// Show auto locksmith form
+/**
+ * Show auto locksmith form
+ */
 function showAutoLocksmithForm() {
     addChatMessage('What auto locksmith service do you need?');
 
@@ -785,7 +775,9 @@ function showAutoLocksmithForm() {
     document.getElementById('currentInteraction').innerHTML = formHtml;
 }
 
-// Called when a service button is clicked in auto locksmith popup
+/**
+ * Called when a service button is clicked in auto locksmith popup
+ */
 function selectAutoService(service) {
     // Save selected service for later use
     window.selectedAutoService = service;
@@ -794,7 +786,9 @@ function selectAutoService(service) {
     showAutoLocksmithDetailsForm(service);
 }
 
-// Show the details form after service selection
+/**
+ * Show the details form after service selection
+ */
 function showAutoLocksmithDetailsForm(service) {
     addChatMessage('Please provide your vehicle and contact details:');
     const formHtml = `
@@ -808,6 +802,7 @@ function showAutoLocksmithDetailsForm(service) {
         </div>
     `;
     document.getElementById('currentInteraction').innerHTML = formHtml;
+    
     // Set the selected service in a hidden field if needed
     setTimeout(() => {
         if (document.getElementById('serviceNeeded')) {
@@ -816,7 +811,9 @@ function showAutoLocksmithDetailsForm(service) {
     }, 100);
 }
 
-// Submit auto request
+/**
+ * Submit auto request
+ */
 function submitAutoRequest() {
     const carMake = document.getElementById('carMake').value;
     const carRegNo = document.getElementById('carRegNo') ? document.getElementById('carRegNo').value : '';
@@ -846,6 +843,7 @@ function submitAutoRequest() {
         })
     }).catch(() => {/* ignore errors for UI */}).finally(() => {
         clearChatInteraction();
+        
         // Show thank you page in the popup
         const refNum = '#BL-' + Date.now().toString().slice(-6);
         document.getElementById('currentInteraction').innerHTML = `
@@ -856,24 +854,19 @@ function submitAutoRequest() {
                     <p class="mb-2">A locksmith will call <strong>${phone}</strong> within 5 minutes.<br>They are being notified right now.</p>
                     <p class="mb-2">Reference number: <strong>${refNum}</strong></p>
                     <h5 class="mb-3">Thank you for your enquiry</h5>
-                    <p>Alternatively, please call <a href=\"tel:07809887883\" class=\"chatbot-thankyou-link\">078 0988 7883</a>.</p>
+                    <p>Alternatively, please call <a href="tel:07809887883" class="chatbot-thankyou-link">078 0988 7883</a>.</p>
                 </div>
                 <button class="chat-submit-button mt-3" onclick="restartChat()">
                     <i class="fas fa-redo me-2"></i>Start New Request
                 </button>
             </div>
         `;
-        console.log('Auto Request:', {
-            carMake: carMake,
-            carYear: carYear,
-            service: service,
-            phone: phone,
-            location: location
-        });
     });
 }
 
-// Show quotation form
+/**
+ * Show quotation form
+ */
 function showQuotationForm() {
     addChatMessage('What type of service do you need a quote for?');
     const formHtml = `
@@ -889,6 +882,7 @@ function showQuotationForm() {
         </div>
     `;
     document.getElementById('currentInteraction').innerHTML = formHtml;
+    
     // Expose selectQuoteType globally
     window.selectQuoteType = function(type) {
         // Add user's reply to chat
@@ -905,6 +899,7 @@ function showQuotationForm() {
         if (btns && btns.parentNode) btns.parentNode.removeChild(btns);
         showAdditionalQuoteFields(type);
     };
+    
     // Helper to show the rest of the quote form
     window.showAdditionalQuoteFields = function(quoteType) {
         let fieldsHtml = `
@@ -925,13 +920,9 @@ function showQuotationForm() {
     };
 }
 
-// Update quote form based on selection
-function updateQuoteForm() {
-    // No longer used, replaced by selectQuoteType and showAdditionalQuoteFields
-    // (kept for compatibility if called elsewhere)
-}
-
-// Submit quote request
+/**
+ * Submit quote request
+ */
 function submitQuoteRequest() {
     const email = document.getElementById('quoteEmail').value;
     
@@ -941,6 +932,7 @@ function submitQuoteRequest() {
     }
     
     clearChatInteraction();
+    
     // Show thank you page in the popup
     const refNum = '#BL-' + Date.now().toString().slice(-6);
     document.getElementById('currentInteraction').innerHTML = `
@@ -951,24 +943,18 @@ function submitQuoteRequest() {
                 <p class="mb-2">A quotation will be emailed within 24 hours.<br>They are being notified right now.</p>
                 <p class="mb-2">Reference number: <strong>${refNum}</strong></p>
                 <h5 class="mb-3">Thank you for your enquiry</h5>
-                <p>Alternatively, please call <a href="tel:07809887883" class="chatbot-thankyou-link">078 0988 7883</a>.</p>
+                <p>Alternatively, please call <a href="tel:07809887883" class="chatbot-thankyou-link">07809 887 883</a>.</p>
             </div>
             <button class="chat-submit-button mt-3" onclick="restartChat()">
                 <i class="fas fa-redo me-2"></i>Start New Request
             </button>
         </div>
     `;
-    console.log('Quote Request:', {
-        // type: document.getElementById('quoteType').value, // not present with new button UI
-        numLocks: document.getElementById('numLocks').value,
-        propertyType: document.getElementById('propertyType').value,
-        email: email,
-        phone: document.getElementById('quotePhone').value,
-        details: document.getElementById('quoteDetails').value
-    });
 }
 
-// Restart conversation
+/**
+ * Restart conversation
+ */
 function restartChat() {
     chatbotState = {
         step: 'initial',
@@ -996,6 +982,5 @@ window.selectInitialService = selectInitialService;
 window.submitEmergencyType = submitEmergencyType;
 window.submitEmergencyRequest = submitEmergencyRequest;
 window.submitAutoRequest = submitAutoRequest;
-window.updateQuoteForm = updateQuoteForm;
 window.submitQuoteRequest = submitQuoteRequest;
 window.restartChat = restartChat;
