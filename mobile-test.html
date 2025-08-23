@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Menu Test - Bullard Locks</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <h1>Mobile Menu Test</h1>
+                <p>This page tests the mobile menu functionality. Resize your browser window to mobile size or use browser dev tools to test.</p>
+                
+                <div class="alert alert-info">
+                    <h5>Testing Instructions:</h5>
+                    <ol>
+                        <li>Resize browser to mobile width (below 1200px)</li>
+                        <li>Click the hamburger menu button</li>
+                        <li>Test dropdown menus (Services, Locations)</li>
+                        <li>Click menu items to ensure they close the mobile menu</li>
+                        <li>Check browser console for debug information</li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Debug Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Current Viewport Width:</strong> <span id="viewport-width"></span>px</p>
+                        <p><strong>Mobile View Detected:</strong> <span id="mobile-status"></span></p>
+                        <p><strong>Bootstrap Available:</strong> <span id="bootstrap-status"></span></p>
+                        <p><strong>Menu Elements Found:</strong> <span id="menu-status">Checking...</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Update debug information
+        function updateDebugInfo() {
+            document.getElementById('viewport-width').textContent = window.innerWidth;
+            document.getElementById('mobile-status').textContent = document.body.classList.contains('mobile-view') ? 'Yes' : 'No';
+            document.getElementById('bootstrap-status').textContent = typeof bootstrap !== 'undefined' ? 'Yes' : 'No';
+            
+            const toggler = document.querySelector('.navbar-toggler');
+            const collapse = document.querySelector('.navbar-collapse');
+            if (toggler && collapse) {
+                document.getElementById('menu-status').textContent = 'Found';
+            } else {
+                document.getElementById('menu-status').textContent = 'Not Found';
+            }
+        }
+        
+        // Update debug info on load and resize
+        window.addEventListener('load', updateDebugInfo);
+        window.addEventListener('resize', updateDebugInfo);
+        
+        // Check for Bootstrap every 100ms until available
+        const checkBootstrap = setInterval(() => {
+            if (typeof bootstrap !== 'undefined') {
+                clearInterval(checkBootstrap);
+                updateDebugInfo();
+            }
+        }, 100);
+    </script>
+</body>
+</html>

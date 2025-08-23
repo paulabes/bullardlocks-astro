@@ -147,81 +147,133 @@ function highlightCurrentPage() {
  */
 function initializeMobileMenu() {
     console.log('Initializing mobile menu...');
+    
+    // Wait for Bootstrap to be available
+    if (typeof bootstrap === 'undefined') {
+        console.log('Bootstrap not available, retrying in 100ms...');
+        setTimeout(initializeMobileMenu, 100);
+        return;
+    }
+    
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar-collapse');
     
     if (navbarToggler && navbarCollapse) {
         console.log('Found navbar elements');
+        console.log('Navbar toggler:', navbarToggler);
+        console.log('Navbar collapse:', navbarCollapse);
         
-        navbarToggler.addEventListener('click', function() {
-            navbarCollapse.classList.toggle('show');
-        });
-        
-        // Close mobile menu when clicking on regular nav links (not dropdown toggles)
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navbarCollapse.classList.remove('show');
+        try {
+            // Initialize Bootstrap collapse for mobile menu
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                toggle: false
             });
-        });
-        
-        // Handle mobile dropdown toggles with both click and touch events
-        const dropdownToggles = document.querySelectorAll('.navbar-nav .dropdown-toggle');
-        console.log('Found dropdown toggles:', dropdownToggles.length);
-        
-        dropdownToggles.forEach((toggle, index) => {
-            console.log(`Setting up dropdown toggle ${index}:`, toggle.textContent);
+            console.log('Bootstrap collapse initialized:', bsCollapse);
             
-            // Handle both click and touchstart events
-            ['click', 'touchstart'].forEach(eventType => {
-                toggle.addEventListener(eventType, function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    console.log(`${eventType} event on dropdown toggle:`, this.textContent);
-                    
-                    // Close other dropdowns
-                    const allDropdowns = document.querySelectorAll('.navbar-nav .dropdown-menu');
-                    allDropdowns.forEach(dropdown => {
-                        if (dropdown !== this.nextElementSibling) {
-                            dropdown.classList.remove('show');
-                        }
-                    });
-                    
-                    // Toggle current dropdown
-                    const dropdown = this.nextElementSibling;
-                    if (dropdown) {
-                        const isShowing = dropdown.classList.contains('show');
-                        dropdown.classList.toggle('show');
-                        console.log(`Dropdown ${isShowing ? 'closed' : 'opened'}`);
+            // Handle mobile menu toggle
+            navbarToggler.addEventListener('click', function(e) {
+                console.log('Mobile menu toggle clicked');
+                console.log('Current aria-expanded:', this.getAttribute('aria-expanded'));
+            });
+            
+            // Close mobile menu when clicking on regular nav links (not dropdown toggles)
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
+            console.log('Found nav links:', navLinks.length);
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 1199) {
+                        console.log('Nav link clicked, closing mobile menu');
+                        bsCollapse.hide();
                     }
                 });
             });
-        });
-        
-        // Close dropdowns when clicking dropdown items
-        const dropdownItems = document.querySelectorAll('.dropdown-item');
-        dropdownItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Close the dropdown
-                const dropdown = item.closest('.dropdown-menu');
-                if (dropdown) {
-                    dropdown.classList.remove('show');
+            
+            // Handle mobile dropdown toggles
+            const dropdownToggles = document.querySelectorAll('.navbar-nav .dropdown-toggle');
+            console.log('Found dropdown toggles:', dropdownToggles.length);
+            
+            dropdownToggles.forEach((toggle, index) => {
+                console.log(`Setting up dropdown toggle ${index}:`, toggle.textContent);
+                
+                try {
+                    // Initialize Bootstrap dropdown
+                    const dropdown = new bootstrap.Dropdown(toggle, {
+                        autoClose: true
+                    });
+                    console.log(`Dropdown ${index} initialized:`, dropdown);
+                    
+                    // Handle mobile-specific dropdown behavior
+                    toggle.addEventListener('click', function(e) {
+                        if (window.innerWidth <= 1199) {
+                            console.log('Mobile dropdown clicked:', this.textContent);
+                            
+                            // Close other dropdowns first
+                            document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(openDropdown => {
+                                if (openDropdown !== this.nextElementSibling) {
+                                    const openToggle = openDropdown.previousElementSibling;
+                                    if (openToggle && openToggle.classList.contains('dropdown-toggle')) {
+                                        const openBsDropdown = bootstrap.Dropdown.getInstance(openToggle);
+                                        if (openBsDropdown) {
+                                            openBsDropdown.hide();
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+                } catch (error) {
+                    console.error(`Error initializing dropdown ${index}:`, error);
                 }
-                // Close the mobile menu
-                navbarCollapse.classList.remove('show');
             });
-        });
-        
-        // Add mobile-specific CSS class detection
-        const isMobile = window.innerWidth <= 1199;
-        if (isMobile) {
-            document.body.classList.add('mobile-view');
-            console.log('Mobile view detected');
+            
+            // Close dropdowns when clicking dropdown items
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            console.log('Found dropdown items:', dropdownItems.length);
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 1199) {
+                        console.log('Dropdown item clicked, closing mobile menu');
+                        // Close the mobile menu after navigation
+                        bsCollapse.hide();
+                    }
+                });
+            });
+            
+            // Add mobile-specific CSS class detection
+            const isMobile = window.innerWidth <= 1199;
+            if (isMobile) {
+                document.body.classList.add('mobile-view');
+                console.log('Mobile view detected');
+            }
+            
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    const newIsMobile = window.innerWidth <= 1199;
+                    if (newIsMobile !== isMobile) {
+                        if (newIsMobile) {
+                            document.body.classList.add('mobile-view');
+                            console.log('Switched to mobile view');
+                        } else {
+                            document.body.classList.remove('mobile-view');
+                            console.log('Switched to desktop view');
+                        }
+                    }
+                }, 250);
+            });
+            
+            console.log('Mobile menu initialization completed successfully');
+            
+        } catch (error) {
+            console.error('Error during mobile menu initialization:', error);
         }
         
     } else {
         console.log('Navbar elements not found');
+        console.log('Navbar toggler found:', !!navbarToggler);
+        console.log('Navbar collapse found:', !!navbarCollapse);
     }
 }
 
@@ -457,9 +509,9 @@ function selectInitialService(service) {
         // Only show emergency type selection, not auto form
         showEmergencyTypeSelection();
     } else if (service === 'safe') {
-        // Redirect to contact page and close chatbot
+        // Redirect to safe engineer service page
         closeChatbot();
-        window.location.href = 'contact.html';
+        window.location.href = 'services/safe-engineer.html';
     } else if (service === 'quotation') {
         showQuotationForm();
     }

@@ -2,11 +2,11 @@
     <div class="container-fluid px-3 px-lg-4">
         <!-- Brand -->
         <a class="navbar-brand" href="index.html">
-            <span style="font-size: 1.5rem; font-weight: 600; color: var(--text-bright);">Bullard Locks</span>
+            <img src="images/bullard-locks-retina-logo.png" alt="Bullard Locks" class="navbar-logo">
         </a>
         
         <!-- Mobile Toggle -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         
@@ -20,10 +20,10 @@
                     <a class="nav-link" href="about.html">About</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button">
+                    <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Services
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                         <li><a class="dropdown-item" href="services.html">All Services</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="services/emergency-locksmith.html">Emergency Locksmith</a></li>
@@ -32,10 +32,10 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="locations.html" id="locationsDropdown" role="button">
+                    <a class="nav-link dropdown-toggle" href="locations.html" id="locationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Locations
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" aria-labelledby="locationsDropdown">
                         <li><a class="dropdown-item" href="locations.html">All Locations</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="locations/north-london-locksmith.html">North London</a></li>
@@ -74,54 +74,3 @@ body {
     padding-top: 92px; 
 }
 </style>
-
-<!-- Inline script for immediate dropdown functionality -->
-<script>
-// Immediate mobile dropdown setup
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-        setupMobileDropdowns();
-    }, 100);
-});
-
-function setupMobileDropdowns() {
-    console.log('Setting up mobile dropdowns...');
-    
-    const dropdownToggles = document.querySelectorAll('.navbar-nav .dropdown-toggle');
-    console.log('Found dropdown toggles:', dropdownToggles.length);
-    
-    dropdownToggles.forEach((toggle, index) => {
-        console.log(`Setting up toggle ${index}:`, toggle.textContent);
-        
-        // Remove existing listeners
-        toggle.replaceWith(toggle.cloneNode(true));
-        const newToggle = document.querySelectorAll('.navbar-nav .dropdown-toggle')[index];
-        
-        newToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            console.log('Dropdown clicked:', this.textContent);
-            
-            // Close other dropdowns
-            document.querySelectorAll('.navbar-nav .dropdown-menu').forEach(dropdown => {
-                if (dropdown !== this.nextElementSibling) {
-                    dropdown.classList.remove('show');
-                }
-            });
-            
-            // Toggle current dropdown
-            const dropdown = this.nextElementSibling;
-            if (dropdown) {
-                dropdown.classList.toggle('show');
-                console.log('Dropdown toggled:', dropdown.classList.contains('show'));
-            }
-        });
-        
-        newToggle.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            this.click();
-        });
-    });
-}
-</script>
