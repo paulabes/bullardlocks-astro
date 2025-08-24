@@ -155,30 +155,40 @@ main li {
   padding-right: calc(var(--bs-gutter-x) * 0.5) !important;
 }
 
-/* Mobile top buttons - positioned above header on mobile only */
-.mobile-top-buttons {
+/* Mobile footer buttons - fixed at bottom on mobile only */
+.mobile-footer-buttons {
   position: fixed !important;
-  top: 0 !important;
+  bottom: 0 !important;
   left: 0 !important;
   right: 0 !important;
   z-index: 1035 !important;
   background-color: var(--darker-bg) !important;
-  padding: 0.5rem 0 !important;
-  border-bottom: 1px solid var(--dark-border) !important;
+  padding: 0.75rem 0 !important;
+  border-top: 1px solid var(--dark-border) !important;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Mobile top buttons styling */
-.mobile-top-buttons .btn {
-  padding: 0.75rem !important;
-  font-size: 1.1rem !important;
-  min-height: 48px !important;
+/* Mobile footer buttons styling */
+.mobile-footer-buttons .btn {
+  padding: 0.875rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  min-height: 50px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  border-radius: 0 !important;
 }
 
-.mobile-top-buttons .btn i {
-  font-size: 1.2rem !important;
+.mobile-footer-buttons .btn i {
+  font-size: 1.25rem !important;
+}
+
+/* Add bottom padding to body on mobile to account for fixed footer buttons */
+@media (max-width: 1199.98px) {
+  body {
+    padding-bottom: 80px !important; /* Height of mobile footer buttons */
+  }
 }
 
 /* Navbar background */
@@ -199,36 +209,14 @@ main li {
   will-change: auto !important;
 }
 
-/* Position navbar below mobile buttons on mobile */
-@media (max-width: 1199.98px) {
-  .navbar {
-    top: 60px !important; /* Height of mobile buttons area */
-  }
-}
-
-/* Position navbar at top on desktop */
-@media (min-width: 1200px) {
-  .navbar {
-    top: 0 !important;
-  }
+/* Navbar positioning */
+.navbar {
+  top: 0 !important;
 }
 
 /* Spacer to offset fixed navbar height */
 .header-spacer {
   height: 80px;
-}
-
-/* Account for mobile buttons + navbar on mobile */
-@media (max-width: 1199.98px) {
-  .header-spacer {
-    height: 140px; /* 60px mobile buttons + 80px navbar */
-  }
-}
-
-@media (min-width: 1200px) {
-  .header-spacer {
-    height: 80px;
-  }
 }
 
 /* Remove any borders from navbar elements */
@@ -1458,10 +1446,11 @@ footer .row.g-4 > .col-lg-3:nth-child(4) .footer-section p {
   }
 }
 
-/* Hero section responsiveness */
+/* Mobile responsiveness - Show images first for ALL two-column sections */
 @media (max-width: 767.98px) {
+  /* Hero section responsiveness */
   .hero-section .row.align-items-stretch {
-  flex-direction: column;
+    flex-direction: column;
   }
   
   .hero-section .col-lg-6:first-child {
@@ -1473,21 +1462,36 @@ footer .row.g-4 > .col-lg-3:nth-child(4) .footer-section p {
     order: 2;
     margin-bottom: 0;
   }
-}
 
-/* About preview responsiveness */
-@media (max-width: 767.98px) {
+  /* About preview responsiveness */
   .about-preview .row.align-items-stretch {
     flex-direction: column;
   }
   
   .about-preview .col-lg-6:first-child {
-    order: 2;
+    order: 1;
+    margin-bottom: 2rem;
   }
   
   .about-preview .col-lg-6:last-child {
+    order: 2;
+    margin-bottom: 0;
+  }
+
+  /* General rule: All two-column sections show first column first, second column second */
+  section .row.align-items-stretch,
+  section .row.align-items-center {
+    flex-direction: column;
+  }
+  
+  section .col-lg-6:first-child {
     order: 1;
     margin-bottom: 2rem;
+  }
+  
+  section .col-lg-6:last-child {
+    order: 2;
+    margin-bottom: 0;
   }
 }
 
