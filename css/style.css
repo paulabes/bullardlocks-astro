@@ -406,9 +406,11 @@ h4 {
 }
 
 /* Mission & Values list: match hero feature styling */
+.about-preview ul.list-unstyled { margin: 0 !important; padding: 0 !important; }
+
 .about-preview ul.list-unstyled li {
-  display: flex !important;
-  align-items: center !important;
+  display: block !important; /* rely on inner .feature-item for layout */
+  line-height: 1.6 !important;
   margin-bottom: 0.75rem !important;
 }
 
@@ -416,6 +418,22 @@ h4 {
   color: #ffffff !important;
   margin-right: 0.75rem !important;
   font-size: 1.2rem !important;
+}
+
+.about-preview ul.list-unstyled li span,
+.about-preview ul.list-unstyled li p {
+  line-height: 1.6 !important;
+}
+
+/* Mirror hero feature text sizing and layout */
+.about-preview .feature-item {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.about-preview .feature-item,
+.about-preview .feature-item span {
+  font-size: 1.0625rem !important;
 }
 
 /* Service cards */
