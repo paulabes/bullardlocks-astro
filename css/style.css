@@ -51,14 +51,36 @@
   text-decoration: underline;
 }
 
-/* Global link color to match buttons */
-/* Global link color to match navbar link grey */
+/* Global link animations */
 a {
   color: var(--text-light);
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 a:hover, a:focus {
   color: var(--text-light);
+  text-decoration: none;
+}
+
+/* Subtle underline animation for content links */
+main a:not(.btn):not(.nav-link):not(.dropdown-item) {
+  position: relative;
+}
+
+main a:not(.btn):not(.nav-link):not(.dropdown-item)::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--bs-primary);
+  transition: width 0.3s ease;
+}
+
+main a:not(.btn):not(.nav-link):not(.dropdown-item):hover::after {
+  width: 100%;
 }
 /* Clean Dark Theme for Bullard Locks - UK English */
 
@@ -506,20 +528,48 @@ h4 {
   font-size: 1.0625rem !important;
 }
 
-/* Service cards */
+/* Service cards with enhanced animations */
 .service-card {
   background-color: var(--dark-surface);
   border: 1px solid var(--dark-border);
   border-radius: 0 !important;
   padding: 2rem;
   height: 100%;
-  transition: transform 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transition: left 0.8s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border-color: var(--bs-primary);
+}
+
+.service-card:hover::before {
+  left: 100%;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1) rotate(5deg);
+  color: var(--bs-primary) !important;
+}
+
+.service-card .service-icon {
+  transition: all 0.3s ease;
 }
 
 /* Ensure all card buttons align to bottom and have equal width */
@@ -637,14 +687,33 @@ h4 {
   object-position: center !important;
 }
 
-/* Testimonials */
+/* Testimonials with micro animations */
 .testimonial-card {
   background-color: var(--dark-surface);
   border: 1px solid var(--dark-border);
   border-radius: 0 !important;
   padding: 1.5rem;
   height: 100%;
+  transition: all 0.3s ease;
+  position: relative;
 }
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 193, 7, 0.3);
+}
+
+.testimonial-card:hover .stars i {
+  animation: pulse 0.6s ease-in-out;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+.testimonial-card .stars i:nth-child(1) { --i: 1; }
+.testimonial-card .stars i:nth-child(2) { --i: 2; }
+.testimonial-card .stars i:nth-child(3) { --i: 3; }
+.testimonial-card .stars i:nth-child(4) { --i: 4; }
+.testimonial-card .stars i:nth-child(5) { --i: 5; }
 
 .stars {
   color: var(--bs-warning);
@@ -779,11 +848,44 @@ footer .row.g-4 > .col-lg-3:nth-child(4) .footer-section p {
   margin-bottom: 0.35rem !important;
 }
 
-/* Buttons */
+/* Buttons with micro animations */
 .btn {
   border-radius: 0 !important;
   font-weight: 500;
   padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+  transition: all 0.1s ease;
+}
+
+/* Button ripple effect */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: width 0.6s, height 0.6s;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.btn:active::before {
+  width: 300px;
+  height: 300px;
 }
 
 /* Make all buttons large-sized globally */
@@ -797,9 +899,27 @@ footer .row.g-4 > .col-lg-3:nth-child(4) .footer-section p {
   font-size: 1.1rem;
 }
 
-/* Images */
+/* Images with subtle animations */
 .img-fluid {
   border-radius: 0 !important;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.img-fluid:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+/* Hero image specific animations */
+.hero-section .img-fluid,
+.about-preview .img-fluid {
+  transition: transform 0.6s ease;
+}
+
+.hero-section .img-fluid:hover,
+.about-preview .img-fluid:hover {
+  transform: scale(1.03);
 }
 
 /* Contact form - dark theme */
@@ -820,12 +940,19 @@ footer .row.g-4 > .col-lg-3:nth-child(4) .footer-section p {
   color: var(--text-muted) !important;
 }
 
+#quoteForm .form-control,
+#quoteForm .form-select,
+#quoteForm textarea {
+  transition: all 0.3s ease;
+}
+
 #quoteForm .form-control:focus,
 #quoteForm .form-select:focus,
 #quoteForm textarea:focus {
   border: none !important;
   box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12) !important;
   outline: none !important;
+  transform: translateY(-1px);
 }
 
 #quoteForm .form-label {
@@ -837,20 +964,164 @@ footer .row.g-4 > .col-lg-3:nth-child(4) .footer-section p {
 #quoteForm .valid-feedback {
   color: var(--text-muted) !important;
 }
-/* Loading states */
+/* Loading states and animations */
 .loading {
   opacity: 0.6;
+  transition: opacity 0.3s ease;
 }
 
-/* Simple animations */
-.fade-in {
-  animation: fadeIn 0.5s ease-in;
+.page-loading {
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
+.page-loading.loaded {
+  opacity: 1;
+}
+
+/* Smooth page transitions */
+body {
+  opacity: 0;
+  animation: pageLoad 0.8s ease-out forwards;
+}
+
+@keyframes pageLoad {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading spinner for async content */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--bs-primary);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   MICRO ANIMATIONS - CONSISTENT & SUBTLE
+   ======================================== */
+
+/* Base animation keyframes */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.fade-in-left {
+  animation: fadeInLeft 0.7s ease-out;
+}
+
+.fade-in-right {
+  animation: fadeInRight 0.7s ease-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.5s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Scroll-triggered animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-on-scroll.slide-left {
+  transform: translateX(-50px);
+}
+
+.animate-on-scroll.slide-left.in-view {
+  transform: translateX(0);
+}
+
+.animate-on-scroll.slide-right {
+  transform: translateX(50px);
+}
+
+.animate-on-scroll.slide-right.in-view {
+  transform: translateX(0);
+}
+
+.animate-on-scroll.scale-up {
+  transform: scale(0.8);
+}
+
+.animate-on-scroll.scale-up.in-view {
+  transform: scale(1);
+}
+
+/* Staggered animation delays for multiple elements */
+.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+.animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
 
 /* ========================================
    RESPONSIVE DESIGN - MOBILE FIRST APPROACH
@@ -1530,14 +1801,45 @@ footer .row.g-4 > .col-lg-3:nth-child(4) .footer-section p {
    PERFORMANCE RESPONSIVENESS
    ======================================== */
 
-/* Optimize animations for mobile */
+/* Optimize animations for mobile - reduce motion for performance */
 @media (max-width: 767.98px) {
+  /* Disable hover animations on touch devices */
   .service-card:hover {
     transform: none;
+    box-shadow: none;
   }
   
-  .fade-in {
-    animation: none;
+  .testimonial-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .img-fluid:hover {
+    transform: none;
+    filter: none;
+  }
+  
+  .btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* Reduce animation complexity on mobile */
+  .animate-on-scroll {
+    transition-duration: 0.4s;
+  }
+  
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    .fade-in,
+    .service-card,
+    .testimonial-card,
+    .btn,
+    .img-fluid {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 }
 
