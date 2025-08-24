@@ -1,3151 +1,1064 @@
-/* ========================================
-   /* BULLARD LOCKS WEBSITE - MAIN STYLESHEET
-======================================== */
-
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-/* ========================================
-   /* CSS VARIABLES - COHESIVE COLOUR SCHEME
-======================================== */
+/* Clean Dark Theme for Bullard Locks - UK English */
 
 :root {
-    /* Primary brand colours */
-    --primary-color: #4a5568;        /* Muted slate blue - primary brand colour */
-    --secondary-color: #718096;      /* Soft grey-blue - secondary colour */
-    --success-color: #38a169;        /* Muted forest green - WhatsApp */
-    --warning-color: #d69e2e;        /* Muted amber orange */
-    
-    /* Background colours */
-    --light-bg: #f7fafc;            /* Very light cool grey */
-    --darker-bg: #e2e8f0;           /* Light cool grey */
-    --dark-bg: #2d3748;             /* Muted dark slate */
-    
-    /* Text colours */
-    --text-dark: #2d3748;            /* Muted dark text */
-    --text-light: #f7fafc;           /* Light text for dark backgrounds */
-    --text-dim: #718096;             /* Muted grey text */
-    
-    /* Border and shadow colours */
-    --border-color: rgba(74, 85, 104, 0.2); /* Subtle muted border */
-    --glow-shadow: 0 0 15px rgba(74, 85, 104, 0.15); /* Muted glow */
-    --success-glow: 0 0 15px rgba(56, 161, 105, 0.15); /* Muted green glow */
-    --warning-glow: 0 0 15px rgba(214, 158, 46, 0.15); /* Muted amber glow */
-    
-    /* Systematic background colour system for proper contrast */
-    --bg-white: #ffffff;             /* Pure white for maximum contrast */
-    --bg-light: #f7fafc;             /* Existing light-bg */
-    --bg-medium: #cbd5e1;            /* Medium grey (between light and dark) */
-    --bg-medium-dark: #94a3b8;      /* Medium dark grey */
-    --bg-dark: #2d3748;              /* Existing dark-bg */
-    --bg-ultra-dark: #1e293b;       /* Ultra dark (darker than dark-bg) */
-    
-    /* Subtle brand colour backgrounds */
-    --bg-primary-subtle: rgba(74, 85, 104, 0.05);    /* Very light primary */
-    --bg-primary-light: rgba(74, 85, 104, 0.1);      /* Light primary */
-    --bg-secondary-subtle: rgba(113, 128, 150, 0.05); /* Very light secondary */
-    --bg-secondary-light: rgba(113, 128, 150, 0.1);   /* Light secondary */
-    --bg-success-subtle: rgba(56, 161, 105, 0.05);   /* Very light success */
-    --bg-success-light: rgba(56, 161, 105, 0.1);     /* Light success */
-    --bg-warning-subtle: rgba(214, 158, 46, 0.05);  /* Very light warning */
-    --bg-warning-light: rgba(214, 158, 46, 0.1);    /* Light warning */
-    
-    /* Transitions and effects */
-    --transition: all 0.3s ease;
-    --border-radius: 3px;
-    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --box-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-danger: #e67e22;
+  --bs-warning: #ffc107;
+  --bs-info: #0dcaf0;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  
+  /* Custom dark theme colors */
+  --dark-bg: #1a1a1a;
+  --dark-surface: #2d2d2d;
+  --dark-border: #404040;
+  --text-light: #e9ecef;
+  --text-muted: #adb5bd;
 }
 
-/* ========================================
-   /* BASE STYLES
-======================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body and typography base styles */
+/* Global styles */
 body {
-    font-family: 'PT Sans', system-ui, -apple-system, sans-serif;
-    line-height: 2.08;
-    color: var(--text-dark);
-    font-size: 16px;
-    background-color: var(--light-bg);
-    padding-top: 92px; /* Add padding for fixed navbar */
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
 }
 
-/* ========================================
-   NAVBAR AND HEADER STYLES
-   ======================================== */
+/* Hide scrollbar on mobile devices */
+@media (max-width: 767.98px) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Hide scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for Firefox */
+  html {
+    scrollbar-width: none;
+  }
+}
 
-/* Prevent layout shifts */
+/* Increase column spacing site-wide */
+.row {
+  --bs-gutter-x: 2rem !important;
+  --bs-gutter-y: 2rem !important;
+}
+
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
+.col-sm, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+.col-md, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+.col-lg, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12,
+.col-xl, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {
+  padding-left: calc(var(--bs-gutter-x) * 0.5) !important;
+  padding-right: calc(var(--bs-gutter-x) * 0.5) !important;
+}
+
+/* Navbar background */
 .navbar {
-    min-height: 92px; /* Ensure consistent navbar height */
+  background-color: var(--dark-bg) !important;
+  border: none !important;
+  box-shadow: none !important;
+  align-items: center !important;
+  height: 80px !important;
+  min-height: 80px !important;
+  max-height: 80px !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1030 !important;
+  transition: none !important;
+  transform: none !important;
+  will-change: auto !important;
 }
 
-#header-placeholder.loading {
-    background-color: var(--darker-bg);
-    border-bottom: 1px solid var(--border-color);
+/* Spacer to offset fixed navbar height */
+.header-spacer {
+  height: 80px;
 }
 
-#footer-placeholder {
-    min-height: 200px; /* Reserve space for footer before it loads */
+@media (min-width: 992px) {
+  .header-spacer {
+    height: 80px;
+  }
 }
 
-#footer-placeholder.loading {
-    background-color: var(--darker-bg);
-    border-top: 1px solid var(--border-color);
+/* Remove any borders from navbar elements */
+.navbar.fixed-top {
+  border-bottom: none !important;
 }
 
-/* ========================================
-   IMAGE AND LAYOUT STYLES
-   ======================================== */
-
-/* Ensure images don't cause layout shifts */
-img {
-    max-width: 100%;
-    height: auto;
+.navbar .container-fluid {
+  border: none !important;
 }
 
-/* Reserve space for hero images */
-.hero-section img {
-    height: 100%; /* Full column height */
-    object-fit: cover;
-    width: 100%;
-    min-height: 300px; /* Prevent jumping while loading */
+/* Dark theme overrides */
+.bg-light {
+  background-color: var(--dark-surface) !important;
 }
 
-/* Service and about section images */
-.about-preview img, 
-.why-choose-us img,
-.service-card img {
-    aspect-ratio: 16/10;
-    object-fit: cover;
-    width: 100%;
-    min-height: 200px;
+.bg-white {
+  background-color: var(--dark-surface) !important;
 }
 
-/* Testimonial/card images */
-.testimonial-card img {
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    width: 100%;
-    min-height: 150px;
+/* Override Bootstrap button colors */
+.btn-danger {
+  background-color: var(--bs-danger) !important;
+  border-color: var(--bs-danger) !important;
 }
 
-/* Add sufficient bottom padding for images in single column view */
-@media (max-width: 991.98px) {
-    /* General content images */
-    .about-preview img,
-    .why-choose-us img,
-    .hero-section img,
-    .content-image,
-    section img:not(.service-card img):not(.testimonial-card img):not(.navbar-brand img) {
-        margin-bottom: 2rem !important;
-    }
-    
-    /* Service and feature images */
-    .service-card img,
-    .feature-card img {
-        margin-bottom: 1.5rem !important;
-    }
-    
-    /* Testimonial images */
-    .testimonial-card img {
-        margin-bottom: 1rem !important;
-    }
-    
-    /* Ensure images inside text content have proper spacing */
-    p img,
-    .content img,
-    .article-content img {
-        margin-bottom: 1.5rem !important;
-        margin-top: 1rem !important;
-    }
+.btn-danger:hover {
+  background-color: #d35400 !important;
+  border-color: #d35400 !important;
 }
 
-/* ========================================
-   BUTTON STYLES
-   ======================================== */
-
-/* Prevent button text wrapping causing layout shifts */
-.btn {
-    white-space: nowrap;
-    text-overflow: ellipsis;
+/* Ensure all dropdown menus have solid backgrounds */
+.dropdown-menu,
+.dropdown-menu.show,
+.dropdown-menu[data-bs-popper],
+.navbar-nav .dropdown-menu,
+.navbar-nav .nav-item .dropdown-menu {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
 }
 
-/* Ensure consistent button heights */
-.btn-lg {
-    min-height: 48px;
-    line-height: 1.5;
+/* Mobile navbar collapse background */
+.navbar-collapse {
+  background-color: var(--dark-bg) !important;
+  margin-top: -8px !important;
+  padding-top: 6px !important;
+  padding-bottom: 20px !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
+  position: relative !important;
 }
 
-.btn {
-    min-height: 38px;
-    line-height: 1.5;
+/* Mobile header height override - ensure consistency */
+@media (max-width: 1199.98px) {
+  .navbar {
+    height: 80px !important;
+    min-height: 80px !important;
+    max-height: 80px !important;
+  }
 }
 
-/* Prevent content jumping during font load */
-body {
-    font-display: swap;
+/* Custom mobile toggle button */
+.custom-toggler {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0.5rem;
+  background: transparent;
+  height: 40px !important;
+  width: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-/* Prevent layout shifts in sections */
-.py-5 {
-    min-height: 400px; /* Ensure consistent minimum section heights */
+/* Hide toggle button on desktop */
+@media (min-width: 992px) {
+  .custom-toggler {
+    display: none !important;
+  }
 }
 
+/* Ensure navbar brand maintains consistent height */
+.navbar-brand {
+  height: 80px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Mobile logo positioning */
+@media (max-width: 1199.98px) {
+  .navbar-brand {
+    transform: translateY(-3px) !important;
+  }
+}
+
+.toggle-icon {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.toggle-icon.menu-open {
+  /* No rotation needed for X */
+}
+
+.card {
+  background-color: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  color: var(--text-light);
+}
+
+.text-dark {
+  color: var(--text-light) !important;
+}
+
+.border {
+  border-color: var(--dark-border) !important;
+}
+
+/* Ensure main content starts below fixed header */
+/* Header spacer now handles offset; avoid zeroing section padding */
+main, .container, .row, .content-wrapper {
+  margin-top: 0 !important;
+}
+
+/* Hero section */
 .hero-section {
-    min-height: 500px; /* Larger minimum for hero sections */
+  background-color: var(--dark-surface);
+  padding-top: 1.75rem;
+  padding-bottom: 3.25rem;
 }
 
-/* Ensure hero section columns stretch to full height */
-.hero-section .row {
-    min-height: 500px;
+/* Hero section images - 100% column height */
+.hero-section img,
+.hero-section .image-with-logo img,
+.hero-section .about-preview-image img {
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
 }
 
-.hero-section .col-lg-6,
-.hero-section .col-md-6 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* Logo overlay on all section images */
+.hero-section .image-with-logo,
+.hero-section .about-preview-image,
+.services-overview .image-with-logo,
+.about-preview .image-with-logo,
+.locations-section .image-with-logo {
+  position: relative !important;
 }
 
-/* Ensure hero images fill their column height */
-.hero-section .col-lg-6 img,
-.hero-section .col-md-6 img {
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
+.hero-section .image-with-logo::after,
+.hero-section .about-preview-image::after,
+.services-overview .image-with-logo::after,
+.about-preview .image-with-logo::after,
+.locations-section .image-with-logo::after {
+  content: '';
+  position: absolute !important;
+  bottom: -140px !important;
+  left: 1rem !important;
+  width: 350px !important;
+  height: 350px !important;
+  background-image: url('../images/bullard-locks-default-logo.png') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  z-index: 10 !important;
 }
 
-/* Prevent navbar height changes */
-.navbar {
-    height: 92px !important; /* Fixed height instead of min-height */
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
 }
 
-/* Ensure consistent card heights */
-.service-card,
-.testimonial-card,
-.feature-card {
-    min-height: 280px;
+.hero-features {
+  margin: 2rem 0;
 }
 
-.service-card.h-100,
-.testimonial-card.h-100 {
-    min-height: 320px;
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-/* Smooth transitions for any layout changes */
-* {
-    transition: height 0.3s ease, min-height 0.3s ease;
+.hero-feature-icon {
+  color: var(--bs-primary);
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
 }
 
-/* Disable transitions on page load to prevent flash */
-.preload * {
-    transition: none !important;
+/* Service cards */
+.service-card {
+  background-color: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: var(--bs-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* About section */
+.about-preview {
+  background-color: var(--dark-bg);
+}
+
+.about-preview-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Testimonials */
+.testimonial-card {
+  background-color: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.stars {
+  color: var(--bs-warning);
+}
+
+/* CTA section */
+.cta-section {
+  background-color: var(--dark-surface);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 0.5rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+/* Images */
+.img-fluid {
+  border-radius: 0.5rem;
 }
 
 /* Loading states */
 .loading {
-    opacity: 0.8;
-    pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Simple animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ========================================
-   CHATBOT FUNCTIONALITY
+   RESPONSIVE DESIGN - MOBILE FIRST APPROACH
    ======================================== */
 
-/* Chatbot thank you message link styling */
-.chatbot-thankyou-link {
-    color: var(--primary-color) !important;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/* Chatbot float button */
-.chat-float-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background: var(--warning-color); /* Match .btn-warning color */
-    border-radius: 50%;
-    border: none;
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
-    cursor: pointer;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    animation: pulse 2s infinite;
-}
-
-.chat-float-button:hover {
-    transform: scale(1.1);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow), 0 0 30px rgba(37, 99, 235, 0.5);
-}
-
-.chat-float-button i {
-    font-size: 1.5rem;
-    color: #fff;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
-    70% { box-shadow: 0 0 0 30px rgba(249, 115, 22, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
-}
-
-.chatbot-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* Extra Small devices (phones, 576px and down) */
+@media (max-width: 575.98px) {
+  .hero-section {
+    padding-top: 0.7rem;
+    padding-bottom: 1.3rem;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+  
+  .hero-features {
+    margin: 1.5rem 0;
+  }
+  
+  .feature-item {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .service-card {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .btn-lg {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 10000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-
-.chatbot-overlay.show {
-    display: flex;
-}
-
-.chatbot-container {
-    background: var(--light-bg);
-    border: 2px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
-    width: 90%;
-    max-width: 450px;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.chatbot-header {
-    background: var(--darker-bg);
-    padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chatbot-header h3 {
-    color: var(--text-dark);
-    margin: 0;
-    font-size: 1.25rem;
-}
-
-.chat-close-btn {
-    background: none;
-    border: none;
-    color: var(--text-dim);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-}
-
-.chat-close-btn:hover {
-    color: var(--primary-color);
-}
-
-.chatbot-body {
-    padding: 1rem;
-    flex: 1;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.chat-log {
-    max-height: 300px;
-    overflow-y: auto;
-    margin-bottom: 1rem;
-    flex: 1;
-}
-
-.chat-message {
-    margin-bottom: 1rem;
-}
-
-.bot-message {
-    background: var(--light-bg);
-    color: var(--text-dark);
-    padding: 0.75rem 1rem;
-    border-radius: var(--border-radius);
-    /* border-left removed for cleaner look */
     margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.user-message {
-    border: none;
-    background: var(--light-bg);
-    color: var(--text-dark);
-    padding: 0.75rem 1rem;
-    border-radius: var(--border-radius);
+  }
+  
+  .btn {
+    width: 100%;
     margin-bottom: 0.5rem;
-    text-align: right;
-    margin-left: 2rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-
-
-.chat-options {
-    margin: 0.75rem 0;
+  }
+  
+  .hero-cta {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-}
-
-/* Ensure property type buttons are equally spaced like other chatbot options */
-.property-type-options {
+  }
+  
+  .cta-buttons {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin: 0.75rem 0;
-}
-
-.property-type-button {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--border-color);
-    background: var(--light-bg);
-    color: var(--text-dark);
-    cursor: pointer;
-    text-align: left;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-    font-size: 0.95rem;
-    min-height: 48px;
-    margin: 0;
-}
-
-.chat-option-button {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--border-color);
-    background: var(--border-color);
-    color: var(--text-dark);
-    cursor: pointer;
-    text-align: left;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-    font-size: 0.95rem;
-    min-height: 48px;
-    margin: 0;
-}
-
-.chat-option-button:hover {
-    border-color: var(--primary-color);
-    background: var(--primary-color);
-    color: var(--light-bg);
-    transform: translateY(-1px);
-}
-
-.chat-radio-group {
-    margin: 0.75rem 0;
-}
-
-.chat-radio-option {
-    margin: 0.5rem 0;
-    display: flex;
-    align-items: center;
-    color: var(--text-dark);
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-}
-
-.chat-radio-option:hover {
-    background: var(--light-bg);
-}
-
-.chat-radio-option input[type="radio"] {
-    margin-right: 0.75rem;
-    accent-color: var(--primary-color);
-}
-
-.chat-submit-button {
-    padding: 0.75rem 1.5rem;
-    margin-top: 0.75rem;
-    border: 2px solid var(--primary-color);
-    background: var(--primary-color);
-    color: white;
-    cursor: pointer;
-    border-radius: var(--border-radius);
-    font-weight: 600;
-    transition: var(--transition);
-    width: 100%;
-}
-
-.chat-submit-button:hover {
-    background: transparent;
-    color: var(--primary-color);
-    transform: translateY(-1px);
-}
-
-.chat-form-input {
-    width: 100%;
-    padding: 0.75rem;
-    margin: 0.5rem 0;
-    border: 2px solid var(--border-color);
-    background: var(--border-color);
-    color: var(--text-dark);
-    border-radius: var(--border-radius);
-    font-size: 0.95rem;
-    transition: var(--transition);
-}
-
-.chat-form-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-.chat-form-input::placeholder {
-    color: var(--text-dim);
-}
-
-/* Scrollbar styling for chat log */
-.chat-log::-webkit-scrollbar {
-    width: 6px;
-}
-
-.chat-log::-webkit-scrollbar-track {
-    background: var(--darker-bg);
-    border-radius: 3px;
-}
-
-.chat-log::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 3px;
-}
-
-.chat-log::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-    .chatbot-container {
-        width: 95%;
-        max-height: 95vh;
-        margin: 0;
-    }
-    
-    .chatbot-body {
-        padding: 0.75rem;
-    }
-    
-    .chat-log {
-        max-height: 250px;
-    }
-    
-    .chat-float-button {
-        width: 55px;
-        height: 55px;
-        bottom: 15px;
-        right: 15px;
-    }
-    
-    .chat-float-button i {
-        font-size: 1.3rem;
-    }
-    
-    .user-message {
-        margin-left: 1rem;
-    }
-    
-    .chatbot-header {
-        padding: 0.75rem;
-    }
-    
-    .chatbot-header h3 {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .chatbot-container {
-        width: 100%;
-        height: 100%;
-        max-height: 100vh;
-        border-radius: 0;
-        animation: slideUp 0.3s ease-out;
-    }
-    
-    .chatbot-body {
-        padding: 0.5rem;
-    }
-    
-    .chat-log {
-        max-height: calc(100vh - 200px);
-    }
-    
-    .user-message {
-        margin-left: 0.5rem;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Ensure chat button doesn't interfere with other elements */
-@media (max-width: 768px) {
-    .chat-float-button {
-        z-index: 9999 !important; /* Keep same high z-index on mobile */
-        bottom: 20px !important;
-        right: 20px !important;
-        display: flex !important;
-    }
-    
-    /* Add bottom padding to pages to prevent overlap */
-    main {
-        padding-bottom: 80px;
-    }
-}
-
-/* ========================================
-   TYPOGRAPHY STYLES
-   ======================================== */
-
-/* Heading styles */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'PT Sans', sans-serif !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    color: var(--dark-bg) !important;
-    letter-spacing: -0.02em;
-}
-
-h1, body h1, .container h1, section h1 { 
-    font-size: 3.6rem;
-    line-height: 1.03845;
-    margin: 1rem 0;
-    padding: 0.5em 0;
-    font-family: 'PT Sans', sans-serif !important;
-    font-weight: 700 !important;
-    color: #2c3647 !important;
-    letter-spacing: 0.00525em;
-}
-
-h2, body h2, .container h2, section h2 { 
-    font-size: 2.3rem;
-    line-height: 1.1249875;
-    font-family: 'PT Sans', sans-serif !important;
-    font-weight: 700 !important;
-    color: #2c3647 !important;
-    letter-spacing: -0.02em;
-}
-
-h3, body h3, .container h3, section h3 { 
-    font-size: 2rem;
-    line-height: 1.16825625;
-    font-family: 'PT Sans', sans-serif !important;
-    font-weight: 700 !important;
-    color: #2c3647 !important;
-    letter-spacing: -0.02em;
-}
-
-h4 { 
-    font-size: 1.5rem;
-    line-height: 1.52;
-}
-
-h5 { 
-    font-size: 1.25rem;
-    line-height: 1.58;
-}
-
-h6 { 
-    font-size: 1rem;
-    line-height: 1.63;
-}
-
-/* Body Text Consistency */
-p, li, td, th, dt, dd, blockquote, label, span, .form-control {
-    font-size: 1.125rem; /* Increased from 1rem (16px) to 1.125rem (18px) */
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-dim);
-    font-family: 'PT Sans', sans-serif !important;
-}
-
-.lead {
-    font-size: 1.125rem;
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-dark) !important;
-    font-family: 'PT Sans', sans-serif !important;
-}
-
-/* List Styles */
-ul:not(.navbar-nav):not(.dropdown-menu):not(.list-unstyled) li,
-ol li {
-    margin-bottom: 0.5rem;
-}
-
-/* Override any specific styles that might affect text consistency */
-.service-card p,
-.testimonial-card p,
-.about-preview p,
-.footer-section p,
-.contact-info-list li,
-.feature-item span,
-.process-step p,
-.timeline-item p {
-    font-size: 1.125rem;
-    font-weight: 400;
-    line-height: 1.6;
-    font-family: 'PT Sans', sans-serif !important;
-}
-
-/* Ensure .lead text is always white throughout the site */
-.lead,
-p.lead,
-div.lead,
-span.lead,
-section .lead,
-.hero-section .lead,
-.services-overview .lead,
-.testimonials .lead,
-.cta-section .lead,
-.about-preview .lead {
-    color: var(--text-dark) !important;
-}
-
-/* ========================================
-   FONT-SPECIFIC STYLES
-   ======================================== */
-
-/* PT Sans font styling for all text */
-h1, h2, h3, h4, h5, h6,
-body, p, li, .form-control {
-    font-feature-settings: "liga" 1, "kern" 1;
-    text-rendering: optimizeLegibility;
-}
-
-/* ========================================
-   BUTTON VARIANT STYLES
-   ======================================== */
-
-/* Bootstrap override - base button styles */
-.btn {
-    border-radius: var(--border-radius) !important;
-    font-weight: 500 !important;
-    padding: 0.75rem 1.5rem !important;
-    transition: var(--transition) !important;
-    border: 2px solid !important;
-    text-transform: capitalize !important;
-    font-family: 'PT Sans', sans-serif !important;
-    font-size: 1.125rem !important;
-    line-height: 1.6 !important;
-    height: 52px !important;
-    min-height: 52px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-}
-
-/* Removed redundant button variant definitions - now handled by comprehensive override below */
-
-/* Large button variants - Global override for all .btn-lg */
-.btn-lg,
-.btn.btn-lg {
-    padding: 1rem 2rem !important;
-    font-size: 1.25rem !important;
-    font-weight: 500 !important;
-    height: 60px !important;
-    min-height: 60px !important;
-    text-transform: capitalize !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-    font-family: 'PT Sans', sans-serif !important;
-}
-
-/* Small button variants - Global override for all .btn-sm */
-.btn-sm,
-.btn.btn-sm {
-    padding: 0.5rem 1rem !important;
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    height: 44px !important;
-    min-height: 44px !important;
-    text-transform: capitalize !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-}
-
-/* Comprehensive button height enforcement for ALL button variants */
-.btn-primary,
-.btn-secondary, 
-.btn-success,
-.btn-danger,
-.btn-warning,
-.btn-info,
-.btn-light,
-.btn-dark,
-.btn-outline-primary,
-.btn-outline-secondary,
-.btn-outline-success,
-.btn-outline-danger,
-.btn-outline-warning,
-.btn-outline-info,
-.btn-outline-light,
-.btn-outline-dark,
-button.btn,
-a.btn,
-input[type="button"].btn,
-input[type="submit"].btn {
-    height: 52px !important;
-    min-height: 52px !important;
-    font-size: 1.125rem !important;
-    font-weight: 500 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-}
-
-/* Large button variants height enforcement */
-.btn-lg.btn-primary,
-.btn-lg.btn-secondary,
-.btn-lg.btn-success,
-.btn-lg.btn-danger,
-.btn-lg.btn-warning,
-.btn-lg.btn-info,
-.btn-lg.btn-light,
-.btn-lg.btn-dark,
-.btn-lg.btn-outline-primary,
-.btn-lg.btn-outline-secondary,
-.btn-lg.btn-outline-success,
-.btn-lg.btn-outline-danger,
-.btn-lg.btn-outline-warning,
-.btn-lg.btn-outline-info,
-.btn-lg.btn-outline-light,
-.btn-lg.btn-outline-dark,
-.btn.btn-lg {
-    height: 60px !important;
-    min-height: 60px !important;
-    font-size: 1.25rem !important;
-}
-
-/* Small button variants height enforcement */
-.btn-sm.btn-primary,
-.btn-sm.btn-secondary,
-.btn-sm.btn-success,
-.btn-sm.btn-danger,
-.btn-sm.btn-warning,
-.btn-sm.btn-info,
-.btn-sm.btn-light,
-.btn-sm.btn-dark,
-.btn-sm.btn-outline-primary,
-.btn-sm.btn-outline-secondary,
-.btn-sm.btn-outline-success,
-.btn-sm.btn-outline-danger,
-.btn-sm.btn-outline-warning,
-.btn-sm.btn-outline-info,
-.btn-sm.btn-outline-light,
-.btn-sm.btn-outline-dark,
-.btn.btn-sm {
-    height: 44px !important;
-    min-height: 44px !important;
-    font-size: 1rem !important;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--light-bg);
-    border-color: var(--primary-color) !important;
-    box-shadow: var(--glow-shadow);
-}
-
-.btn-primary:hover {
-    background-color: transparent;
-    color: var(--primary-color);
-    border-color: var(--primary-color) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
-}
-
-.btn-outline-primary {
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    background-color: transparent;
-    box-shadow: var(--glow-shadow);
-}
-
-.btn-outline-primary:hover {
-    background-color: transparent;
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
-}
-
-.text-primary {
-    color: var(--primary-color) !important;
-}
-
-.text-cyan {
-    color: var(--primary-color) !important;
-}
-
-.bg-primary {
-    background-color: var(--primary-color) !important;
-}
-
-.bg-dark {
-    background-color: var(--dark-bg) !important;
-}
-
-/* Header Styles */
-.navbar {
-    background-color: var(--dark-bg) !important;
-    box-shadow: var(--box-shadow);
-    padding: 1rem 0;
-    transition: var(--transition);
-}
-
-/* Full width navbar container styling */
-.navbar .container-fluid {
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Ensure navbar brand stays on the left */
-.navbar-brand {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--light-bg) !important;
-    transition: var(--transition);
-    flex-shrink: 0; /* Prevent logo from shrinking */
-}
-
-.navbar-brand:hover {
-    color: var(--primary-color) !important;
-    text-shadow: var(--glow-shadow);
-}
-
-.navbar-brand span {
-    font-size: 1.5rem !important;
-    font-weight: 500 !important;
-    color: #2c3647 !important;
-    font-family: 'PT Sans', sans-serif !important;
-    text-transform: capitalize !important;
-    letter-spacing: 0.012em;
-}
-
-/* Navigation links styling */
-.navbar-nav .nav-link {
-    color: var(--light-bg) !important;
-    font-weight: 500;
-    padding: 0.5rem 0.5rem !important;
-    transition: var(--transition);
-    text-transform: capitalize !important;
-}
-
-.navbar-nav .nav-link:hover {
-    color: var(--warning-color) !important;
-}
-
-.navbar-nav .nav-link.active {
-    color: var(--warning-color) !important;
-}
-
-/* ========================================
-   DROPDOWN MENU STYLES
-   ======================================== */
-
-/* Dropdown menu container */
-.dropdown-menu {
-    background-color: var(--dark-bg) !important;
-    border: 2px solid var(--primary-color) !important; /* Blue border */
-    border-radius: var(--border-radius) !important;
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow) !important; /* Added blue glow */
-    padding: 0 !important; /* Removed top and bottom padding */
-    margin-top: 0 !important; /* Removed 4px top margin */
-    margin-bottom: 0 !important; /* Removed 4px bottom margin */
-    
-    /* Custom fade-in animation */
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(-10px) !important;
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
-}
-
-/* Show dropdown with fade-in effect */
-.dropdown-menu.show {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-}
-
-/* Override Bootstrap's default dropdown animation */
-.dropdown-menu[data-bs-popper] {
-    margin-top: 0 !important;
-}
-
-.dropdown-item {
-    color: var(--light-bg) !important;
-    font-size: 1.125rem !important;
-    font-weight: 500 !important;
-    line-height: 1.646 !important; /* Reduced by further 15% from 1.936 for tighter spacing */
-    padding: 0.75rem 1.5rem !important; /* Increased padding for better touch targets */
-    transition: var(--transition) !important;
-    text-transform: capitalize !important;
-}
-
-.dropdown-item:hover,
-.dropdown-item:focus {
-    background-color: var(--warning-color) !important;
-    color: #ffffff !important;
-}
-
-.dropdown-item:active {
-    background-color: var(--warning-color) !important;
-    color: #ffffff !important; 
-}
-
-.dropdown-divider {
-    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
-    margin: 0.5rem 0 !important;
-}
-
-/* ========================================
-   BREADCRUMB STYLES
-   ======================================== */
-
-/* Breadcrumb container */
-.breadcrumb {
-    background-color: transparent !important;
-    padding: 0 !important;
-    margin-bottom: 1rem !important;
-    font-size: 0.95rem !important;
-    font-family: 'PT Sans', sans-serif !important;
-}
-
-.breadcrumb-item {
-    color: var(--text-dim) !important; /* Grey font color */
-    font-family: 'PT Sans', sans-serif !important;
-}
-
-.breadcrumb-item a {
-    color: var(--text-dim) !important; /* Grey links */
-    text-decoration: none !important;
-    transition: var(--transition) !important;
-}
-
-.breadcrumb-item a:hover {
-    color: var(--primary-color) !important; /* Cyan hover state */
-    text-decoration: none !important;
-}
-
-.breadcrumb-item.active {
-    color: var(--text-dark) !important; /* Active item is bright */
-}
-
-.breadcrumb-item + .breadcrumb-item::before {
-    content: ">" !important; /* Custom separator */
-    color: var(--text-dim) !important;
-    margin: 0 0.5rem !important;
-    font-weight: 500 !important;
-}
-
-/* Desktop button group positioning */
-.navbar .d-none.d-xl-block {
-    flex-shrink: 0; /* Prevent buttons from shrinking */
-    margin-left: auto;
-}
-
-/* Ensure proper spacing on larger screens */
-@media (min-width: 1200px) {
-    .navbar .container-fluid {
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-}
-
-/* Mobile menu positioning and layout */
-@media (max-width: 1199.98px) {
-    .navbar-toggler {
-        order: 2;
-        margin-left: auto;
-    }
-    
-    .navbar-brand {
-        order: 1;
-    }
-    
-    .navbar-collapse {
-        order: 3;
-        width: 100vw !important;
-        background-color: var(--darker-bg) !important;
-        padding: 1rem 1rem; /* Match main container padding (px-3) */
-        margin-top: 0;
-        margin-left: -1rem !important; /* Offset the px-3 container padding */
-        margin-right: -1rem !important; /* Offset the px-3 container padding */
-        border-radius: 0;
-        box-shadow: var(--box-shadow);
-    }
-    
-    /* Remove individual navbar-nav padding since we're using container-level padding */
-    .navbar-collapse .navbar-nav {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    
-    /* Ensure buttons container also respects the same padding */
-    .navbar-collapse .d-xl-none {
-        margin-left: 0;
-        margin-right: 0;
-    }
-}
-
-/* Match lg padding for larger mobile screens */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-    .navbar-collapse {
-        padding-left: 1.5rem !important; /* Match px-lg-4 */
-        padding-right: 1.5rem !important;
-        margin-left: -1.5rem !important; /* Offset the px-lg-4 container padding */
-        margin-right: -1.5rem !important; /* Offset the px-lg-4 container padding */
-    }
-}
-
-/* Mobile dropdown menu adjustments for smaller screen sizes */
-@media (max-width: 1199.98px) {
-    .dropdown-menu {
-        position: static !important;
-        float: none !important;
-        width: 100% !important;
-        margin-top: 0 !important;
-        background-color: var(--light-bg) !important;
-        border-left: 3px solid var(--primary-color) !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        transform: none !important;
-        display: none !important; /* Start hidden */
-    }
-    
-    .dropdown-menu.show {
-        display: block !important; /* Show when toggled */
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    
-    .dropdown-item {
-        padding: 0.75rem 2rem !important;
-        font-size: 1rem !important;
-        background-color: transparent !important;
-    }
-    
-    .dropdown-item:hover,
-    .dropdown-item:focus {
-        background-color: var(--warning-color) !important;
-        color: var(--text-dark) !important;
-    }
-    
-    /* Ensure dropdown toggles are clickable on mobile */
-    .dropdown-toggle {
-        cursor: pointer !important;
-        -webkit-touch-callout: none !important;
-        -webkit-user-select: none !important;
-        -khtml-user-select: none !important;
-        -moz-user-select: none !important;
-        -ms-user-select: none !important;
-        user-select: none !important;
-    }
-}
-
-/* ========================================
-   MOBILE MENU TOGGLE BUTTON STYLES
-   ======================================== */
-
-/* Mobile menu toggle button */
-.navbar-toggler {
-    border: none !important;
-    padding: 6px 0.5rem 0.25rem 0.5rem;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-
-.navbar-toggler:focus {
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-.navbar-toggler:hover {
-    background-color: var(--light-bg) !important;
-}
-
-/* Mobile menu toggle icon */
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23007bff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    transition: var(--transition);
-}
-
-/* Mobile menu toggle hover icon */
-.navbar-toggler:hover .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2348fdfe' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-}
-
-/* Mobile menu improvements and enhancements */
-@media (max-width: 1199.98px) {
-    .navbar-toggler {
-        order: 2;
-        margin-left: auto;
-        z-index: 1030;
-        border: 2px solid var(--primary-color) !important;
-        background-color: var(--light-bg) !important;
-        padding: 8px 12px !important;
-        min-height: 44px;
-        min-width: 44px;
-    }
-    
-    .navbar-toggler:hover {
-        background-color: var(--primary-color) !important;
-        border-color: var(--primary-color) !important;
-    }
-    
-    .navbar-toggler:hover .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    }
-    
-    .navbar-brand {
-        order: 1;
-    }
-    
-    .navbar-collapse {
-        order: 3;
-        width: 100vw !important;
-        background-color: var(--dark-bg) !important;
-        padding: 1rem 1rem;
-        margin-top: 0;
-        margin-left: -1rem !important;
-        margin-right: -1rem !important;
-        border-radius: 0;
-        box-shadow: var(--box-shadow);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        z-index: 1020;
-        max-height: calc(100vh - 92px);
-        overflow-y: auto;
-    }
-    
-    /* Mobile menu animation and transitions */
-.navbar-collapse.collapsing {
-    height: auto !important;
-    transition: height 0.35s ease !important;
-}
-    
-    .navbar-collapse.show {
-        height: auto !important;
-    }
-    
-    /* Remove individual navbar-nav padding since we're using container-level padding */
-    .navbar-collapse .navbar-nav {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    
-    /* Ensure buttons container also respects the same padding */
-    .navbar-collapse .d-xl-none {
-        margin-left: 0;
-        margin-right: 0;
-    }
-    
-    /* Mobile dropdown menu adjustments and styling */
-.dropdown-menu {
-    position: static !important;
-    float: none !important;
-    width: 100% !important;
-    margin-top: 0 !important;
-    background-color: var(--dark-bg) !important;
-    border-left: 3px solid var(--primary-color) !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    transform: none !important;
-    border: none !important;
-    border-top: 1px solid var(--border-color) !important;
-    border-bottom: 1px solid var(--border-color) !important;
-}
-    
-    /* Mobile dropdown item styling */
-    .dropdown-item {
-        padding: 0.75rem 2rem !important;
-        font-size: 1rem !important;
-        background-color: transparent !important;
-        border: none !important;
-        color: var(--light-bg) !important;
-    }
-    
-    /* Mobile dropdown item hover and focus states */
-    .dropdown-item:hover,
-    .dropdown-item:focus {
-        background-color: var(--warning-color) !important;
-        color: var(--text-dark) !important;
-    }
-    
-    /* Mobile dropdown toggle clickability improvements */
-    .dropdown-toggle {
-        cursor: pointer !important;
-        -webkit-touch-callout: none !important;
-        -webkit-user-select: none !important;
-        -khtml-user-select: none !important;
-        -moz-user-select: none !important;
-        -ms-user-select: none !important;
-        user-select: none !important;
-    }
-    
-    /* Mobile menu close button icon for better UX */
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23007bff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24l18-18'/%3e%3c/svg%3e") !important;
-}
-    
-    /* Mobile menu toggle hover icon styles */
-.navbar-toggler[aria-expanded="true"]:hover .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24l18-18'/%3e%3c/svg%3e") !important;
-}
-    
-    /* Mobile navigation link improvements and styling */
-.navbar-nav .nav-link {
-    padding: 0.75rem 0 !important;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 1.1rem !important;
-    color: var(--light-bg) !important;
-}
-    
-    .navbar-nav .nav-link:last-child {
-        border-bottom: none;
-    }
-    
-    /* Mobile navigation dropdown toggle arrow positioning */
-    .navbar-nav .dropdown-toggle::after {
-        float: right;
-        margin-top: 8px;
-    }
-}
-
-/* Touch-friendly mobile interface improvements */
-@media (max-width: 1199.98px) and (pointer: coarse) {
-    /* Touch-friendly navbar toggle button */
-    .navbar-toggler {
-        min-height: 44px;
-        min-width: 44px;
-        padding: 8px 12px;
-    }
-    
-    /* Touch-friendly dropdown toggles */
-    .dropdown-toggle {
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-    }
-    
-    /* Touch-friendly dropdown items */
-    .dropdown-item {
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-    }
-}
-
-/* ========================================
-   FORM STYLES
-   ======================================== */
-
-/* Form select dropdown menu */
-.form-select + .dropdown-menu,
-.form-select option {
-    border-radius: 0 !important;
-}
-
-/* Form select input styling */
-.form-select {
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: 0.75rem 1rem;
-    transition: var(--transition);
-    background-color: var(--light-bg);
-    color: var(--text-dark);
-    font-size: 1.125rem;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2348fdfe' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
-    background-size: 16px 16px !important;
-}
-
-/* Form select focus state styling */
-.form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: var(--glow-shadow);
-    background-color: var(--light-bg);
-    color: var(--text-dark);
-}
-
-/* Form select dropdown option styling */
-.form-select option {
-    background-color: var(--light-bg);
-    color: var(--text-dark);
-    padding: 0.75rem;
-}
-
-/* Form select option selected and hover states */
-.form-select option:checked,
-.form-select option:hover {
-    background-color: var(--primary-color) !important;
-    color: var(--light-bg) !important;
-}
-
-/* ========================================
-   CONTACT INFO STYLES
-   ======================================== */
-
-/* Contact info container */
-.contact-info {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-/* Contact info link styling */
-.contact-info a {
-    color: var(--text-dark);
-    text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition);
-}
-
-.contact-info a:hover {
-    color: var(--primary-color);
-}
-
-/* Contact info icon styling */
-.contact-info i {
-    color: var(--primary-color);
-}
-
-/* ========================================
-   HERO SECTION STYLES
-   ======================================== */
-
-/* Hero section container */
-.hero-section {
-    position: relative;
-    padding: 3rem 0 3rem 0;
-    overflow: hidden;
-}
-
-/* Hero section mobile responsive adjustments */
-@media (max-width: 767.98px) {
-    .hero-section {
-        padding: 1rem 0 4rem 0;
-    }
-}
-
-/* Hero section row positioning */
-.hero-section .row {
-    position: relative;
-    z-index: 2;
-}
-
-/* Hero title typography styling */
-.hero-title, .hero-section .hero-title, section .hero-title {
-    font-size: 3.12rem;
-    font-family: 'PT Sans', sans-serif !important;
-    font-weight: 700 !important;
-    color: #2c3647 !important;
-    margin-bottom: 0;
-    text-transform: capitalize;
-    letter-spacing: -0.02em;
-    line-height: 1.08171875;
-}
-
-/* Hero subtitle typography styling */
-.hero-subtitle {
-    font-size: 1rem;
-    color: var(--text-dark);
-    margin-bottom: 0.75rem;
-    line-height: 1.4;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* Hero features container styling */
-.hero-features {
-    margin-bottom: 0.75rem;
-}
-
-/* Hero feature item layout styling */
-.hero-features .feature-item {
-    margin-bottom: 0.25rem;
-    display: flex;
-    align-items: center;
-}
-
-/* Hero feature icon sizing and positioning */
-.hero-features .feature-item i {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    margin-right: 0.75rem;
-}
-
-/* Hero feature icon styling */
-.hero-feature-icon {
-    background-color: transparent;
-    color: var(--text-dark) !important; /* Changed to dark colour */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    font-size: 1.2rem;
-    margin-right: 0.75rem;
-}
-
-/* Hero feature text styling */
-.hero-features .feature-item span {
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: var(--text-dark);
-}
-
-/* Hero call-to-action button spacing */
-.hero-cta {
-    gap: 1.5rem;
-}
-
-/* Hero image container styling */
-.hero-image {
-    height: 100%;
-    overflow: hidden;
-}
-
-/* Hero image styling */
-.hero-image img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: top !important;
-    border-radius: var(--border-radius);
-}
-
-/* Hero image fluid styling */
-.hero-image img,
-.hero-image .img-fluid {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: top !important;
-    border-radius: var(--border-radius);
-}
-
-/* Column image alignment and sizing */
-.col img,
-.column img,
-[class*="col-"] img,
-.col .img-fluid,
-.column .img-fluid,
-[class*="col-"] .img-fluid {
-    object-fit: cover !important;
-    object-position: top !important;
-}
-
-/* ========================================
-   SERVICE CARD STYLES
-   ======================================== */
-
-/* Service card container */
-.service-card {
-    background: var(--darker-bg);
-    padding: 2.5rem 2rem;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-    height: 100%;
-    border: 2px solid var(--border-color);
-    box-shadow: var(--box-shadow);
-    display: flex;
-    flex-direction: column;
-}
-
-/* Service card button styling */
-.service-card .btn {
-    width: 100%;
-    margin-top: auto;
-}
-
-/* Service card hover effects */
-.service-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
-}
-
-/* Service icon container styling */
-.service-icon {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: var(--warning-color);
-    background: transparent !important;
-}
-
-/* Service icon styling */
-.service-icon i {
-    font-size: 3rem;
-    color: var(--warning-color);
-}
-
-/* Service card heading styling */
-.service-card h3 {
-    color: var(--text-dark);
+    gap: 0.5rem;
+  }
+  
+  .testimonial-card {
+    padding: 1rem;
     margin-bottom: 1rem;
-}
-
-/* Service card paragraph styling */
-.service-card p {
-    color: var(--text-dark);
+  }
+  
+  .about-preview-image {
     margin-bottom: 1.5rem;
-}
-
-/* ========================================
-   ABOUT PREVIEW SECTION STYLES
-   ======================================== */
-
-/* About preview section container */
-.about-preview {
-    padding: 5rem 0;
-    background: var(--light-bg);
-}
-
-/* About preview image styling */
-.about-preview img {
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
-/* About Preview Image - Full Height with Logo Overlay */
-.about-preview-image {
-    position: relative;
-    height: 100%;
-    min-height: 400px;
-    display: flex;
-    align-items: stretch;
-}
-
-.about-preview-image img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-lg);
-    flex: 1;
-}
-
-.about-preview-image::after {
-    content: '';
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width: 200px;
-    height: 80px;
-    background: url('../images/bullard-locks-retina-logo.png') no-repeat center center;
-    background-size: contain;
-    z-index: 10;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 10px;
-}
-
-/* About preview heading styling */
-.about-preview h2 {
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-}
-
-/* About preview subheading styling */
-.about-preview h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-}
-
-/* About preview list item styling */
-.about-preview .list-unstyled li {
-    padding: 0.5rem 0;
-    font-size: 1.1rem;
-    color: var(--text-dark);
-}
-
-/* ========================================
-   TESTIMONIAL STYLES
-   ======================================== */
-
-/* Testimonial card container */
-.testimonial-card {
-    background: var(--darker-bg);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    text-align: center;
-    height: 100%;
-    border: 2px solid var(--border-color);
-    transition: var(--transition);
-}
-
-/* Testimonial card hover effects */
-.testimonial-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--primary-color);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
-}
-
-/* Testimonial card paragraph styling */
-.testimonial-card p {
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    color: var(--text-dark);
-}
-
-/* Testimonial author name styling */
-.testimonial-author strong {
-    color: var(--text-dark);
-    display: block;
-}
-
-/* Testimonial author location styling */
-.testimonial-author .text-muted {
-    font-size: 0.9rem;
-    color: var(--text-dim) !important;
-}
-
-/* Review stars styling */
-.stars {
-    font-size: 1.25rem;
-    color: var(--primary-color);
-}
-
-/* ========================================
-   CTA SECTION STYLES
-   ======================================== */
-
-/* CTA section container */
-.cta-section {
-    padding: 4rem 0;
-    margin: 0;
-    background: var(--darker-bg);
-    color: var(--text-dark);
-    display: flex;
-    align-items: center;
-    min-height: 100%;
-}
-
-/* CTA section hover effects */
-.cta-section:hover {
-    border-color: var(--primary-color);
-}
-
-/* CTA section heading styling */
-.cta-section h2 {
-    margin-bottom: 1rem;
-    color: var(--text-dark);
-}
-
-/* CTA section paragraph styling */
-.cta-section p {
-    color: var(--text-dim);
-}
-
-/* CTA buttons container styling */
-.cta-buttons {
-    margin-top: 2rem;
-}
-
-/* ========================================
-   FOOTER STYLES
-   ======================================== */
-
-/* Footer container */
-footer {
-    background-color: var(--dark-bg);
-    color: var(--text-light);
-    padding: 3rem 0 1rem;
-    border-top: 1px solid var(--border-color);
-}
-
-/* Footer content container styling */
-.footer-content {
-    margin-bottom: 2rem;
-}
-
-/* Footer section heading styling */
-.footer-section h4 {
-    color: white !important;
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-}
-
-/* Footer section list styling */
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-/* Footer section list item spacing */
-.footer-section ul li {
-    margin-bottom: 0.5rem;
-}
-
-/* Footer section link styling */
-.footer-section ul li a,
-.footer-section a {
-    color: var(--text-light) !important;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-/* Footer section link hover effects */
-.footer-section ul li a:hover,
-.footer-section a:hover {
-    color: var(--warning-color) !important; /* Use yellow for better visibility */
-}
-
-/* Social media links container styling */
-.social-links {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-/* Social media link styling */
-.social-links a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
+  }
+  
+  .navbar-brand img {
     height: 40px;
-    background-color: var(--darker-bg);
-    color: var(--warning-color);
-    border-radius: 50%;
-    transition: var(--transition);
+  }
+  
+  .navbar {
+    padding: 0.5rem 0 0 0;
+    z-index: 1000 !important;
+    background-color: var(--dark-bg) !important;
+    width: 100% !important;
+  }
+  
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: none !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
 }
 
-/* Social media link hover effects */
-.social-links a:hover {
-    background-color: var(--warning-color);
-    color: var(--light-bg);
-    box-shadow: var(--warning-glow);
-    transform: translateY(-2px);
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .service-card {
+    padding: 1.75rem;
+  }
+  
+  .btn-lg {
+    padding: 0.875rem 1.75rem;
+  }
+  
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }
 
-/* Footer bottom section styling */
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
-    padding-top: 1rem;
-    text-align: center;
-    color: var(--text-light);
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+  
+  .hero-section {
+    padding-top: 1.05rem;
+    padding-bottom: 1.95rem;
+  }
+  
+  .service-card {
+    padding: 1.75rem;
+  }
+  
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn-lg {
+    width: auto;
+  }
 }
 
-/* Footer bottom link styling */
-.footer-bottom a {
-    color: var(--text-light) !important;
-    text-decoration: none;
-    transition: var(--transition);
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section {
+    padding-top: 1.4rem;
+    padding-bottom: 2.6rem;
+  }
+  
+  .service-card {
+    padding: 2rem;
+  }
 }
 
-/* Ensure all footer headings are white - highest specificity */
-footer h1, footer h2, footer h3, footer h4, footer h5, footer h6,
-.footer-section h1, .footer-section h2, .footer-section h3, .footer-section h4, .footer-section h5, .footer-section h6,
-html body footer h1, html body footer h2, html body footer h3, html body footer h4, html body footer h5, html body footer h6,
-html body .footer-section h1, html body .footer-section h2, html body .footer-section h3, html body .footer-section h4, html body .footer-section h5, html body .footer-section h6 {
-    color: white !important;
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .hero-section {
+    padding-top: 1.75rem;
+    padding-bottom: 3.25rem;
+  }
+  
+  .service-card {
+    padding: 2.5rem;
+  }
 }
 
 /* ========================================
-   REVIEW STARS STYLES
+   NAVIGATION RESPONSIVENESS
    ======================================== */
 
-/* Review stars - use button yellow colour */
-/* Review stars colour styling */
-/* Review stars colour styling */
-.testimonials .text-warning,
-.testimonials .fas.fa-star,
-.testimonials .stars .fas.fa-star {
-    color: var(--warning-color) !important;
-}
-
-/* ========================================
-   GOOGLE BRAND TEXT STYLES
-   ======================================== */
-
-/* Google text colours while maintaining font styling */
-.google-o1, .google-o2, .google-g, .google-l, .google-e {
-    color: inherit;
-    font-family: inherit !important;
-    font-size: inherit !important;
-    font-weight: inherit !important;
-    text-transform: inherit !important;
-    letter-spacing: inherit !important;
-    line-height: inherit !important;
-}
-
-/* Google brand text colour definitions */
-.google-o1 { color: #4285F4 !important; } /* Google blue */
-.google-o2 { color: #EA4335 !important; } /* Google red */
-.google-g { color: #FBBC05 !important; }  /* Google yellow */
-.google-l { color: #4285F4 !important; } /* Google blue */
-.google-e { color: #34A853 !important; } /* Google green */
-
-/* ========================================
-   LEARN MORE BUTTON STYLES
-   ======================================== */
-
-/* Learn more button colour styling */
-.service-card .btn-primary,
-.testimonials .btn-danger,
-.about-preview .btn-primary {
-    background-color: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
-    color: white !important;
-}
-
-/* Learn more button hover effects */
-.service-card .btn-primary:hover,
-.testimonials .btn-danger:hover,
-.about-preview .btn-primary:hover {
+/* Mobile navigation adjustments */
+@media (max-width: 1199.98px) {
+  .navbar-nav {
+    margin-top: 1rem;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.75rem 0;
+  }
+  
+  .dropdown-menu {
     background-color: transparent !important;
-    border-color: var(--primary-color) !important;
-    color: var(--primary-color) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow) !important;
-}
-
-/* ========================================
-   FOOTER BOTTOM LINK STYLES
-   ======================================== */
-
-/* Footer bottom link hover effects */
-/* Footer bottom link hover effects */
-.footer-bottom a:hover {
-    color: var(--warning-color) !important; /* Use yellow for better visibility */
-}
-
-/* Footer bottom paragraph typography styling */
-.footer-bottom p {
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .dropdown-item {
     color: var(--text-light) !important;
-    font-size: 0.875rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
+    padding: 0.5rem 1rem;
+  }
+  
+  .dropdown-item:hover {
+    color: var(--text-light) !important;
+  }
+  
+  .dropdown-item:focus {
+    color: var(--text-light) !important;
+  }
+  
+  .dropdown-divider {
+    border-color: var(--dark-border) !important;
+    margin: 0.5rem 0;
+  }
+  
+  /* Mobile contact buttons */
+  .d-xl-none .btn {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Remove border from mobile menu toggle */
+  .navbar-toggler {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .navbar-toggler:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+  /* Desktop navigation */
+  @media (min-width: 1200px) {
+    .navbar-nav {
+      align-items: center;
+      background: transparent !important;
+      background-color: transparent !important;
+      margin-right: 2rem !important;
+      height: 100% !important;
+      display: flex !important;
+    }
+  
+  .navbar-nav .nav-link {
+    padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+    padding-top: calc(0.75rem + 10px) !important;
+    margin: 0 0.25rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: var(--text-light) !important;
+  }
+  
+  /* Desktop dropdown styling */
+  .dropdown-menu {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    margin-top: 0 !important;
+    z-index: 1000 !important;
+  }
+  
+  /* Desktop navbar collapse - no background */
+  .navbar-collapse {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+  
+  /* Desktop buttons side by side */
+  .d-none.d-lg-block {
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* Standardize font sizes for header elements */
+  .navbar-nav .nav-link,
+  .d-none.d-lg-block .btn {
+    font-size: 1rem !important;
     font-weight: 500 !important;
-}
-
-/* ========================================
-   UTILITY AND SPACING STYLES
-   ======================================== */
-
-/* Column spacing override - increase by 50% */
-.g-4, .gx-4, .gy-4 {
-    --bs-gutter-x: 2.25rem !important; /* Increased from 1.5rem by 50% */
-    --bs-gutter-y: 2.25rem !important;
-}
-
-.g-3, .gx-3, .gy-3 {
-    --bs-gutter-x: 1.5rem !important; /* Increased from 1rem by 50% */
-    --bs-gutter-y: 1.5rem !important;
-}
-
-.g-2, .gx-2, .gy-2 {
-    --bs-gutter-x: 0.75rem !important; /* Increased from 0.5rem by 50% */
-    --bs-gutter-y: 0.75rem !important;
-}
-
-/* ========================================
-   SCROLLBAR AND SELECTION STYLES
-   ======================================== */
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-    background-color: var(--darker-bg);
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--text-dim);
-    border-radius: var(--border-radius);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: var(--text-dark);
-}
-
-/* Selection */
-::selection {
-    background-color: var(--text-dark);
-    color: var(--light-bg);
-}
-
-/* ========================================
-   SUCCESS AND DANGER BUTTON STYLES
-   ======================================== */
-
-/* Success button styling */
-.btn-success {
-    background-color: var(--success-color);
-    border-color: var(--success-color) !important;
-    color: var(--light-bg);
-}
-
-/* Success button hover effects */
-.btn-success:hover {
-    background-color: transparent;
-    color: var(--success-color);
-    border-color: var(--success-color) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), 0 0 15px var(--success-color);
-}
-
-/* Danger button styling */
-.btn-danger {
-    background-color: var(--warning-color);
-    color: var(--light-bg);
-    border-color: var(--warning-color) !important;
-    box-shadow: var(--warning-glow);
-}
-
-/* Danger button hover effects */
-.btn-danger:hover {
-    background-color: transparent;
-    color: var(--warning-color);
-    border-color: var(--warning-color) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--warning-glow);
-}
-
-/* ========================================
-   OUTLINE BUTTON STYLES
-   ======================================== */
-
-/* Outline success button styling */
-.btn-outline-success {
-    color: var(--success-color);
-    border: 2px solid var(--success-color);
-    background-color: transparent;
-    box-shadow: var(--glow-shadow);
-}
-
-/* Outline success button hover effects */
-.btn-outline-success:hover {
-    background-color: transparent;
-    border-color: var(--success-color);
-    color: var(--success-color);
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--glow-shadow);
-}
-
-/* Outline danger button styling */
-.btn-outline-danger {
-    color: var(--warning-color);
-    border: 2px solid var(--warning-color);
-    background-color: transparent;
-    box-shadow: var(--warning-glow);
-}
-
-/* Outline danger button hover effects */
-.btn-outline-danger:hover {
-    background-color: transparent;
-    border-color: var(--warning-color);
-    color: var(--warning-color);
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--warning-glow);
-}
-
-/* ========================================
-   WHATSAPP BUTTON STYLES
-   ======================================== */
-
-/* WhatsApp button styling */
-[href*="wa.me"].btn-success,
-[href*="wa.me"].btn-primary {
-    background-color: var(--success-color) !important;
-    color: var(--light-bg) !important;
-    border-color: var(--success-color) !important;
-    box-shadow: var(--success-glow) !important;
-    text-transform: capitalize !important;
-}
-
-/* WhatsApp button hover effects */
-[href*="wa.me"].btn-success:hover,
-[href*="wa.me"].btn-primary:hover {
+  }
+  
+  /* Desktop button text and icons on one line */
+  .d-none.d-lg-block .btn {
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .dropdown-item {
+    background: transparent !important;
     background-color: transparent !important;
-    color: var(--success-color) !important;
-    border-color: var(--success-color) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--success-glow) !important;
-    text-transform: capitalize !important;
-}
-
-/* WhatsApp button large variant styling */
-[href*="wa.me"].btn-success.btn-lg,
-[href*="wa.me"].btn-primary.btn-lg {
-    height: 60px !important;
-    font-size: 1.25rem !important;
-    text-transform: capitalize !important;
-}
-
-/* ========================================
-   EMERGENCY BUTTON STYLES
-   ======================================== */
-
-/* Emergency button styling */
-[onclick*="showEmergencyModal"] {
-    background-color: var(--warning-color) !important;
-    color: var(--light-bg) !important;
-    border-color: var(--warning-color) !important;
-    box-shadow: var(--warning-glow) !important;
-    text-transform: capitalize !important;
-}
-
-/* Emergency button hover effects */
-[onclick*="showEmergencyModal"]:hover {
-    background-color: transparent !important;
-    color: var(--warning-color) !important;
-    border-color: var(--warning-color) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg), var(--warning-glow) !important;
-    text-transform: capitalize !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Ensure navbar height is consistent and properly centered */
+  .navbar {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+  
+  /* Center the brand and nav items vertically */
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+    justify-content: center !important;
+  }
+  
+  /* Ensure nav items are perfectly centered */
+  .navbar-nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
 }
 
 /* ========================================
-   ICON STYLES
+   LAYOUT RESPONSIVENESS
    ======================================== */
 
-/* Icon circle container styling */
-.icon-circle {
-    display: inline-flex;
+/* Ensure proper spacing on all devices */
+@media (max-width: 767.98px) {
+  .py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  .mb-5 {
+    margin-bottom: 2rem !important;
+  }
+  
+  .mt-5 {
+    margin-top: 2rem !important;
+  }
+  
+  .row.g-4 {
+    --bs-gutter-y: 1.5rem;
+  }
+}
+
+/* ========================================
+   TYPOGRAPHY RESPONSIVENESS
+   ======================================== */
+
+@media (max-width: 575.98px) {
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.3rem; }
+  h4 { font-size: 1.1rem; }
+  .lead { font-size: 1rem; }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.7rem; }
+  h3 { font-size: 1.4rem; }
+  h4 { font-size: 1.2rem; }
+  .lead { font-size: 1.05rem; }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.9rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.3rem; }
+  .lead { font-size: 1.1rem; }
+}
+
+/* ========================================
+   IMAGE RESPONSIVENESS
+   ======================================== */
+
+/* Ensure images scale properly */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hero image responsiveness */
+@media (max-width: 767.98px) {
+  .image-with-logo img,
+  .about-preview-image img {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ========================================
+   FORM RESPONSIVENESS
+   ======================================== */
+
+@media (max-width: 575.98px) {
+  .form-control {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .form-label {
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================================
+   FOOTER RESPONSIVENESS
+   ======================================== */
+
+@media (max-width: 767.98px) {
+  .footer-section {
+  text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .footer-section h4 {
+    margin-bottom: 1rem;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+  }
+  
+  .footer-bottom .col-md-6:first-child {
+    margin-bottom: 1rem;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES FOR RESPONSIVENESS
+   ======================================== */
+
+/* Hide elements on mobile */
+@media (max-width: 767.98px) {
+  .d-md-none {
+    display: none !important;
+  }
+}
+
+/* Show elements on mobile */
+@media (max-width: 767.98px) {
+  .d-md-block {
+    display: block !important;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .navbar,
+  .btn,
+  .hero-cta,
+  .cta-section,
+  footer {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+  }
+  
+  .hero-section,
+  .services-overview,
+  .about-preview,
+  .testimonials {
+    padding: 1rem 0 !important;
+    margin: 0 !important;
+  }
+}
+ 
+/* ========================================
+   GRID SYSTEM RESPONSIVENESS
+   ======================================== */
+
+/* Ensure proper column behavior on mobile */
+@media (max-width: 767.98px) {
+  .col-lg-6 {
+    margin-bottom: 2rem;
+  }
+  
+  .row.align-items-stretch > .col-lg-6 {
+    margin-bottom: 2rem;
+  }
+  
+  .row.align-items-stretch > .col-lg-6:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ========================================
+   COMPONENT RESPONSIVENESS
+   ======================================== */
+
+/* Service cards grid responsiveness */
+@media (max-width: 575.98px) {
+  .services-overview .row.g-4 {
+    --bs-gutter-y: 1rem;
+  }
+  
+  .services-overview .col-md-4 {
+  margin-bottom: 1rem;
+  }
+}
+
+/* Testimonials responsiveness */
+@media (max-width: 767.98px) {
+  .testimonials .row.g-4 {
+    --bs-gutter-y: 1rem;
+  }
+  
+  .testimonials .col-md-4 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Hero section responsiveness */
+@media (max-width: 767.98px) {
+  .hero-section .row.align-items-stretch {
+  flex-direction: column;
+  }
+  
+  .hero-section .col-lg-6:first-child {
+    order: 2;
+  }
+  
+  .hero-section .col-lg-6:last-child {
+    order: 1;
+    margin-bottom: 2rem;
+  }
+}
+
+/* About preview responsiveness */
+@media (max-width: 767.98px) {
+  .about-preview .row.align-items-stretch {
+    flex-direction: column;
+  }
+  
+  .about-preview .col-lg-6:first-child {
+    order: 2;
+  }
+  
+  .about-preview .col-lg-6:last-child {
+    order: 1;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY RESPONSIVENESS
+   ======================================== */
+
+/* Ensure proper touch targets on mobile */
+@media (max-width: 767.98px) {
+  .btn,
+  .nav-link,
+  .dropdown-item {
+    min-height: 44px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--primary-color);
-    color: var(--light-bg);
-    border-radius: 50%;
-    margin-right: 1rem;
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: var(--transition);
-    box-shadow: var(--glow-shadow);
-}
-
-/* Icon circle hover effects */
-.icon-circle:hover {
-    transform: scale(1.05);
-    box-shadow: var(--glow-shadow), var(--box-shadow);
+  }
+  
+  .navbar-toggler {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 /* ========================================
-   GENERAL ICON STYLES
+   PERFORMANCE RESPONSIVENESS
    ======================================== */
 
-/* General icon typography styling */
-.fas, .fab, .far, .fal, .fad {
-    font-weight: 900;
-    line-height: 1;
-}
-
-/* Icon display and rendering improvements */
-i[class*="fa-"] {
-    font-style: normal;
-    display: inline-block;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-}
-
-/* ========================================
-   BUTTON ICON STYLES
-   ======================================== */
-
-/* Button icon spacing and positioning */
-.btn i {
-    margin-right: 0.5rem;
-}
-
-/* Button icon only child spacing */
-.btn i:only-child {
-    margin-right: 0;
-}
-
-/* ========================================
-   SOCIAL MEDIA ICON STYLES
-   ======================================== */
-
-/* Social media icon colour styling */
-.text-cyan {
-    color: var(--primary-color) !important;
-}
-
-/* ========================================
-   LIST ICON STYLES
-   ======================================== */
-
-/* List icon spacing and alignment styling */
-li > i[class*="fa-"] {
-    width: 1.5rem;
-    text-align: center;
-    margin-right: 0.75rem;
-}
-
-/* ========================================
-   CHECK ICON STYLES
-   ======================================== */
-
-/* Check icon colour and typography styling */
-.fa-check,
-.fa-check-circle,
-.fa-check-double {
-    color: var(--primary-color) !important;
-    background: none !important;
-    font-weight: 900 !important;
-    font-size: 1.1em !important;
-}
-
-/* Check icon background removal */
-.text-success[class*="fa-check"] {
-    color: var(--success-color) !important;
-    background: none !important;
-}
-
-/* List item check icon spacing */
-li > .fa-check,
-li > .fa-check-circle,
-li > .fa-check-double {
-    margin-right: 0.75rem;
-}
-
-/* ========================================
-   ABOUT SECTION CHECK ICON STYLES
-   ======================================== */
-
-/* About section check icon prominence styling */
-.about-preview .fa-check,
-.about-preview .fa-check-circle,
-.about-preview .fa-check-double {
-    color: var(--primary-color) !important;
-    font-weight: 900 !important;
-    font-size: 1.2em !important;
-    text-shadow: 0 0 5px rgba(74, 85, 104, 0.3);
-}
-
-/* ========================================
-   BACKGROUND COLOUR UTILITY CLASSES
-   ======================================== */
-
-
-
-/* ========================================
-   SERVICES INTRO STYLES
-   ======================================== */
-
-/* Services introduction section styling */
-
-/* ========================================
-   MOBILE RESPONSIVE STYLES
-   ======================================== */
-
-/* Mobile-first approach: Left align all text on small screens (768px and below) */
+/* Optimize animations for mobile */
 @media (max-width: 767.98px) {
-    /* Reset all text alignment to left on mobile */
-    *,
-    h1, h2, h3, h4, h5, h6,
-    p, span, div, section,
-    .text-center,
-    .text-md-center,
-    .text-lg-center {
-        text-align: left !important;
-    }
-    
-    /* Hero section mobile alignment */
-    .hero-section .hero-title,
-    .hero-section p,
-    .hero-section .lead {
-        text-align: left !important;
-    }
-    
-    /* Add vertical space below hero text column on mobile */
-    .hero-section .col-lg-6:first-child {
-        margin-bottom: 3rem;
-    }
-    
-    /* Service cards mobile alignment */
-    .service-card,
-    .service-card h3,
-    .service-card p,
-    .service-card .service-icon {
-        text-align: left !important;
-    }
-    
-    /* Service icon alignment fix for mobile */
-    .service-card .service-icon {
-        display: flex;
-        justify-content: flex-start;
-        margin-bottom: 1rem;
-    }
-    
-    /* Testimonial cards mobile alignment */
-    .testimonial-card,
-    .testimonial-card p,
-    .testimonial-card .testimonial-author {
-        text-align: left !important;
-    }
-    
-    /* Stars alignment for testimonials */
-    .testimonial-card .stars {
-        text-align: left !important;
-        margin-bottom: 1rem;
-    }
-    
-    /* CTA sections mobile alignment */
-    .cta-section,
-    .cta-section h2,
-    .cta-section p,
-    .cta-section .lead {
-        text-align: left !important;
-    }
-    
-    /* Button containers on mobile */
-    .cta-buttons,
-    .hero-cta {
-        text-align: left !important;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-    }
-    
-    /* Ensure buttons stack properly on mobile */
-    .cta-buttons .btn,
-    .hero-cta .btn {
-        margin-right: 0 !important;
-        margin-bottom: 0.5rem;
-        width: auto;
-    }
-    
-    /* Services intro section */
-    .services-intro,
-    .services-intro h2,
-    .services-intro p,
-    .services-intro .lead {
-        text-align: left !important;
-    }
-    
-    /* About section mobile alignment */
-    .about-preview h2,
-    .about-preview h3,
-    .about-preview p,
-    .about-preview .lead {
-        text-align: left !important;
-    }
-    
-    /* Contact form sections */
-    .contact-form h2,
-    .contact-form h3,
-    .contact-form p {
-        text-align: left !important;
-    }
-    
-    /* Feature items mobile alignment */
-    .hero-features {
-        text-align: left !important;
-    }
-    
-    .feature-item {
-        text-align: left !important;
-        display: flex;
-        align-items: center;
-        margin-bottom: 0.75rem;
-    }
-    
-    .feature-item .icon-circle {
-        margin-right: 0.75rem;
-        margin-bottom: 0;
-    }
-    
-    /* Navigation and header mobile fixes */
-    .navbar-brand {
-        text-align: left !important;
-    }
-    
-    /* Breadcrumb mobile alignment */
-    .breadcrumb {
-        text-align: left !important;
-    }
-    
-    /* Footer content mobile alignment */
-    footer h4,
-    footer h5,
-    footer p,
-    footer li {
-        text-align: left !important;
-    }
-    
-    /* List items mobile alignment */
-    .list-unstyled,
-    .list-unstyled li {
-        text-align: left !important;
-    }
-    
-    /* Form labels and inputs */
-    .form-label {
-        text-align: left !important;
-    }
-    
-    /* Quote form mobile alignment */
-    #quoteForm h3,
-    #contactForm h3 {
-        text-align: left !important;
-    }
-    
-    /* Page section titles */
-    .page-title,
-    .section-title {
-        text-align: left !important;
-    }
-    
-    /* Override any remaining center-aligned elements */
-    .text-center {
-        text-align: left !important;
-    }
-    
-    /* Location and service page specific fixes */
-    .location-card,
-    .location-card h3,
-    .location-card p {
-        text-align: left !important;
-    }
-    
-    /* Emergency and service specific sections */
-    .emergency-info,
-    .service-info {
-        text-align: left !important;
-    }
-    
-    /* Preserve center alignment only for specific elements that need it */
-    .btn-center-mobile {
-        text-align: center !important;
-    }
-    
-    /* Loading spinners and icons that should stay centered */
-    .fa-spinner,
-    .loading-icon {
-        text-align: center !important;
-    }
-    
-    /* Stars rating should stay as intended */
-    .stars {
-        text-align: left !important;
-    }
-    
-    /* Additional mobile-specific improvements */
-    
-    /* Ensure quote form security text is left-aligned */
-    .small.text-center {
-        text-align: left !important;
-    }
-    
-    /* Mobile navigation improvements */
-    .navbar-nav {
-        text-align: left !important;
-    }
-    
-    .navbar-nav .nav-link {
-        text-align: left !important;
-    }
-    
-    /* Dropdown menu mobile alignment */
-    .dropdown-menu {
-        text-align: left !important;
-    }
-    
-    .dropdown-item {
-        text-align: left !important;
-    }
-    
-    /* Badge and small text mobile fixes */
-    .badge {
-        text-align: center !important; /* Keep badges centered */
-    }
-    
-    /* Review stars and ratings */
-    .text-warning {
-        text-align: left !important;
-    }
-    
-    /* Social media links in footer */
-    .social-links {
-        text-align: left !important;
-    }
-    
-    /* Contact info in footer */
-    .contact-info {
-        text-align: left !important;
-    }
-    
-    /* Ensure proper spacing for left-aligned content */
-    .container {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    
-    /* Hero section mobile-specific adjustments */
-    .hero-section .container {
-        text-align: left !important;
-    }
-    
-    /* Mobile: Ensure form elements are properly aligned */
-    .needs-validation {
-        text-align: left !important;
-    }
-    
-    .form-control,
-    .form-select {
-        text-align: left !important;
-    }
-    
-    /* Mobile: Service icons should be inline with text */
-    .service-icon i {
-        margin-right: 0.5rem;
-    }
-    
-    /* Mobile breadcrumb styling */
-    .breadcrumb-item {
-        text-align: left !important;
-    }
-    
-    /* Mobile specific section headings */
-    section h2,
-    section h3 {
-        text-align: left !important;
-    }
-    
-    /* Testimonial author info */
-    .testimonial-author strong,
-    .testimonial-author .text-muted {
-        text-align: left !important;
-    }
+  .service-card:hover {
+    transform: none;
+  }
+  
+  .fade-in {
+    animation: none;
+  }
 }
 
 /* ========================================
-   RESPONSIVE TEXT ALIGNMENT UTILITIES
+   BROWSER COMPATIBILITY
    ======================================== */
 
-/* Utility classes for responsive text alignment */
-.text-left-mobile {
-    text-align: left !important;
-}
-
-@media (max-width: 767.98px) {
-    .text-left-mobile {
-        text-align: left !important;
-    }
-    
-    .text-center-desktop {
-        text-align: left !important;
-    }
-}
-
-@media (min-width: 768px) {
-    .text-center-desktop {
-        text-align: center !important;
-    }
-}
-
-/* ========================================
-   MOBILE BUTTON AND CTA IMPROVEMENTS
-   ======================================== */
-
-/* Mobile button improvements */
-@media (max-width: 767.98px) {
-    /* Stack buttons vertically on mobile with proper spacing */
-    .btn-group-mobile {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        width: 100%;
-    }
-    
-    .btn-group-mobile .btn {
-        width: 100%;
-        margin: 0;
-    }
-    
-    /* Hero CTA button improvements */
-    .hero-cta {
-        width: 100%;
-    }
-    
-    .hero-cta .btn {
-        width: 100%;
-        margin-bottom: 0.75rem;
-        margin-right: 0 !important;
-    }
-    
-    /* CTA section button improvements */
-    .cta-buttons {
-        width: 100%;
-    }
-    
-    .cta-buttons .btn {
-        width: 100%;
-        margin-bottom: 0.75rem;
-        margin-right: 0 !important;
-    }
-    
-    /* Quote form button full width */
-    .btn-danger.w-100,
-    .btn-primary.w-100 {
-        width: 100% !important;
-    }
-}
-
-/* ========================================
-   DESKTOP OVERRIDE STYLES
-   ======================================== */
-
-/* Desktop overrides - centre alignment on desktop screens */
-@media (min-width: 992px) {
-    /* CTA section center alignment on desktop */
-    .cta-section,
-    .cta-section h2,
-    .cta-section p,
-    .cta-section .lead {
-        text-align: center !important;
-    }
-    
-    .cta-buttons {
-        text-align: center !important;
-        display: block;
-        align-items: center;
-    }
-    
-    .cta-buttons .btn {
-        margin-right: 0.75rem !important;
-    }
-    
-    /* Service cards center alignment on desktop */
-    .service-card,
-    .service-card h3,
-    .service-card p {
-        text-align: center !important;
-    }
-    
-    .service-card .service-icon {
-        text-align: center !important;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 1rem;
-    }
-    
-    /* Services intro section center alignment on desktop */
-    .services-overview .services-intro,
-    .services-overview .services-intro h2,
-    .services-overview .services-intro p,
-    .services-overview .services-intro .lead,
-    .services-intro,
-    .services-intro h2,
-    .services-intro p,
-    .services-intro .lead {
-        text-align: center !important;
-    }
-    
-    /* Testimonials section center alignment on desktop */
-    .testimonials .text-center,
-    .testimonials .text-center h2,
-    .testimonials .text-center p,
-    .testimonials .text-center .lead {
-        text-align: center !important;
-    }
-}
-
-/* ========================================
-   ACCORDION STYLES
-   ======================================== */
-
-/* Accordion container */
-.accordion {
-    --bs-accordion-border-width: 0;
-    --bs-accordion-border-radius: var(--border-radius);
-}
-
-/* Accordion item */
-.accordion-item {
-    background-color: var(--darker-bg);
-    border: 2px solid transparent;
-    border-top: 3px solid transparent;
-    border-radius: var(--border-radius);
+/* Ensure proper display on older browsers */
+@supports not (display: grid) {
+  .row {
+    display: block;
+  }
+  
+  .col-lg-6,
+  .col-md-4,
+  .col-md-6 {
+    display: block;
+    width: 100%;
     margin-bottom: 1rem;
-    transition: var(--transition);
-    box-shadow: var(--box-shadow);
-}
-
-/* Accordion item when expanded - fallback class approach */
-.accordion-item.expanded {
-    background-color: var(--light-bg);
-    border-color: var(--primary-color) !important;
-    border-top-color: var(--primary-color) !important;
-}
-
-/* Additional styling for Bootstrap's native open state using :has() selector */
-.accordion-item:has(.accordion-collapse.show) {
-    background-color: var(--light-bg);
-    border-color: var(--primary-color) !important;
-    border-top-color: var(--primary-color) !important;
-}
-
-/* Alternative for browsers that don't support :has() - target by button state */
-.accordion-item:has(.accordion-button:not(.collapsed)) {
-    background-color: var(--light-bg);
-    border-color: var(--primary-color) !important;
-    border-top-color: var(--primary-color) !important;
-}
-
-/* Additional fallback using aria-expanded attribute */
-.accordion-item:has(.accordion-button[aria-expanded="true"]) {
-    background-color: var(--light-bg);
-    border-color: var(--primary-color) !important;
-    border-top-color: var(--primary-color) !important;
-}
-
-.accordion-item:hover {
-    border-color: var(--primary-color) !important;
-    border-top-color: var(--primary-color) !important;
-    box-shadow: var(--box-shadow-lg);
-    transform: translateY(-2px);
-}
-
-.accordion-item:last-child {
-    margin-bottom: 0;
-}
-
-/* Accordion header */
-.accordion-header {
-    margin-bottom: 0;
-}
-
-/* Accordion button */
-.accordion-button {
-    background-color: var(--darker-bg);
-    color: var(--text-dark);
-    border: none;
-    padding: 1.5rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    text-transform: capitalize !important;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-    box-shadow: none;
-    font-family: 'PT Sans', sans-serif;
-}
-
-.accordion-button:not(.collapsed) {
-    background-color: var(--darker-bg);
-    color: var(--primary-color);
-    box-shadow: none;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-.accordion-button:focus {
-    box-shadow: none;
-    border-color: var(--primary-color);
-}
-
-.accordion-button::after {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23007bff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-    transition: var(--transition);
-}
-
-.accordion-button:not(.collapsed)::after {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23007bff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-    transform: rotate(-180deg);
-}
-
-/* Accordion body */
-.accordion-body {
-    background-color: var(--darker-bg);
-    color: var(--text-dim);
-    padding: 1.5rem;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    font-size: 1.125rem;
-    line-height: 1.6;
-}
-
-/* Accordion collapse */
-.accordion-collapse {
-    border: none;
-}
-
-.accordion-item {
-    position: relative;
-}
-
-/* Check icon styling within accordion */
-.accordion-button .fa-check {
-    color: var(--primary-color);
-    font-size: 1rem;
-}
-
-/* Responsive accordion styling */
-@media (max-width: 767.98px) {
-    .accordion-button {
-        padding: 1rem;
-        font-size: 1rem;
-    }
-    
-    .accordion-body {
-        padding: 1rem;
-        font-size: 1rem;
-    }
+  }
 }
 
 /* ========================================
-   TYPOGRAPHY OVERRIDE STYLES
+   HIGH DPI DISPLAYS
    ======================================== */
 
-/* Typography - more specific selectors to ensure they take precedence */
-h1, h2, h3, h4, h5, h6,
-body h1, body h2, body h3, body h4, body h5, body h6,
-.container h1, .container h2, .container h3, .container h4, .container h5, .container h6,
-section h1, section h2, section h3, section h4, section h5, section h6 {
-    font-family: 'PT Sans', sans-serif !important;
-    font-weight: 700 !important;
-    text-transform: capitalize !important;
-    color: #2c3647 !important;
-    letter-spacing: 0.00225em;
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .navbar-logo {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
 }
-
+ 
 /* ========================================
-   FOOTER HEADING OVERRIDE STYLES
+   LOGO RESPONSIVENESS
    ======================================== */
 
-/* Force all headings to use the correct colour - highest specificity */
-html body h1, html body h2, html body h3, html body h4, html body h5, html body h6,
-html body .hero-title,
-html body .navbar-brand span {
-    color: #2c3647 !important;
-    font-family: 'PT Sans', sans-serif !important;
-    font-weight: 700 !important;
-    text-transform: capitalize !important;
-}
-
-/* ========================================
-   DARK BACKGROUND HEADING OVERRIDE STYLES
-   ======================================== */
-
-/* Ensure headings on dark backgrounds are white for contrast */
-.bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6,
-.bg-dark .hero-title,
-[style*="background-color: #1e0c2d"] h1, [style*="background-color: #1e0c2d"] h2, [style*="background-color: #1e0c2d"] h3, [style*="background-color: #1e0c2d"] h4, [style*="background-color: #1e0c2d"] h5, [style*="background-color: #1e0c2d"] h6,
-[style*="background-color: #1e0c2d"] .hero-title,
-[style*="background-color: #2d1445"] h1, [style*="background-color: #2d1445"] h2, [style*="background-color: #2d1445"] h3, [style*="background-color: #2d1445"] h4, [style*="background-color: #2d1445"] h5, [style*="background-color: #2d1445"] h6,
-[style*="background-color: #2d1445"] .hero-title,
-[style*="background-color: var(--dark-bg)"] h1, [style*="background-color: var(--dark-bg)"] h2, [style*="background-color: var(--dark-bg)"] h3, [style*="background-color: var(--dark-bg)"] h4, [style*="background-color: var(--dark-bg)"] h5, [style*="background-color: var(--dark-bg)"] h6,
-[style*="background-color: var(--dark-bg)"] .hero-title,
-footer h1, footer h2, footer h3, footer h4, footer h5, footer h6,
-footer .hero-title,
-.navbar h1, .navbar h2, .navbar h3, .navbar h4, .navbar h5, .navbar h6,
-.navbar .hero-title {
-    color: #ffffff !important;
-}
-
-/* ========================================
-   FOOTER SOCIAL ICON OVERRIDE STYLES
-   ======================================== */
-
-/* Override Bootstrap text-warning class for footer icons */
-footer .text-warning,
-.footer-section .text-warning,
-.social-links .text-warning {
-    color: var(--warning-color) !important;
-}
-
-/* Force footer social icons to use warning color */
-footer .social-links a,
-.footer-section .social-links a,
-.social-links a {
-    color: var(--warning-color) !important;
-}
-
-/* ========================================
-   SYSTEMATIC BACKGROUND SYSTEM
-   ======================================== */
-
-/* Section background classes for systematic contrast */
-.section-bg-white {
-    background-color: var(--bg-white) !important;
-}
-
-.section-bg-ultra-light {
-    background-color: var(--bg-ultra-light) !important;
-}
-
-.section-bg-light {
-    background-color: var(--bg-light) !important;
-}
-
-.section-bg-light-medium {
-    background-color: var(--bg-light-medium) !important;
-}
-
-.section-bg-medium {
-    background-color: var(--bg-medium) !important;
-}
-
-.section-bg-medium-dark {
-    background-color: var(--bg-medium-dark) !important;
-}
-
-.section-bg-dark {
-    background-color: var(--bg-dark) !important;
-}
-
-.section-bg-ultra-dark {
-    background-color: var(--bg-ultra-dark) !important;
-}
-
-/* Subtle brand color backgrounds */
-.section-bg-primary-subtle {
-    background-color: var(--bg-primary-subtle) !important;
-}
-
-.section-bg-primary-light {
-    background-color: var(--bg-primary-light) !important;
-}
-
-.section-bg-secondary-subtle {
-    background-color: var(--bg-secondary-subtle) !important;
-}
-
-.section-bg-secondary-light {
-    background-color: var(--bg-secondary-light) !important;
-}
-
-.section-bg-success-subtle {
-    background-color: var(--bg-success-subtle) !important;
-}
-
-.section-bg-success-light {
-    background-color: var(--bg-success-light) !important;
-}
-
-.section-bg-warning-subtle {
-    background-color: var(--bg-warning-subtle) !important;
-}
-
-.section-bg-warning-light {
-    background-color: var(--bg-warning-light) !important;
-}
-
-/* Alternating section pattern for automatic contrast */
-.section-alternate:nth-child(even) {
-    background-color: var(--bg-light) !important;
-}
-
-.section-alternate:nth-child(odd) {
-    background-color: var(--bg-white) !important;
-}
-
-/* Three-section alternating pattern */
-.section-triple:nth-child(3n+1) {
-    background-color: var(--bg-white) !important;
-}
-
-.section-triple:nth-child(3n+2) {
-    background-color: var(--bg-light) !important;
-}
-
-.section-triple:nth-child(3n+3) {
-    background-color: var(--bg-light-medium) !important;
-}
-
-/* ========================================
-   LOGO AND BRANDING STYLES
-   ======================================== */
-
-/* Navbar logo styling */
 .navbar-logo {
-    height: 75px;
-    width: auto;
-    max-width: 300px;
-    object-fit: contain;
-    margin-top: -9.375px; /* Move logo down by 10% from previous position (-18.75px + 9.375px = -9.375px) */
+  width: 400px;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
 
 /* Responsive logo sizing */
+@media (max-width: 575.98px) {
+  .navbar-logo {
+    width: 250px !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+}
+
 @media (max-width: 767.98px) {
-    .navbar-logo {
-        height: 60px;
-        max-width: 225px;
-        margin-top: -15px; /* Move logo up by 25% of its mobile height (60px * 0.25 = 15px) */
-    }
+  .navbar-logo {
+    width: 250px !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
 }
 
-/* ========================================
-   LOGO OVERLAY STYLES
-   ======================================== */
-
-/* Logo overlay image container styling */
-.image-with-logo {
-    position: relative;
-    display: inline-block;
+/* Force mobile logo size */
+@media (max-width: 1199.98px) {
+  .navbar-brand .navbar-logo {
+    width: 250px !important;
+    height: auto !important;
+  }
 }
 
-/* Logo overlay content positioning and styling */
-/* Alternative logo overlay content styling */
-.image-with-logo .logo-overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+/* Force remove all dropdown backgrounds - highest priority */
+.dropdown-menu,
+.dropdown-menu.show,
+.dropdown-menu[data-bs-popper],
+.navbar-nav .dropdown-menu,
+.navbar-nav .nav-item .dropdown-menu,
+.navbar-nav .dropdown .dropdown-menu {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Logo overlay image sizing and positioning */
-/* Alternative logo overlay image styling */
-.image-with-logo .logo-overlay img {
-    width: auto;
-    height: auto;
-    max-width: 200px;
-    max-height: 80px;
-    object-fit: contain;
+/* Force remove all dropdown item backgrounds - highest priority */
+.dropdown-item,
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:active,
+.navbar-nav .dropdown-item,
+.navbar-nav .nav-item .dropdown-item {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Logo overlay image type positioning */
-.hero-image.image-with-logo,
-.service-card .image-with-logo,
-.about-preview .image-with-logo {
-    position: relative;
-}
 
-/* Logo overlay pseudo-element positioning */
-.hero-image,
-.service-card img,
-.about-preview img,
-.location-card img,
-.testimonial-card img,
-.cta-section img,
-section img:not(.logo-overlay img):not(.navbar-logo) {
-    position: relative;
-}
-
-/* Logo overlay pseudo-element content styling */
-.hero-image::after,
-.service-card img::after,
-.about-preview img::after,
-.location-card img::after,
-.testimonial-card img::after,
-.cta-section img::after,
-section img:not(.logo-overlay img):not(.navbar-logo)::after {
-    content: '';
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width: 200px;
-    height: 80px;
-    background: url('../images/bullard-locks-retina-logo.png') no-repeat center center;
-    background-size: contain;
-    z-index: 10;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 10px;
-}
-
-/* Alternative logo overlay approach styling */
-.image-with-logo {
-    position: relative;
-    display: inline-block;
-}
-
-.image-with-logo .logo-overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
-.image-with-logo .logo-overlay img {
-    width: auto;
-    height: auto;
-    max-width: 200px;
-    max-height: 80px;
-    object-fit: contain;
-}
+ 

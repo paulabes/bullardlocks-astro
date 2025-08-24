@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-xl navbar-light fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid px-3 px-lg-4">
         <!-- Brand -->
         <a class="navbar-brand" href="index.html">
@@ -6,12 +6,22 @@
         </a>
         
         <!-- Mobile Toggle -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler custom-toggler" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggle-icon">☰</span>
         </button>
         
         <!-- Navigation -->
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Contact Buttons (Mobile) - Top of menu -->
+            <div class="d-lg-none mb-3 d-flex gap-2">
+                <a href="tel:07809887883" class="btn btn-danger flex-fill">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="https://wa.me/447809887883" class="btn btn-success flex-fill" target="_blank" aria-label="Contact us on WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            
             <ul class="navbar-nav ms-auto me-2">
                 <li class="nav-item">
                     <a class="nav-link" href="index.html">Home</a>
@@ -46,21 +56,13 @@
                     <a class="nav-link" href="contact.html">Contact</a>
                 </li>
             </ul>
-            <!-- Contact Buttons (Mobile) -->
-            <div class="d-xl-none mt-3">
-                <button class="btn btn-danger w-100 mb-2" onclick="showEmergencyModal()">
-                    <i class="fas fa-phone me-2"></i>Emergency
-                </button>
-                <a href="https://wa.me/447809887883" class="btn btn-success w-100" target="_blank" aria-label="Contact us on WhatsApp">
-                    <i class="fab fa-whatsapp me-2"></i>WhatsApp
-                </a>
-            </div>
         </div>
+        
         <!-- Emergency Button (Desktop) -->
-        <div class="d-none d-xl-block">
-            <button class="btn btn-danger me-2" onclick="showEmergencyModal()">
-                <i class="fas fa-phone me-2"></i>Emergency
-            </button>
+        <div class="d-none d-lg-block">
+            <a href="tel:07809887883" class="btn btn-danger me-2">
+                <i class="fas fa-phone me-2"></i>Emergency Call
+            </a>
             <a href="https://wa.me/447809887883" class="btn btn-success" target="_blank" aria-label="Contact us on WhatsApp">
                 <i class="fab fa-whatsapp me-2"></i>WhatsApp
             </a>
@@ -68,9 +70,28 @@
     </div>
 </nav>
 
-<!-- Add top margin to body to account for fixed navbar -->
+<div class="header-spacer"></div>
+
+<!-- Styles for dropdown backgrounds only -->
 <style>
-body { 
-    padding-top: 92px; 
+.dropdown-menu,
+.dropdown-menu.show,
+.navbar-nav .dropdown-menu {
+    background-color: #2d2d2d !important;
+    background: #2d2d2d !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    opacity: 1 !important;
+    background-image: none !important;
+}
+
+.dropdown-item {
+    background-color: #2d2d2d !important;
+    background: #2d2d2d !important;
+}
+
+.dropdown-item:hover {
+    background-color: #1a1a1a !important;
+    background: #1a1a1a !important;
 }
 </style>
