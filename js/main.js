@@ -31,6 +31,8 @@ function loadIncludes() {
                 highlightCurrentPage();
                 // Initialize mobile menu after header is loaded
                 initializeMobileMenu();
+                // Initialize Bootstrap dropdowns for dynamically inserted header
+                initializeBootstrapDropdowns(headerPlaceholder);
             })
             .catch(error => {
                 console.error('Error loading header:', error);
@@ -130,5 +132,23 @@ function initializeMobileMenu() {
                 toggleIcon.textContent = 'X';
             }
         });
+    }
+}
+
+/**
+ * Initialize Bootstrap dropdowns for any dynamically inserted content
+ */
+function initializeBootstrapDropdowns(container) {
+    try {
+        // Bootstrap 5 exposes global "bootstrap" when using bundle
+        if (typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
+            const dropdownToggles = (container || document).querySelectorAll('[data-bs-toggle="dropdown"]');
+            dropdownToggles.forEach(el => {
+                // eslint-disable-next-line no-new
+                new bootstrap.Dropdown(el);
+            });
+        }
+    } catch (e) {
+        console.error('Error initializing dropdowns:', e);
     }
 }

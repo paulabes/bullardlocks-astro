@@ -1,3 +1,11 @@
+.mv-cta {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.mv-cta .btn {
+  margin-left: 0 !important;
+}
 /* Breadcrumbs and link colors */
 .breadcrumb {
   --bs-breadcrumb-divider-color: var(--text-light);
@@ -63,6 +71,30 @@ body {
   margin: 0 !important;
   padding: 0 !important;
   overflow-x: hidden !important;
+}
+
+/* Slightly increase global paragraph font size */
+p {
+  font-size: 1.0625rem;
+}
+
+/* Slightly reduce default lead text size (desktop) */
+.lead {
+  font-size: 1.15rem;
+}
+
+/* Slightly increase list font size in page content to match paragraphs */
+main ul,
+main ol,
+main li {
+  font-size: 1.0625rem !important;
+}
+
+/* Ensure hero section lists match paragraph size */
+.hero-section ul,
+.hero-section ol,
+.hero-section li {
+  font-size: 1.0625rem !important;
 }
 
 /* Hide scrollbar on mobile devices */
@@ -156,17 +188,19 @@ body {
   border-color: #d35400 !important;
 }
 
-/* Ensure all dropdown menus have solid backgrounds */
-.dropdown-menu,
-.dropdown-menu.show,
-.dropdown-menu[data-bs-popper],
-.navbar-nav .dropdown-menu,
-.navbar-nav .nav-item .dropdown-menu {
-  background-color: transparent !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  background-image: none !important;
+/* Dropdown background resets on mobile only */
+@media (max-width: 1199.98px) {
+  .dropdown-menu,
+  .dropdown-menu.show,
+  .dropdown-menu[data-bs-popper],
+  .navbar-nav .dropdown-menu,
+  .navbar-nav .nav-item .dropdown-menu {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+  }
 }
 
 /* Mobile navbar collapse background */
@@ -189,6 +223,11 @@ body {
     height: 80px !important;
     min-height: 80px !important;
     max-height: 80px !important;
+  }
+  
+  /* Mobile menu top padding */
+  .navbar-collapse {
+    padding-top: 22px !important;
   }
 }
 
@@ -280,6 +319,7 @@ main, .container, .row, .content-wrapper {
 .hero-section .about-preview-image,
 .services-overview .image-with-logo,
 .about-preview .image-with-logo,
+.about-preview .about-preview-image,
 .locations-section .image-with-logo {
   position: relative !important;
 }
@@ -288,17 +328,18 @@ main, .container, .row, .content-wrapper {
 .hero-section .about-preview-image::after,
 .services-overview .image-with-logo::after,
 .about-preview .image-with-logo::after,
+.about-preview .about-preview-image::after,
 .locations-section .image-with-logo::after {
   content: '';
   position: absolute !important;
-  bottom: -100px !important;
-  left: 1rem !important;
+  bottom: 0 !important;
+  right: 1rem !important;
   width: 300px !important;
-  height: 300px !important;
-  background-image: url('../images/bullard-locks-default-logo.png') !important;
+  height: 100px !important;
+  background-image: url('../images/bullard-locks-bull-logo.png') !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
-  background-position: center !important;
+  background-position: right center !important;
   z-index: 10 !important;
 }
 
@@ -320,6 +361,21 @@ h3 {
   font-weight: 700 !important;
 }
 
+/* Slightly increase global h2 size */
+h2 {
+  font-size: 2.1rem;
+}
+
+/* Slightly increase global h3 size */
+h3 {
+  font-size: 1.92rem;
+}
+
+/* Global h4 color */
+h4 {
+  color: #aaaaaa !important;
+}
+
 .hero-features {
   margin: 2rem 0;
 }
@@ -331,9 +387,35 @@ h3 {
 }
 
 .hero-feature-icon {
-  color: var(--bs-primary);
+  color: #ffffff !important;
   margin-right: 0.75rem;
   font-size: 1.2rem;
+}
+
+/* Ensure hero feature text matches paragraph size on all breakpoints */
+.hero-section .feature-item,
+.hero-section .feature-item span {
+  font-size: 1.0625rem !important;
+}
+
+/* Match About list styling to hero features */
+.about-preview .feature-item i {
+  color: #ffffff !important;
+  margin-right: 0.75rem !important;
+  font-size: 1.2rem !important;
+}
+
+/* Mission & Values list: match hero feature styling */
+.about-preview ul.list-unstyled li {
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.about-preview ul.list-unstyled li i {
+  color: #ffffff !important;
+  margin-right: 0.75rem !important;
+  font-size: 1.2rem !important;
 }
 
 /* Service cards */
@@ -350,10 +432,74 @@ h3 {
   transform: translateY(-5px);
 }
 
+.experience-logo {
+  max-width: 180px !important;
+  height: auto !important;
+}
+
+.british-gas-logo {
+  max-width: 107px !important; /* reduced by additional 15% */
+}
+
+.experience-logo-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 120px !important; /* increased to push headings down ~40px total */
+}
+
+.experience-icon {
+  font-size: 4.5rem !important;
+  color: var(--bs-primary) !important;
+}
+
 .service-icon {
   font-size: 3rem;
   color: var(--bs-primary);
   margin-bottom: 1.5rem;
+}
+
+/* Services Overview - icon color and button alignment */
+.services-overview .service-icon,
+.services-overview .service-icon i {
+  color: #ffffff !important;
+}
+
+/* Ensure all FA icon variants render white in Services Overview */
+.services-overview .service-icon .fa,
+.services-overview .service-icon .fas,
+.services-overview .service-icon .far,
+.services-overview .service-icon svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+.services-overview .service-icon {
+  margin-bottom: 0.75rem !important;
+}
+
+.services-overview .service-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.services-overview .service-card .btn {
+  margin-top: auto;
+}
+
+/* Make Services Overview card buttons less tall */
+.services-overview .service-card .btn.btn-lg,
+.services-overview .service-card .btn {
+  padding-top: 0.65rem !important;
+  padding-bottom: 0.65rem !important;
+  font-size: 1rem !important;
+}
+
+/* Make service cards equal height by flexing columns */
+.services-overview .row.g-4 > [class^="col-"],
+.services-overview .row.g-4 > [class*=" col-"] {
+  display: flex;
 }
 
 /* About section */
@@ -361,9 +507,27 @@ h3 {
   background-color: var(--surface-3);
 }
 
-.about-preview-image img {
-  max-width: 100%;
-  height: auto;
+.about-preview .about-preview-image {
+  height: 100% !important;
+}
+
+.about-preview .about-preview-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* Ensure Mission & Values image fills full column height */
+.about-preview .image-with-logo {
+  height: 100% !important;
+}
+
+.about-preview .image-with-logo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
 }
 
 /* Testimonials */
@@ -384,9 +548,135 @@ h3 {
   background-color: var(--surface-2);
 }
 
+/* Testimonials: bull logo overlay at bottom-right */
+.testimonials {
+  position: relative !important;
+  background-image: url('../images/bullard-locks-bull-logo.png') !important;
+  background-repeat: no-repeat !important;
+  background-position: right bottom !important;
+  background-size: 400px auto !important;
+}
+
+/* Hide Testimonials bull overlay on <1200px */
+@media (max-width: 1199.98px) {
+  .testimonials {
+    background-image: none !important;
+  }
+}
+
 /* Footer spacing */
 footer {
-  padding-top: 3rem !important;
+  padding-top: 2.1rem !important;
+}
+
+/* Footer links: darker by default, brighten on hover */
+footer a {
+  color: var(--text-muted) !important; /* darker than white */
+  text-decoration: none !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+footer a:hover,
+footer a:focus {
+  color: var(--bs-primary) !important; /* blue on rollover */
+  text-decoration: none !important;
+}
+
+/* Ensure Follow Us links use same styling */
+footer .footer-section ul li a.text-light {
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease-in-out;
+}
+
+footer .footer-section ul li a.text-light:hover,
+footer .footer-section ul li a.text-light:focus {
+  color: var(--bs-primary) !important;
+}
+
+/* Ensure phone link uses same styling */
+footer .contact-info-list a {
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease-in-out;
+}
+
+footer .contact-info-list a:hover,
+footer .contact-info-list a:focus {
+  color: var(--bs-primary) !important;
+}
+
+/* Footer copyright: reduce size by 30% and add wide letter spacing */
+footer .footer-bottom .text-md-start p {
+  font-size: 0.74375rem !important; /* 1.0625rem * 0.7 */
+  letter-spacing: 0.2em !important; /* approx "200%" spacing effect */
+  text-transform: uppercase !important;
+}
+
+/* Ensure Privacy Policy link matches paragraph font size */
+footer .footer-bottom .text-md-start p a {
+  font-size: inherit !important;
+}
+
+footer .footer-bottom .text-md-end p {
+  font-size: 0.74375rem !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+}
+
+/* Footer icons: force white, override any color utilities */
+footer i,
+footer .fa,
+footer .fas,
+footer .far,
+footer .fab,
+footer svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* Footer hr: ensure visible on dark background */
+footer hr {
+  border: 0 !important;
+  border-top: 1px solid var(--dark-border) !important;
+  opacity: 1 !important;
+  margin: 0.5rem 0 !important;
+  padding: 0 !important;
+}
+
+/* Footer lists: align line heights between columns */
+footer .footer-section ul.list-unstyled {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+footer .footer-section ul.list-unstyled li {
+  display: flex !important;
+  align-items: center !important;
+  line-height: 1.6 !important;
+  margin-bottom: 0.5rem !important; /* match .mb-2 in Follow Us */
+}
+
+footer .footer-section ul.list-unstyled li:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Footer column-specific line-height tuning for alignment */
+footer .row.g-4 > .col-lg-3:nth-child(2) .footer-section ul.list-unstyled li,
+footer .row.g-4 > .col-lg-3:nth-child(3) .footer-section ul.list-unstyled li {
+  line-height: 1.4 !important;
+  margin-bottom: 0.35rem !important;
+}
+
+footer .row.g-4 > .col-lg-3:nth-child(1) .footer-section p {
+  line-height: 1.6 !important;
+  margin-bottom: 0.35rem !important;
+}
+
+footer .row.g-4 > .col-lg-3:nth-child(4) .footer-section p {
+  line-height: 1.2 !important; /* further reduced for alignment */
+  margin-bottom: 0.35rem !important;
 }
 
 /* Buttons */
@@ -690,7 +980,11 @@ footer {
   }
   
   .navbar-nav .nav-link:hover {
-    color: var(--text-light) !important;
+    color: var(--bs-primary) !important;
+  }
+  
+  .navbar-nav .nav-link:focus {
+    color: var(--bs-primary) !important;
   }
   
   /* Desktop dropdown styling */
@@ -701,7 +995,37 @@ footer {
     box-shadow: none !important;
     background-image: none !important;
     margin-top: 0 !important;
-    z-index: 1000 !important;
+    z-index: 1100 !important;
+  }
+
+  /* Override transparent dropdowns on desktop with visible panel */
+  .navbar-nav .dropdown .dropdown-menu {
+    background-color: var(--dark-bg) !important;
+    border: 1px solid var(--dark-border) !important;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.25) !important;
+    border-radius: 0 !important; /* remove rounded corners */
+  }
+
+  .navbar-nav .dropdown .dropdown-item {
+    color: var(--text-light) !important;
+    line-height: 1.6 !important; /* slightly bigger line height */
+  }
+  
+  .navbar-nav .dropdown .dropdown-item:hover,
+  .navbar-nav .dropdown .dropdown-item:focus {
+    background-color: transparent !important;
+    color: var(--bs-primary) !important; /* blue text on hover */
+  }
+
+  /* Make dropdown horizontal divider stand out more */
+  .navbar-nav .dropdown-divider {
+    border-top: 1px solid var(--dark-border) !important; /* less bright */
+    margin: 1rem 0 !important; /* 100% more spacing vs 0.5rem */
+  }
+
+  /* Show dropdowns on hover for desktop */
+  .navbar-nav .dropdown:hover > .dropdown-menu {
+    display: block !important;
   }
   
   /* Desktop navbar collapse - no background */
@@ -796,8 +1120,8 @@ footer {
 @media (max-width: 575.98px) {
   h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.3rem; }
+  h2 { font-size: 1.55rem; }
+  h3 { font-size: 1.62rem; }
   h4 { font-size: 1.1rem; }
   .lead { font-size: 1rem; }
 }
@@ -805,8 +1129,8 @@ footer {
 @media (min-width: 576px) and (max-width: 767.98px) {
   h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   h1 { font-size: 2rem; }
-  h2 { font-size: 1.7rem; }
-  h3 { font-size: 1.4rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.74rem; }
   h4 { font-size: 1.2rem; }
   .lead { font-size: 1.05rem; }
 }
@@ -814,8 +1138,8 @@ footer {
 @media (min-width: 768px) and (max-width: 991.98px) {
   h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   h1 { font-size: 2.25rem; }
-  h2 { font-size: 1.9rem; }
-  h3 { font-size: 1.5rem; }
+  h2 { font-size: 1.95rem; }
+  h3 { font-size: 1.86rem; }
   h4 { font-size: 1.3rem; }
   .lead { font-size: 1.1rem; }
 }
@@ -872,7 +1196,7 @@ footer {
 
 @media (max-width: 767.98px) {
   .footer-section {
-  text-align: center;
+    text-align: left !important;
     margin-bottom: 2rem;
   }
   
@@ -881,11 +1205,12 @@ footer {
   }
   
   .footer-bottom {
-    text-align: center;
+    text-align: left !important;
   }
   
   .footer-bottom .col-md-6:first-child {
     margin-bottom: 1rem;
+    text-align: left !important;
   }
 }
 
@@ -1126,32 +1451,34 @@ footer {
   }
 }
 
-/* Force remove all dropdown backgrounds - highest priority */
-.dropdown-menu,
-.dropdown-menu.show,
-.dropdown-menu[data-bs-popper],
-.navbar-nav .dropdown-menu,
-.navbar-nav .nav-item .dropdown-menu,
-.navbar-nav .dropdown .dropdown-menu {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
+/* Force remove all dropdown backgrounds on mobile only */
+@media (max-width: 1199.98px) {
+  .dropdown-menu,
+  .dropdown-menu.show,
+  .dropdown-menu[data-bs-popper],
+  .navbar-nav .dropdown-menu,
+  .navbar-nav .nav-item .dropdown-menu,
+  .navbar-nav .dropdown .dropdown-menu {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
 
-/* Force remove all dropdown item backgrounds - highest priority */
-.dropdown-item,
-.dropdown-item:hover,
-.dropdown-item:focus,
-.dropdown-item:active,
-.navbar-nav .dropdown-item,
-.navbar-nav .nav-item .dropdown-item {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  border: none !important;
-  box-shadow: none !important;
+  /* Force remove all dropdown item backgrounds - highest priority */
+  .dropdown-item,
+  .dropdown-item:hover,
+  .dropdown-item:focus,
+  .dropdown-item:active,
+  .navbar-nav .dropdown-item,
+  .navbar-nav .nav-item .dropdown-item {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
 }
 
 
