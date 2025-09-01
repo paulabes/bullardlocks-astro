@@ -1577,14 +1577,81 @@ body {
 
 /* Hero image responsiveness - make images full width on mobile */
 @media (max-width: 767.98px) {
+  /* Utility: .w-100 already sets width; ensure block-level to avoid inline gaps */
+  .w-100 {
+    display: block !important;
+  }
+
   .image-with-logo img,
   .about-preview-image img {
     width: 100vw !important;
     margin-left: calc(-50vw + 50%) !important;
     margin-right: calc(-50vw + 50%) !important;
+    max-width: none !important;
     margin-bottom: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Make wrappers full-bleed so images aren't constrained by columns */
+  .image-with-logo,
+  .about-preview-image {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+  }
+
+  /* Utility: make selected images full-bleed on mobile */
+  img.full-bleed-mobile {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    display: block !important;
+  }
+
+  /* Targeted: ensure About image fills container width */
+  .about-preview .about-preview-image img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
   }
 }
+
+/* Ensure hero images display correctly on mobile */
+@media (max-width: 767.98px) {
+  /* Drop flex on hero image column so height can expand naturally */
+  .hero-section .col-lg-6.d-flex {
+    display: block !important;
+    align-items: initial !important;
+  }
+
+  /* Let wrappers auto-size and images use intrinsic ratio */
+  .hero-section .image-with-logo,
+  .hero-section .about-preview-image {
+    height: auto !important;
+  }
+
+  .hero-section img,
+  .hero-section .about-preview-image img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Ensure image-with-logo is full viewport width on mobile without affecting other content */
+  .hero-section .image-with-logo img {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    max-width: none !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Full-bleed mobile block removed per user request */
 
 /* ========================================
    FORM RESPONSIVENESS
