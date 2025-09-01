@@ -613,7 +613,7 @@ h3 {
 
 /* Slightly increase global h2 size */
 h2 {
-  font-size: 2.1rem;
+  font-size: 2.415rem;
 }
 
 /* Slightly increase global h3 size */
@@ -1614,7 +1614,7 @@ body {
   }
 
   h2 {
-    font-size: 1.55rem;
+    font-size: 1.7825rem;
   }
 
   h3 {
@@ -1647,7 +1647,7 @@ body {
   }
 
   h2 {
-    font-size: 1.75rem;
+    font-size: 2.0125rem;
   }
 
   h3 {
@@ -1680,7 +1680,7 @@ body {
   }
 
   h2 {
-    font-size: 1.95rem;
+    font-size: 2.2425rem;
   }
 
   h3 {
@@ -1814,14 +1814,14 @@ body {
 
 /* Footer heading sizing */
 .footer-section h2 {
-  font-size: 1.35rem;
+  font-size: 1.5525rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
 @media (min-width: 768px) {
   .footer-section h2 {
-    font-size: 1.5rem;
+    font-size: 1.725rem;
   }
 }
 
