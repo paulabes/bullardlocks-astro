@@ -113,7 +113,8 @@
                     <div class="col-lg-6">
                         <div class="card p-4">
                             <h3 class="mb-4">Get a Free Quote</h3>
-                            <form id="quoteForm" class="needs-validation" novalidate>
+                            <form id="quoteForm" action="send_email.php" method="POST" class="needs-validation" novalidate>
+                                <input type="hidden" name="form_type" value="contact">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label">Full Name *</label>
@@ -260,7 +261,7 @@
                             with safes or vehicles, you can trust me for friendly, professional locksmith service every time.
                         </p>
                         <a href="about.html" class="btn btn-primary btn-lg">
-                            <i class="fas fa-arrow-right ms-2"></i> Read More
+                            Read More
                         </a>
 
                     </div>
@@ -356,7 +357,7 @@
           href="https://g.page/r/CZ6qgxX1xif6EB0/review"
           class="btn btn-primary"
         >
-          <i class="fas fa-arrow-right me-2"></i>More Reviews
+          More Reviews
         </a>
       </div>
     </div>
@@ -379,23 +380,6 @@
         </section>
     </main>
 
-    <!-- STICKY MOBILE BUTTONS - ALWAYS VISIBLE OVERLAY -->
-    <div class="mobile-footer-buttons d-lg-none">
-        <div class="container-fluid px-3">
-            <div class="d-flex gap-2">
-                <a href="tel:07809887883" class="btn btn-danger flex-fill">
-                    <i class="fas fa-phone"></i>
-                </a>
-                <a href="https://wa.me/447809887883" class="btn btn-success flex-fill" target="_blank" aria-label="Contact us on WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <button class="btn btn-primary flex-fill" onclick="openChatbot()" aria-label="Open Chat Assistant">
-                    <i class="fas fa-comments"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer will be loaded here -->
     <div id="footer-placeholder"></div>
 
@@ -403,6 +387,64 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
+    <script>
+        // Handle form submission feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if (urlParams.has('success')) {
+                const successMessage = urlParams.get('success');
+                showFormMessage(successMessage, 'success');
+            } else if (urlParams.has('error')) {
+                const errorMessage = urlParams.get('error');
+                showFormMessage(errorMessage, 'error');
+            }
+        });
+
+        function showFormMessage(message, type) {
+            const form = document.getElementById('quoteForm');
+            if (!form) return;
+
+            // Remove any existing message
+            const existingMessage = form.parentNode.querySelector('.form-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+
+            // Create message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `alert ${type === 'success' ? 'alert-success' : 'alert-danger'} form-message mt-3`;
+            messageDiv.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'} me-2"></i>
+                    ${message}
+                </div>
+            `;
+
+            // Insert message after the form
+            form.parentNode.insertBefore(messageDiv, form.nextSibling);
+
+            // Scroll to message
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Auto-hide success messages after 10 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.remove();
+                    }
+                }, 10000);
+            }
+
+            // Clear URL parameters
+            if (window.history.replaceState) {
+                const url = new URL(window.location);
+                url.searchParams.delete('success');
+                url.searchParams.delete('error');
+                window.history.replaceState({}, '', url);
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -7,10 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load header and footer
     loadIncludes();
     
+    // Force floating buttons positioning
+    forceFloatingButtons();
+    
     // Initialize animations after a short delay to ensure page is loaded
     setTimeout(() => {
         initializeScrollAnimations();
         initializeMicroAnimations();
+        // Force buttons again after animations
+        forceFloatingButtons();
     }, 100);
 });
 
@@ -162,337 +167,1236 @@ function initializeBootstrapDropdowns(container) {
 /**
  * Initialize scroll-based animations
  */
+/**
+ * Initialize scroll animations - REMOVED
+ * All scroll-triggered animations have been removed for cleaner user experience
+ */
 function initializeScrollAnimations() {
-    // Add animation classes to elements that should animate on scroll
-    const animationTargets = [
-        { selector: '.service-card', animation: 'animate-on-scroll' },
-        { selector: '.testimonial-card', animation: 'animate-on-scroll' },
-        { selector: '.hero-section h1', animation: 'animate-on-scroll slide-left' },
-        { selector: '.hero-section .lead', animation: 'animate-on-scroll slide-right' },
-        { selector: '.about-preview h2', animation: 'animate-on-scroll' },
-        { selector: '.services-overview h2', animation: 'animate-on-scroll scale-up' },
-        { selector: '.feature-item', animation: 'animate-on-scroll' }
-    ];
-    
-    // Apply animation classes
-    animationTargets.forEach(target => {
-        const elements = document.querySelectorAll(target.selector);
-        elements.forEach(el => {
-            if (!el.classList.contains('animate-on-scroll')) {
-                el.className += ` ${target.animation}`;
-            }
-        });
-    });
-    
-    // Create intersection observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                // Unobserve after animation to improve performance
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all elements with animation classes
-    const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-    elementsToAnimate.forEach(el => observer.observe(el));
+    // Scroll animations have been removed
 }
 
 /**
- * Initialize micro animations and interactions
+ * Initialize micro animations - REMOVED
+ * All micro animations have been removed for cleaner user experience
  */
 function initializeMicroAnimations() {
-    // Add staggered animation to service cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-    });
-    
-    // Add staggered animation to testimonial cards
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    testimonialCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.15}s`;
-    });
-    
-    // Add subtle hover effect to images
-    const images = document.querySelectorAll('.img-fluid');
-    images.forEach(img => {
-        img.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.02)';
+    // Micro animations have been removed
+}
+
+/**
+ * Create and position floating buttons directly on body
+ */
+function forceFloatingButtons() {
+    // Remove any existing button container first
+    const existingContainer = document.getElementById('floating-buttons-container');
+    if (existingContainer) existingContainer.remove();
+
+    // Check if we're on desktop (hide phone/WhatsApp buttons on desktop)
+    const isDesktop = window.innerWidth >= 992; // Bootstrap lg breakpoint
+
+    // Create container div (only for mobile/tablet)
+    let buttonContainer = null;
+    if (!isDesktop) {
+        buttonContainer = document.createElement('div');
+        buttonContainer.id = 'floating-buttons-container';
+        buttonContainer.style.cssText = `
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 2147483647 !important;
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 0 !important;
+            align-items: stretch !important;
+            justify-content: space-between !important;
+            width: 100% !important;
+            height: 60px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        `;
+    }
+
+    // Only create phone button on mobile/tablet
+    let testBtn = null;
+    if (!isDesktop) {
+        testBtn = document.createElement('a');
+        testBtn.id = 'test-btn-fixed';
+        testBtn.href = 'tel:07809887883';
+        testBtn.innerHTML = '<i class="fas fa-phone"></i>';
+        testBtn.style.cssText = `
+            background-color: #e67e22 !important;
+            color: white !important;
+            border: none !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-bottom: none !important;
+            padding: 1rem !important;
+            border-radius: 0 !important;
+            font-size: 1.1rem !important;
+            font-weight: 500 !important;
+            cursor: pointer !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+            display: flex !important;
+            width: 33.333% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            flex: 1 !important;
+            justify-content: center !important;
+            align-items: center !important;
+            transition: all 0.3s ease !important;
+            text-decoration: none !important;
+            outline: none !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            line-height: 1.5 !important;
+            position: relative !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
+        `;
+
+        // Add hover effect for test button (matching site style)
+        testBtn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) !important';
+            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
         });
-        
-        img.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
+
+        testBtn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) !important';
+            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
         });
-    });
-    
-    // Add button click ripple effect
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
+
+        // Add active state for test button (matching site style)
+        testBtn.addEventListener('mousedown', function() {
+            this.style.transform = 'translateY(0) !important';
+            this.style.transition = 'all 0.1s ease !important';
+        });
+
+        testBtn.addEventListener('mouseup', function() {
+            this.style.transform = 'translateY(-2px) !important';
+            this.style.transition = 'all 0.3s ease !important';
+        });
+
+        // Add ripple effect for test button (matching site style)
+        testBtn.addEventListener('click', function(e) {
             const ripple = document.createElement('div');
             const rect = this.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
             const x = e.clientX - rect.left - size / 2;
             const y = e.clientY - rect.top - size / 2;
-            
+
             ripple.style.cssText = `
                 position: absolute;
                 width: ${size}px;
                 height: ${size}px;
                 left: ${x}px;
                 top: ${y}px;
-                background: rgba(255, 255, 255, 0.3);
+                background: rgba(255, 255, 255, 0.1);
                 border-radius: 50%;
                 transform: scale(0);
                 animation: ripple 0.6s ease-out;
                 pointer-events: none;
                 z-index: 1;
             `;
-            
+
             this.appendChild(ripple);
-            
+
             setTimeout(() => {
                 ripple.remove();
             }, 600);
         });
-    });
-    
-    // Add CSS for ripple animation
-    if (!document.querySelector('#ripple-animation-styles')) {
-        const style = document.createElement('style');
-        style.id = 'ripple-animation-styles';
-        style.textContent = `
-            @keyframes ripple {
-                from {
-                    transform: scale(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: scale(1);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     }
+
+    // Create chat button (always visible)
+    const chatBtn = document.createElement('button');
+    chatBtn.id = 'chat-btn-fixed';
+    chatBtn.innerHTML = '<i class="fas fa-robot"></i>';
+    chatBtn.onclick = openChatbot;
+    chatBtn.setAttribute('aria-label', 'Open Chat Assistant');
+
+    // Adjust width and positioning based on whether phone/WhatsApp buttons are present
+    const chatBtnWidth = isDesktop ? 'auto' : '33.333%';
+    const chatBtnPosition = isDesktop ? 'fixed' : 'static';
+    const chatBtnBottom = isDesktop ? '20px' : 'auto';
+    const chatBtnRight = isDesktop ? '20px' : 'auto';
+    const chatBtnFontSize = isDesktop ? '1.5rem' : '0.9rem'; // Reduced size for better proportion
+    const chatBtnPadding = isDesktop ? '1.75rem' : '1.25rem'; // Increased button size while keeping icon size the same
+    const chatBtnBorderRadius = isDesktop ? '50%' : '0';
+
+    chatBtn.style.cssText = `
+        background-color: #0d6efd !important;
+        color: white !important;
+        border: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
+        padding: ${chatBtnPadding} !important;
+        border-radius: ${chatBtnBorderRadius} !important;
+        font-size: ${chatBtnFontSize} !important;
+        font-weight: 500 !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        display: flex !important;
+        width: ${chatBtnWidth} !important;
+        height: ${isDesktop ? 'auto' : '100%'} !important;
+        margin: 0 !important;
+        top: auto !important;
+        left: auto !important;
+        bottom: ${chatBtnBottom} !important;
+        right: ${chatBtnRight} !important;
+        position: ${chatBtnPosition} !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        flex: 1 !important;
+        justify-content: center !important;
+        align-items: center !important;
+        transition: all 0.3s ease !important;
+        text-decoration: none !important;
+        outline: none !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        line-height: 1.5 !important;
+        z-index: 2147483647 !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    `;
+
+    // Add hover effect for chat button (matching site style)
+    chatBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px) !important';
+        this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
+    });
+
+    chatBtn.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) !important';
+        this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
+    });
+
+    // Add active state for chat button (matching site style)
+    chatBtn.addEventListener('mousedown', function() {
+        this.style.transform = 'translateY(0) !important';
+        this.style.transition = 'all 0.1s ease !important';
+    });
+
+    chatBtn.addEventListener('mouseup', function() {
+        this.style.transform = 'translateY(-2px) !important';
+        this.style.transition = 'all 0.3s ease !important';
+    });
+
+    // Add ripple effect for chat button (matching site style)
+    chatBtn.addEventListener('click', function(e) {
+        const ripple = document.createElement('div');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            z-index: 1;
+        `;
+
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+
+    // Only create WhatsApp button on mobile/tablet
+    let whatsappBtn = null;
+    if (!isDesktop) {
+        whatsappBtn = document.createElement('a');
+        whatsappBtn.id = 'whatsapp-btn-fixed';
+        whatsappBtn.href = 'https://wa.me/447809887883';
+        whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
+        whatsappBtn.setAttribute('aria-label', 'Contact via WhatsApp');
+        whatsappBtn.style.cssText = `
+            background-color: #198754 !important;
+            color: white !important;
+            border: none !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-bottom: none !important;
+            padding: 1rem !important;
+            border-radius: 0 !important;
+            font-size: 1.1rem !important;
+            font-weight: 500 !important;
+            cursor: pointer !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+            display: flex !important;
+            width: 33.333% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            flex: 1 !important;
+            justify-content: center !important;
+            align-items: center !important;
+            transition: all 0.3s ease !important;
+            text-decoration: none !important;
+            outline: none !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            line-height: 1.5 !important;
+            position: relative !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
+        `;
+
+        // Add hover effect for WhatsApp button
+        whatsappBtn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) !important';
+            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
+        });
+
+        whatsappBtn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) !important';
+            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
+        });
+
+        // Add active state for WhatsApp button (matching site style)
+        whatsappBtn.addEventListener('mousedown', function() {
+            this.style.transform = 'translateY(0) !important';
+            this.style.transition = 'all 0.1s ease !important';
+        });
+
+        whatsappBtn.addEventListener('mouseup', function() {
+            this.style.transform = 'translateY(-2px) !important';
+            this.style.transition = 'all 0.3s ease !important';
+        });
+
+        // Add ripple effect for WhatsApp button
+        whatsappBtn.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+                z-index: 1;
+            `;
+
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    }
+
+    // Add buttons to container (only add phone and WhatsApp if not desktop)
+    if (buttonContainer) {
+        // Mobile/tablet: add buttons to container
+        if (testBtn) buttonContainer.appendChild(testBtn);
+        if (whatsappBtn) buttonContainer.appendChild(whatsappBtn);
+        buttonContainer.appendChild(chatBtn);
+
+        // Append container to html element
+        document.documentElement.appendChild(buttonContainer);
+    } else {
+        // Desktop: append chat button directly to document
+        document.documentElement.appendChild(chatBtn);
+    }
+
+    console.log('Floating buttons container created and appended to document root');
+
+    // Add resize listener to handle dynamic screen size changes
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            forceFloatingButtons(); // Recreate buttons with new screen size
+        }, 250); // Debounce resize events
+    });
 }
 
 /**
- * ========================================
- * CHATBOT FUNCTIONALITY
- * ========================================
- */
-
-// Chatbot conversation flow
-const chatbotFlow = {
-    start: {
-        message: "Hi! I'm your Bullard Locks assistant. How can I help you today?",
-        options: [
-            { text: "Emergency Lockout", next: "emergency" },
-            { text: "Car Key Replacement", next: "car_keys" },
-            { text: "Safe Services", next: "safe" },
-            { text: "Get Quote", next: "quote" },
-            { text: "Contact Info", next: "contact" }
-        ]
-    },
-    emergency: {
-        message: "I understand you're locked out! Don't worry, William can help you 24/7. Are you locked out of:",
-        options: [
-            { text: "My Home", next: "home_emergency" },
-            { text: "My Car", next: "car_emergency" },
-            { text: "My Business", next: "business_emergency" }
-        ]
-    },
-    home_emergency: {
-        message: "Home lockout emergency! William provides 24/7 emergency locksmith services across North London. Call now for immediate help:",
-        options: [
-            { text: "📞 Call 07809 887 883", action: "call" },
-            { text: "💬 WhatsApp", action: "whatsapp" },
-            { text: "← Back to Menu", next: "start" }
-        ]
-    },
-    car_emergency: {
-        message: "Car lockout emergency! William is a mobile auto locksmith serving North London 24/7. He can help with:",
-        info: "• Car lockouts\n• Broken keys\n• Key fob programming\n• Emergency car key replacement",
-        options: [
-            { text: "📞 Emergency Call", action: "call" },
-            { text: "💬 WhatsApp Photo", action: "whatsapp" },
-            { text: "← Back to Menu", next: "start" }
-        ]
-    },
-    business_emergency: {
-        message: "Business lockout emergency! William provides commercial locksmith services including:",
-        info: "• Office lockouts\n• Lock repairs\n• Security upgrades\n• Master key systems",
-        options: [
-            { text: "📞 Call Now", action: "call" },
-            { text: "💬 WhatsApp", action: "whatsapp" },
-            { text: "← Back to Menu", next: "start" }
-        ]
-    },
-    car_keys: {
-        message: "William specializes in car key replacement and programming for all makes and models:",
-        info: "• Car key cutting\n• Key fob programming\n• Transponder keys\n• Spare car keys\n• Lost car key replacement",
-        options: [
-            { text: "📞 Get Quote", action: "call" },
-            { text: "💬 WhatsApp Photo of Car", action: "whatsapp" },
-            { text: "← Back to Menu", next: "start" }
-        ]
-    },
-    safe: {
-        message: "William is a certified safe engineer providing professional safe services:",
-        info: "• Safe opening\n• Safe repairs\n• Safe installation\n• Combination changes\n• Digital safe programming",
-        options: [
-            { text: "📞 Call for Safe Service", action: "call" },
-            { text: "💬 WhatsApp", action: "whatsapp" },
-            { text: "← Back to Menu", next: "start" }
-        ]
-    },
-    quote: {
-        message: "Get a free quote from William! He provides:",
-        info: "• No call-out fee\n• Transparent pricing\n• Same-day service\n• 30+ years experience\n• Trusted by Met Police & British Gas",
-        options: [
-            { text: "📞 Call for Quote", action: "call" },
-            { text: "💬 WhatsApp Details", action: "whatsapp" },
-            { text: "← Back to Menu", next: "start" }
-        ]
-    },
-    contact: {
-        message: "Bullard Locks - William Bullard, North London's trusted locksmith:",
-        info: "📞 Phone: 07809 887 883\n📱 WhatsApp: Available 24/7\n📍 Coverage: North London, Camden, Islington, Crouch End\n🕒 Available: 24/7 Emergency Service",
-        options: [
-            { text: "📞 Call Now", action: "call" },
-            { text: "💬 WhatsApp", action: "whatsapp" },
-            { text: "← Back to Menu", next: "start" }
-        ]
-    }
-};
-
-let currentChatStep = 'start';
-
-/**
- * Open chatbot
+ * Open professional chatbot modal with current site styling
  */
 function openChatbot() {
-    const overlay = document.getElementById('chatbotOverlay');
-    if (overlay) {
-        overlay.classList.add('active');
-        initializeChatbot();
-    }
-}
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: rgba(0, 0, 0, 0.7) !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        padding-top: 5vh !important;
+        z-index: 10000 !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        backdrop-filter: blur(2px) !important;
+    `;
 
-/**
- * Close chatbot
- */
-function closeChatbot() {
-    const overlay = document.getElementById('chatbotOverlay');
-    if (overlay) {
-        overlay.classList.remove('active');
-    }
-}
+    modal.innerHTML = `
+        <div style="
+            background: var(--dark-bg);
+            padding: 0 0 2rem 0;
+            border-radius: 0;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: var(--text-light);
+        " id="chatbot-modal-content">
+            <button onclick="this.closest('div').parentElement.remove()" style="
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                background: none;
+                border: none;
+                font-size: 32px;
+                cursor: pointer;
+                color: var(--text-light);
+                transition: all 0.3s ease;
+                padding: 5px;
+                border-radius: 0;
+                z-index: 1001;
+            " onmouseover="this.style.color='var(--bs-primary)'" onmouseout="this.style.color='var(--text-light)'">&times;</button>
 
-/**
- * Close chatbot when clicking on overlay
- */
-function closeChatbotOnOverlay(event) {
-    if (event.target === event.currentTarget) {
-        closeChatbot();
-    }
-}
+            <div style="
+                padding: 1.5rem 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.75rem;
+            ">
+                <i class="fas fa-robot" style="
+                    font-size: 2rem;
+                    color: white;
+                    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                "></i>
+            </div>
 
-/**
- * Initialize chatbot with welcome message
- */
-function initializeChatbot() {
-    currentChatStep = 'start';
-    const chatLog = document.getElementById('chatLog');
-    if (chatLog) {
-        chatLog.innerHTML = '';
-    }
-    displayChatStep('start');
-}
+            <div style="padding: 2rem 2rem 0 2rem;" id="chatbot-modal-body">
 
-/**
- * Display a chat step
- */
-function displayChatStep(stepKey) {
-    const step = chatbotFlow[stepKey];
-    if (!step) return;
+            <div style="
+                background: var(--dark-surface);
+                border: 1px solid var(--dark-border);
+                padding: 1rem;
+                border-radius: 0;
+                margin-bottom: 1rem;
+            ">
+                <p style="
+                    margin: 0;
+                    color: white;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                ">
+                    <strong style="color: white;">Hi there! 👋</strong><br>
+                    I'm William Bullard, your trusted North London locksmith. How can I help you today?
+                </p>
+            </div>
 
-    const currentInteraction = document.getElementById('currentInteraction');
-    if (!currentInteraction) return;
+            <div style="margin-bottom: 1rem;">
+                <p style="
+                    margin-bottom: 0.5rem;
+                    font-weight: 500;
+                    color: white;
+                    font-size: 1rem;
+                ">What service do you need?</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <button onclick="selectService('emergency')" style="
+                        background: var(--bs-primary);
+                        color: white;
+                        border: none;
+                        padding: 0.75rem 1rem;
+                        border-radius: 0;
+                        cursor: pointer;
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">Emergency Locksmith</button>
+                    <button onclick="selectService('car')" style="
+                        background: var(--bs-primary);
+                        color: white;
+                        border: none;
+                        padding: 0.75rem 1rem;
+                        border-radius: 0;
+                        cursor: pointer;
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">Auto Locksmith</button>
+                    <button onclick="selectService('safe')" style="
+                        background: var(--bs-primary);
+                        color: white;
+                        border: none;
+                        padding: 0.75rem 1rem;
+                        border-radius: 0;
+                        cursor: pointer;
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">Safe Engineer</button>
+                </div>
+            </div>
 
-    let html = `<div class="chat-message bot">
-        <strong><i class="fas fa-robot me-2"></i>William's Assistant:</strong><br>
-        ${step.message}
-    </div>`;
+            </div>
 
-    if (step.info) {
-        html += `<div class="chat-message bot">
-            <pre style="font-family: inherit; white-space: pre-line; margin: 0;">${step.info}</pre>
-        </div>`;
-    }
+            <div style="
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                text-align: center;
+            ">
+                <p style="
+                    margin: 0;
+                    font-size: 0.85rem;
+                    color: #cccccc;
+                    line-height: 1.4;
+                ">
+                    Response within 5 minutes • 24/7 Availablity • No call-out fee
+                </p>
+            </div>
+        </div>
+    `;
 
-    html += '<div class="chat-options mt-3">';
-    step.options.forEach(option => {
-        if (option.action) {
-            html += `<button class="chat-option-btn" onclick="handleChatAction('${option.action}')">${option.text}</button>`;
-        } else {
-            html += `<button class="chat-option-btn" onclick="goToChatStep('${option.next}')">${option.text}</button>`;
+    document.body.appendChild(modal);
+
+    // Add click outside to close
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
         }
     });
-    html += '</div>';
 
-    currentInteraction.innerHTML = html;
-    currentChatStep = stepKey;
+    // Focus first button
+    setTimeout(() => {
+        const firstButton = modal.querySelector('button[onclick*="selectService"]');
+        if (firstButton) firstButton.focus();
+    }, 100);
 }
 
 /**
- * Go to a specific chat step
+ * Handle service selection and show appropriate form
  */
-function goToChatStep(stepKey) {
-    // Add user selection to chat log
-    const chatLog = document.getElementById('chatLog');
-    const selectedOption = chatbotFlow[currentChatStep].options.find(opt => opt.next === stepKey);
-    if (selectedOption && chatLog) {
-        const userMessage = document.createElement('div');
-        userMessage.className = 'chat-message user';
-        userMessage.innerHTML = `<strong>You:</strong> ${selectedOption.text}`;
-        chatLog.appendChild(userMessage);
-        chatLog.scrollTop = chatLog.scrollHeight;
+function selectService(serviceType) {
+    const modalBody = document.getElementById('chatbot-modal-body');
+    const serviceForms = {
+        'emergency': `
+            <div style="
+                background: var(--dark-surface);
+                padding: 1rem;
+                border-radius: 0;
+                margin-bottom: 1rem;
+            ">
+                <p style="
+                    margin: 0;
+                    color: white;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                ">
+                    <strong style="color: white;">Emergency Locksmith Service</strong><br>
+                    I understand you're locked out. Let's get you back inside quickly!
+                </p>
+            </div>
+
+            <form id="emergency-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Your Name:</label>
+                    <input type="text" id="emergency-name" name="emergency-name" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Phone Number:</label>
+                    <input type="tel" id="emergency-phone" name="emergency-phone" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-danger)'; this.style.boxShadow='0 0 0 0.2rem rgba(220, 53, 69, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Location:</label>
+                    <input type="text" id="emergency-location" name="emergency-location" placeholder="e.g., Crouch End, Camden, Islington" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-danger)'; this.style.boxShadow='0 0 0 0.2rem rgba(220, 53, 69, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Type of Property:</label>
+                    <select id="emergency-property-type" name="emergency-property-type" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: none;
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-danger)'; this.style.boxShadow='0 0 0 0.2rem rgba(220, 53, 69, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                        <option value="">Select property type...</option>
+                        <option value="home">Residential Home</option>
+                        <option value="apartment">Apartment/Flat</option>
+                        <option value="office">Office/Business</option>
+                        <option value="commercial">Commercial Property</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: var(--text-light);
+                        font-size: 0.95rem;
+                    ">Additional Details:</label>
+                    <textarea id="emergency-details" name="emergency-details" rows="3" placeholder="Describe the situation (e.g., locked out of front door, garage, etc.)" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        resize: vertical;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-danger)'; this.style.boxShadow='0 0 0 0.2rem rgba(220, 53, 69, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                    <button type="submit" style="
+                        flex: 1;
+                        background: #0d6efd;
+                        color: white;
+                        border: none;
+                        padding: 1rem 2rem;
+                        border-radius: 0;
+                        cursor: pointer;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                        position: relative;
+                        overflow: hidden;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
+                        Request Emergency Locksmith
+                    </button>
+                    <a href="tel:07809887883" style="
+                        background: #e67e22;
+                        color: white;
+                        text-decoration: none;
+                        padding: 1rem 1.5rem;
+                        border-radius: 0;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        display: flex;
+                        align-items: center;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                        position: relative;
+                        overflow: hidden;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
+                        <span class="call-now-text">Call Now</span>
+                    </a>
+                </div>
+            </form>
+        `,
+        'car': `
+            <div style="
+                background: var(--dark-surface);
+                padding: 1rem;
+                border-radius: 0;
+                margin-bottom: 1rem;
+            ">
+                <p style="
+                    margin: 0;
+                    color: white;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                ">
+                    <strong style="color: white;">Auto Locksmith Service</strong><br>
+                    I can help with car keys, locks, and programming. Let's get you back on the road!
+                </p>
+            </div>
+
+            <form id="car-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Your Name:</label>
+                    <input type="text" id="car-name" name="car-name" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Phone Number:</label>
+                    <input type="tel" id="car-phone" name="car-phone" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-success)'; this.style.boxShadow='0 0 0 0.2rem rgba(25, 135, 84, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Location:</label>
+                    <input type="text" id="car-location" name="car-location" placeholder="Where is your vehicle located?" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-success)'; this.style.boxShadow='0 0 0 0.2rem rgba(25, 135, 84, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Vehicle Make & Model:</label>
+                    <input type="text" id="car-make-model" name="car-make-model" placeholder="e.g., Ford Focus, BMW X3" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-success)'; this.style.boxShadow='0 0 0 0.2rem rgba(25, 135, 84, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Service Needed:</label>
+                    <select id="car-service-type" name="car-service-type" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: none;
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-success)'; this.style.boxShadow='0 0 0 0.2rem rgba(25, 135, 84, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                        <option value="">Select service...</option>
+                        <option value="lockout">Locked out of vehicle</option>
+                        <option value="key-replacement">Lost/broken key replacement</option>
+                        <option value="key-programming">Key programming/transponder</option>
+                        <option value="key-cutting">Additional key cutting</option>
+                        <option value="ignition">Ignition repair/replacement</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Additional Details:</label>
+                    <textarea id="car-details" name="car-details" rows="3" placeholder="Any additional information about your vehicle or situation" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        resize: vertical;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-success)'; this.style.boxShadow='0 0 0 0.2rem rgba(25, 135, 84, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                    <button type="submit" style="
+                        flex: 1;
+                        background: #0d6efd;
+                        color: white;
+                        border: none;
+                        padding: 1rem 2rem;
+                        border-radius: 0;
+                        cursor: pointer;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                        position: relative;
+                        overflow: hidden;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
+                        Request Auto Locksmith
+                    </button>
+                    <a href="tel:07809887883" style="
+                        background: #e67e22;
+                        color: white;
+                        text-decoration: none;
+                        padding: 1rem 1.5rem;
+                        border-radius: 0;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        display: flex;
+                        align-items: center;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                        position: relative;
+                        overflow: hidden;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
+                        <span class="call-now-text">Call Now</span>
+                    </a>
+                </div>
+            </form>
+        `,
+        'safe': `
+            <div style="
+                background: var(--dark-surface);
+                padding: 1rem;
+                border-radius: 0;
+                margin-bottom: 1rem;
+            ">
+                <p style="
+                    margin: 0;
+                    color: white;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                ">
+                    <strong style="color: white;">Safe Engineer Service</strong><br>
+                    Professional safe opening, repair, and installation services available.
+                </p>
+            </div>
+
+            <form id="safe-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Your Name:</label>
+                    <input type="text" id="safe-name" name="safe-name" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Phone Number:</label>
+                    <input type="tel" id="safe-phone" name="safe-phone" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Location:</label>
+                    <input type="text" id="safe-location" name="safe-location" placeholder="Where is the safe located?" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Safe Type:</label>
+                    <select id="safe-type" name="safe-type" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: none;
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                        <option value="">Select safe type...</option>
+                        <option value="wall-safe">Wall Safe</option>
+                        <option value="floor-safe">Floor Safe</option>
+                        <option value="gun-safe">Gun Safe</option>
+                        <option value="deposit-safe">Deposit Safe</option>
+                        <option value="commercial-safe">Commercial Safe</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Safe Brand/Model (if known):</label>
+                    <input type="text" id="safe-brand" name="safe-brand" placeholder="e.g., Sentry, Honeywell, etc." style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'">
+                </div>
+
+                <div>
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.35rem;
+                        font-weight: 500;
+                        color: white;
+                        font-size: 0.95rem;
+                    ">Additional Details:</label>
+                    <textarea id="safe-details" name="safe-details" rows="3" placeholder="Describe the safe situation, any codes you remember, etc." style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        background-color: var(--dark-surface);
+                        color: var(--text-light);
+                        border: 1px solid var(--dark-border);
+                        border-radius: 0;
+                        font-size: 0.95rem;
+                        resize: vertical;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                    " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                    <button type="submit" style="
+                        flex: 1;
+                        background: #0d6efd;
+                        color: white;
+                        border: none;
+                        padding: 1rem 2rem;
+                        border-radius: 0;
+                        cursor: pointer;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                        position: relative;
+                        overflow: hidden;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
+                        Request Safe Engineer
+                    </button>
+                    <a href="tel:07809887883" style="
+                        background: #e67e22;
+                        color: white;
+                        text-decoration: none;
+                        padding: 1rem 1.5rem;
+                        border-radius: 0;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        display: flex;
+                        align-items: center;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                        position: relative;
+                        overflow: hidden;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
+                        <span class="call-now-text">Call Now</span>
+                    </a>
+                </div>
+            </form>
+        `
+    };
+
+    modalBody.innerHTML = serviceForms[serviceType];
+
+    // Add form submission handlers
+    const form = modalBody.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleServiceFormSubmission(serviceType, this);
+        });
     }
 
-    displayChatStep(stepKey);
+    // Focus first input
+    setTimeout(() => {
+        const firstInput = modalBody.querySelector('input');
+        if (firstInput) firstInput.focus();
+    }, 100);
 }
 
 /**
- * Handle chat actions (call, whatsapp, etc.)
+ * Handle service form submission
  */
-function handleChatAction(action) {
-    switch (action) {
-        case 'call':
-            window.open('tel:07809887883', '_self');
-            break;
-        case 'whatsapp':
-            window.open('https://wa.me/447809887883', '_blank');
-            break;
+function handleServiceFormSubmission(serviceType, form) {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = 'Sending...';
+    submitBtn.disabled = true;
+
+    // Prepare form data for PHP submission
+    const phpFormData = new FormData();
+    phpFormData.append('form_type', serviceType);
+    phpFormData.append('name', data[`${serviceType}-name`] || '');
+    phpFormData.append('phone', data[`${serviceType}-phone`] || '');
+    phpFormData.append('location', data[`${serviceType}-location`] || '');
+
+    // Add service-specific data
+    if (serviceType === 'emergency') {
+        phpFormData.append('property_type', data['emergency-property-type'] || '');
+        phpFormData.append('details', data['emergency-details'] || '');
+    } else if (serviceType === 'car') {
+        phpFormData.append('vehicle_make_model', data['car-make-model'] || '');
+        phpFormData.append('service_type', data['car-service-type'] || '');
+        phpFormData.append('details', data['car-details'] || '');
+    } else if (serviceType === 'safe') {
+        phpFormData.append('safe_type', data['safe-type'] || '');
+        phpFormData.append('safe_brand', data['safe-brand'] || '');
+        phpFormData.append('details', data['safe-details'] || '');
     }
-    
-    // Add confirmation message
-    const chatLog = document.getElementById('chatLog');
-    if (chatLog) {
-        const actionMessage = document.createElement('div');
-        actionMessage.className = 'chat-message bot';
-        actionMessage.innerHTML = `<strong><i class="fas fa-robot me-2"></i>William's Assistant:</strong><br>
-            ${action === 'call' ? '📞 Connecting you to William...' : '💬 Opening WhatsApp...'}`;
-        chatLog.appendChild(actionMessage);
-        chatLog.scrollTop = chatLog.scrollHeight;
-    }
+
+    // Submit to PHP script
+    fetch('send_email.php', {
+        method: 'POST',
+        body: phpFormData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+
+        if (data.success) {
+            // Show confirmation message in modal instead of alert
+            const modalBody = document.getElementById('chatbot-modal-body');
+            modalBody.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; color: #28a745; margin-bottom: 1rem;">✓</div>
+                    <h3 style="color: #28a745; margin-bottom: 1rem; font-size: 1.5rem;">Request Sent Successfully!</h3>
+                    <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+                        ${data.message}
+                    </p>
+                    <button onclick="document.querySelector('.modal').remove()"
+                            style="background: #007bff; color: white; border: none; padding: 12px 24px;
+                                   border-radius: 5px; cursor: pointer; font-size: 1rem; font-weight: 500;">
+                        Close
+                    </button>
+                </div>
+            `;
+        } else {
+            // Show error message in modal
+            const modalBody = document.getElementById('chatbot-modal-body');
+            modalBody.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
+                    <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Error Sending Request</h3>
+                    <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+                        ${data.message}
+                    </p>
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button onclick="document.querySelector('.modal').remove()"
+                                style="background: #6c757d; color: white; border: none; padding: 12px 24px;
+                                       border-radius: 5px; cursor: pointer; font-size: 1rem;">
+                            Close
+                        </button>
+                        <button onclick="location.href='tel:07809887883'"
+                                style="background: #28a745; color: white; border: none; padding: 12px 24px;
+                                       border-radius: 5px; cursor: pointer; font-size: 1rem;">
+                            <span class="call-now-text">Call Now: 07809 887 883</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+
+        // Show error message in modal
+        const modalBody = document.getElementById('chatbot-modal-body');
+        modalBody.innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+                <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
+                <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Connection Error</h3>
+                <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+                    Sorry, there was an error sending your request. Please call us directly.
+                </p>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button onclick="document.querySelector('.modal').remove()"
+                            style="background: #6c757d; color: white; border: none; padding: 12px 24px;
+                                   border-radius: 5px; cursor: pointer; font-size: 1rem;">
+                        Close
+                    </button>
+                    <button onclick="location.href='tel:07809887883'"
+                            style="background: #28a745; color: white; border: none; padding: 12px 24px;
+                                   border-radius: 5px; cursor: pointer; font-size: 1rem;">
+                        <span class="call-now-text">Call Now: 07809 887 883</span>
+                    </button>
+                </div>
+            </div>
+        `;
+    });
 }
