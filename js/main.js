@@ -284,3 +284,215 @@ function initializeMicroAnimations() {
         document.head.appendChild(style);
     }
 }
+
+/**
+ * ========================================
+ * CHATBOT FUNCTIONALITY
+ * ========================================
+ */
+
+// Chatbot conversation flow
+const chatbotFlow = {
+    start: {
+        message: "Hi! I'm your Bullard Locks assistant. How can I help you today?",
+        options: [
+            { text: "Emergency Lockout", next: "emergency" },
+            { text: "Car Key Replacement", next: "car_keys" },
+            { text: "Safe Services", next: "safe" },
+            { text: "Get Quote", next: "quote" },
+            { text: "Contact Info", next: "contact" }
+        ]
+    },
+    emergency: {
+        message: "I understand you're locked out! Don't worry, William can help you 24/7. Are you locked out of:",
+        options: [
+            { text: "My Home", next: "home_emergency" },
+            { text: "My Car", next: "car_emergency" },
+            { text: "My Business", next: "business_emergency" }
+        ]
+    },
+    home_emergency: {
+        message: "Home lockout emergency! William provides 24/7 emergency locksmith services across North London. Call now for immediate help:",
+        options: [
+            { text: "📞 Call 07809 887 883", action: "call" },
+            { text: "💬 WhatsApp", action: "whatsapp" },
+            { text: "← Back to Menu", next: "start" }
+        ]
+    },
+    car_emergency: {
+        message: "Car lockout emergency! William is a mobile auto locksmith serving North London 24/7. He can help with:",
+        info: "• Car lockouts\n• Broken keys\n• Key fob programming\n• Emergency car key replacement",
+        options: [
+            { text: "📞 Emergency Call", action: "call" },
+            { text: "💬 WhatsApp Photo", action: "whatsapp" },
+            { text: "← Back to Menu", next: "start" }
+        ]
+    },
+    business_emergency: {
+        message: "Business lockout emergency! William provides commercial locksmith services including:",
+        info: "• Office lockouts\n• Lock repairs\n• Security upgrades\n• Master key systems",
+        options: [
+            { text: "📞 Call Now", action: "call" },
+            { text: "💬 WhatsApp", action: "whatsapp" },
+            { text: "← Back to Menu", next: "start" }
+        ]
+    },
+    car_keys: {
+        message: "William specializes in car key replacement and programming for all makes and models:",
+        info: "• Car key cutting\n• Key fob programming\n• Transponder keys\n• Spare car keys\n• Lost car key replacement",
+        options: [
+            { text: "📞 Get Quote", action: "call" },
+            { text: "💬 WhatsApp Photo of Car", action: "whatsapp" },
+            { text: "← Back to Menu", next: "start" }
+        ]
+    },
+    safe: {
+        message: "William is a certified safe engineer providing professional safe services:",
+        info: "• Safe opening\n• Safe repairs\n• Safe installation\n• Combination changes\n• Digital safe programming",
+        options: [
+            { text: "📞 Call for Safe Service", action: "call" },
+            { text: "💬 WhatsApp", action: "whatsapp" },
+            { text: "← Back to Menu", next: "start" }
+        ]
+    },
+    quote: {
+        message: "Get a free quote from William! He provides:",
+        info: "• No call-out fee\n• Transparent pricing\n• Same-day service\n• 30+ years experience\n• Trusted by Met Police & British Gas",
+        options: [
+            { text: "📞 Call for Quote", action: "call" },
+            { text: "💬 WhatsApp Details", action: "whatsapp" },
+            { text: "← Back to Menu", next: "start" }
+        ]
+    },
+    contact: {
+        message: "Bullard Locks - William Bullard, North London's trusted locksmith:",
+        info: "📞 Phone: 07809 887 883\n📱 WhatsApp: Available 24/7\n📍 Coverage: North London, Camden, Islington, Crouch End\n🕒 Available: 24/7 Emergency Service",
+        options: [
+            { text: "📞 Call Now", action: "call" },
+            { text: "💬 WhatsApp", action: "whatsapp" },
+            { text: "← Back to Menu", next: "start" }
+        ]
+    }
+};
+
+let currentChatStep = 'start';
+
+/**
+ * Open chatbot
+ */
+function openChatbot() {
+    const overlay = document.getElementById('chatbotOverlay');
+    if (overlay) {
+        overlay.classList.add('active');
+        initializeChatbot();
+    }
+}
+
+/**
+ * Close chatbot
+ */
+function closeChatbot() {
+    const overlay = document.getElementById('chatbotOverlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+    }
+}
+
+/**
+ * Close chatbot when clicking on overlay
+ */
+function closeChatbotOnOverlay(event) {
+    if (event.target === event.currentTarget) {
+        closeChatbot();
+    }
+}
+
+/**
+ * Initialize chatbot with welcome message
+ */
+function initializeChatbot() {
+    currentChatStep = 'start';
+    const chatLog = document.getElementById('chatLog');
+    if (chatLog) {
+        chatLog.innerHTML = '';
+    }
+    displayChatStep('start');
+}
+
+/**
+ * Display a chat step
+ */
+function displayChatStep(stepKey) {
+    const step = chatbotFlow[stepKey];
+    if (!step) return;
+
+    const currentInteraction = document.getElementById('currentInteraction');
+    if (!currentInteraction) return;
+
+    let html = `<div class="chat-message bot">
+        <strong><i class="fas fa-robot me-2"></i>William's Assistant:</strong><br>
+        ${step.message}
+    </div>`;
+
+    if (step.info) {
+        html += `<div class="chat-message bot">
+            <pre style="font-family: inherit; white-space: pre-line; margin: 0;">${step.info}</pre>
+        </div>`;
+    }
+
+    html += '<div class="chat-options mt-3">';
+    step.options.forEach(option => {
+        if (option.action) {
+            html += `<button class="chat-option-btn" onclick="handleChatAction('${option.action}')">${option.text}</button>`;
+        } else {
+            html += `<button class="chat-option-btn" onclick="goToChatStep('${option.next}')">${option.text}</button>`;
+        }
+    });
+    html += '</div>';
+
+    currentInteraction.innerHTML = html;
+    currentChatStep = stepKey;
+}
+
+/**
+ * Go to a specific chat step
+ */
+function goToChatStep(stepKey) {
+    // Add user selection to chat log
+    const chatLog = document.getElementById('chatLog');
+    const selectedOption = chatbotFlow[currentChatStep].options.find(opt => opt.next === stepKey);
+    if (selectedOption && chatLog) {
+        const userMessage = document.createElement('div');
+        userMessage.className = 'chat-message user';
+        userMessage.innerHTML = `<strong>You:</strong> ${selectedOption.text}`;
+        chatLog.appendChild(userMessage);
+        chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    displayChatStep(stepKey);
+}
+
+/**
+ * Handle chat actions (call, whatsapp, etc.)
+ */
+function handleChatAction(action) {
+    switch (action) {
+        case 'call':
+            window.open('tel:07809887883', '_self');
+            break;
+        case 'whatsapp':
+            window.open('https://wa.me/447809887883', '_blank');
+            break;
+    }
+    
+    // Add confirmation message
+    const chatLog = document.getElementById('chatLog');
+    if (chatLog) {
+        const actionMessage = document.createElement('div');
+        actionMessage.className = 'chat-message bot';
+        actionMessage.innerHTML = `<strong><i class="fas fa-robot me-2"></i>William's Assistant:</strong><br>
+            ${action === 'call' ? '📞 Connecting you to William...' : '💬 Opening WhatsApp...'}`;
+        chatLog.appendChild(actionMessage);
+        chatLog.scrollTop = chatLog.scrollHeight;
+    }
+}

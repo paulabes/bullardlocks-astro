@@ -231,39 +231,59 @@ main li {
   padding-right: calc(var(--bs-gutter-x) * 0.5) !important;
 }
 
-/* Mobile footer buttons - fixed at bottom on mobile only */
+/* SIMPLE STICKY MOBILE BUTTONS - BACK TO BASICS */
 .mobile-footer-buttons {
   position: fixed !important;
   bottom: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  z-index: 1035 !important;
-  background-color: var(--darker-bg) !important;
-  padding: 0.75rem 0 !important;
-  border-top: 1px solid var(--dark-border) !important;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3) !important;
+  z-index: 99999 !important;
+  background-color: #0f0f0f !important;
+  padding: 16px !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
+  width: 100% !important;
 }
 
-/* Mobile footer buttons styling */
+/* Simple button styling */
 .mobile-footer-buttons .btn {
-  padding: 0.875rem !important;
-  font-size: 1rem !important;
-  font-weight: 600 !important;
-  min-height: 50px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border-radius: 0 !important;
+  flex: 1;
+  margin: 0 8px;
+  padding: 16px 8px;
+  font-size: 1.2rem;
+  min-height: 60px;
+  border: none;
+  border-radius: 4px;
 }
 
-.mobile-footer-buttons .btn i {
-  font-size: 1.25rem !important;
+.mobile-footer-buttons .btn:first-child {
+  margin-left: 0;
 }
 
-/* Add bottom padding to body on mobile to account for fixed footer buttons */
+.mobile-footer-buttons .btn:last-child {
+  margin-right: 0;
+}
+
+/* Hide mobile buttons on desktop */
+@media (min-width: 1200px) {
+  .mobile-footer-buttons {
+    display: none !important;
+  }
+}
+
+/* Simple mobile display */
 @media (max-width: 1199.98px) {
   body {
-    padding-bottom: 80px !important; /* Height of mobile footer buttons */
+    padding-bottom: 120px !important;
+  }
+  
+  .mobile-footer-buttons {
+    display: block;
+    z-index: 9999;
+  }
+  
+  /* Ensure footer doesn't overlap */
+  footer {
+    margin-bottom: 120px;
   }
 }
 
@@ -1736,6 +1756,178 @@ body {
     display: block !important;
     border-radius: 0 !important;
     box-shadow: none !important;
+  }
+}
+
+/* ========================================
+   CHATBOT STYLES
+   ======================================== */
+
+/* Floating chat button */
+.chat-float-button {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  background-color: var(--bs-primary) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(13, 110, 253, 0.4) !important;
+  cursor: pointer !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.chat-float-button:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 25px rgba(13, 110, 253, 0.6) !important;
+}
+
+/* Chatbot overlay */
+.chatbot-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  z-index: 1060 !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+}
+
+.chatbot-overlay.active {
+  display: flex !important;
+}
+
+/* Chatbot container */
+.chatbot-container {
+  background-color: var(--dark-surface) !important;
+  border-radius: 12px !important;
+  width: 100% !important;
+  max-width: 400px !important;
+  max-height: 600px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Chatbot header */
+.chatbot-header {
+  background-color: var(--bs-primary) !important;
+  color: white !important;
+  padding: var(--space-md) !important;
+  border-radius: 12px 12px 0 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.chatbot-header h3 {
+  margin: 0 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+.chat-close-btn {
+  background: none !important;
+  border: none !important;
+  color: white !important;
+  font-size: 1.2rem !important;
+  cursor: pointer !important;
+  padding: 5px !important;
+  border-radius: 50% !important;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.chat-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Chatbot body */
+.chatbot-body {
+  padding: var(--space-md) !important;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 300px !important;
+  max-height: 400px !important;
+}
+
+.chat-log {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  margin-bottom: var(--space-md) !important;
+  padding: var(--space-sm) !important;
+  background-color: var(--darker-bg) !important;
+  border-radius: 8px !important;
+  min-height: 200px !important;
+}
+
+#currentInteraction {
+  background-color: var(--light-surface) !important;
+  padding: var(--space-md) !important;
+  border-radius: 8px !important;
+  border-left: 4px solid var(--bs-primary) !important;
+}
+
+/* Chat messages */
+.chat-message {
+  margin-bottom: var(--space-sm) !important;
+  padding: var(--space-sm) !important;
+  border-radius: 8px !important;
+  max-width: 80% !important;
+}
+
+.chat-message.bot {
+  background-color: var(--bs-primary) !important;
+  color: white !important;
+  align-self: flex-start !important;
+}
+
+.chat-message.user {
+  background-color: var(--light-surface) !important;
+  color: var(--text-light) !important;
+  align-self: flex-end !important;
+  margin-left: auto !important;
+}
+
+/* Chat buttons */
+.chat-option-btn {
+  background-color: var(--light-surface) !important;
+  color: var(--text-light) !important;
+  border: 1px solid var(--dark-border) !important;
+  padding: var(--space-sm) var(--space-md) !important;
+  margin: var(--space-xs) !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  font-size: 0.9rem !important;
+}
+
+.chat-option-btn:hover {
+  background-color: var(--bs-primary) !important;
+  color: white !important;
+  border-color: var(--bs-primary) !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767.98px) {
+  .chatbot-container {
+    width: 95% !important;
+    max-height: 80vh !important;
   }
 }
 
