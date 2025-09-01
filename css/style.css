@@ -724,13 +724,9 @@ h4 {
   background-color: var(--light-surface);
 }
 
-/* Footer: bull logo overlay at bottom-right on all pages */
+/* Footer: clean background without bull logo */
 footer {
   background-color: var(--darker-bg) !important;
-  background-image: url('../images/bullard-locks-bull-logo.png') !important;
-  background-repeat: no-repeat !important;
-  background-position: right bottom !important;
-  background-size: 320px auto !important;
 }
 
 /* Footer spacing */
@@ -1129,6 +1125,12 @@ body {
 
 /* Extra Small devices (phones, 576px and down) */
 @media (max-width: 575.98px) {
+  /* Add 100% more horizontal padding for mobile */
+  body {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
   /* Halve gutters for columns on small phones */
   .row {
     --bs-gutter-x: 0.75rem !important;
@@ -1227,6 +1229,12 @@ body {
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) {
+  /* Add 100% more horizontal padding for mobile */
+  body {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
   .hero-title {
     font-size: 2rem;
   }
