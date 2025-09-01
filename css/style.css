@@ -237,55 +237,105 @@ main li {
   bottom: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  z-index: 99999 !important;
-  background-color: #0f0f0f !important;
-  padding: 16px !important;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
+  background-color: var(--dark-bg) !important;
+  border-top: 1px solid var(--dark-border) !important;
+  padding: 0.75rem 1rem !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1) !important;
   width: 100% !important;
+  height: auto !important;
 }
 
 /* Simple button styling */
 .mobile-footer-buttons .btn {
-  flex: 1;
-  margin: 0 8px;
-  padding: 16px 8px;
-  font-size: 1.2rem;
-  min-height: 60px;
-  border: none;
-  border-radius: 4px;
+  flex: 1 !important;
+  padding: 0.75rem 0.5rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  min-height: 60px !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid transparent !important;
 }
 
-.mobile-footer-buttons .btn:first-child {
-  margin-left: 0;
+/* Button hover effects */
+.mobile-footer-buttons .btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border-color: var(--bs-primary) !important;
 }
 
-.mobile-footer-buttons .btn:last-child {
-  margin-right: 0;
+/* Button active effects */
+.mobile-footer-buttons .btn:active {
+  transform: translateY(0) !important;
+  transition: all 0.1s ease !important;
 }
 
-/* Hide mobile buttons on desktop */
-@media (min-width: 1200px) {
+/* Icon styling for mobile footer buttons */
+.mobile-footer-buttons .btn i {
+  font-size: 1.2rem !important;
+  margin-bottom: 0.125rem !important;
+}
+
+/* Button text styling */
+.mobile-footer-buttons .btn span {
+  font-size: 0.75rem !important;
+  line-height: 1 !important;
+  text-align: center !important;
+}
+
+/* Specific button colors - REMOVED: Using standard Bootstrap classes now */
+
+/* Ensure buttons don't interfere with page content */
+body {
+  padding-bottom: 80px !important; /* Add padding to prevent content from being hidden behind fixed buttons */
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 767.98px) {
+  .mobile-footer-buttons {
+    padding: 0.5rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .mobile-footer-buttons .btn {
+    padding: 0.625rem 0.25rem !important;
+    font-size: 0.8rem !important;
+    min-height: 55px !important;
+  }
+
+  .mobile-footer-buttons .btn i {
+    font-size: 1.1rem !important;
+  }
+
+  .mobile-footer-buttons .btn span {
+    font-size: 0.7rem !important;
+  }
+
+  body {
+    padding-bottom: 70px !important;
+  }
+}
+
+/* Hide mobile footer buttons on desktop - TEMPORARILY DISABLED FOR TESTING */
+/* @media (min-width: 992px) {
   .mobile-footer-buttons {
     display: none !important;
   }
-}
 
-/* Simple mobile display */
-@media (max-width: 1199.98px) {
   body {
-    padding-bottom: 120px !important;
+    padding-bottom: 0 !important;
   }
-  
-  .mobile-footer-buttons {
-    display: block;
-    z-index: 9999;
-  }
-  
-  /* Ensure footer doesn't overlap */
-  footer {
-    margin-bottom: 120px;
-  }
-}
+} */
 
 /* Navbar background */
 .navbar {
@@ -2299,4 +2349,4 @@ body {
 }
 
 
- 
+
