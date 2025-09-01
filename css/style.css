@@ -1125,8 +1125,8 @@ body {
 
 /* Extra Small devices (phones, 576px and down) */
 @media (max-width: 575.98px) {
-  /* Add 100% more horizontal padding for mobile */
-  body {
+  /* Add padding to container content while keeping backgrounds full width */
+  .container {
     padding-left: 2rem !important;
     padding-right: 2rem !important;
   }
@@ -1146,7 +1146,7 @@ body {
   }
 
   .hero-section {
-    padding-top: 0.7rem;
+    padding-top: 0 !important;
     padding-bottom: 1.3rem;
   }
   
@@ -1229,8 +1229,8 @@ body {
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) {
-  /* Add 100% more horizontal padding for mobile */
-  body {
+  /* Add padding to container content while keeping backgrounds full width */
+  .container {
     padding-left: 2rem !important;
     padding-right: 2rem !important;
   }
@@ -1267,7 +1267,7 @@ body {
   }
   
   .hero-section {
-    padding-top: 1.05rem;
+    padding-top: 0 !important;
     padding-bottom: 1.95rem;
   }
   
@@ -1297,7 +1297,7 @@ body {
   }
   
   .hero-section {
-    padding-top: 1.4rem;
+    padding-top: 0 !important;
     padding-bottom: 2.6rem;
   }
   
@@ -1575,11 +1575,14 @@ body {
   display: block;
 }
 
-/* Hero image responsiveness */
+/* Hero image responsiveness - make images full width on mobile */
 @media (max-width: 767.98px) {
   .image-with-logo img,
   .about-preview-image img {
-    margin-bottom: 1.5rem;
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    margin-bottom: 0 !important;
   }
 }
 
@@ -1778,15 +1781,15 @@ body {
    ACCESSIBILITY RESPONSIVENESS
    ======================================== */
 
-/* Ensure proper touch targets on mobile */
-@media (max-width: 767.98px) {
-  /* Halve vertical padding for sections on mobile */
-  .services-overview,
-  .about-preview,
-  .testimonials,
-  .cta-section,
-  .locations-section {
-    padding-top: 1.25rem !important;
+  /* Ensure proper touch targets on mobile */
+  @media (max-width: 767.98px) {
+  /* Remove top padding for sections on mobile, keep bottom padding */
+    .services-overview,
+    .about-preview,
+    .testimonials,
+    .cta-section,
+    .locations-section {
+    padding-top: 0 !important;
     padding-bottom: 1.25rem !important;
   }
 
