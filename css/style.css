@@ -401,7 +401,7 @@ main li {
 }
 
 /* Dropdown background resets on mobile only */
-@media (max-width: 1199.98px) {
+@media (max-width: 1024px) {
 
   .dropdown-menu,
   .dropdown-menu.show,
@@ -428,10 +428,11 @@ main li {
   margin-left: calc(-50vw + 50%) !important;
   margin-right: calc(-50vw + 50%) !important;
   position: relative !important;
+  text-align: center;
 }
 
 /* Mobile header height override - ensure consistency */
-@media (max-width: 1199.98px) {
+@media (max-width: 1024px) {
   .navbar {
     height: 80px !important;
     min-height: 80px !important;
@@ -441,6 +442,25 @@ main li {
   /* Mobile menu top padding */
   .navbar-collapse {
     padding-top: 22px !important;
+  }
+}
+
+/* Make header 10% deeper on screens less than 1025px wide */
+@media (max-width: 1024px) {
+  .navbar {
+    height: 88px !important;
+    min-height: 88px !important;
+    max-height: 88px !important;
+  }
+
+  /* Update header spacer to match new navbar height */
+  .header-spacer {
+    height: 88px !important;
+  }
+
+  /* Update navbar brand height to maintain consistency */
+  .navbar-brand {
+    height: 88px !important;
   }
 }
 
@@ -459,7 +479,7 @@ main li {
 }
 
 /* Hide toggle button on desktop */
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   .custom-toggler {
     display: none !important;
   }
@@ -475,9 +495,10 @@ main li {
 }
 
 /* Mobile logo positioning */
-@media (max-width: 1199.98px) {
+@media (max-width: 1024px) {
   .navbar-brand {
     transform: translateY(-3px) !important;
+    justify-content: center;
   }
 }
 
@@ -1360,13 +1381,14 @@ body {
    ======================================== */
 
 /* Mobile navigation adjustments */
-@media (max-width: 1199.98px) {
+@media (max-width: 1024px) {
   .navbar-nav {
     margin-top: 1rem;
   }
 
   .navbar-nav .nav-link {
     padding: 0.75rem 0;
+    text-align: center;
   }
 
   .dropdown-menu {
@@ -1378,6 +1400,7 @@ body {
   .dropdown-item {
     color: var(--text-light) !important;
     padding: 0.5rem 1rem;
+    text-align: center;
   }
 
   .dropdown-item:hover {
@@ -1413,7 +1436,7 @@ body {
 }
 
 /* Desktop navigation */
-@media (min-width: 1200px) {
+@media (min-width: 1025px) {
   .navbar-nav {
     align-items: center;
     background: transparent !important;
@@ -2110,7 +2133,7 @@ body {
 }
 
 /* Force mobile logo size */
-@media (max-width: 1199.98px) {
+@media (max-width: 1024px) {
   .navbar-brand .navbar-logo {
     width: 250px !important;
     height: auto !important;
@@ -2118,7 +2141,7 @@ body {
 }
 
 /* Force remove all dropdown backgrounds on mobile only */
-@media (max-width: 1199.98px) {
+@media (max-width: 1024px) {
 
   .dropdown-menu,
   .dropdown-menu.show,
@@ -2183,36 +2206,11 @@ body {
     box-shadow: 0 6px 16px rgba(0,0,0,0.2) !important;
 }
 
-/* Hide chat button on mobile screens */
-@media (max-width: 767.98px) {
+/* Hide chat button on screens less than 1025px wide */
+@media (max-width: 1024px) {
     .sticky-bottom-button {
         display: none !important;
     }
-}
-
-/* Test button - fixed above chat button */
-.test-button {
-    position: fixed !important;
-    bottom: 85px !important;
-    right: 20px !important;
-    z-index: 999998 !important;
-    padding: 10px 16px !important;
-    background-color: #dc3545 !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 4px !important;
-    cursor: pointer !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    transition: all 0.3s ease !important;
-    display: block !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    transform: translateZ(0) !important;
-    backface-visibility: hidden !important;
-    will-change: transform !important;
 }
 
 /* ========================================
@@ -2275,6 +2273,68 @@ body {
 @media (max-width: 767.98px) {
     .call-now-text {
         display: none !important;
+    }
+}
+
+/* ========================================
+   THREE-COLUMN TO SINGLE-COLUMN RESPONSIVENESS
+   ======================================== */
+
+/* Make all two and three-column sections single column below 1025px */
+@media (max-width: 1025px) {
+    /* Two columns on large screens */
+    .col-lg-6 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Three columns on medium screens and up */
+    .col-md-4 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Three columns on large screens */
+    .col-lg-4 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Four columns on large screens, two on medium */
+    .col-lg-3 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Combined classes - three columns on large, two on medium */
+    .col-lg-4.col-md-6 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Combined classes - four columns on large, two on medium */
+    .col-lg-3.col-md-6 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Ensure proper spacing between stacked columns */
+    .row.g-4 > [class*="col-"] {
+        margin-bottom: 2rem !important;
+    }
+
+    .row.g-4 > [class*="col-"]:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /* Hide header buttons on screens under 1025px */
+    .d-none.d-lg-block {
+        display: none !important;
+    }
+
+    /* Reduce hero section top padding by 16px on screens less than 1025px */
+    .hero-section {
+        padding-top: 0 !important;
     }
 }
 

@@ -63,3 +63,11 @@ html, body {
 #chat-btn-fixed:hover {
     background-color: #005a87 !important;
 }
+
+/* Hide floating buttons on screens less than 1025px wide */
+@media (max-width: 1024px) {
+    #chat-btn-fixed,
+    #test-btn-fixed {
+        display: none !important;
+    }
+}
