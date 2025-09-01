@@ -108,6 +108,60 @@ main a:not(.btn):not(.nav-link):not(.dropdown-item):hover::after {
   --surface-2: #2e2e2e;
   --surface-3: #353535;
   --surface-4: #3b3b3b;
+
+  /* ========================================
+     SYSTEMATIC SPACING SYSTEM
+     ======================================== */
+  /* Base spacing unit - all spacing derives from this */
+  --space-unit: 1rem;
+  
+  /* Vertical spacing scale */
+  --space-xs: calc(var(--space-unit) * 0.5);    /* 0.5rem - 8px */
+  --space-sm: var(--space-unit);                /* 1rem - 16px */
+  --space-md: calc(var(--space-unit) * 1.5);    /* 1.5rem - 24px */
+  --space-lg: calc(var(--space-unit) * 2);      /* 2rem - 32px */
+  --space-xl: calc(var(--space-unit) * 3);      /* 3rem - 48px */
+  --space-xxl: calc(var(--space-unit) * 4);     /* 4rem - 64px */
+  --space-xxxl: calc(var(--space-unit) * 6);    /* 6rem - 96px */
+
+  /* Section spacing - consistent across all sections */
+  --section-padding-y: var(--space-xxl);        /* 4rem desktop */
+  --section-padding-y-mobile: var(--space-xl);  /* 3rem mobile */
+  
+  /* Content spacing */
+  --content-gap: var(--space-lg);               /* 2rem between content blocks */
+  --content-gap-mobile: var(--space-md);        /* 1.5rem mobile */
+  
+  /* Component spacing */
+  --component-gap: var(--space-md);             /* 1.5rem between components */
+  --component-gap-mobile: var(--space-sm);      /* 1rem mobile */
+}
+
+/* ========================================
+   SPACING UTILITY CLASSES
+   ======================================== */
+
+/* Systematic margin utilities */
+.mt-system-xs { margin-top: var(--space-xs) !important; }
+.mt-system-sm { margin-top: var(--space-sm) !important; }
+.mt-system-md { margin-top: var(--space-md) !important; }
+.mt-system-lg { margin-top: var(--space-lg) !important; }
+.mt-system-xl { margin-top: var(--space-xl) !important; }
+
+.mb-system-xs { margin-bottom: var(--space-xs) !important; }
+.mb-system-sm { margin-bottom: var(--space-sm) !important; }
+.mb-system-md { margin-bottom: var(--space-md) !important; }
+.mb-system-lg { margin-bottom: var(--space-lg) !important; }
+.mb-system-xl { margin-bottom: var(--space-xl) !important; }
+
+/* Content gap utilities */
+.content-gap { margin-bottom: var(--content-gap) !important; }
+.component-gap { margin-bottom: var(--component-gap) !important; }
+
+/* Responsive content gaps */
+@media (max-width: 767.98px) {
+  .content-gap { margin-bottom: var(--content-gap-mobile) !important; }
+  .component-gap { margin-bottom: var(--component-gap-mobile) !important; }
 }
 
 /* Global styles */
@@ -378,11 +432,25 @@ main, .container, .row, .content-wrapper {
   margin-top: 0 !important;
 }
 
+/* ========================================
+   SYSTEMATIC SECTION SPACING
+   ======================================== */
+
+/* All sections use consistent vertical spacing */
+section,
+.hero-section,
+.about-preview,
+.services-overview,
+.testimonials,
+.cta-section,
+.locations-section {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
 /* Hero section */
 .hero-section {
   background-color: var(--surface-1);
-  padding-top: 1.75rem;
-  padding-bottom: 3.25rem;
 }
 
 /* Hero section images - 100% column height */
@@ -426,7 +494,7 @@ main, .container, .row, .content-wrapper {
 .hero-title {
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--content-gap);
 }
 
 /* Ensure hero H2 and H3 match H1 font weight */
@@ -469,13 +537,13 @@ h4 {
 }
 
 .hero-features {
-  margin: 2rem 0;
+  margin: var(--content-gap) 0;
 }
 
 .feature-item {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-sm);
 }
 
 .hero-feature-icon {
@@ -602,7 +670,7 @@ h4 {
 .service-icon {
   font-size: 3rem;
   color: var(--bs-primary);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--component-gap);
 }
 
 /* Services Overview - icon color and button alignment */
@@ -1120,6 +1188,38 @@ body {
 .animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
 
 /* ========================================
+   RESPONSIVE SPACING SYSTEM
+   ======================================== */
+
+/* Mobile spacing adjustments - maintain proportional rhythm */
+@media (max-width: 767.98px) {
+  /* All sections use smaller but proportional spacing on mobile */
+  section,
+  .hero-section,
+  .about-preview,
+  .services-overview,
+  .testimonials,
+  .cta-section,
+  .locations-section {
+    padding-top: var(--section-padding-y-mobile);
+    padding-bottom: var(--section-padding-y-mobile);
+  }
+  
+  /* Content gaps scale down proportionally */
+  .hero-features {
+    margin: var(--content-gap-mobile) 0;
+  }
+  
+  .feature-item {
+    margin-bottom: var(--component-gap-mobile);
+  }
+  
+  .hero-title {
+    margin-bottom: var(--content-gap-mobile);
+  }
+}
+
+/* ========================================
    RESPONSIVE DESIGN - MOBILE FIRST APPROACH
    ======================================== */
 
@@ -1136,32 +1236,20 @@ body {
     --bs-gutter-x: 0.75rem !important;
     --bs-gutter-y: 0.75rem !important;
   }
-  /* Halve vertical padding for sections on small phones */
-  .services-overview,
-  .about-preview,
-  .testimonials,
-  .cta-section,
-  .locations-section {
-    padding-top: 50% !important; /* will be overridden below to half of default if explicit values exist */
-  }
+  /* Section spacing handled by systematic spacing system */
 
-  .hero-section {
-    padding-top: 0 !important;
-    padding-bottom: 1.3rem;
-  }
+  /* Hero section spacing handled by systematic spacing system above */
   
   .hero-title {
     font-size: 1.8rem;
     line-height: 1.2;
   }
   
-  .hero-features {
-    margin: 1.5rem 0;
-  }
+  /* Hero features spacing handled by systematic spacing system */
   
   .feature-item {
-    margin-bottom: 0.75rem;
     font-size: 0.9rem;
+    /* Margin handled by systematic spacing system */
   }
   
   .service-card {
