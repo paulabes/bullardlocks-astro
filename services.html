@@ -46,10 +46,6 @@
     <!-- Additional Meta Tags -->
     <meta name="author" content="William Bullard" />
     <meta name="robots" content="index, follow" />
-    <meta name="geo.region" content="GB-LND" />
-    <meta name="geo.placename" content="London" />
-    <meta name="geo.position" content="51.5074;-0.1278" />
-    <meta name="ICBM" content="51.5074, -0.1278" />
 
     <title>
       Professional Locksmith Services North London | Emergency Auto Safe Engineer | Bullard Locks
@@ -63,6 +59,7 @@
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
+  "@id": "https://bullardlocks.com/#business",
         "name": "Bullard Locks",
         "image": "https://bullardlocks.com/images/bullard-locks-logo.png",
         "description": "I'm William Bullard, founder of Bullard Locks, offering complete locksmith services North London. We provide 24/7 emergency locksmith services, mobile auto locksmith services, and safe engineering across North & Central London with no call-out fee.",
@@ -226,6 +223,16 @@
         "currenciesAccepted": "GBP"
       }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem","position": 1,"name": "Home","item": "https://bullardlocks.com/"},
+        {"@type": "ListItem","position": 2,"name": "Services","item": "https://bullardlocks.com/services.html"}
+      ]
+    }
+    </script>
 
     <!-- Bootstrap CSS -->
     <link
@@ -293,6 +300,8 @@
                 <a
                   href="https://wa.me/447809887883"
                   class="btn btn-success btn-lg"
+                  target="_blank" 
+                  rel="noopener"
                 >
                   <i class="fab fa-whatsapp me-2"></i>WhatsApp A Photo
                 </a>
@@ -306,66 +315,78 @@
       <section class="services-overview py-5" style="background-color: var(--dark-bg);">
         <div class="container">
           <div class="text-center mb-2 services-intro">
-            <h2>Complete Locksmith Services North London & Response Times</h2>
-            <p class="lead">
-              With over 30 years of experience, I deliver specialised locksmith services expertise
-              across all major locksmith disciplines throughout North London and Central London.
-            </p>
+        <h2>Complete Locksmith Services North London & Response Times</h2>
+        <p class="lead">
+          With over 30 years of experience, I deliver specialised locksmith services expertise
+          across all major locksmith disciplines throughout North London and Central London.
+        </p>
           </div>
 
           <div class="row g-3">
-            <div class="col-lg-4 mb-2">
-              <div class="service-card text-center h-100">
-                <div class="service-icon">
-                  <i class="fas fa-clock"></i>
-                </div>
-                <h3>24/7 Emergency Locksmith</h3>
-                <h4>Response Time</h4>
-                <p>
-                  Crouch End, N8: <strong>0 - 10 Mins</strong><br />
-                  North London: <strong>10 - 30 Mins</strong>
-                </p>
-                <a
-                  href="services/emergency-locksmith.html"
-                  class="btn btn-primary"
-                  >Emergency Locksmith Services</a
-                >
-              </div>
+        <div class="col-lg-4 mb-2">
+          <div class="service-card text-center h-100 d-flex flex-column">
+            <div>
+          <div class="service-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>24/7 Emergency Locksmith</h3>
+          <h4>Response Time</h4>
+          <p>
+            Crouch End, N8: <strong>0 - 10 Mins</strong><br />
+            North London: <strong>10 - 30 Mins</strong>
+          </p>
             </div>
+            <div class="mt-auto pb-3">
+          <a
+            href="services/emergency-locksmith.html"
+            class="btn btn-primary"
+            >Emergency Locksmith Services</a
+          >
+            </div>
+          </div>
+        </div>
 
-            <div class="col-lg-4 mb-2">
-              <div class="service-card text-center h-100">
-                <div class="service-icon">
-                  <i class="fas fa-car"></i>
-                </div>
-                <h3>Mobile Auto Locksmith & Car Key Replacement</h3>
-                <h4>Response Time</h4>
-                <p>
-                  North London: <strong>10 - 30 Mins</strong><br />
-                  Central London: <strong>30 - 60 Mins</strong>
-                </p>
-                <a href="services/auto-locksmith.html" class="btn btn-primary"
-                  >Auto Locksmith Services</a
-                >
-              </div>
+        <div class="col-lg-4 mb-2">
+          <div class="service-card text-center h-100 d-flex flex-column">
+            <div>
+          <div class="service-icon">
+            <i class="fas fa-car"></i>
+          </div>
+          <h3>Mobile Auto Locksmith & Car Key Replacement</h3>
+          <h4>Response Time</h4>
+          <p>
+            North London: <strong>10 - 30 Mins</strong><br />
+            Central London: <strong>30 - 60 Mins</strong>
+          </p>
             </div>
+            <div class="mt-auto pb-3">
+          <a href="services/auto-locksmith.html" class="btn btn-primary"
+            >Auto Locksmith Services</a
+          >
+            </div>
+          </div>
+        </div>
 
-            <div class="col-lg-4 mb-2 save">
-              <div class="service-card text-center h-100">
-                <div class="service-icon">
-                  <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Safe Opening & Installation</h3>
-                <h4>Booking</h4>
-                <p>
-                  Please call or email to schedule a consultation for your safe
-                  engineering needs.
-                </p>
-                <a href="services/safe-engineer.html" class="btn btn-primary"
-                  >Safe Engineer Services</a
-                >
-              </div>
+        <div class="col-lg-4 mb-2 save">
+          <div class="service-card text-center h-100 d-flex flex-column">
+            <div>
+          <div class="service-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Safe Opening & Installation</h3>
+          <h4>Booking</h4>
+          <p>
+            Please call or email to schedule a consultation for your safe
+            engineering needs.
+          </p>
             </div>
+            <div class="mt-auto pb-3">
+          <a href="services/safe-engineer.html" class="btn btn-primary"
+            >Safe Engineer Services</a
+          >
+            </div>
+          </div>
+        </div>
           </div>
         </div>
       </section>
@@ -419,8 +440,8 @@
         </div>
       </section>
 
-      <!-- Testimonials Section -->
-      <section class="testimonials py-5 style="background-color: var(--dark-bg);">
+  <!-- Testimonials Section -->
+  <section class="testimonials py-5" style="background-color: var(--dark-bg);">
         <div class="container">
           <div class="text-center mb-2">
             <h2>
@@ -506,6 +527,7 @@
             <a
               href="https://g.page/r/CZ6qgxX1xif6EB0/review"
               class="btn btn-primary"
+              target="_blank" rel="noopener"
             >
               More Reviews
             </a>
@@ -524,7 +546,7 @@
             <a href="tel:07809887883" class="btn btn-danger btn-lg me-3">
               <i class="fas fa-phone me-2"></i>07809 887 883
             </a>
-            <a href="https://wa.me/447809887883" class="btn btn-success btn-lg">
+            <a href="https://wa.me/447809887883" class="btn btn-success btn-lg" target="_blank" rel="noopener">
               <i class="fab fa-whatsapp me-2"></i>WhatsApp A Photo
             </a>
           </div>

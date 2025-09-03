@@ -727,6 +727,11 @@ h4 {
   width: 100%;
 }
 
+/* Reduce bottom padding on service card buttons by 30% */
+.service-card .pb-3 {
+  padding-bottom: 0.7rem !important;
+}
+
 .experience-logo {
   max-width: 180px !important;
   height: auto !important;
@@ -1061,6 +1066,13 @@ footer .row.g-4>.col-lg-3:nth-child(4) .footer-section p {
 .btn-lg {
   padding: 1rem 2rem;
   font-size: 1.1rem;
+}
+
+/* Add top margin to buttons in sections on large screens */
+@media (min-width: 1025px) {
+  section .btn {
+    margin-top: 20px !important;
+  }
 }
 
 /* Images styling */
