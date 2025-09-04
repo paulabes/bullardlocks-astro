@@ -29,7 +29,7 @@ function loadRecaptchaScript() {
     // Only load if not already loaded
     if (!document.querySelector('script[src*="recaptcha"]')) {
         const script = document.createElement('script');
-        script.src = 'https://www.google.com/recaptcha/api.js';
+        script.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=onRecaptchaLoad&onerror=onRecaptchaError';
         script.async = true;
         script.defer = true;
         document.head.appendChild(script);
@@ -857,8 +857,8 @@ function selectService(serviceType) {
                     " onfocus="this.style.borderColor='var(--bs-danger)'; this.style.boxShadow='0 0 0 0.2rem rgba(220, 53, 69, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
                 </div>
 
-                <!-- reCAPTCHA Widget -->
-                <div style="margin: 1rem 0; text-align: center;">
+                <!-- reCAPTCHA Widget - TEMPORARILY DISABLED -->
+                <div style="margin: 1rem 0; text-align: center; display: none;">
                     <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW" style="display: inline-block;"></div>
                 </div>
 
@@ -1053,8 +1053,8 @@ function selectService(serviceType) {
                     " onfocus="this.style.borderColor='var(--bs-success)'; this.style.boxShadow='0 0 0 0.2rem rgba(25, 135, 84, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
                 </div>
 
-                <!-- reCAPTCHA Widget -->
-                <div style="margin: 1rem 0; text-align: center;">
+                <!-- reCAPTCHA Widget - TEMPORARILY DISABLED -->
+                <div style="margin: 1rem 0; text-align: center; display: none;">
                     <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW" style="display: inline-block;"></div>
                 </div>
 
@@ -1250,8 +1250,8 @@ function selectService(serviceType) {
                     " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
                 </div>
 
-                <!-- reCAPTCHA Widget -->
-                <div style="margin: 1rem 0; text-align: center;">
+                <!-- reCAPTCHA Widget - TEMPORARILY DISABLED -->
+                <div style="margin: 1rem 0; text-align: center; display: none;">
                     <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW" style="display: inline-block;"></div>
                 </div>
 
@@ -1306,11 +1306,49 @@ function selectService(serviceType) {
         });
     }
 
+    // Initialize reCAPTCHA widget after form is inserted
+    let recaptchaWidgetId = null;
+    setTimeout(() => {
+        if (typeof grecaptcha !== 'undefined' && grecaptcha.render) {
+            const recaptchaContainer = modalBody.querySelector('.g-recaptcha');
+            if (recaptchaContainer) {
+                // Clear any existing content
+                recaptchaContainer.innerHTML = '';
+                // Render the reCAPTCHA widget and store the widget ID
+                try {
+                    recaptchaWidgetId = grecaptcha.render(recaptchaContainer, {
+                        'sitekey': '6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW',
+                        'theme': 'dark'
+                    });
+                } catch (e) {
+                    console.error('Error rendering reCAPTCHA:', e);
+                }
+            }
+        } else {
+            console.warn('reCAPTCHA not available yet, will retry...');
+            // Retry after a longer delay
+            setTimeout(() => {
+                const recaptchaContainer = modalBody.querySelector('.g-recaptcha');
+                if (recaptchaContainer && typeof grecaptcha !== 'undefined' && grecaptcha.render) {
+                    recaptchaContainer.innerHTML = '';
+                    try {
+                        recaptchaWidgetId = grecaptcha.render(recaptchaContainer, {
+                            'sitekey': '6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW',
+                            'theme': 'dark'
+                        });
+                    } catch (e) {
+                        console.error('Error rendering reCAPTCHA on retry:', e);
+                    }
+                }
+            }, 1000);
+        }
+    }, 100);
+
     // Focus first input
     setTimeout(() => {
         const firstInput = modalBody.querySelector('input');
         if (firstInput) firstInput.focus();
-    }, 100);
+    }, 200);
 }
 
 /**
@@ -1326,8 +1364,37 @@ function handleServiceFormSubmission(serviceType, form) {
     submitBtn.innerHTML = 'Sending...';
     submitBtn.disabled = true;
 
-    // Get reCAPTCHA token
-    const recaptchaToken = grecaptcha.getResponse();
+    // Get reCAPTCHA token using the widget ID from the current modal - TEMPORARILY DISABLED
+    /*
+    if (typeof grecaptcha === 'undefined' || !grecaptcha.getResponse) {
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Show error message
+        alert('reCAPTCHA is not loaded properly. Please refresh the page and try again.');
+        return;
+    }
+
+    // Find the reCAPTCHA widget in the current form
+    const recaptchaContainer = form.querySelector('.g-recaptcha');
+    let recaptchaToken = '';
+
+    if (recaptchaContainer) {
+        // Get all reCAPTCHA widgets and find the one for this form
+        const widgets = document.querySelectorAll('.g-recaptcha');
+        for (let i = 0; i < widgets.length; i++) {
+            if (widgets[i] === recaptchaContainer) {
+                try {
+                    recaptchaToken = grecaptcha.getResponse(i);
+                } catch (e) {
+                    console.error('Error getting reCAPTCHA response:', e);
+                }
+                break;
+            }
+        }
+    }
+
     if (!recaptchaToken) {
         // Reset button
         submitBtn.innerHTML = originalText;
@@ -1337,8 +1404,10 @@ function handleServiceFormSubmission(serviceType, form) {
         alert('Please complete the reCAPTCHA verification before submitting.');
         return;
     }
+    */
 
-    // Prepare form data for PHP submission
+    // Temporarily skip reCAPTCHA validation
+    const recaptchaToken = 'temp-disabled';    // Prepare form data for PHP submission
     const phpFormData = new FormData();
     phpFormData.append('form_type', serviceType);
     phpFormData.append('name', data[`${serviceType}-name`] || '');
@@ -1445,3 +1514,21 @@ function handleServiceFormSubmission(serviceType, form) {
         `;
     });
 }
+
+// Global reCAPTCHA callback functions
+window.onRecaptchaLoad = function() {
+    console.log('reCAPTCHA loaded successfully');
+};
+
+window.onRecaptchaError = function() {
+    console.error('reCAPTCHA failed to load');
+};
+
+// Add debugging for reCAPTCHA
+window.onRecaptchaExpired = function() {
+    console.log('reCAPTCHA expired');
+};
+
+window.onRecaptchaReset = function() {
+    console.log('reCAPTCHA reset');
+};

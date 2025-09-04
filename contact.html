@@ -162,8 +162,8 @@
                                         placeholder="Please describe your issue..."></textarea>
                                 </div>
 
-                                <!-- reCAPTCHA Widget -->
-                                <div class="mb-3 text-center">
+                                <!-- reCAPTCHA Widget - TEMPORARILY DISABLED -->
+                                <div class="mb-3 text-center" style="display: none;">
                                     <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW"></div>
                                 </div>
 
@@ -422,7 +422,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Google reCAPTCHA -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
     <script>

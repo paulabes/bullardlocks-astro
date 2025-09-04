@@ -6,20 +6,6 @@ ini_set('SMTP', 'localhost'); // cPanel SMTP server
 ini_set('smtp_port', '587'); // SMTP port for TLS
 ini_set('sendmail_from', 'william@bullardlocks.com'); // From email address
 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
-    exit;
-}
-
-<?php
-// Simple PHP mail() version - no PHPMailer required!
-
 // Detect if this is an AJAX request
 $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
@@ -59,10 +45,13 @@ try {
     $safeBrand = trim($_POST['safe_brand'] ?? '');
     $details = trim($_POST['details'] ?? '');
 
-    // reCAPTCHA validation
-    $recaptchaSecret = '6Lc0-70rAAAAAJhrJFqYK_E_MuCfL_lMztVPc6lL'; // Replace with your actual secret key
+    // reCAPTCHA validation - TEMPORARILY DISABLED FOR TESTING
+    // $recaptchaSecret = '6Lc0-70rAAAAAJhrJFqYK_E_MuCfL_lMztVPc6lL'; // Your actual secret key from Google reCAPTCHA
+    $recaptchaSecret = ''; // Temporarily disabled for testing
     $recaptchaToken = $_POST['g-recaptcha-response'] ?? '';
 
+    // Skip reCAPTCHA validation for now
+    /*
     if (empty($recaptchaToken)) {
         $errorMsg = 'Please complete the reCAPTCHA verification';
         if ($isAjax) {
@@ -102,6 +91,7 @@ try {
             exit;
         }
     }
+    */
 
     // Validate required fields
     if (empty($name) || empty($phone)) {
