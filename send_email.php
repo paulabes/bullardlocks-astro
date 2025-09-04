@@ -1,6 +1,11 @@
 <?php
 // Simple PHP mail() version - no PHPMailer required!
 
+// SMTP Configuration for cPanel shared hosting
+ini_set('SMTP', 'localhost'); // cPanel SMTP server
+ini_set('smtp_port', '587'); // SMTP port for TLS
+ini_set('sendmail_from', 'william@bullardlocks.com'); // From email address
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
@@ -54,6 +59,50 @@ try {
     $safeBrand = trim($_POST['safe_brand'] ?? '');
     $details = trim($_POST['details'] ?? '');
 
+    // reCAPTCHA validation
+    $recaptchaSecret = '6Lc0-70rAAAAAJhrJFqYK_E_MuCfL_lMztVPc6lL'; // Replace with your actual secret key
+    $recaptchaToken = $_POST['g-recaptcha-response'] ?? '';
+
+    if (empty($recaptchaToken)) {
+        $errorMsg = 'Please complete the reCAPTCHA verification';
+        if ($isAjax) {
+            throw new Exception($errorMsg);
+        } else {
+            header('Location: contact.html?error=' . urlencode($errorMsg));
+            exit;
+        }
+    }
+
+    // Verify reCAPTCHA
+    $recaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
+    $recaptchaData = [
+        'secret' => $recaptchaSecret,
+        'response' => $recaptchaToken,
+        'remoteip' => $_SERVER['REMOTE_ADDR'] ?? ''
+    ];
+
+    $recaptchaOptions = [
+        'http' => [
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($recaptchaData)
+        ]
+    ];
+
+    $recaptchaContext = stream_context_create($recaptchaOptions);
+    $recaptchaResult = file_get_contents($recaptchaUrl, false, $recaptchaContext);
+    $recaptchaResponse = json_decode($recaptchaResult, true);
+
+    if (!$recaptchaResponse['success']) {
+        $errorMsg = 'reCAPTCHA verification failed. Please try again.';
+        if ($isAjax) {
+            throw new Exception($errorMsg);
+        } else {
+            header('Location: contact.html?error=' . urlencode($errorMsg));
+            exit;
+        }
+    }
+
     // Validate required fields
     if (empty($name) || empty($phone)) {
         $errorMsg = 'Name and phone number are required';
@@ -97,7 +146,7 @@ try {
     }
 
     // Send email using PHP mail() function
-    $to = 'paulabrahams@outlook.com';
+    $to = 'william@bullardlocks.com';
     $success = mail($to, $emailSubject, $emailBody, $headers);
 
     if (!$success) {

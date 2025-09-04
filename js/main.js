@@ -4,6 +4,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Load reCAPTCHA script
+    loadRecaptchaScript();
+    
     // Load header and footer
     loadIncludes();
     
@@ -18,6 +21,20 @@ document.addEventListener('DOMContentLoaded', function() {
         forceFloatingButtons();
     }, 100);
 });
+
+/**
+ * Load Google reCAPTCHA script
+ */
+function loadRecaptchaScript() {
+    // Only load if not already loaded
+    if (!document.querySelector('script[src*="recaptcha"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://www.google.com/recaptcha/api.js';
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+    }
+}
 
 /**
  * Load header and footer includes
@@ -840,6 +857,11 @@ function selectService(serviceType) {
                     " onfocus="this.style.borderColor='var(--bs-danger)'; this.style.boxShadow='0 0 0 0.2rem rgba(220, 53, 69, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
                 </div>
 
+                <!-- reCAPTCHA Widget -->
+                <div style="margin: 1rem 0; text-align: center;">
+                    <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW" style="display: inline-block;"></div>
+                </div>
+
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
                     <button type="submit" style="
                         flex: 1;
@@ -1029,6 +1051,11 @@ function selectService(serviceType) {
                         transition: all 0.3s ease;
                         box-sizing: border-box;
                     " onfocus="this.style.borderColor='var(--bs-success)'; this.style.boxShadow='0 0 0 0.2rem rgba(25, 135, 84, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
+                </div>
+
+                <!-- reCAPTCHA Widget -->
+                <div style="margin: 1rem 0; text-align: center;">
+                    <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW" style="display: inline-block;"></div>
                 </div>
 
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
@@ -1223,6 +1250,11 @@ function selectService(serviceType) {
                     " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
                 </div>
 
+                <!-- reCAPTCHA Widget -->
+                <div style="margin: 1rem 0; text-align: center;">
+                    <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW" style="display: inline-block;"></div>
+                </div>
+
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
                     <button type="submit" style="
                         flex: 1;
@@ -1294,12 +1326,25 @@ function handleServiceFormSubmission(serviceType, form) {
     submitBtn.innerHTML = 'Sending...';
     submitBtn.disabled = true;
 
+    // Get reCAPTCHA token
+    const recaptchaToken = grecaptcha.getResponse();
+    if (!recaptchaToken) {
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Show error message
+        alert('Please complete the reCAPTCHA verification before submitting.');
+        return;
+    }
+
     // Prepare form data for PHP submission
     const phpFormData = new FormData();
     phpFormData.append('form_type', serviceType);
     phpFormData.append('name', data[`${serviceType}-name`] || '');
     phpFormData.append('phone', data[`${serviceType}-phone`] || '');
     phpFormData.append('location', data[`${serviceType}-location`] || '');
+    phpFormData.append('g-recaptcha-response', recaptchaToken); // Add reCAPTCHA token
 
     // Add service-specific data
     if (serviceType === 'emergency') {
