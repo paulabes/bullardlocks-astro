@@ -159,6 +159,16 @@ try {
         }
     }
 
+    // Send confirmation email to sender (if email provided)
+    if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $confirmationSubject = 'Thank you for contacting Bullard Locks';
+        $confirmationBody = generateConfirmationEmailBody($name, $formType);
+        $confirmationHeaders = generateConfirmationHeaders();
+
+        // Send confirmation email (don't fail the whole process if this fails)
+        @mail($email, $confirmationSubject, $confirmationBody, $confirmationHeaders);
+    }
+
     // Success handling
     if ($isAjax) {
         echo json_encode([
@@ -189,7 +199,7 @@ function generateHeaders($replyToEmail = '', $serviceType = '') {
     $headers = "From: Bullard Locks Website <noreply@bullardlocks.com>\r\n";
     $headers .= "Reply-To: " . (!empty($replyToEmail) ? $replyToEmail : "noreply@bullardlocks.com") . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
     if (!empty($serviceType)) {
         $headers .= "X-Service-Type: $serviceType\r\n";
@@ -199,28 +209,172 @@ function generateHeaders($replyToEmail = '', $serviceType = '') {
 }
 
 function generateContactEmailBody($name, $phone, $email, $postcode, $service, $message) {
-    $body = "Contact Form Inquiry\n\n";
-    $body .= "Name: $name\n";
-    $body .= "Phone: $phone\n";
-    if (!empty($email)) $body .= "Email: $email\n";
-    if (!empty($postcode)) $body .= "Postcode: $postcode\n";
-    $body .= "Service Required: $service\n\n";
-    $body .= "Message: $message\n";
+    $body = "
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; }
+            h1 { color: #0d6efd; margin-bottom: 5px; font-size: 24px; }
+            h2 { color: #6c757d; margin-top: 0; font-size: 16px; font-weight: normal; }
+            p { margin: 10px 0; padding: 0; }
+            .details { background: #f8f9fa; padding: 20px; border-radius: 5px; }
+        </style>
+    </head>
+    <body>
+        <h1>Contact Form Inquiry</h1>
+        <h2>Bullard Locks - North London Locksmith Services</h2>
+
+        <div class='details'>
+            <p><strong>Name:</strong> $name</p>
+            <p><strong>Phone:</strong> $phone</p>";
+
+    if (!empty($email)) {
+        $body .= "<p><strong>Email:</strong> $email</p>";
+    }
+
+    if (!empty($postcode)) {
+        $body .= "<p><strong>Postcode:</strong> $postcode</p>";
+    }
+
+    $body .= "<p><strong>Service Required:</strong> $service</p>
+            <p><strong>Message:</strong></p>
+            <p>" . nl2br(htmlspecialchars($message)) . "</p>
+        </div>
+
+        <p><strong>Bullard Locks</strong> | William Bullard | 07809 887 883</p>
+        <p>Serving North & Central London | 24/7 Emergency Service</p>
+    </body>
+    </html>";
 
     return $body;
 }
 
 function generateServiceEmailBody($serviceName, $name, $phone, $location, $propertyType, $vehicle, $serviceType, $safeType, $details, $safeBrand = '') {
-    $body = "$serviceName Request\n\n";
-    $body .= "Name: $name\n";
-    $body .= "Phone: $phone\n";
-    if (!empty($location)) $body .= "Location: $location\n";
-    if (!empty($propertyType)) $body .= "Property Type: $propertyType\n";
-    if (!empty($vehicle)) $body .= "Vehicle: $vehicle\n";
-    if (!empty($serviceType)) $body .= "Service Type: $serviceType\n";
-    if (!empty($safeType)) $body .= "Safe Type: $safeType\n";
-    if (!empty($safeBrand)) $body .= "Safe Brand/Model: $safeBrand\n";
-    if (!empty($details)) $body .= "Details: $details\n";
+    $body = "
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; }
+            h1 { color: #dc3545; margin-bottom: 5px; font-size: 24px; }
+            h2 { color: #6c757d; margin-top: 0; font-size: 16px; font-weight: normal; }
+            p { margin: 10px 0; padding: 0; }
+            .urgent { background: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; margin: 20px 0; font-weight: bold; }
+            .details { background: #f8f9fa; padding: 20px; border-radius: 5px; }
+        </style>
+    </head>
+    <body>
+        <h1>$serviceName Request</h1>
+        <h2>Bullard Locks - Professional Locksmith Services</h2>
+
+        <div class='urgent'>
+            URGENT REQUEST: Please respond within 5 minutes
+        </div>
+
+        <div class='details'>
+            <p><strong>Customer Name:</strong> $name</p>
+            <p><strong>Phone Number:</strong> $phone</p>";
+
+    if (!empty($location)) {
+        $body .= "<p><strong>Location:</strong> $location</p>";
+    }
+
+    if (!empty($propertyType)) {
+        $body .= "<p><strong>Property Type:</strong> $propertyType</p>";
+    }
+
+    if (!empty($vehicle)) {
+        $body .= "<p><strong>Vehicle:</strong> $vehicle</p>";
+    }
+
+    if (!empty($serviceType)) {
+        $body .= "<p><strong>Service Type:</strong> $serviceType</p>";
+    }
+
+    if (!empty($safeType)) {
+        $body .= "<p><strong>Safe Type:</strong> $safeType</p>";
+    }
+
+    if (!empty($safeBrand)) {
+        $body .= "<p><strong>Safe Brand/Model:</strong> $safeBrand</p>";
+    }
+
+    if (!empty($details)) {
+        $body .= "<p><strong>Details:</strong></p>
+            <p>" . nl2br(htmlspecialchars($details)) . "</p>";
+    }
+
+    $body .= "
+        </div>
+
+        <p><strong>Bullard Locks</strong> | William Bullard | 07809 887 883</p>
+        <p>24/7 Emergency Service | North & Central London Coverage</p>
+    </body>
+    </html>";
+
+    return $body;
+}
+
+function generateConfirmationHeaders() {
+    $headers = "From: Bullard Locks <noreply@bullardlocks.com>\r\n";
+    $headers .= "Reply-To: william@bullardlocks.com\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "X-Confirmation-Email: true\r\n";
+
+    return $headers;
+}
+
+function generateConfirmationEmailBody($name, $formType) {
+    $serviceText = '';
+    if ($formType === 'emergency') {
+        $serviceText = 'emergency locksmith service';
+    } elseif ($formType === 'car') {
+        $serviceText = 'auto locksmith service';
+    } elseif ($formType === 'safe') {
+        $serviceText = 'safe engineering service';
+    } else {
+        $serviceText = 'our services';
+    }
+
+    $body = "
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; }
+            h1 { color: #28a745; margin-bottom: 5px; font-size: 24px; }
+            h2 { color: #6c757d; margin-top: 0; font-size: 16px; font-weight: normal; }
+            p { margin: 15px 0; padding: 0; }
+            .confirmation { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 20px; border-radius: 5px; margin: 20px 0; }
+            .contact { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        </style>
+    </head>
+    <body>
+        <h1>Thank You for Contacting Bullard Locks</h1>
+        <h2>Your request has been received successfully</h2>
+
+        <div class='confirmation'>
+            <p>Dear $name,</p>
+            <p><strong>✓ Your request has been received</strong></p>
+            <p>Thank you for contacting Bullard Locks. We have received your inquiry about our $serviceText and will respond within 5 minutes.</p>
+        </div>
+
+        <div class='contact'>
+            <p><strong>What happens next?</strong></p>
+            <p>• William Bullard will contact you directly within 5 minutes</p>
+            <p>• We'll discuss your specific needs and requirements</p>
+            <p>• We'll provide a quote and arrange the service</p>
+        </div>
+
+        <p>If you need immediate assistance, please call us directly:</p>
+        <p><strong>📞 07809 887 883</strong></p>
+
+        <p>Best regards,<br>
+        <strong>William Bullard</strong><br>
+        Bullard Locks<br>
+        North London Locksmith Services<br>
+        24/7 Emergency Service</p>
+    </body>
+    </html>";
 
     return $body;
 }
