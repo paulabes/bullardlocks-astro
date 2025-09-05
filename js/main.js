@@ -529,6 +529,8 @@ function forceFloatingButtons() {
         whatsappBtn = document.createElement('a');
         whatsappBtn.id = 'whatsapp-btn-fixed';
         whatsappBtn.href = 'https://wa.me/447809887883';
+        whatsappBtn.target = '_blank';
+        whatsappBtn.rel = 'noopener';
         whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
         whatsappBtn.setAttribute('aria-label', 'Contact via WhatsApp');
         whatsappBtn.style.cssText = `
