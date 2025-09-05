@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load header and footer
     loadIncludes();
     
+    // Initialize main contact form handler
+    initializeContactForm();
+    
     // Force floating buttons positioning
     forceFloatingButtons();
     
@@ -21,6 +24,93 @@ document.addEventListener('DOMContentLoaded', function() {
         forceFloatingButtons();
     }, 100);
 });
+
+/**
+ * Initialize main contact form with AJAX submission
+ */
+function initializeContactForm() {
+    const contactForm = document.getElementById('quoteForm');
+    if (!contactForm) {
+        console.log('Contact form not found');
+        return;
+    }
+    
+    console.log('Contact form found, adding event listener');
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log('Form submitted, processing...');
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        
+        // Validate required fields client-side
+        const name = formData.get('name');
+        const phone = formData.get('phone');
+        const postcode = formData.get('postcode');
+        const service = formData.get('service');
+        
+        if (!name || !phone || !postcode || !service || 
+            name.trim() === '' || phone.trim() === '' || postcode.trim() === '' || service.trim() === '') {
+            showFormMessage('Error! Please check that you have completed all required fields.', 'error');
+            return;
+        }
+        
+        // Log form data for debugging
+        console.log('Form data:');
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+        
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+        submitBtn.disabled = true;
+        
+        // Submit form
+        fetch('send_email.php', {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response data:', data);
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            if (data.success) {
+                // Reset form
+                contactForm.reset();
+                showFormMessage(data.message, 'success');
+            } else {
+                // Use the server's error message, but if it's generic, use our custom message
+                let errorMessage = data.message;
+                if (errorMessage.includes('Failed to send email') || errorMessage.includes('Sorry, there was an error')) {
+                    errorMessage = 'Error! Please check that you have completed all required fields.';
+                }
+                showFormMessage(errorMessage, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Form submission error:', error);
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            showFormMessage('Error! Please check that you have completed all required fields.', 'error');
+        });
+    });
+}
 
 /**
  * Load Google reCAPTCHA script
@@ -560,6 +650,7 @@ function forceFloatingButtons() {
 function openChatbot() {
     // Create modal overlay
     const modal = document.createElement('div');
+    modal.id = 'chatbot-modal-overlay';
     modal.style.cssText = `
         position: fixed !important;
         top: 0 !important;
@@ -589,7 +680,7 @@ function openChatbot() {
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             color: var(--text-light);
         " id="chatbot-modal-content">
-            <button onclick="this.closest('div').parentElement.remove()" style="
+            <button onclick="document.getElementById('chatbot-modal-overlay').remove()" style="
                 position: absolute;
                 top: 15px;
                 right: 20px;
@@ -877,26 +968,10 @@ function selectService(serviceType) {
                         box-shadow: 0 2px 8px rgba(0,0,0,0.15);
                         position: relative;
                         overflow: hidden;
+                        width: 100%;
                     " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
                         Request Emergency Locksmith
                     </button>
-                    <a href="tel:07809887883" style="
-                        background: #e67e22;
-                        color: white;
-                        text-decoration: none;
-                        padding: 1rem 1.5rem;
-                        border-radius: 0;
-                        font-weight: 500;
-                        font-size: 1rem;
-                        display: flex;
-                        align-items: center;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-                        position: relative;
-                        overflow: hidden;
-                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
-                        <span class="call-now-text">Call Now</span>
-                    </a>
                 </div>
             </form>
         `,
@@ -1073,26 +1148,10 @@ function selectService(serviceType) {
                         box-shadow: 0 2px 8px rgba(0,0,0,0.15);
                         position: relative;
                         overflow: hidden;
+                        width: 100%;
                     " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
                         Request Auto Locksmith
                     </button>
-                    <a href="tel:07809887883" style="
-                        background: #e67e22;
-                        color: white;
-                        text-decoration: none;
-                        padding: 1rem 1.5rem;
-                        border-radius: 0;
-                        font-weight: 500;
-                        font-size: 1rem;
-                        display: flex;
-                        align-items: center;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-                        position: relative;
-                        overflow: hidden;
-                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
-                        <span class="call-now-text">Call Now</span>
-                    </a>
                 </div>
             </form>
         `,
@@ -1270,26 +1329,10 @@ function selectService(serviceType) {
                         box-shadow: 0 2px 8px rgba(0,0,0,0.15);
                         position: relative;
                         overflow: hidden;
+                        width: 100%;
                     " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
                         Request Safe Engineer
                     </button>
-                    <a href="tel:07809887883" style="
-                        background: #e67e22;
-                        color: white;
-                        text-decoration: none;
-                        padding: 1rem 1.5rem;
-                        border-radius: 0;
-                        font-weight: 500;
-                        font-size: 1rem;
-                        display: flex;
-                        align-items: center;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-                        position: relative;
-                        overflow: hidden;
-                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
-                        <span class="call-now-text">Call Now</span>
-                    </a>
                 </div>
             </form>
         `
@@ -1432,9 +1475,17 @@ function handleServiceFormSubmission(serviceType, form) {
     // Submit to PHP script
     fetch('send_email.php', {
         method: 'POST',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        },
         body: phpFormData
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         // Reset button
         submitBtn.innerHTML = originalText;
@@ -1447,12 +1498,12 @@ function handleServiceFormSubmission(serviceType, form) {
                 <div style="text-align: center; padding: 2rem;">
                     <div style="font-size: 3rem; color: #28a745; margin-bottom: 1rem;">✓</div>
                     <h3 style="color: #28a745; margin-bottom: 1rem; font-size: 1.5rem;">Request Sent Successfully!</h3>
-                    <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+                    <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
                         ${data.message}
                     </p>
-                    <button onclick="document.querySelector('.modal').remove()"
+                    <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
                             style="background: #007bff; color: white; border: none; padding: 12px 24px;
-                                   border-radius: 5px; cursor: pointer; font-size: 1rem; font-weight: 500;">
+                                   border-radius: 0; cursor: pointer; font-size: 1rem; font-weight: 500;">
                         Close
                     </button>
                 </div>
@@ -1464,19 +1515,14 @@ function handleServiceFormSubmission(serviceType, form) {
                 <div style="text-align: center; padding: 2rem;">
                     <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
                     <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Error Sending Request</h3>
-                    <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+                    <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
                         ${data.message}
                     </p>
                     <div style="display: flex; gap: 10px; justify-content: center;">
-                        <button onclick="document.querySelector('.modal').remove()"
+                        <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
                                 style="background: #6c757d; color: white; border: none; padding: 12px 24px;
-                                       border-radius: 5px; cursor: pointer; font-size: 1rem;">
+                                       border-radius: 0; cursor: pointer; font-size: 1rem;">
                             Close
-                        </button>
-                        <button onclick="location.href='tel:07809887883'"
-                                style="background: #28a745; color: white; border: none; padding: 12px 24px;
-                                       border-radius: 5px; cursor: pointer; font-size: 1rem;">
-                            <span class="call-now-text">Call Now: 07809 887 883</span>
                         </button>
                     </div>
                 </div>
@@ -1495,19 +1541,14 @@ function handleServiceFormSubmission(serviceType, form) {
             <div style="text-align: center; padding: 2rem;">
                 <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
                 <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Connection Error</h3>
-                <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+                <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
                     Sorry, there was an error sending your request. Please call us directly.
                 </p>
                 <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button onclick="document.querySelector('.modal').remove()"
+                    <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
                             style="background: #6c757d; color: white; border: none; padding: 12px 24px;
-                                   border-radius: 5px; cursor: pointer; font-size: 1rem;">
+                                   border-radius: 0; cursor: pointer; font-size: 1rem;">
                         Close
-                    </button>
-                    <button onclick="location.href='tel:07809887883'"
-                            style="background: #28a745; color: white; border: none; padding: 12px 24px;
-                                   border-radius: 5px; cursor: pointer; font-size: 1rem;">
-                        <span class="call-now-text">Call Now: 07809 887 883</span>
                     </button>
                 </div>
             </div>

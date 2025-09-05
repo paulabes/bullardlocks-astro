@@ -1,18 +1,19 @@
 <?php
-// Simple PHP mail() version - no PHPMailer required!
+// Simple PHP mail() version - optimized for shared hosting
 
-// SMTP Configuration for cPanel shared hosting
-ini_set('SMTP', 'localhost'); // cPanel SMTP server
-ini_set('smtp_port', '587'); // SMTP port for TLS
-ini_set('sendmail_from', 'william@bullardlocks.com'); // From email address
+// Remove problematic SMTP ini_set calls that can interfere with host mail configuration
+// Let the hosting provider handle SMTP configuration
 
 // Detect if this is an AJAX request
 $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
+// Only set JSON headers for AJAX requests
+if ($isAjax) {
+    header('Content-Type: application/json');
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: POST');
+    header('Access-Control-Allow-Headers: Content-Type');
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     if ($isAjax) {
@@ -20,7 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         echo json_encode(['success' => false, 'message' => 'Method not allowed']);
         exit;
     } else {
-        // For regular form submission, redirect back with error
+        // For direct access via browser (GET request), show friendly message
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            echo '<h1>Contact Form Handler</h1>';
+            echo '<p>This script handles form submissions. Please use the contact form at <a href="contact.html">contact.html</a></p>';
+            exit;
+        }
+        // For other methods, redirect back with error
         header('Location: contact.html?error=method_not_allowed');
         exit;
     }
@@ -45,12 +52,12 @@ try {
     $safeBrand = trim($_POST['safe_brand'] ?? '');
     $details = trim($_POST['details'] ?? '');
 
-    // reCAPTCHA validation - TEMPORARILY DISABLED FOR TESTING
+    // reCAPTCHA validation - DISABLED
+    // Since reCAPTCHA is temporarily disabled in the frontend, skip validation
     // $recaptchaSecret = '6Lc0-70rAAAAAJhrJFqYK_E_MuCfL_lMztVPc6lL'; // Your actual secret key from Google reCAPTCHA
-    $recaptchaSecret = ''; // Temporarily disabled for testing
     $recaptchaToken = $_POST['g-recaptcha-response'] ?? '';
 
-    // Skip reCAPTCHA validation for now
+    // Skip reCAPTCHA validation while disabled
     /*
     if (empty($recaptchaToken)) {
         $errorMsg = 'Please complete the reCAPTCHA verification';
@@ -93,9 +100,20 @@ try {
     }
     */
 
-    // Validate required fields
+    // Validate required fields based on form type
     if (empty($name) || empty($phone)) {
-        $errorMsg = 'Name and phone number are required';
+        $errorMsg = 'Error! Please check that you have completed all required fields.';
+        if ($isAjax) {
+            throw new Exception($errorMsg);
+        } else {
+            header('Location: contact.html?error=' . urlencode($errorMsg));
+            exit;
+        }
+    }
+
+    // Additional validation for contact form
+    if ($formType === 'contact' && (empty($postcode) || empty($service))) {
+        $errorMsg = 'Error! Please check that you have completed all required fields.';
         if ($isAjax) {
             throw new Exception($errorMsg);
         } else {
@@ -137,10 +155,38 @@ try {
 
     // Send email using PHP mail() function
     $to = 'william@bullardlocks.com';
+    
+    // Log attempt details for debugging
+    error_log("Attempting to send email - Form type: $formType, Name: $name, Phone: $phone, To: $to");
+    error_log("Email subject: $emailSubject");
+    error_log("Headers: $headers");
+    
+    // Clear any previous errors
+    error_clear_last();
+    
     $success = mail($to, $emailSubject, $emailBody, $headers);
-
+    
+    // Get the last error if any occurred
+    $lastError = error_get_last();
+    
     if (!$success) {
-        $errorMsg = 'Failed to send email';
+        $errorMsg = 'Failed to send email. Please try calling us directly at 07809 887 883.';
+        
+        // Log detailed error information
+        error_log("Mail sending FAILED - mail() returned false");
+        error_log("Form data - Type: $formType, Name: $name, Phone: $phone, Postcode: $postcode, Service: $service");
+        
+        if ($lastError) {
+            error_log("PHP Error: " . $lastError['message'] . " in " . $lastError['file'] . " on line " . $lastError['line']);
+        }
+        
+        // Check if this is a hosting-related issue
+        if (function_exists('mail')) {
+            error_log("mail() function exists - likely server configuration issue");
+        } else {
+            error_log("mail() function does NOT exist - PHP mail disabled");
+        }
+        
         if ($isAjax) {
             throw new Exception($errorMsg);
         } else {
@@ -148,9 +194,11 @@ try {
             exit;
         }
     }
+    
+    error_log("Mail sent successfully to $to");
 
-    // Send confirmation email to sender (if email provided)
-    if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    // Send confirmation email to sender (if email provided) - SKIP FOR CONTACT FORM
+    if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) && $formType !== 'contact') {
         $confirmationSubject = 'Thank you for contacting Bullard Locks';
         $confirmationBody = generateConfirmationEmailBody($name, $formType);
         $confirmationHeaders = generateConfirmationHeaders();
@@ -160,14 +208,18 @@ try {
     }
 
     // Success handling
+    error_log("Preparing success response - AJAX: " . ($isAjax ? 'true' : 'false'));
+    
     if ($isAjax) {
+        error_log("Sending JSON success response");
         echo json_encode([
             'success' => true,
-            'message' => 'Thank you! Your request has been sent successfully. William will contact you within 5 minutes.'
+            'message' => 'Thank you! Your message has been sent to William.'
         ]);
     } else {
+        error_log("Redirecting to contact.html with success message");
         // For regular form submission, show success page or redirect with success message
-        header('Location: contact.html?success=' . urlencode('Thank you! Your request has been sent successfully. William will contact you within 5 minutes.'));
+        header('Location: contact.html?success=' . urlencode('Thank you! Your message has been sent to William.'));
         exit;
     }
 
@@ -186,10 +238,13 @@ try {
 }
 
 function generateHeaders($replyToEmail = '', $serviceType = '') {
-    $headers = "From: Bullard Locks Website <noreply@bullardlocks.com>\r\n";
-    $headers .= "Reply-To: " . (!empty($replyToEmail) ? $replyToEmail : "noreply@bullardlocks.com") . "\r\n";
+    $headers = "From: Bullard Locks Website <william@bullardlocks.com>\r\n";
+    $headers .= "Reply-To: " . (!empty($replyToEmail) ? $replyToEmail : "william@bullardlocks.com") . "\r\n";
+    $headers .= "Return-Path: william@bullardlocks.com\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "Content-Transfer-Encoding: 8bit\r\n";
 
     if (!empty($serviceType)) {
         $headers .= "X-Service-Type: $serviceType\r\n";
@@ -305,10 +360,13 @@ function generateServiceEmailBody($serviceName, $name, $phone, $location, $prope
 }
 
 function generateConfirmationHeaders() {
-    $headers = "From: Bullard Locks <noreply@bullardlocks.com>\r\n";
+    $headers = "From: Bullard Locks <william@bullardlocks.com>\r\n";
     $headers .= "Reply-To: william@bullardlocks.com\r\n";
+    $headers .= "Return-Path: william@bullardlocks.com\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "Content-Transfer-Encoding: 8bit\r\n";
     $headers .= "X-Confirmation-Email: true\r\n";
 
     return $headers;

@@ -2262,7 +2262,7 @@ html {
    ======================================== */
 
 .form-message {
-    border-radius: 8px;
+    border-radius: 0 !important;
     border: none;
     padding: 1rem 1.25rem;
     margin-top: 1rem;
@@ -2275,12 +2275,32 @@ html {
     background-color: #d4edda;
     color: #155724;
     border-left: 4px solid #28a745;
+    border-radius: 0 !important;
 }
 
 .form-message.alert-danger {
     background-color: #f8d7da;
     color: #721c24;
     border-left: 4px solid #dc3545;
+    border-radius: 0 !important;
+}
+
+/* Override Bootstrap alert border-radius with highest specificity */
+.alert.form-message,
+.alert.form-message.alert-success,
+.alert.form-message.alert-danger,
+div.alert.form-message,
+div.alert.form-message.alert-success,
+div.alert.form-message.alert-danger,
+div.alert.form-message.mt-3 {
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+
+/* Nuclear option - remove all border radius from alerts */
+.alert {
+    border-radius: 0 !important;
 }
 
 .form-message .d-flex {
