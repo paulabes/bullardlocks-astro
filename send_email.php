@@ -161,6 +161,12 @@ try {
     error_log("Email subject: $emailSubject");
     error_log("Headers: $headers");
     
+    // Check if mail function exists first
+    if (!function_exists('mail')) {
+        error_log("mail() function does NOT exist - PHP mail disabled");
+        throw new Exception('Mail function not available on server. Please call us directly at 07809 887 883.');
+    }
+    
     // Clear any previous errors
     error_clear_last();
     
