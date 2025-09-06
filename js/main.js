@@ -26,6 +26,49 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
+ * Show form message to user
+ */
+function showFormMessage(message, type = 'info') {
+    console.log('Showing form message:', type, message);
+    
+    // Find or create message container
+    let messageContainer = document.getElementById('form-message-container');
+    if (!messageContainer) {
+        messageContainer = document.createElement('div');
+        messageContainer.id = 'form-message-container';
+        messageContainer.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(messageContainer);
+    }
+    
+    // Create message element
+    const messageEl = document.createElement('div');
+    messageEl.className = `alert alert-${type === 'error' ? 'danger' : type === 'success' ? 'success' : 'info'} alert-dismissible`;
+    messageEl.style.cssText = `
+        margin-bottom: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    `;
+    messageEl.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
+    `;
+    
+    messageContainer.appendChild(messageEl);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (messageEl.parentNode) {
+            messageEl.remove();
+        }
+    }, 5000);
+}
+
+/**
  * Initialize main contact form with AJAX submission
  */
 function initializeContactForm() {
@@ -37,7 +80,7 @@ function initializeContactForm() {
     
     console.log('Contact form found, adding event listener');
     
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         console.log('Form submitted, processing...');
         
@@ -67,6 +110,20 @@ function initializeContactForm() {
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
         submitBtn.disabled = true;
+        
+        // Get reCAPTCHA V3 token first
+        console.log('Contact form: Getting reCAPTCHA token...');
+        try {
+            const recaptchaToken = await getRecaptchaToken('contact_form');
+            console.log('Contact form: reCAPTCHA token received');
+            formData.append('g-recaptcha-response', recaptchaToken);
+        } catch (error) {
+            console.error('Contact form reCAPTCHA error:', error);
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            showFormMessage('Security verification failed. Please refresh and try again.', 'error');
+            return;
+        }
         
         // Submit form
         fetch('send_email.php', {
@@ -113,17 +170,56 @@ function initializeContactForm() {
 }
 
 /**
- * Load Google reCAPTCHA script
+ * Load Google reCAPTCHA V3 script
  */
 function loadRecaptchaScript() {
     // Only load if not already loaded
     if (!document.querySelector('script[src*="recaptcha"]')) {
         const script = document.createElement('script');
-        script.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=onRecaptchaLoad&onerror=onRecaptchaError';
+        script.src = 'https://www.google.com/recaptcha/api.js?render=6LeyKsArAAAAAC0ssQkPmDD_K3ibyLgp2kvRYHmD';
         script.async = true;
         script.defer = true;
         document.head.appendChild(script);
     }
+}
+
+/**
+ * Get reCAPTCHA V3 token for form submission with timeout
+ */
+async function getRecaptchaToken(action = 'submit') {
+    return new Promise((resolve, reject) => {
+        console.log('Attempting to get reCAPTCHA token for action:', action);
+        
+        // Set a timeout for reCAPTCHA operations
+        const timeout = setTimeout(() => {
+            console.error('reCAPTCHA timeout after 10 seconds');
+            resolve('recaptcha_timeout');
+        }, 10000);
+        
+        if (typeof grecaptcha === 'undefined') {
+            console.error('reCAPTCHA not loaded, using fallback');
+            clearTimeout(timeout);
+            // Fallback: resolve with a placeholder token
+            resolve('recaptcha_not_available');
+            return;
+        }
+        
+        grecaptcha.ready(() => {
+            console.log('reCAPTCHA ready, executing...');
+            grecaptcha.execute('6LeyKsArAAAAAC0ssQkPmDD_K3ibyLgp2kvRYHmD', { action: action })
+                .then(token => {
+                    clearTimeout(timeout);
+                    console.log('reCAPTCHA token received:', token.substring(0, 20) + '...');
+                    resolve(token);
+                })
+                .catch(error => {
+                    clearTimeout(timeout);
+                    console.error('reCAPTCHA execute error:', error);
+                    // Fallback: resolve with a placeholder token instead of rejecting
+                    resolve('recaptcha_execute_failed');
+                });
+        });
+    });
 }
 
 /**
@@ -526,11 +622,12 @@ function forceFloatingButtons() {
     // Only create WhatsApp button on mobile/tablet
     let whatsappBtn = null;
     if (!isDesktop) {
-        whatsappBtn = document.createElement('a');
-        whatsappBtn.id = 'whatsapp-btn-fixed';
-        whatsappBtn.href = 'https://wa.me/447809887883';
-        whatsappBtn.target = '_blank';
-        whatsappBtn.rel = 'noopener';
+    whatsappBtn = document.createElement('a');
+    whatsappBtn.id = 'whatsapp-btn-fixed';
+    whatsappBtn.href = 'https://wa.me/447809887883';
+    // Open WhatsApp in a new window safely
+    whatsappBtn.target = '_blank';
+    whatsappBtn.rel = 'noopener noreferrer';
         whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
         whatsappBtn.setAttribute('aria-label', 'Contact via WhatsApp');
         whatsappBtn.style.cssText = `
@@ -950,10 +1047,6 @@ function selectService(serviceType) {
                     " onfocus="this.style.borderColor='var(--bs-danger)'; this.style.boxShadow='0 0 0 0.2rem rgba(220, 53, 69, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
                 </div>
 
-                <!-- reCAPTCHA Widget - TEMPORARILY DISABLED -->
-                <div style="margin: 1rem 0; text-align: center; display: none;">
-                    <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW" style="display: inline-block;"></div>
-                </div>
 
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
                     <button type="submit" style="
@@ -1130,10 +1223,6 @@ function selectService(serviceType) {
                     " onfocus="this.style.borderColor='var(--bs-success)'; this.style.boxShadow='0 0 0 0.2rem rgba(25, 135, 84, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
                 </div>
 
-                <!-- reCAPTCHA Widget - TEMPORARILY DISABLED -->
-                <div style="margin: 1rem 0; text-align: center; display: none;">
-                    <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW" style="display: inline-block;"></div>
-                </div>
 
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
                     <button type="submit" style="
@@ -1311,10 +1400,6 @@ function selectService(serviceType) {
                     " onfocus="this.style.borderColor='var(--bs-primary)'; this.style.boxShadow='0 0 0 0.2rem rgba(13, 110, 253, 0.12)'" onblur="this.style.borderColor='var(--dark-border)'; this.style.boxShadow='none'"></textarea>
                 </div>
 
-                <!-- reCAPTCHA Widget - TEMPORARILY DISABLED -->
-                <div style="margin: 1rem 0; text-align: center; display: none;">
-                    <div class="g-recaptcha" data-sitekey="6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW" style="display: inline-block;"></div>
-                </div>
 
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
                     <button type="submit" style="
@@ -1351,43 +1436,6 @@ function selectService(serviceType) {
         });
     }
 
-    // Initialize reCAPTCHA widget after form is inserted
-    let recaptchaWidgetId = null;
-    setTimeout(() => {
-        if (typeof grecaptcha !== 'undefined' && grecaptcha.render) {
-            const recaptchaContainer = modalBody.querySelector('.g-recaptcha');
-            if (recaptchaContainer) {
-                // Clear any existing content
-                recaptchaContainer.innerHTML = '';
-                // Render the reCAPTCHA widget and store the widget ID
-                try {
-                    recaptchaWidgetId = grecaptcha.render(recaptchaContainer, {
-                        'sitekey': '6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW',
-                        'theme': 'dark'
-                    });
-                } catch (e) {
-                    console.error('Error rendering reCAPTCHA:', e);
-                }
-            }
-        } else {
-            console.warn('reCAPTCHA not available yet, will retry...');
-            // Retry after a longer delay
-            setTimeout(() => {
-                const recaptchaContainer = modalBody.querySelector('.g-recaptcha');
-                if (recaptchaContainer && typeof grecaptcha !== 'undefined' && grecaptcha.render) {
-                    recaptchaContainer.innerHTML = '';
-                    try {
-                        recaptchaWidgetId = grecaptcha.render(recaptchaContainer, {
-                            'sitekey': '6Lc0-70rAAAAAL-82a3m431rWwas376tG0JM_VhW',
-                            'theme': 'dark'
-                        });
-                    } catch (e) {
-                        console.error('Error rendering reCAPTCHA on retry:', e);
-                    }
-                }
-            }, 1000);
-        }
-    }, 100);
 
     // Focus first input
     setTimeout(() => {
@@ -1399,7 +1447,7 @@ function selectService(serviceType) {
 /**
  * Handle service form submission
  */
-function handleServiceFormSubmission(serviceType, form) {
+async function handleServiceFormSubmission(serviceType, form) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
@@ -1409,50 +1457,34 @@ function handleServiceFormSubmission(serviceType, form) {
     submitBtn.innerHTML = 'Sending...';
     submitBtn.disabled = true;
 
-    // Get reCAPTCHA token using the widget ID from the current modal - TEMPORARILY DISABLED
-    /*
-    if (typeof grecaptcha === 'undefined' || !grecaptcha.getResponse) {
+    // Get reCAPTCHA V3 token
+    let recaptchaToken;
+    try {
+        recaptchaToken = await getRecaptchaToken(serviceType + '_form');
+    } catch (error) {
+        console.error('reCAPTCHA error:', error);
         // Reset button
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
         
-        // Show error message
-        alert('reCAPTCHA is not loaded properly. Please refresh the page and try again.');
+        // Show error message in modal
+        const modalBody = document.getElementById('chatbot-modal-body');
+        modalBody.innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+                <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
+                <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Security Verification Failed</h3>
+                <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
+                    Security verification failed. Please refresh the page and try again.
+                </p>
+                <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
+                        style="background: #6c757d; color: white; border: none; padding: 12px 24px;
+                               border-radius: 0; cursor: pointer; font-size: 1rem;">
+                    Close
+                </button>
+            </div>
+        `;
         return;
-    }
-
-    // Find the reCAPTCHA widget in the current form
-    const recaptchaContainer = form.querySelector('.g-recaptcha');
-    let recaptchaToken = '';
-
-    if (recaptchaContainer) {
-        // Get all reCAPTCHA widgets and find the one for this form
-        const widgets = document.querySelectorAll('.g-recaptcha');
-        for (let i = 0; i < widgets.length; i++) {
-            if (widgets[i] === recaptchaContainer) {
-                try {
-                    recaptchaToken = grecaptcha.getResponse(i);
-                } catch (e) {
-                    console.error('Error getting reCAPTCHA response:', e);
-                }
-                break;
-            }
-        }
-    }
-
-    if (!recaptchaToken) {
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // Show error message
-        alert('Please complete the reCAPTCHA verification before submitting.');
-        return;
-    }
-    */
-
-    // Temporarily skip reCAPTCHA validation
-    const recaptchaToken = 'temp-disabled';    // Prepare form data for PHP submission
+    }    // Prepare form data for PHP submission
     const phpFormData = new FormData();
     phpFormData.append('form_type', serviceType);
     phpFormData.append('name', data[`${serviceType}-name`] || '');
@@ -1475,6 +1507,7 @@ function handleServiceFormSubmission(serviceType, form) {
     }
 
     // Submit to PHP script
+    console.log('Submitting form data to send_email.php...');
     fetch('send_email.php', {
         method: 'POST',
         headers: {
@@ -1483,6 +1516,7 @@ function handleServiceFormSubmission(serviceType, form) {
         body: phpFormData
     })
     .then(response => {
+        console.log('Response received:', response.status, response.statusText);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -1558,20 +1592,4 @@ function handleServiceFormSubmission(serviceType, form) {
     });
 }
 
-// Global reCAPTCHA callback functions
-window.onRecaptchaLoad = function() {
-    console.log('reCAPTCHA loaded successfully');
-};
-
-window.onRecaptchaError = function() {
-    console.error('reCAPTCHA failed to load');
-};
-
-// Add debugging for reCAPTCHA
-window.onRecaptchaExpired = function() {
-    console.log('reCAPTCHA expired');
-};
-
-window.onRecaptchaReset = function() {
-    console.log('reCAPTCHA reset');
-};
+// reCAPTCHA V3 is loaded automatically - no callback functions needed

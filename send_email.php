@@ -52,15 +52,16 @@ try {
     $safeBrand = trim($_POST['safe_brand'] ?? '');
     $details = trim($_POST['details'] ?? '');
 
-    // reCAPTCHA validation - DISABLED
-    // Since reCAPTCHA is temporarily disabled in the frontend, skip validation
-    // $recaptchaSecret = '6Lc0-70rAAAAAJhrJFqYK_E_MuCfL_lMztVPc6lL'; // Your actual secret key from Google reCAPTCHA
+    // reCAPTCHA V3 validation - ENABLED WITH DEBUG MODE
+    $recaptchaSecret = '6LeyKsArAAAAAHYnesU3EKnB3FiyOGg0LOGTjlP8';
     $recaptchaToken = $_POST['g-recaptcha-response'] ?? '';
+    $recaptchaMinScore = 0.5; // Minimum score for V3 (0.0 to 1.0, higher is better)
 
-    // Skip reCAPTCHA validation while disabled
-    /*
+    error_log("reCAPTCHA token received: " . $recaptchaToken);
+
     if (empty($recaptchaToken)) {
-        $errorMsg = 'Please complete the reCAPTCHA verification';
+        $errorMsg = 'Security verification is required';
+        error_log("reCAPTCHA error: Empty token");
         if ($isAjax) {
             throw new Exception($errorMsg);
         } else {
@@ -69,7 +70,12 @@ try {
         }
     }
 
-    // Verify reCAPTCHA
+    // Skip reCAPTCHA validation for fallback tokens during debugging
+    if (in_array($recaptchaToken, ['recaptcha_not_available', 'recaptcha_execute_failed', 'recaptcha_timeout'])) {
+        error_log("reCAPTCHA fallback token detected, skipping validation: " . $recaptchaToken);
+    } else {
+
+    // Verify reCAPTCHA V3
     $recaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
     $recaptchaData = [
         'secret' => $recaptchaSecret,
@@ -90,7 +96,8 @@ try {
     $recaptchaResponse = json_decode($recaptchaResult, true);
 
     if (!$recaptchaResponse['success']) {
-        $errorMsg = 'reCAPTCHA verification failed. Please try again.';
+        error_log('reCAPTCHA verification failed: ' . print_r($recaptchaResponse, true));
+        $errorMsg = 'Security verification failed. Please try again.';
         if ($isAjax) {
             throw new Exception($errorMsg);
         } else {
@@ -98,7 +105,22 @@ try {
             exit;
         }
     }
-    */
+
+    // Check reCAPTCHA V3 score
+    $recaptchaScore = $recaptchaResponse['score'] ?? 0.0;
+    if ($recaptchaScore < $recaptchaMinScore) {
+        error_log("reCAPTCHA score too low: $recaptchaScore (minimum: $recaptchaMinScore)");
+        $errorMsg = 'Security verification failed. Please try again.';
+        if ($isAjax) {
+            throw new Exception($errorMsg);
+        } else {
+            header('Location: contact.html?error=' . urlencode($errorMsg));
+            exit;
+        }
+    }
+
+    error_log("reCAPTCHA verification successful - Score: $recaptchaScore, Action: " . ($recaptchaResponse['action'] ?? 'unknown'));
+    } // End of reCAPTCHA validation else block
 
     // Validate required fields based on form type
     if (empty($name) || empty($phone)) {

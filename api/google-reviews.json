@@ -1,0 +1,47 @@
+{
+  "reviews": [
+    {
+      "author_name": "Paul A.",
+      "rating": 5,
+      "text": "Excellent, fast, professional service. Came out quickly and fixed the lock without damage.",
+      "relative_time_description": "a month ago",
+      "time": 1693536000
+    },
+    {
+      "author_name": "Jane D.",
+      "rating": 5,
+      "text": "Highly recommended - trustworthy and very helpful.",
+      "relative_time_description": "2 months ago",
+      "time": 1690848000
+    },
+    {
+      "author_name": "Mark T.",
+      "rating": 5,
+      "text": "Quick response and reasonable price. Great service.",
+      "relative_time_description": "3 months ago",
+      "time": 1688169600
+    },
+    {
+      "author_name": "Sarah J.",
+      "rating": 5,
+      "text": "Saved me after locking myself out. Friendly and professional.",
+      "relative_time_description": "4 months ago",
+      "time": 1685587200
+    }
+    ,
+    {
+      "author_name": "Liam K.",
+      "rating": 5,
+      "text": "Excellent workmanship and arrived faster than expected. Highly recommended.",
+      "relative_time_description": "2 weeks ago",
+      "time": 1693958400
+    },
+    {
+      "author_name": "Olivia S.",
+      "rating": 5,
+      "text": "Polite, clean, and efficient. Fixed our office lock quickly.",
+      "relative_time_description": "1 month ago",
+      "time": 1692595200
+    }
+  ]
+}

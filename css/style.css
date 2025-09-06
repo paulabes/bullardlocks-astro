@@ -19,6 +19,13 @@
   color: #dddddd !important;
 }
 
+/* Hide reCAPTCHA badge/logo */
+.grecaptcha-badge {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .locations-services-overview .service-card ul li i {
   color: #ffffff !important;
 }
@@ -2396,10 +2403,18 @@ div.alert.form-message.mt-3 {
         display: none !important;
     }
 
-    /* Reduce hero section top padding by 16px on screens less than 1025px */
-    .hero-section {
-        padding-top: 0 !important;
-    }
+  /* Ensure sections (single-column stacks) have deeper vertical spacing on <=1025px
+     Set top/bottom to 2× the mobile section spacing so single-column rows feel roomier */
+  section,
+  .hero-section,
+  .about-preview,
+  .services-overview,
+  .testimonials,
+  .cta-section,
+  .locations-section {
+    padding-top: calc(var(--section-padding-y-mobile) * 2) !important;
+    padding-bottom: calc(var(--section-padding-y-mobile) * 2) !important;
+  }
 }
 
 
