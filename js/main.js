@@ -28,11 +28,45 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  * Show form message to user
  */
-function showFormMessage(message, type = 'info') {
-    console.log('Showing form message:', type, message);
+function showFormMessage(message, type = 'info', formId = null) {
+    console.log('Showing form message:', type, message, 'for form:', formId);
     
-    // Find or create message container
-    let messageContainer = document.getElementById('form-message-container');
+    let messageContainer;
+    
+    // For contact form, use in-form container
+    if (formId === 'quoteForm' || document.getElementById('contact-form-messages')) {
+        messageContainer = document.getElementById('contact-form-messages');
+        if (messageContainer) {
+            // Clear existing messages
+            messageContainer.innerHTML = '';
+            
+            // Create message element
+            let alertType = 'info';
+            if (type === 'error') alertType = 'danger';
+            else if (type === 'success') alertType = 'success';
+            else if (type === 'warning') alertType = 'warning';
+            
+            const messageEl = document.createElement('div');
+            messageEl.className = `alert alert-${alertType} alert-dismissible mb-3`;
+            messageEl.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" onclick="this.parentElement.innerHTML=''"></button>
+            `;
+            
+            messageContainer.appendChild(messageEl);
+            
+            // Auto-remove after 8 seconds
+            setTimeout(() => {
+                if (messageEl.parentNode) {
+                    messageEl.remove();
+                }
+            }, 8000);
+            return;
+        }
+    }
+    
+    // Fallback to top-right notification for other forms
+    messageContainer = document.getElementById('form-message-container');
     if (!messageContainer) {
         messageContainer = document.createElement('div');
         messageContainer.id = 'form-message-container';
@@ -47,8 +81,13 @@ function showFormMessage(message, type = 'info') {
     }
     
     // Create message element
+    let alertType = 'info';
+    if (type === 'error') alertType = 'danger';
+    else if (type === 'success') alertType = 'success';
+    else if (type === 'warning') alertType = 'warning';
+    
     const messageEl = document.createElement('div');
-    messageEl.className = `alert alert-${type === 'error' ? 'danger' : type === 'success' ? 'success' : 'info'} alert-dismissible`;
+    messageEl.className = `alert alert-${alertType} alert-dismissible`;
     messageEl.style.cssText = `
         margin-bottom: 10px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -87,15 +126,29 @@ function initializeContactForm() {
         // Get form data
         const formData = new FormData(contactForm);
         
-        // Validate required fields client-side
+        // Validate required fields client-side with specific messages
         const name = formData.get('name');
         const phone = formData.get('phone');
         const postcode = formData.get('postcode');
         const service = formData.get('service');
         
-        if (!name || !phone || !postcode || !service || 
-            name.trim() === '' || phone.trim() === '' || postcode.trim() === '' || service.trim() === '') {
-            showFormMessage('Error! Please check that you have completed all required fields.', 'error');
+        if (!name || name.trim() === '') {
+            showFormMessage('Please enter your name.', 'error', 'quoteForm');
+            return;
+        }
+        
+        if (!phone || phone.trim() === '') {
+            showFormMessage('Please enter your phone number.', 'error', 'quoteForm');
+            return;
+        }
+        
+        if (!postcode || postcode.trim() === '') {
+            showFormMessage('Please enter your postcode.', 'error', 'quoteForm');
+            return;
+        }
+        
+        if (!service || service.trim() === '') {
+            showFormMessage('Please select a service.', 'error', 'quoteForm');
             return;
         }
         
@@ -119,10 +172,10 @@ function initializeContactForm() {
             formData.append('g-recaptcha-response', recaptchaToken);
         } catch (error) {
             console.error('Contact form reCAPTCHA error:', error);
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            showFormMessage('Security verification failed. Please refresh and try again.', 'error');
-            return;
+            // Don't reset button or return - continue with form submission
+            showFormMessage('Security verification temporarily unavailable. Your form will still be processed.', 'warning', 'quoteForm');
+            // Add fallback token so form can still submit
+            formData.append('g-recaptcha-response', 'recaptcha_error_fallback');
         }
         
         // Submit form
@@ -149,14 +202,10 @@ function initializeContactForm() {
             if (data.success) {
                 // Reset form
                 contactForm.reset();
-                showFormMessage(data.message, 'success');
+                showFormMessage(data.message, 'success', 'quoteForm');
             } else {
-                // Use the server's error message, but if it's generic, use our custom message
-                let errorMessage = data.message;
-                if (errorMessage.includes('Failed to send email') || errorMessage.includes('Sorry, there was an error')) {
-                    errorMessage = 'Error! Please check that you have completed all required fields.';
-                }
-                showFormMessage(errorMessage, 'error');
+                // Show the specific server error message
+                showFormMessage(data.message, 'error', 'quoteForm');
             }
         })
         .catch(error => {
@@ -164,7 +213,7 @@ function initializeContactForm() {
             // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            showFormMessage('Error! Please check that you have completed all required fields.', 'error');
+            showFormMessage('Sorry, there was a connection error. Please try again or call us directly.', 'error', 'quoteForm');
         });
     });
 }

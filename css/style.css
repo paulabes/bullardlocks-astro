@@ -7,6 +7,14 @@
   color: #ffffff !important;
 }
 
+/* Exception: keep icons inside CTA buttons inline and vertically centered */
+.locations-services-overview .service-card .btn i,
+.locations-services-overview .service-card a.btn i {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  color: inherit !important;
+}
+
 .locations-services-overview .service-card h3,
 .locations-services-overview .service-card h4,
 .locations-services-overview .service-card h5 {
@@ -337,18 +345,6 @@ main li {
   padding-left: calc(var(--bs-gutter-x) * 0.5) !important;
   padding-right: calc(var(--bs-gutter-x) * 0.5) !important;
 }
-
-/* ========================================
-   SYSTEMATIC SECTION SPACING
-   ======================================== */
-
-/* ========================================
-   SYSTEMATIC SECTION SPACING
-   ======================================== */
-
-/* ========================================
-   SYSTEMATIC SECTION SPACING
-   ======================================== */
 
 /* Navbar background */
 .navbar {
@@ -1976,6 +1972,8 @@ html {
     margin-bottom: 0;
   }
 }
+
+
 
 /* ========================================
    COMPONENT RESPONSIVENESS
