@@ -200,7 +200,7 @@ try {
     }
 
     // Send email using PHP mail() function
-    $to = 'william@bullardlocks.com';
+    $to = 'bullardlocks@gmail.com';
     
     // Log attempt details for debugging
     error_log("Attempting to send email - Form type: $formType, Name: $name, Phone: $phone, To: $to");
@@ -266,12 +266,12 @@ try {
         error_log("Sending JSON success response");
         echo json_encode([
             'success' => true,
-            'message' => 'Thank you! Your message has been sent to William.'
+            'message' => 'Thank you! Your message has been sent successfully.'
         ]);
     } else {
         error_log("Redirecting to contact.html with success message");
         // For regular form submission, show success page or redirect with success message
-        header('Location: contact.html?success=' . urlencode('Thank you! Your message has been sent to William.'));
+    header('Location: contact.html?success=' . urlencode('Thank you! Your message has been sent successfully.'));
         exit;
     }
 
@@ -291,7 +291,7 @@ try {
 
 function generateHeaders($replyToEmail = '', $serviceType = '') {
     $headers = "From: Bullard Locks Website <william@bullardlocks.com>\r\n";
-    $headers .= "Reply-To: " . (!empty($replyToEmail) ? $replyToEmail : "william@bullardlocks.com") . "\r\n";
+    $headers .= "Reply-To: " . (!empty($replyToEmail) ? $replyToEmail : "bullardlocks@gmail.com") . "\r\n";
     $headers .= "Return-Path: william@bullardlocks.com\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
@@ -413,7 +413,7 @@ function generateServiceEmailBody($serviceName, $name, $phone, $location, $prope
 
 function generateConfirmationHeaders() {
     $headers = "From: Bullard Locks <william@bullardlocks.com>\r\n";
-    $headers .= "Reply-To: william@bullardlocks.com\r\n";
+    $headers .= "Reply-To: bullardlocks@gmail.com\r\n";
     $headers .= "Return-Path: william@bullardlocks.com\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";

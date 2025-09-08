@@ -809,7 +809,7 @@ function openChatbot() {
         display: flex !important;
         justify-content: center !important;
         align-items: flex-start !important;
-        padding-top: 5vh !important;
+    padding-top: 2vh !important;
         z-index: 10000 !important;
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
         backdrop-filter: blur(2px) !important;
