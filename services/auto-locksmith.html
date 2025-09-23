@@ -109,24 +109,56 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "@id": "https://bullardlocks.com/#business",
-                "name": "Bullard Locks",
-                "telephone": "+447809887883",
+        "@type": "LocalBusiness",
+        "@id": "https://bullardlocks.com/#business",
+        "name": "Bullard Locks",
+        "description": "Professional auto locksmith serving North & Central London. Mobile car key replacement, programming, and emergency vehicle lockout services.",
+        "url": "https://bullardlocks.com",
+        "telephone": "+447809887883",
+        "email": "william@bullardlocks.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "London",
+            "addressCountry": "GB",
+            "postalCode": "N8"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.5749,
+            "longitude": -0.1204
+        },
+        "openingHours": "Mo-Su 00:00-24:00",
+        "sameAs": [
+            "https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Auto Locksmith Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Car Key Replacement",
+                        "description": "Mobile car key cutting and replacement service"
+                    }
+                },
+                {
+                    "@type": "Offer", 
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Vehicle Lockout Service",
+                        "description": "Emergency car lockout and key retrieval"
+                    }
+                }
+            ]
+        },
         "areaServed": [
-            "Crouch End (N8)",
-            "Islington (N1)",
-            "Camden (NW1)",
-            "Haringey (N4)",
-            "Barnet (EN5)",
-            "Enfield (EN2)",
-            "Finchley (N12)",
-            "Hampstead (NW3)",
-            "Highgate (N6)",
-            "Bloomsbury (WC1)",
-            "Holborn (WC2)",
-            "City of London (EC1 / EC2)",
-            "Westminster (SW1 / W1)"
+            {
+                "@type": "City",
+                "name": "London",
+                "addressCountry": "GB"
+            }
         ]
     }
     </script>
@@ -313,31 +345,19 @@
 
                     <div class="col-lg-4">
                         <div class="guide-sidebar">
-                            <div class="card mb-4" style="
-                                background-color: var(--dark-bg);
-                                border-radius: 0;
-                                padding: 1.5rem;
-                              ">
-                                <div class="card-header" style="
-                                  background-color: var(--dark-bg);
-                                  border-radius: 0;
-                                  padding: 1rem 1.5rem;
-                                ">
+                            <div class="card mb-4">
+                                <div class="card-header">
                                     <h4>
                                         <i class="fas fa-car me-2"></i>24/7 Response
                                     </h4>
                                 </div>
-                                <div class="card-body" style="
-                                  background-color: var(--dark-bg);
-                                  border-radius: 0;
-                                  padding: 1.5rem;
-                                ">
-                                    <ul>
-                                        <li>All vehicle makes & models</li>
-                                        <li>Car key cutting & programming</li>
-                                        <li>Emergency vehicle lockouts</li>
-                                        <li>Key fob replacement & repair</li>
-                                        <li>Transponder key services</li>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-white me-2"></i>All vehicle makes & models</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Car key cutting & programming</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Emergency vehicle lockouts</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Key fob replacement & repair</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Transponder key services</li>
                                     </ul>
                                     <a href="tel:07809887883" class="btn btn-danger btn-lg w-100">
                                         <i class="fas fa-phone me-2"></i>07809 887 883
@@ -345,68 +365,44 @@
                                 </div>
                             </div>
 
-                            <div class="card mb-4" style="
-                                background-color: var(--dark-bg);
-                                border-radius: 0;
-                                padding: 1.5rem;
-                              ">
-                                <div class="card-header" style="
-                                  background-color: var(--dark-bg);
-                                  border-radius: 0;
-                                  padding: 1rem 1.5rem;
-                                ">
+                            <div class="card mb-4">
+                                <div class="card-header">
                                     <h4>
                                         <i class="fas fa-map-marker-alt me-2"></i>Auto Coverage
                                     </h4>
                                 </div>
-                                <div class="card-body" style="
-                                  background-color: var(--dark-bg);
-                                  border-radius: 0;
-                                  padding: 1.5rem;
-                                ">
-                                    <ul>
-                                        <li>Crouch End (N8 / N10)</li>
-                                        <li>Islington (N1)</li>
-                                        <li>Camden (NW1)</li>
-                                        <li>Haringey (N4)</li>
-                                        <li>Barnet (EN5)</li>
-                                        <li>Enfield (EN2)</li>
-                                        <li>Finchley (N12)</li>
-                                        <li>Hampstead (NW3)</li>
-                                        <li>Highgate (N6)</li>
-                                        <li>Bloomsbury (WC1)</li>
-                                        <li>Holborn (WC2)</li>
-                                        <li>City of London (EC1 / EC2)</li>
-                                        <li>Westminster (SW1 / W1)</li>
-                                </ul>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-white me-2"></i>Crouch End (N8 / N10)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Islington (N1)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Camden (NW1)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Haringey (N4)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Barnet (EN5)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Enfield (EN2)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Finchley (N12)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Hampstead (NW3)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Highgate (N6)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Bloomsbury (WC1)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Holborn (WC2)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>City of London (EC1 / EC2)</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Westminster (SW1 / W1)</li>
+                                    </ul>
                                 </div>
                             </div>
 
-                            <div class="card" style="
-                                background-color: var(--dark-bg);
-                                border-radius: 0;
-                                padding: 1.5rem;
-                              ">
-                                <div class="card-header" style="
-                                  background-color: var(--dark-bg);
-                                  border-radius: 0;
-                                  padding: 1rem 1.5rem;
-                                ">
+                            <div class="card">
+                                <div class="card-header">
                                     <h4><i class="fas fa-tools me-2"></i>Auto Locksmith</h4>
                                 </div>
-                                <div class="card-body" style="
-                                  background-color: var(--dark-bg);
-                                  border-radius: 0;
-                                  padding: 1.5rem;
-                                ">
-                                    <ul>
-                                        <li>Lost car keys</li>
-                                        <li>Key programming</li>
-                                        <li>Vehicle lockouts</li>
-                                        <li>Remote fob repair</li>
-                                        <li>Spare key cutting</li>
-                                        <li>Security upgrades</li>
-                                </ul>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-white me-2"></i>Lost car keys</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Key programming</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Vehicle lockouts</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Remote fob repair</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Spare key cutting</li>
+                                        <li><i class="fas fa-check text-white me-2"></i>Security upgrades</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
