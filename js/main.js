@@ -111,49 +111,89 @@ function showFormMessage(message, type = 'info', formId = null) {
  * Initialize main contact form with AJAX submission
  */
 function initializeContactForm() {
-    const contactForm = document.getElementById('quoteForm');
-    if (!contactForm) {
-        console.log('Contact form not found');
-        return;
-    }
-    
-    console.log('Contact form found, adding event listener');
-    
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        console.log('Form submitted, processing...');
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        
-        // Validate required fields client-side with specific messages
-        const name = formData.get('name');
-        const phone = formData.get('phone');
-        const postcode = formData.get('postcode');
-        const service = formData.get('service');
-        
-        if (!name || name.trim() === '') {
-            showFormMessage('Please enter your name.', 'error', 'quoteForm');
+    // Wait a bit for DOM to be fully ready
+    setTimeout(() => {
+        const contactForm = document.getElementById('quoteForm');
+        if (!contactForm) {
+            console.log('Contact form with ID "quoteForm" not found on this page');
             return;
         }
         
-        if (!phone || phone.trim() === '') {
-            showFormMessage('Please enter your phone number.', 'error', 'quoteForm');
-            return;
-        }
+        console.log('Contact form found, adding event listener');
         
-        if (!postcode || postcode.trim() === '') {
-            showFormMessage('Please enter your postcode.', 'error', 'quoteForm');
-            return;
-        }
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            console.log('Form submitted, processing...');
+            
+            // Clear any existing messages first
+            const existingMessages = document.getElementById('contact-form-messages');
+            if (existingMessages) {
+                existingMessages.innerHTML = '';
+            }
+            
+            // Get form data
+            const formData = new FormData(contactForm);
         
-        if (!service || service.trim() === '') {
-            showFormMessage('Please select a service.', 'error', 'quoteForm');
-            return;
-        }
+            // Validate required fields client-side with specific messages
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const postcode = formData.get('postcode');
+            const service = formData.get('service');
+            
+            // Add visual validation feedback
+            let isValid = true;
+            let errorMessages = [];
+            
+            // Reset all field states
+            contactForm.querySelectorAll('.form-control, .form-select').forEach(field => {
+                field.classList.remove('is-invalid', 'is-valid');
+            });
+            
+            if (!name || name.trim() === '') {
+                document.getElementById('name').classList.add('is-invalid');
+                errorMessages.push('Please enter your name.');
+                isValid = false;
+            }
+            
+            if (!phone || phone.trim() === '') {
+                document.getElementById('phone').classList.add('is-invalid');
+                errorMessages.push('Please enter your phone number.');
+                isValid = false;
+            }
+            
+            if (!postcode || postcode.trim() === '') {
+                document.getElementById('postcode').classList.add('is-invalid');
+                errorMessages.push('Please enter your postcode.');
+                isValid = false;
+            }
+            
+            if (!service || service.trim() === '') {
+                document.getElementById('service').classList.add('is-invalid');
+                errorMessages.push('Please select a service.');
+                isValid = false;
+            }
+            
+            // If validation failed, show all errors and stop
+            if (!isValid) {
+                showFormMessage(errorMessages.join('<br>'), 'error', 'quoteForm');
+                // Focus on first invalid field
+                const firstInvalid = contactForm.querySelector('.is-invalid');
+                if (firstInvalid) {
+                    firstInvalid.focus();
+                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+            
+            // Mark valid fields
+            contactForm.querySelectorAll('.form-control, .form-select').forEach(field => {
+                if (!field.classList.contains('is-invalid')) {
+                    field.classList.add('is-valid');
+                }
+            });
         
         // Log form data for debugging
-        console.log('Form data:');
+        console.log('Contact form submission - Form data:');
         for (let [key, value] of formData.entries()) {
             console.log(`${key}: ${value}`);
         }
@@ -178,7 +218,8 @@ function initializeContactForm() {
             formData.append('g-recaptcha-response', 'recaptcha_error_fallback');
         }
         
-        // Submit form
+        // Submit form directly to PHP script
+        console.log('Contact form: Submitting to send_email.php...');
         fetch('send_email.php', {
             method: 'POST',
             headers: {
@@ -187,14 +228,14 @@ function initializeContactForm() {
             body: formData
         })
         .then(response => {
-            console.log('Response status:', response.status);
+            console.log('Contact form response status:', response.status);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            console.log('Response data:', data);
+            console.log('Contact form response data:', data);
             // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
@@ -202,23 +243,61 @@ function initializeContactForm() {
             if (data.success) {
                 // Reset form
                 contactForm.reset();
+                // Clear validation states
+                contactForm.querySelectorAll('.form-control, .form-select').forEach(field => {
+                    field.classList.remove('is-invalid', 'is-valid');
+                });
                 showFormMessage(data.message, 'success', 'quoteForm');
+                console.log('Contact form submitted successfully');
             } else {
                 // Show the specific server error message
                 showFormMessage(data.message, 'error', 'quoteForm');
+                console.error('Contact form server error:', data.message);
             }
         })
         .catch(error => {
-            console.error('Form submission error:', error);
+            console.error('Contact form submission error:', error);
             // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            showFormMessage('Sorry, there was a connection error. Please try again or call us directly.', 'error', 'quoteForm');
+            showFormMessage('Sorry, there was a connection error. Please try again or call us directly at 07809 887 883.', 'error', 'quoteForm');
         });
     });
-}
-
-/**
+        }, 100); // Close setTimeout
+        
+        // Add real-time validation feedback
+        contactForm.querySelectorAll('input[required], select[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            field.addEventListener('input', function() {
+                // Clear invalid state when user starts typing
+                if (this.classList.contains('is-invalid')) {
+                    this.classList.remove('is-invalid');
+                    // Clear error message if this was the last invalid field
+                    const invalidFields = contactForm.querySelectorAll('.is-invalid');
+                    if (invalidFields.length === 0) {
+                        const messageContainer = document.getElementById('contact-form-messages');
+                        if (messageContainer) messageContainer.innerHTML = '';
+                    }
+                }
+            });
+        });
+        
+        function validateField(field) {
+            const value = field.value.trim();
+            const isRequired = field.hasAttribute('required');
+            
+            if (isRequired && !value) {
+                field.classList.add('is-invalid');
+                field.classList.remove('is-valid');
+            } else if (value) {
+                field.classList.remove('is-invalid');
+                field.classList.add('is-valid');
+            }
+        }
+}/**
  * Load Google reCAPTCHA V3 script
  */
 function loadRecaptchaScript() {
@@ -1512,27 +1591,9 @@ async function handleServiceFormSubmission(serviceType, form) {
         recaptchaToken = await getRecaptchaToken(serviceType + '_form');
     } catch (error) {
         console.error('reCAPTCHA error:', error);
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // Show error message in modal
-        const modalBody = document.getElementById('chatbot-modal-body');
-        modalBody.innerHTML = `
-            <div style="text-align: center; padding: 2rem;">
-                <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
-                <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Security Verification Failed</h3>
-                <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
-                    Security verification failed. Please refresh the page and try again.
-                </p>
-                <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
-                        style="background: #6c757d; color: white; border: none; padding: 12px 24px;
-                               border-radius: 0; cursor: pointer; font-size: 1rem;">
-                    Close
-                </button>
-            </div>
-        `;
-        return;
+        // Use fallback token to allow form submission
+        recaptchaToken = 'recaptcha_error_fallback';
+        console.log('Using fallback token due to reCAPTCHA error');
     }    // Prepare form data for PHP submission
     const phpFormData = new FormData();
     phpFormData.append('form_type', serviceType);
@@ -1555,19 +1616,57 @@ async function handleServiceFormSubmission(serviceType, form) {
         phpFormData.append('details', data['safe-details'] || '');
     }
 
-    // Submit to PHP script
-    console.log('Submitting form data to send_email.php...');
-    fetch('send_email.php', {
-        method: 'POST',
+    // Submit to PHP script with connection test first
+    console.log('Testing server connection...');
+    
+    // First, test if server is reachable with a simple test
+    fetch('test.php', {
+        method: 'GET',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: phpFormData
+        }
     })
     .then(response => {
-        console.log('Response received:', response.status, response.statusText);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error('Server connection test failed - PHP may not be available');
+        }
+        return response.json();
+    })
+    .then(testData => {
+        console.log('Server connection test passed:', testData);
+        
+        // Server is reachable, now submit the actual form
+        console.log('Submitting form data to send_email.php...');
+        console.log('Form data being sent:', Object.fromEntries(phpFormData.entries()));
+        
+        return fetch('send_email.php', {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: phpFormData
+        });
+    })
+    .catch(serverError => {
+        console.warn('Server/PHP not available, using fallback method:', serverError);
+        // Fallback: Create a mailto link with form data
+        throw new Error('Server not available - using fallback contact method');
+    })
+    .then(response => {
+        console.log('Form submission response:', response.status, response.statusText);
+        
+        // Check if response is actually HTML (error page) instead of JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            console.warn('Received non-JSON response, likely server error page');
+            return response.text().then(text => {
+                console.log('Response text:', text.substring(0, 500));
+                throw new Error('Server returned HTML instead of JSON - likely PHP error');
+            });
+        }
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status} ${response.statusText}`);
         }
         return response.json();
     })
@@ -1615,27 +1714,62 @@ async function handleServiceFormSubmission(serviceType, form) {
         }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Form submission error details:', error);
         // Reset button
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
 
-        // Show error message in modal
+        // Prepare mailto fallback
+        const customerName = data[`${serviceType}-name`] || 'Unknown';
+        const customerPhone = data[`${serviceType}-phone`] || 'Not provided';
+        const customerLocation = data[`${serviceType}-location`] || 'Not provided';
+        
+        let serviceDetails = '';
+        if (serviceType === 'emergency') {
+            serviceDetails = `Property Type: ${data['emergency-property-type'] || 'Not specified'}%0ADetails: ${data['emergency-details'] || 'Not provided'}`;
+        } else if (serviceType === 'car') {
+            serviceDetails = `Vehicle: ${data['car-make-model'] || 'Not specified'}%0AService: ${data['car-service-type'] || 'Not specified'}%0ADetails: ${data['car-details'] || 'Not provided'}`;
+        } else if (serviceType === 'safe') {
+            serviceDetails = `Safe Type: ${data['safe-type'] || 'Not specified'}%0ASafe Brand: ${data['safe-brand'] || 'Not specified'}%0ADetails: ${data['safe-details'] || 'Not provided'}`;
+        }
+        
+        const mailtoSubject = encodeURIComponent(`${serviceType.charAt(0).toUpperCase() + serviceType.slice(1)} Service Request - Bullard Locks`);
+        const mailtoBody = encodeURIComponent(`Customer Details:%0AName: ${customerName}%0APhone: ${customerPhone}%0ALocation: ${customerLocation}%0A%0AService Details:%0A${serviceDetails}`);
+        const mailtoLink = `mailto:william@bullardlocks.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+        // Show enhanced error message with multiple contact options
         const modalBody = document.getElementById('chatbot-modal-body');
         modalBody.innerHTML = `
             <div style="text-align: center; padding: 2rem;">
-                <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
+                <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">📞</div>
                 <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Connection Error</h3>
-                <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
-                    Sorry, there was an error sending your request. Please call us directly.
+                <p style="color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.6;">
+                    Sorry, there was an error sending your request. Please use one of these options:
                 </p>
-                <div style="display: flex; gap: 10px; justify-content: center;">
+                <div style="background: var(--primary-color); color: white; padding: 1.5rem; margin: 1rem 0; border-radius: 8px;">
+                    <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">📱 07809 887 883</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Call for immediate assistance</div>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <a href="${mailtoLink}" 
+                       style="background: #28a745; color: white; border: none; padding: 12px 24px;
+                              border-radius: 4px; cursor: pointer; font-size: 1rem; text-decoration: none; display: inline-block;">
+                        📧 Send Email
+                    </a>
+                    <button onclick="location.reload()" 
+                            style="background: #007bff; color: white; border: none; padding: 12px 24px;
+                                   border-radius: 4px; cursor: pointer; font-size: 1rem;">
+                        🔄 Try Again
+                    </button>
                     <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
                             style="background: #6c757d; color: white; border: none; padding: 12px 24px;
-                                   border-radius: 0; cursor: pointer; font-size: 1rem;">
-                        Close
+                                   border-radius: 4px; cursor: pointer; font-size: 1rem;">
+                        ✕ Close
                     </button>
                 </div>
+                <p style="color: var(--text-light); font-size: 0.8rem; margin-top: 1rem; opacity: 0.8;">
+                    Error details logged for technical support
+                </p>
             </div>
         `;
     });

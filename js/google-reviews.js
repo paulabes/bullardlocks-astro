@@ -35,7 +35,7 @@ function handleReviewsData(data) {
   }
   const fiveStarReviews = data.reviews
     .filter(r => r.rating === 5)
-    .sort((a, b) => b.time - a.time)
+    .sort((a, b) => (b.time || 0) - (a.time || 0))
     .slice(0, 6);
   renderGoogleReviews(fiveStarReviews);
 }
