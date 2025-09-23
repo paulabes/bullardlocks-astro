@@ -200,7 +200,7 @@ try {
     }
 
     // Send email using PHP mail() function
-    $to = 'bullardlocks@gmail.com';
+    $to = 'william@bullardlocks.com';
     
     // Log attempt details for debugging
     error_log("Attempting to send email - Form type: $formType, Name: $name, Phone: $phone, To: $to");
@@ -291,7 +291,7 @@ try {
 
 function generateHeaders($replyToEmail = '', $serviceType = '') {
     $headers = "From: Bullard Locks Website <william@bullardlocks.com>\r\n";
-    $headers .= "Reply-To: " . (!empty($replyToEmail) ? $replyToEmail : "bullardlocks@gmail.com") . "\r\n";
+    $headers .= "Reply-To: " . (!empty($replyToEmail) ? $replyToEmail : "william@bullardlocks.com") . "\r\n";
     $headers .= "Return-Path: william@bullardlocks.com\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
@@ -413,7 +413,7 @@ function generateServiceEmailBody($serviceName, $name, $phone, $location, $prope
 
 function generateConfirmationHeaders() {
     $headers = "From: Bullard Locks <william@bullardlocks.com>\r\n";
-    $headers .= "Reply-To: bullardlocks@gmail.com\r\n";
+    $headers .= "Reply-To: william@bullardlocks.com\r\n";
     $headers .= "Return-Path: william@bullardlocks.com\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";

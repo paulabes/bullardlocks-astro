@@ -91,3 +91,6 @@ AddType font/woff2 .woff2
 
 # Misc hardening
 Options -Indexes
+
+# Custom 404 page
+ErrorDocument 404 /404.html
