@@ -682,7 +682,7 @@ h1, h2, h3, h4, h5, h6 {
 /* H1 - Hero Headlines */
 h1 {
   font-size: 3rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
