@@ -316,210 +316,78 @@ function initializeMicroAnimations() {
 }
 
 /**
- * Create and position floating buttons directly on body
+ * Create circular floating chat button (visible on ALL devices)
  */
 function forceFloatingButtons() {
-    // Remove any existing button container first
+    // Remove any existing buttons first
     const existingContainer = document.getElementById('floating-buttons-container');
     if (existingContainer) existingContainer.remove();
 
-    // Check if we're on desktop (hide phone/WhatsApp buttons on desktop)
-    const isDesktop = window.innerWidth >= 992; // Bootstrap lg breakpoint
+    const existingChatBtn = document.getElementById('chat-btn-fixed');
+    if (existingChatBtn) existingChatBtn.remove();
 
-    // Create container div (only for mobile/tablet)
-    let buttonContainer = null;
-    if (!isDesktop) {
-        buttonContainer = document.createElement('div');
-        buttonContainer.id = 'floating-buttons-container';
-        buttonContainer.style.cssText = `
-            position: fixed !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            z-index: 2147483647 !important;
-            display: flex !important;
-            flex-direction: row !important;
-            gap: 0 !important;
-            align-items: stretch !important;
-            justify-content: space-between !important;
-            width: 100% !important;
-            height: 60px !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        `;
-    }
-
-    // Only create phone button on mobile/tablet
-    let testBtn = null;
-    if (!isDesktop) {
-        testBtn = document.createElement('a');
-        testBtn.id = 'test-btn-fixed';
-        testBtn.href = 'tel:07809887883';
-        testBtn.innerHTML = '<i class="fas fa-phone"></i>';
-        testBtn.style.cssText = `
-            background-color: #e67e22 !important;
-            color: white !important;
-            border: none !important;
-            border-left: none !important;
-            border-right: none !important;
-            border-bottom: none !important;
-            padding: 1rem !important;
-            border-radius: 0 !important;
-            font-size: 1.1rem !important;
-            font-weight: 500 !important;
-            cursor: pointer !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-            display: flex !important;
-            width: 33.333% !important;
-            height: 100% !important;
-            margin: 0 !important;
-            top: auto !important;
-            left: auto !important;
-            transform: none !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            flex: 1 !important;
-            justify-content: center !important;
-            align-items: center !important;
-            transition: all 0.3s ease !important;
-            text-decoration: none !important;
-            outline: none !important;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-            line-height: 1.5 !important;
-            position: relative !important;
-            text-align: center !important;
-            box-sizing: border-box !important;
-        `;
-
-        // Add hover effect for test button (matching site style)
-        testBtn.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px) !important';
-            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
-        });
-
-        testBtn.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) !important';
-            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
-        });
-
-        // Add active state for test button (matching site style)
-        testBtn.addEventListener('mousedown', function() {
-            this.style.transform = 'translateY(0) !important';
-            this.style.transition = 'all 0.1s ease !important';
-        });
-
-        testBtn.addEventListener('mouseup', function() {
-            this.style.transform = 'translateY(-2px) !important';
-            this.style.transition = 'all 0.3s ease !important';
-        });
-
-        // Add ripple effect for test button (matching site style)
-        testBtn.addEventListener('click', function(e) {
-            const ripple = document.createElement('div');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(255, 255, 255, 0.1);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-                z-index: 1;
-            `;
-
-            this.appendChild(ripple);
-
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    }
-
-    // Create chat button (visible on desktop only - hidden on mobile)
+    // Create circular floating chat button (ALL devices)
     const chatBtn = document.createElement('button');
     chatBtn.id = 'chat-btn-fixed';
     chatBtn.innerHTML = '<i class="fas fa-robot"></i>';
     chatBtn.onclick = openChatbot;
     chatBtn.setAttribute('aria-label', 'Open Chat Assistant');
 
-    // Only show chat button on desktop screens (768px and above)
-    const chatBtnWidth = isDesktop ? 'auto' : '33.333%';
-    const chatBtnPosition = isDesktop ? 'fixed' : 'static';
-    const chatBtnBottom = isDesktop ? '20px' : 'auto';
-    const chatBtnRight = isDesktop ? '20px' : 'auto';
-    const chatBtnFontSize = isDesktop ? '1.5rem' : '0.9rem'; // Reduced size for better proportion
-    const chatBtnPadding = isDesktop ? '1.75rem' : '1.25rem'; // Increased button size while keeping icon size the same
-    const chatBtnBorderRadius = isDesktop ? '50%' : '0';
-
     chatBtn.style.cssText = `
-        background-color: #0d6efd !important;
+        background-color: #2563EB !important;
         color: white !important;
         border: none !important;
-        border-left: none !important;
-        border-right: none !important;
-        border-bottom: none !important;
-        padding: ${chatBtnPadding} !important;
-        border-radius: ${chatBtnBorderRadius} !important;
-        font-size: ${chatBtnFontSize} !important;
+        padding: 1.5rem !important;
+        border-radius: 50% !important;
+        font-size: 1.5rem !important;
         font-weight: 500 !important;
         cursor: pointer !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-        display: ${isDesktop ? 'flex' : 'flex'} !important;
-        width: ${chatBtnWidth} !important;
-        height: ${isDesktop ? 'auto' : '100%'} !important;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3) !important;
+        display: flex !important;
+        width: auto !important;
+        height: auto !important;
         margin: 0 !important;
-        top: auto !important;
-        left: auto !important;
-        bottom: ${chatBtnBottom} !important;
-        right: ${chatBtnRight} !important;
-        position: ${chatBtnPosition} !important;
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
         transform: none !important;
         opacity: 1 !important;
         visibility: visible !important;
-        flex: 1 !important;
         justify-content: center !important;
         align-items: center !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         text-decoration: none !important;
         outline: none !important;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        line-height: 1.5 !important;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        line-height: 1 !important;
         z-index: 2147483647 !important;
         text-align: center !important;
         box-sizing: border-box !important;
     `;
 
-    // Add hover effect for chat button (matching site style)
+    // Add hover effect
     chatBtn.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-2px) !important';
-        this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
+        this.style.transform = 'translateY(-4px) scale(1.05) !important';
+        this.style.boxShadow = '0 15px 35px rgba(37, 99, 235, 0.4) !important';
     });
 
     chatBtn.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) !important';
-        this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
+        this.style.transform = 'translateY(0) scale(1) !important';
+        this.style.boxShadow = '0 10px 25px rgba(37, 99, 235, 0.3) !important';
     });
 
-    // Add active state for chat button (matching site style)
+    // Add active state
     chatBtn.addEventListener('mousedown', function() {
-        this.style.transform = 'translateY(0) !important';
+        this.style.transform = 'translateY(0) scale(0.95) !important';
         this.style.transition = 'all 0.1s ease !important';
     });
 
     chatBtn.addEventListener('mouseup', function() {
-        this.style.transform = 'translateY(-2px) !important';
-        this.style.transition = 'all 0.3s ease !important';
+        this.style.transform = 'translateY(-4px) scale(1.05) !important';
+        this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important';
     });
 
-    // Add ripple effect for chat button (matching site style)
+    // Add ripple effect
     chatBtn.addEventListener('click', function(e) {
         const ripple = document.createElement('div');
         const rect = this.getBoundingClientRect();
@@ -533,7 +401,7 @@ function forceFloatingButtons() {
             height: ${size}px;
             left: ${x}px;
             top: ${y}px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             transform: scale(0);
             animation: ripple 0.6s ease-out;
@@ -548,126 +416,8 @@ function forceFloatingButtons() {
         }, 600);
     });
 
-    // Only create WhatsApp button on mobile/tablet
-    let whatsappBtn = null;
-    if (!isDesktop) {
-    whatsappBtn = document.createElement('a');
-    whatsappBtn.id = 'whatsapp-btn-fixed';
-    whatsappBtn.href = 'https://wa.me/447809887883';
-    // Open WhatsApp in a new window safely
-    whatsappBtn.target = '_blank';
-    whatsappBtn.rel = 'noopener noreferrer';
-        whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
-        whatsappBtn.setAttribute('aria-label', 'Contact via WhatsApp');
-        whatsappBtn.style.cssText = `
-            background-color: #198754 !important;
-            color: white !important;
-            border: none !important;
-            border-left: none !important;
-            border-right: none !important;
-            border-bottom: none !important;
-            padding: 1rem !important;
-            border-radius: 0 !important;
-            font-size: 1.1rem !important;
-            font-weight: 500 !important;
-            cursor: pointer !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-            display: flex !important;
-            width: 33.333% !important;
-            height: 100% !important;
-            margin: 0 !important;
-            top: auto !important;
-            left: auto !important;
-            transform: none !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            flex: 1 !important;
-            justify-content: center !important;
-            align-items: center !important;
-            transition: all 0.3s ease !important;
-            text-decoration: none !important;
-            outline: none !important;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-            line-height: 1.5 !important;
-            position: relative !important;
-            text-align: center !important;
-            box-sizing: border-box !important;
-        `;
-
-        // Add hover effect for WhatsApp button
-        whatsappBtn.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px) !important';
-            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
-        });
-
-        whatsappBtn.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) !important';
-            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15) !important';
-        });
-
-        // Add active state for WhatsApp button (matching site style)
-        whatsappBtn.addEventListener('mousedown', function() {
-            this.style.transform = 'translateY(0) !important';
-            this.style.transition = 'all 0.1s ease !important';
-        });
-
-        whatsappBtn.addEventListener('mouseup', function() {
-            this.style.transform = 'translateY(-2px) !important';
-            this.style.transition = 'all 0.3s ease !important';
-        });
-
-        // Add ripple effect for WhatsApp button
-        whatsappBtn.addEventListener('click', function(e) {
-            const ripple = document.createElement('div');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(255, 255, 255, 0.1);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-                z-index: 1;
-            `;
-
-            this.appendChild(ripple);
-
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    }
-
-    // Add buttons to container (only add phone and WhatsApp if not desktop)
-    if (buttonContainer) {
-        // Mobile/tablet: add buttons to container
-        if (testBtn) buttonContainer.appendChild(testBtn);
-        if (whatsappBtn) buttonContainer.appendChild(whatsappBtn);
-        buttonContainer.appendChild(chatBtn);
-
-        // Append container to html element
-        document.documentElement.appendChild(buttonContainer);
-    } else {
-        // Desktop: append chat button directly to document
-        document.documentElement.appendChild(chatBtn);
-    }
-
-    // Add resize listener to handle dynamic screen size changes
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            forceFloatingButtons(); // Recreate buttons with new screen size
-        }, 250); // Debounce resize events
-    });
+    // Append button to document
+    document.documentElement.appendChild(chatBtn);
 }
 
 /**

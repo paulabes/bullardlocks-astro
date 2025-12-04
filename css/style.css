@@ -2633,11 +2633,18 @@ div.alert.form-message.mt-3 {
   }
 }
 
-/* Hide chat button on mobile screens (below 768px) */
-@media (max-width: 767.98px) {
-    #chat-btn-fixed {
-        display: none !important;
-    }
+/* Show circular chat button on ALL screen sizes */
+#chat-btn-fixed {
+    display: flex !important;
+    visibility: visible !important;
+}
+
+/* Hide bottom button bar on mobile - using circular button instead */
+#floating-buttons-container,
+#test-btn-fixed,
+#whatsapp-btn-fixed {
+    display: none !important;
+    visibility: hidden !important;
 }
 
 
