@@ -117,47 +117,50 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <div class="card p-4 rounded-0">
-                            <h3 class="mb-4">Get a Free Quote</h3>
-                            <form id="quoteForm" action="send_email.php" method="POST" class="needs-validation" novalidate>
+                        <div class="card p-3 rounded-0">
+                            <h3 class="mb-3">Get a Free Quote</h3>
+                            <form id="quoteForm" action="send_email.php" method="POST">
                                 <input type="hidden" name="form_type" value="contact">
-                                <div id="contact-form-messages"></div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="name" class="form-label">Full Name *</label>
-                                        <input type="text" class="form-control" id="name" name="name" required
-                                            placeholder="Jane Smith">
+
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label mt-0">Full Name *</label>
+                                        <input type="text" class="form-control" id="name" name="name" required placeholder="Jane Smith">
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="phone" class="form-label">Phone Number *</label>
-                                        <input type="tel" class="form-control" id="phone" name="phone" required
-                                            placeholder="07809 887 883">
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label mt-0">Email Address</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="jane.smith@example.com">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="postcode" class="form-label">Postcode *</label>
-                                        <input type="text" class="form-control" id="postcode" name="postcode" required
-                                            placeholder="N8 9TA">
+
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label mt-0">Phone Number *</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" required placeholder="07809 887 883">
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="service" class="form-label">Service Required *</label>
-                                        <select class="form-control" id="service" name="service" required>
-                                            <option value="">Please select a service...</option>
-                                            <option value="Emergency Locksmith">Emergency Locksmith</option>
-                                            <option value="Auto Locksmith">Auto Locksmith</option>
-                                            <option value="Safe Engineer">Safe Engineer</option>
-                                            <option value="Security Upgrade">Security Upgrade</option>
-                                            <option value="Lock Repair">Lock Repair</option>
-                                            <option value="Key Cutting">Key Cutting</option>
-                                            <option value="Other">Other</option>
-                                        </select>
+                                    <div class="col-md-6">
+                                        <label for="postcode" class="form-label mt-0">Postcode *</label>
+                                        <input type="text" class="form-control" id="postcode" name="postcode" required placeholder="N8 9TA">
                                     </div>
                                 </div>
+
+                                <div class="mb-2">
+                                    <label for="service" class="form-label mt-0">Service Required *</label>
+                                    <select class="form-select" id="service" name="service" required>
+                                        <option value="">Please select a service...</option>
+                                        <option value="Emergency Locksmith">Emergency Locksmith</option>
+                                        <option value="Auto Locksmith">Auto Locksmith</option>
+                                        <option value="Safe Engineer">Safe Engineer</option>
+                                        <option value="Security Upgrade">Security Upgrade</option>
+                                        <option value="Lock Repair">Lock Repair</option>
+                                        <option value="Key Cutting">Key Cutting</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
                                 <div class="mb-3">
-                                    <label for="message" class="form-label">Tell us about your locksmith needs</label>
-                                    <textarea class="form-control" id="message" name="message" rows="3"
-                                        placeholder="Please describe your issue..."></textarea>
+                                    <label for="message" class="form-label mt-0">Tell us about your locksmith needs</label>
+                                    <textarea class="form-control" id="message" name="message" rows="3" placeholder="Please describe your issue..."></textarea>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-lg w-100">
@@ -306,7 +309,7 @@
       </div>
     </div>
   </section>
-  <script src="../js/google-reviews.js"></script>
+  <script src="js/google-reviews.js"></script>
 
         <!-- CTA Section -->
         <section class="cta-section py-5">
@@ -334,22 +337,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Google reCAPTCHA V3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LeyKsArAAAAAC0ssQkPmDD_K3ibyLgp2kvRYHmD" async defer></script>
+    <!-- Validation JS -->
+    <script src="js/validation.js"></script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
-    <script>
-        // Handle form submission feedback
-        document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const form = document.getElementById('quoteForm');
-            
-            if (urlParams.has('success')) {
-                const successMessage = urlParams.get('success');
-                showFormMessage(successMessage, 'success');
-            } else if (urlParams.has('error')) {
-                const errorMessage = urlParams.get('error');
-                showFormMessage(errorMessage, 'error');
-            }
-        });
-    </script>
 </body>
 </html>

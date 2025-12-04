@@ -6,16 +6,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Load reCAPTCHA script
     loadRecaptchaScript();
-    
+
     // Load header and footer
     loadIncludes();
-    
-    // Initialize main contact form handler
+
+    // Initialize main contact form handler FIRST (before validation)
     initializeContactForm();
-    
+
+    // Then initialize validation for contact form
+    // But DO NOT call FormValidation.initialize here since we handle it in initializeContactForm
+
     // Force floating buttons positioning
     forceFloatingButtons();
-    
+
     // Initialize animations after a short delay to ensure page is loaded
     setTimeout(() => {
         initializeScrollAnimations();
@@ -25,87 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
 });
 
-/**
- * Show form message to user
- */
-function showFormMessage(message, type = 'info', formId = null) {
-    console.log('Showing form message:', type, message, 'for form:', formId);
-    
-    let messageContainer;
-    
-    // For contact form, use in-form container
-    if (formId === 'quoteForm' || document.getElementById('contact-form-messages')) {
-        messageContainer = document.getElementById('contact-form-messages');
-        if (messageContainer) {
-            // Clear existing messages
-            messageContainer.innerHTML = '';
-            
-            // Create message element
-            let alertType = 'info';
-            if (type === 'error') alertType = 'danger';
-            else if (type === 'success') alertType = 'success';
-            else if (type === 'warning') alertType = 'warning';
-            
-            const messageEl = document.createElement('div');
-            messageEl.className = `alert alert-${alertType} alert-dismissible mb-3`;
-            messageEl.innerHTML = `
-                ${message}
-                <button type="button" class="btn-close" onclick="this.parentElement.innerHTML=''"></button>
-            `;
-            
-            messageContainer.appendChild(messageEl);
-            
-            // Auto-remove after 8 seconds
-            setTimeout(() => {
-                if (messageEl.parentNode) {
-                    messageEl.remove();
-                }
-            }, 8000);
-            return;
-        }
-    }
-    
-    // Fallback to top-right notification for other forms
-    messageContainer = document.getElementById('form-message-container');
-    if (!messageContainer) {
-        messageContainer = document.createElement('div');
-        messageContainer.id = 'form-message-container';
-        messageContainer.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            max-width: 400px;
-        `;
-        document.body.appendChild(messageContainer);
-    }
-    
-    // Create message element
-    let alertType = 'info';
-    if (type === 'error') alertType = 'danger';
-    else if (type === 'success') alertType = 'success';
-    else if (type === 'warning') alertType = 'warning';
-    
-    const messageEl = document.createElement('div');
-    messageEl.className = `alert alert-${alertType} alert-dismissible`;
-    messageEl.style.cssText = `
-        margin-bottom: 10px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    `;
-    messageEl.innerHTML = `
-        ${message}
-        <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
-    `;
-    
-    messageContainer.appendChild(messageEl);
-    
-    // Auto-remove after 5 seconds
-    setTimeout(() => {
-        if (messageEl.parentNode) {
-            messageEl.remove();
-        }
-    }, 5000);
-}
 
 /**
  * Initialize main contact form with AJAX submission
@@ -116,68 +38,39 @@ function initializeContactForm() {
         console.log('Contact form not found');
         return;
     }
-    
-    console.log('Contact form found, adding event listener');
-    
+
+    console.log('Contact form initialized');
+
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        console.log('Form submitted, processing...');
-        
+        e.stopPropagation();
+        console.log('Contact form submit intercepted');
+
+        // Validate form first
+        if (typeof window.FormValidation !== 'undefined' && !window.FormValidation.validate(contactForm)) {
+            console.log('Form validation failed');
+            return;
+        }
+
+        console.log('Form validation passed');
+
         // Get form data
         const formData = new FormData(contactForm);
-        
-        // Validate required fields client-side with specific messages
-        const name = formData.get('name');
-        const phone = formData.get('phone');
-        const postcode = formData.get('postcode');
-        const service = formData.get('service');
-        
-        if (!name || name.trim() === '') {
-            showFormMessage('Please enter your name.', 'error', 'quoteForm');
-            return;
-        }
-        
-        if (!phone || phone.trim() === '') {
-            showFormMessage('Please enter your phone number.', 'error', 'quoteForm');
-            return;
-        }
-        
-        if (!postcode || postcode.trim() === '') {
-            showFormMessage('Please enter your postcode.', 'error', 'quoteForm');
-            return;
-        }
-        
-        if (!service || service.trim() === '') {
-            showFormMessage('Please select a service.', 'error', 'quoteForm');
-            return;
-        }
-        
-        // Log form data for debugging
-        console.log('Form data:');
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
-        
+
         // Show loading state
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
         submitBtn.disabled = true;
-        
+
         // Get reCAPTCHA V3 token first
-        console.log('Contact form: Getting reCAPTCHA token...');
         try {
             const recaptchaToken = await getRecaptchaToken('contact_form');
-            console.log('Contact form: reCAPTCHA token received');
             formData.append('g-recaptcha-response', recaptchaToken);
         } catch (error) {
-            console.error('Contact form reCAPTCHA error:', error);
-            // Don't reset button or return - continue with form submission
-            showFormMessage('Security verification temporarily unavailable. Your form will still be processed.', 'warning', 'quoteForm');
-            // Add fallback token so form can still submit
             formData.append('g-recaptcha-response', 'recaptcha_error_fallback');
         }
-        
+
         // Submit form
         fetch('send_email.php', {
             method: 'POST',
@@ -187,33 +80,34 @@ function initializeContactForm() {
             body: formData
         })
         .then(response => {
-            console.log('Response status:', response.status);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            console.log('Response data:', data);
+            console.log('Server response:', data);
             // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            
+
             if (data.success) {
-                // Reset form
                 contactForm.reset();
-                showFormMessage(data.message, 'success', 'quoteForm');
+                // Remove any validation classes
+                contactForm.querySelectorAll('.field-invalid').forEach(field => {
+                    field.classList.remove('field-invalid');
+                });
+                // Show success message
+                alert('Email sent successfully! Check bullardlocks@gmail.com');
             } else {
-                // Show the specific server error message
-                showFormMessage(data.message, 'error', 'quoteForm');
+                alert(data.message || 'There was an error sending your message. Please try again.');
             }
         })
         .catch(error => {
-            console.error('Form submission error:', error);
             // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            showFormMessage('Sorry, there was a connection error. Please try again or call us directly.', 'error', 'quoteForm');
+            alert('Sorry, there was a connection error. Please try again or call us directly.');
         });
     });
 }
@@ -236,35 +130,26 @@ function loadRecaptchaScript() {
  * Get reCAPTCHA V3 token for form submission with timeout
  */
 async function getRecaptchaToken(action = 'submit') {
-    return new Promise((resolve, reject) => {
-        console.log('Attempting to get reCAPTCHA token for action:', action);
-        
+    return new Promise((resolve) => {
         // Set a timeout for reCAPTCHA operations
         const timeout = setTimeout(() => {
-            console.error('reCAPTCHA timeout after 10 seconds');
             resolve('recaptcha_timeout');
         }, 10000);
-        
+
         if (typeof grecaptcha === 'undefined') {
-            console.error('reCAPTCHA not loaded, using fallback');
             clearTimeout(timeout);
-            // Fallback: resolve with a placeholder token
             resolve('recaptcha_not_available');
             return;
         }
-        
+
         grecaptcha.ready(() => {
-            console.log('reCAPTCHA ready, executing...');
             grecaptcha.execute('6LeyKsArAAAAAC0ssQkPmDD_K3ibyLgp2kvRYHmD', { action: action })
                 .then(token => {
                     clearTimeout(timeout);
-                    console.log('reCAPTCHA token received:', token.substring(0, 20) + '...');
                     resolve(token);
                 })
                 .catch(error => {
                     clearTimeout(timeout);
-                    console.error('reCAPTCHA execute error:', error);
-                    // Fallback: resolve with a placeholder token instead of rejecting
                     resolve('recaptcha_execute_failed');
                 });
         });
@@ -417,19 +302,14 @@ function initializeBootstrapDropdowns(container) {
 }
 
 /**
- * Initialize scroll-based animations
- */
-/**
- * Initialize scroll animations - REMOVED
- * All scroll-triggered animations have been removed for cleaner user experience
+ * Initialize scroll animations (removed for cleaner UX)
  */
 function initializeScrollAnimations() {
     // Scroll animations have been removed
 }
 
 /**
- * Initialize micro animations - REMOVED
- * All micro animations have been removed for cleaner user experience
+ * Initialize micro animations (removed for cleaner UX)
  */
 function initializeMicroAnimations() {
     // Micro animations have been removed
@@ -563,14 +443,14 @@ function forceFloatingButtons() {
         });
     }
 
-    // Create chat button (always visible)
+    // Create chat button (visible on desktop only - hidden on mobile)
     const chatBtn = document.createElement('button');
     chatBtn.id = 'chat-btn-fixed';
     chatBtn.innerHTML = '<i class="fas fa-robot"></i>';
     chatBtn.onclick = openChatbot;
     chatBtn.setAttribute('aria-label', 'Open Chat Assistant');
 
-    // Adjust width and positioning based on whether phone/WhatsApp buttons are present
+    // Only show chat button on desktop screens (768px and above)
     const chatBtnWidth = isDesktop ? 'auto' : '33.333%';
     const chatBtnPosition = isDesktop ? 'fixed' : 'static';
     const chatBtnBottom = isDesktop ? '20px' : 'auto';
@@ -592,7 +472,7 @@ function forceFloatingButtons() {
         font-weight: 500 !important;
         cursor: pointer !important;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-        display: flex !important;
+        display: ${isDesktop ? 'flex' : 'flex'} !important;
         width: ${chatBtnWidth} !important;
         height: ${isDesktop ? 'auto' : '100%'} !important;
         margin: 0 !important;
@@ -779,8 +659,6 @@ function forceFloatingButtons() {
         // Desktop: append chat button directly to document
         document.documentElement.appendChild(chatBtn);
     }
-
-    console.log('Floating buttons container created and appended to document root');
 
     // Add resize listener to handle dynamic screen size changes
     let resizeTimeout;
@@ -1082,7 +960,7 @@ function selectService(serviceType) {
                         color: var(--text-light);
                         font-size: 0.95rem;
                     ">Additional Details:</label>
-                    <textarea id="emergency-details" name="emergency-details" rows="3" placeholder="Describe the situation (e.g., locked out of front door, garage, etc.)" style="
+                    <textarea id="emergency-details" name="emergency-details" rows="3" placeholder="Describe the situation (e.g., locked out of front door, garage)" style="
                         width: 100%;
                         padding: 0.75rem 1rem;
                         background-color: var(--dark-surface);
@@ -1414,7 +1292,7 @@ function selectService(serviceType) {
                         color: white;
                         font-size: 0.95rem;
                     ">Safe Brand/Model (if known):</label>
-                    <input type="text" id="safe-brand" name="safe-brand" placeholder="e.g., Sentry, Honeywell, etc." style="
+                    <input type="text" id="safe-brand" name="safe-brand" placeholder="e.g., Sentry, Honeywell" style="
                         width: 100%;
                         padding: 0.75rem 1rem;
                         background-color: var(--dark-surface);
@@ -1435,7 +1313,7 @@ function selectService(serviceType) {
                         color: white;
                         font-size: 0.95rem;
                     ">Additional Details:</label>
-                    <textarea id="safe-details" name="safe-details" rows="3" placeholder="Describe the safe situation, any codes you remember, etc." style="
+                    <textarea id="safe-details" name="safe-details" rows="3" placeholder="Describe the safe situation, any codes you remember" style="
                         width: 100%;
                         padding: 0.75rem 1rem;
                         background-color: var(--dark-surface);
@@ -1479,12 +1357,21 @@ function selectService(serviceType) {
     // Add form submission handlers
     const form = modalBody.querySelector('form');
     if (form) {
+        // Mark all required fields for validation
+        form.querySelectorAll('input[required], select[required]').forEach(field => {
+            field.classList.add('validate-required');
+        });
+
+        // Initialize validation for this dynamic form
+        if (typeof window.FormValidation !== 'undefined') {
+            window.FormValidation.initializeDynamic(form);
+        }
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             handleServiceFormSubmission(serviceType, this);
         });
     }
-
 
     // Focus first input
     setTimeout(() => {
@@ -1497,6 +1384,7 @@ function selectService(serviceType) {
  * Handle service form submission
  */
 async function handleServiceFormSubmission(serviceType, form) {
+    // Validation is handled by validation.js, form will only submit if valid
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
@@ -1511,35 +1399,19 @@ async function handleServiceFormSubmission(serviceType, form) {
     try {
         recaptchaToken = await getRecaptchaToken(serviceType + '_form');
     } catch (error) {
-        console.error('reCAPTCHA error:', error);
         // Reset button
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-        
-        // Show error message in modal
-        const modalBody = document.getElementById('chatbot-modal-body');
-        modalBody.innerHTML = `
-            <div style="text-align: center; padding: 2rem;">
-                <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
-                <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Security Verification Failed</h3>
-                <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
-                    Security verification failed. Please refresh the page and try again.
-                </p>
-                <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
-                        style="background: #6c757d; color: white; border: none; padding: 12px 24px;
-                               border-radius: 0; cursor: pointer; font-size: 1rem;">
-                    Close
-                </button>
-            </div>
-        `;
-        return;
-    }    // Prepare form data for PHP submission
+        recaptchaToken = 'recaptcha_error_fallback';
+    }
+
+    // Prepare form data for PHP submission
     const phpFormData = new FormData();
     phpFormData.append('form_type', serviceType);
     phpFormData.append('name', data[`${serviceType}-name`] || '');
     phpFormData.append('phone', data[`${serviceType}-phone`] || '');
     phpFormData.append('location', data[`${serviceType}-location`] || '');
-    phpFormData.append('g-recaptcha-response', recaptchaToken); // Add reCAPTCHA token
+    phpFormData.append('g-recaptcha-response', recaptchaToken);
 
     // Add service-specific data
     if (serviceType === 'emergency') {
@@ -1556,7 +1428,6 @@ async function handleServiceFormSubmission(serviceType, form) {
     }
 
     // Submit to PHP script
-    console.log('Submitting form data to send_email.php...');
     fetch('send_email.php', {
         method: 'POST',
         headers: {
@@ -1565,7 +1436,6 @@ async function handleServiceFormSubmission(serviceType, form) {
         body: phpFormData
     })
     .then(response => {
-        console.log('Response received:', response.status, response.statusText);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -1577,67 +1447,26 @@ async function handleServiceFormSubmission(serviceType, form) {
         submitBtn.disabled = false;
 
         if (data.success) {
-            // Show confirmation message in modal instead of alert
-            const modalBody = document.getElementById('chatbot-modal-body');
-            modalBody.innerHTML = `
-                <div style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; color: #28a745; margin-bottom: 1rem;">✓</div>
-                    <h3 style="color: #28a745; margin-bottom: 1rem; font-size: 1.5rem;">Request Sent Successfully!</h3>
-                    <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
-                        ${data.message}
-                    </p>
-                    <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
-                            style="background: #007bff; color: white; border: none; padding: 12px 24px;
-                                   border-radius: 0; cursor: pointer; font-size: 1rem; font-weight: 500;">
-                        Close
-                    </button>
-                </div>
-            `;
+            // Reset form and close modal
+            form.reset();
+            // Remove any validation classes
+            form.querySelectorAll('.field-invalid').forEach(field => {
+                field.classList.remove('field-invalid');
+            });
+            // Show success message
+            alert('Email sent successfully');
+            // Close the modal
+            const modal = document.getElementById('chatbot-modal-overlay');
+            if (modal) modal.remove();
         } else {
-            // Show error message in modal
-            const modalBody = document.getElementById('chatbot-modal-body');
-            modalBody.innerHTML = `
-                <div style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
-                    <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Error Sending Request</h3>
-                    <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
-                        ${data.message}
-                    </p>
-                    <div style="display: flex; gap: 10px; justify-content: center;">
-                        <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
-                                style="background: #6c757d; color: white; border: none; padding: 12px 24px;
-                                       border-radius: 0; cursor: pointer; font-size: 1rem;">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            `;
+            alert(data.message || 'There was an error sending your message. Please try again.');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
         // Reset button
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-
-        // Show error message in modal
-        const modalBody = document.getElementById('chatbot-modal-body');
-        modalBody.innerHTML = `
-            <div style="text-align: center; padding: 2rem;">
-                <div style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;">⚠</div>
-                <h3 style="color: #dc3545; margin-bottom: 1rem; font-size: 1.5rem;">Connection Error</h3>
-                <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">
-                    Sorry, there was an error sending your request. Please call us directly.
-                </p>
-                <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button onclick="document.getElementById('chatbot-modal-overlay').remove()"
-                            style="background: #6c757d; color: white; border: none; padding: 12px 24px;
-                                   border-radius: 0; cursor: pointer; font-size: 1rem;">
-                        Close
-                    </button>
-                </div>
-            </div>
-        `;
+        alert('Sorry, there was a connection error. Please try again or call us directly.');
     });
 }
 
