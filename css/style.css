@@ -88,8 +88,8 @@ main a:not(.btn):not(.nav-link):not(.dropdown-item) {
 
 /* World-Class Professional Design - Modern, Friendly, Conversion-Focused */
 
-/* Import Modern Professional Font */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Import Modern Professional Font - Optimized (only 4 weights) */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
 :root {
   /* Modern Professional Color Palette */
