@@ -1,0 +1,596 @@
+---
+// Header component with floating navbar
+---
+
+<nav class="navbar-floating">
+  <div class="nav-container">
+    <a href="/" class="nav-brand">
+      BULLARD <span class="text-accent">LOCKS</span>
+    </a>
+    
+    <ul class="nav-links">
+      <li><a href="/" class="nav-link">Home</a></li>
+      <li class="dropdown-parent">
+        <a href="/#services" class="nav-link">Services <i class="fas fa-chevron-down text-xs"></i></a>
+        <ul class="dropdown-menu services-dropdown">
+          <li class="svc-auto"><a href="/services/auto-locksmith"><i class="fas fa-car"></i> Auto Locksmith</a></li>
+          <li class="svc-emergency"><a href="/services/emergency-locksmith"><i class="fas fa-clock"></i> Emergency 24/7</a></li>
+          <li class="svc-safe"><a href="/services/safe-engineer"><i class="fas fa-shield-alt"></i> Safe Engineer</a></li>
+        </ul>
+      </li>
+      <li><a href="/about" class="nav-link">About</a></li>
+      <li class="dropdown-parent">
+        <a href="/locations" class="nav-link">Locations <i class="fas fa-chevron-down text-xs"></i></a>
+        <ul class="dropdown-menu locations-dropdown">
+          <li class="loc-col">
+            <span class="dropdown-section-label">North London</span>
+            <a href="/locations/haringey"><i class="fas fa-map-marker-alt"></i> Haringey</a>
+            <a href="/locations/barnet"><i class="fas fa-map-marker-alt"></i> Barnet</a>
+            <a href="/locations/camden"><i class="fas fa-map-marker-alt"></i> Camden</a>
+            <a href="/locations/islington"><i class="fas fa-map-marker-alt"></i> Islington</a>
+            <a href="/locations/hackney"><i class="fas fa-map-marker-alt"></i> Hackney</a>
+            <a href="/locations/enfield"><i class="fas fa-map-marker-alt"></i> Enfield</a>
+          </li>
+          <li class="loc-col">
+            <span class="dropdown-section-label">Central London</span>
+            <a href="/locations/westminster"><i class="fas fa-map-marker-alt"></i> Westminster</a>
+            <a href="/locations/city-of-london"><i class="fas fa-map-marker-alt"></i> City of London</a>
+            <a href="/locations/kensington-chelsea"><i class="fas fa-map-marker-alt"></i> Kensington &amp; Chelsea</a>
+            <a href="/locations/hammersmith-fulham"><i class="fas fa-map-marker-alt"></i> Hammersmith &amp; Fulham</a>
+          </li>
+          <li class="dropdown-all-row"><a href="/locations/uk-wide/safe-engineer" class="dropdown-uk-link"><i class="fas fa-globe"></i> UK Wide — Safe Engineer</a></li>
+          <li class="dropdown-all-row"><a href="/locations" class="dropdown-all-link"><i class="fas fa-th"></i> All Locations</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="tel:07809887883" class="btn-nav-call">
+        <i class="fas fa-phone"></i>
+        <span class="call-text">07809 887 883</span>
+      </a>
+      <a href="https://wa.me/447809887883" class="btn-nav-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="call-text">WhatsApp</span>
+      </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" id="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobile-menu">
+  <div class="mobile-menu-content">
+    <button class="mobile-menu-close" aria-label="Close menu" id="mobile-menu-close">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="mobile-brand">BULLARD <span class="text-accent">LOCKS</span></div>
+    
+    <ul class="mobile-nav-links">
+      <li><a href="/">Home</a></li>
+      <li>
+        <span class="mobile-section-title">Services</span>
+        <ul class="mobile-sub-links">
+          <li><a href="/services/auto-locksmith">Auto Locksmith</a></li>
+          <li><a href="/services/emergency-locksmith">Emergency Locksmith</a></li>
+          <li><a href="/services/safe-engineer">Safe Engineer</a></li>
+        </ul>
+      </li>
+      <li><a href="/about">About</a></li>
+      <li>
+        <span class="mobile-section-title">Locations</span>
+        <ul class="mobile-sub-links">
+          <li><a href="/locations/haringey">Haringey</a></li>
+          <li><a href="/locations/barnet">Barnet</a></li>
+          <li><a href="/locations/camden">Camden</a></li>
+          <li><a href="/locations/islington">Islington</a></li>
+          <li><a href="/locations/hackney">Hackney</a></li>
+          <li><a href="/locations/enfield">Enfield</a></li>
+          <li><a href="/locations/westminster">Westminster</a></li>
+          <li><a href="/locations/city-of-london">City of London</a></li>
+          <li><a href="/locations/kensington-chelsea">Kensington &amp; Chelsea</a></li>
+          <li><a href="/locations/hammersmith-fulham">Hammersmith &amp; Fulham</a></li>
+          <li><a href="/locations/uk-wide/safe-engineer">UK Wide — Safe Engineer</a></li>
+          <li><a href="/locations">All Locations →</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+
+    <a href="tel:07809887883" class="btn-primary-lg mobile-cta">
+      <i class="fas fa-phone"></i> Call Now
+    </a>
+  </div>
+</div>
+
+<!-- Schema.org Site Navigation -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  "name": [
+    "Home",
+    "About",
+    "Services",
+    "Emergency Locksmith",
+    "Auto Locksmith",
+    "Safe Engineer",
+    "Locations",
+    "Contact"
+  ],
+  "url": [
+    "https://bullardlocks.com/",
+    "https://bullardlocks.com/about",
+    "https://bullardlocks.com/services",
+    "https://bullardlocks.com/services/emergency-locksmith",
+    "https://bullardlocks.com/services/auto-locksmith",
+    "https://bullardlocks.com/services/safe-engineer",
+    "https://bullardlocks.com/locations",
+    "https://bullardlocks.com/contact"
+  ]
+}
+</script>
+
+<style>
+  .navbar-floating {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    transition: all 0.3s ease;
+  }
+
+  .nav-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--color-text-main);
+    letter-spacing: -0.02em;
+    z-index: 1001;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .nav-link {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 8px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-link:hover, .nav-link:focus {
+    color: var(--color-text-main);
+  }
+
+  .text-xs { font-size: 0.75rem; opacity: 0.7; }
+
+  /* Dropdown Menu */
+  .dropdown-parent {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--color-bg-dark);
+    min-width: 240px;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid rgba(255,255,255,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    list-style: none;
+    margin: 0;
+  }
+
+  .dropdown-parent:hover .dropdown-menu,
+  .dropdown-parent:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .dropdown-menu i {
+    width: 20px;
+    text-align: center;
+    color: rgba(255,255,255,0.45);
+    transition: color 0.2s ease;
+  }
+
+  /* Services dropdown — single column */
+  .services-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 220px;
+  }
+
+  /* Per-service hover colours */
+  .svc-auto a:hover       { background: rgba(245,158,11,0.2);  color: #fcd34d; }
+  .svc-auto a:hover i     { color: #fcd34d; }
+
+  .svc-emergency a:hover  { background: rgba(239,68,68,0.2);   color: #fca5a5; }
+  .svc-emergency a:hover i{ color: #fca5a5; }
+
+  .svc-safe a:hover       { background: rgba(59,130,246,0.2);  color: #93c5fd; }
+  .svc-safe a:hover i     { color: #93c5fd; }
+
+  /* Locations dropdown — 2 explicit columns */
+  .locations-dropdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-width: 380px;
+    gap: 0;
+    padding: 12px 8px 8px;
+  }
+
+  .loc-col {
+    display: flex;
+    flex-direction: column;
+    padding: 0 4px;
+  }
+
+  .loc-col .dropdown-section-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+    font-weight: 700;
+    padding: 0 12px 6px;
+    white-space: nowrap;
+  }
+
+  .loc-col a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .loc-col a i {
+    width: 16px;
+    text-align: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.75rem;
+    transition: color 0.2s ease;
+  }
+
+  .loc-col a:hover {
+    background: rgba(255,255,255,0.08);
+    color: var(--color-accent);
+  }
+
+  .loc-col a:hover i { color: var(--color-accent); }
+
+  .dropdown-all-row {
+    grid-column: 1 / -1;
+  }
+
+  .dropdown-all-row:first-of-type {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 4px;
+    padding-top: 4px;
+  }
+
+  .dropdown-uk-link {
+    font-weight: 600 !important;
+    color: rgba(255,255,255,0.75) !important;
+  }
+
+  .dropdown-uk-link i {
+    color: var(--color-accent) !important;
+  }
+
+  .dropdown-uk-link:hover {
+    color: var(--color-accent) !important;
+  }
+
+  /* Locations dropdown extras */
+  .locations-dropdown {
+    min-width: 220px;
+  }
+
+  .dropdown-section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+    font-weight: 700;
+    padding: 8px 16px 4px;
+  }
+
+  .dropdown-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 4px 8px;
+  }
+
+  .dropdown-all-link {
+    font-weight: 600 !important;
+    color: var(--color-accent) !important;
+  }
+
+  .dropdown-all-link i {
+    color: var(--color-accent) !important;
+  }
+
+  /* Actions */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .btn-nav-call {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-normal);
+    box-shadow: 0 4px 12px rgba(31, 174, 155, 0.3);
+  }
+
+  .btn-nav-call:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(31, 174, 155, 0.4);
+  }
+
+  .btn-nav-whatsapp {
+    background-color: #25D366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-normal);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  }
+
+  .btn-nav-whatsapp:hover {
+    background-color: #1DA851;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-text-main);
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 80px 24px 40px;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow-y: auto;
+  }
+
+  .mobile-brand {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .mobile-menu-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: var(--color-text-main);
+    font-size: 2rem;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  
+  .mobile-menu-close:hover {
+    background: var(--color-bg-light);
+  }
+
+  .mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px;
+    flex-grow: 1;
+  }
+
+  .mobile-nav-links > li {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 16px 0;
+  }
+
+  .mobile-nav-links a {
+    color: var(--color-text-main);
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: block;
+  }
+
+  .mobile-section-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: 12px;
+    display: block;
+    font-weight: 600;
+  }
+
+  .mobile-sub-links {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .mobile-sub-links a {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .mobile-sub-links a::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    opacity: 0.5;
+  }
+
+  @media (max-width: 992px) {
+    .nav-links {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      display: block;
+    }
+    
+    .call-text {
+      display: none;
+    }
+    
+    .btn-nav-primary {
+      padding: 8px 12px;
+    }
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function toggleMenu(show) {
+    if (show) {
+      mobileMenu?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  menuBtn?.addEventListener('click', () => toggleMenu(true));
+  closeBtn?.addEventListener('click', () => toggleMenu(false));
+
+  // Close menu when clicking a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+  
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
+      toggleMenu(false);
+    }
+  });
+</script>

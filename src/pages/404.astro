@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | Bullard Locks"
+  description="Sorry, the page you're looking for doesn't exist. Return to Bullard Locks homepage for professional locksmith services in North London."
+>
+  <section class="error-page">
+    <div class="container-custom">
+      <div class="error-content">
+        <div class="error-number">404</div>
+        <h1>Page Not Found</h1>
+        <p>Sorry, the page you're looking for doesn't exist or has been moved.</p>
+
+        <div class="error-actions">
+          <a href="/" class="btn-primary-lg">
+            <i class="fas fa-home"></i> Return Home
+          </a>
+          <a href="tel:07809887883" class="btn-secondary-lg">
+            <i class="fas fa-phone"></i> Call 07809 887 883
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .error-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--header-height);
+    background: var(--color-bg-light);
+  }
+
+  .error-content {
+    text-align: center;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .error-number {
+    font-size: clamp(6rem, 15vw, 10rem);
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+    letter-spacing: -0.04em;
+  }
+
+  .error-content h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-bottom: 16px;
+    color: var(--color-text-main);
+  }
+
+  .error-content > p {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

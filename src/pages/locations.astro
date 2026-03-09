@@ -1,0 +1,443 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import { boroughs, servicesMeta } from '../data/locations';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Auto Locksmith London — Service Locations by Borough",
+    "description": "Bullard Locks covers North and Central London boroughs for auto locksmith, emergency locksmith and safe engineer services.",
+    "url": "https://bullardlocks.com/locations",
+    "itemListElement": boroughs.map((b, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "LocksmithBusiness",
+        "name": `Bullard Locks — ${b.name}`,
+        "url": `https://bullardlocks.com/locations/${b.slug}`,
+        "areaServed": b.name
+      }
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://bullardlocks.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Locations", "item": "https://bullardlocks.com/locations"}
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title="Auto Locksmith London — All Service Locations & Boroughs | Bullard Locks"
+  description="Auto locksmith & emergency locksmith across North and Central London. Choose your borough for local coverage, pricing and response times. No call-out fee."
+  canonicalUrl="https://bullardlocks.com/locations"
+  schema={schema}
+>
+  <!-- HERO -->
+  <section class="loc-hero bg-dark">
+    <div class="loc-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80')" aria-hidden="true"></div>
+    <div class="loc-hero-overlay" aria-hidden="true"></div>
+    <div class="container-custom lh-content">
+      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Locations</span>
+      </nav>
+
+      <h1 class="loc-hero-title">
+        <span class="loc-hero-service">Locksmith</span>
+        <span class="loc-hero-location">&amp; Safe Cracker</span>
+        <span class="loc-hero-sub">Select Your Borough</span>
+      </h1>
+
+      <p class="loc-hero-lead">
+        Bullard Locks covers North and Central London for auto locksmith, emergency locksmith and safe engineer services.
+        Select your borough below for local response times, coverage areas and pricing.
+      </p>
+
+      <div class="loc-hero-ctas">
+        <a href="tel:07809887883" class="btn-hero-primary">
+          <i class="fas fa-phone"></i> 07809 887 883
+        </a>
+        <a href="https://wa.me/447809887883" class="btn-hero-whatsapp" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services overview -->
+  <section class="content-section bg-white">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">Professional <span class="text-accent">Locksmith Services</span></h2>
+        <p class="section-subtitle">Expert security solutions for vehicles, homes and businesses — rapid response across London.</p>
+      </div>
+      <ServiceCards />
+    </div>
+  </section>
+
+  <!-- Service × Borough quick links table -->
+  <section class="content-section bg-light">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">Select Your Location</h2>
+        <p class="section-subtitle">Choose your borough to see local response times, coverage and pricing.</p>
+      </div>
+
+      <div class="service-matrix">
+        <!-- Header -->
+        <div class="matrix-header">
+          <div class="matrix-cell matrix-corner">Borough</div>
+          {Object.values(servicesMeta).map(sm => (
+            <div class="matrix-cell matrix-service-head">
+              <i class={sm.icon}></i>
+              <span>{sm.name}</span>
+            </div>
+          ))}
+        </div>
+
+        {boroughs.map(borough => (
+          <div class="matrix-row">
+            <div class="matrix-cell matrix-borough-cell">
+              <a href={`/locations/${borough.slug}`} class="matrix-borough-link">
+                <span>{borough.name}</span>
+                <span class="matrix-response">{borough.responseTime}</span>
+              </a>
+            </div>
+            {(['auto-locksmith', 'emergency-locksmith', 'safe-engineer'] as const).map(serviceSlug => (
+              <div class="matrix-cell matrix-service-cell">
+                {borough.services.includes(serviceSlug) ? (
+                  <a href={`/locations/${borough.slug}/${serviceSlug}`} class="matrix-available">
+                    <i class="fas fa-check"></i>
+                  </a>
+                ) : (
+                  <span class="matrix-na" title="Not available in this area">—</span>
+                )}
+              </div>
+            ))}
+          </div>
+        ))}
+
+        <div class="matrix-row">
+          <div class="matrix-cell matrix-borough-cell">
+            <a href="/locations/uk-wide/safe-engineer" class="matrix-borough-link">
+              <span>UK-Wide</span>
+              <span class="matrix-response">By appointment</span>
+            </a>
+          </div>
+          {(['auto-locksmith', 'emergency-locksmith', 'safe-engineer'] as const).map(serviceSlug => (
+            <div class="matrix-cell matrix-service-cell">
+              {serviceSlug === 'safe-engineer' ? (
+                <a href="/locations/uk-wide/safe-engineer" class="matrix-available">
+                  <i class="fas fa-check"></i>
+                </a>
+              ) : (
+                <span class="matrix-na" title="Not available">—</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p class="matrix-note">
+        <i class="fas fa-info-circle"></i>
+        Emergency locksmith is available in North London boroughs only. Auto locksmith and safe engineer cover all listed boroughs.
+      </p>
+    </div>
+  </section>
+
+  <CTASection
+    title="Not Sure If We Cover Your Area?"
+    subtitle="Call us on 07809 887 883 or WhatsApp — we'll let you know our response time for your exact location."
+  />
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .loc-hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+    overflow: hidden;
+  }
+
+  .loc-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.25) saturate(0.8);
+  }
+
+  .loc-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(14, 74, 77, 0.85) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+
+  .lh-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
+  .loc-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .loc-breadcrumb a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+  }
+
+  .loc-breadcrumb a:hover { color: white; }
+  .loc-breadcrumb span:last-child { color: var(--color-accent); }
+
+  .loc-hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loc-hero-service { color: var(--color-accent); }
+  .loc-hero-location { color: white; }
+
+  .loc-hero-sub {
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+    font-family: var(--font-body);
+    margin-top: 8px;
+  }
+
+  .loc-hero-lead {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 32px;
+    max-width: 560px;
+  }
+
+  .loc-hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(31, 174, 155, 0.4);
+  }
+
+  .btn-hero-primary:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(31, 174, 155, 0.5);
+  }
+
+  .btn-hero-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-hero-whatsapp:hover {
+    background: #1DA851;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.45);
+  }
+
+  /* Matrix */
+  .service-matrix {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .matrix-header,
+  .matrix-row {
+    display: grid;
+    grid-template-columns: 200px repeat(3, 1fr);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .matrix-row:last-child { border-bottom: none; }
+  .matrix-row:nth-child(even) { background: var(--color-bg-light); }
+
+  .matrix-cell {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .matrix-cell:last-child { border-right: none; }
+
+  .matrix-corner {
+    background: var(--color-bg-dark);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .matrix-service-head {
+    background: var(--color-bg-dark);
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .matrix-service-head i {
+    color: var(--color-accent);
+    font-size: 1rem;
+  }
+
+  .matrix-service-head span {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+  }
+
+  .matrix-borough-cell {
+    padding: 10px 16px;
+  }
+
+  .matrix-borough-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .matrix-borough-link span:first-child {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  .matrix-borough-link:hover span:first-child {
+    color: var(--color-accent);
+  }
+
+  .matrix-response {
+    font-size: 0.75rem;
+    color: var(--color-text-muted-light);
+    font-weight: 400;
+  }
+
+  .matrix-service-cell {
+    justify-content: center;
+  }
+
+  .matrix-available {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(31, 174, 155, 0.1);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .matrix-available:hover {
+    background: var(--color-accent);
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .matrix-na {
+    color: var(--color-text-muted-light);
+    font-size: 1.1rem;
+  }
+
+  .matrix-note {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+
+  .matrix-note i {
+    color: var(--color-accent);
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .matrix-header,
+    .matrix-row {
+      grid-template-columns: 140px repeat(3, 1fr);
+    }
+    .matrix-service-head span {
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .matrix-header,
+    .matrix-row {
+      grid-template-columns: 120px repeat(3, 1fr);
+    }
+    .matrix-cell {
+      padding: 10px 10px;
+    }
+    .matrix-service-head span {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="cta-section-modern">
+  <div class="container-custom">
+    <h2>{title}</h2>
+    <p>{subtitle}</p>
+    <div class="cta-buttons">
+      <a href="tel:07809887883" class="btn-cta-phone">
+        <i class="fas fa-phone"></i> 07809 887 883
+      </a>
+      <a href="https://wa.me/447809887883" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i> WhatsApp Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section-modern {
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: rgba(31, 174, 155, 0.12);
+    border-top: 1.5px solid rgba(31, 174, 155, 0.3);
+    border-bottom: 1.5px solid rgba(31, 174, 155, 0.3);
+    color: #0e4a4d;
+  }
+
+  .cta-section-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.2), transparent 40%);
+  }
+
+  .cta-section-modern h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-bottom: 24px;
+    position: relative;
+    color: #0e4a4d;
+  }
+
+  .cta-section-modern p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+    color: #166064;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .btn-cta-phone {
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-normal);
+    background: var(--color-accent);
+    color: white;
+    text-decoration: none;
+  }
+
+  .btn-cta-phone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    background: var(--color-accent-hover);
+  }
+</style>

@@ -1,0 +1,1356 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GoogleReviews from '../../components/GoogleReviews.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const heroImage = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Emergency Locksmith North London',
+    provider: {
+      '@type': 'LocksmithBusiness',
+      name: 'Bullard Locks',
+      telephone: '07809887883',
+      url: 'https://bullardlocks.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '67 Weston Park',
+        addressLocality: 'Crouch End',
+        addressRegion: 'London',
+        postalCode: 'N8 9TA',
+        addressCountry: 'GB',
+      },
+    },
+    areaServed: [
+      {'@type': 'City', 'name': 'Camden', 'containedInPlace': {'@type': 'City', 'name': 'London'}},
+      {'@type': 'City', 'name': 'Islington', 'containedInPlace': {'@type': 'City', 'name': 'London'}},
+      {'@type': 'City', 'name': 'Haringey', 'containedInPlace': {'@type': 'City', 'name': 'London'}},
+      {'@type': 'City', 'name': 'Barnet', 'containedInPlace': {'@type': 'City', 'name': 'London'}},
+      {'@type': 'City', 'name': 'Enfield', 'containedInPlace': {'@type': 'City', 'name': 'London'}},
+      {'@type': 'City', 'name': 'Hackney', 'containedInPlace': {'@type': 'City', 'name': 'London'}}
+    ],
+    description: '24/7 emergency locksmith North London — rapid 20–40 min response for lockouts, break-in repair and urgent lock changes. No call-out fee. Call Bullard Locks: 07809 887 883.',
+    url: 'https://bullardlocks.com/services/emergency-locksmith',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How much does an emergency locksmith call-out cost in North London?',
+        acceptedAnswer: { '@type': 'Answer', text: 'There is no call-out fee. You pay only for the work done. William provides a fixed quote before any work begins so there are no surprises.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'How quickly can you reach me?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Typical response time is 20–40 minutes across North London. Call 07809 887 883 for an accurate ETA based on your exact location.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Will you damage my door or lock to get me back in?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Non-destructive entry is always the first approach. In the vast majority of cases William can gain entry without any damage to your door, frame, or lock.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you work 24/7?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The emergency locksmith service operates 24 hours a day, 7 days a week including weekends and bank holidays.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can you help businesses as well as homes?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. William regularly attends commercial premises — shops, offices, and residential blocks — for emergency access, break-in repairs, and urgent lock changes.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I do if my property has been broken into?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Call the police first (999 or 101), then call William on 07809 887 883. He can attend to board up, repair, or replace locks to make your property secure again quickly.' },
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://bullardlocks.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://bullardlocks.com/services' },
+      { '@type': 'ListItem', position: 3, name: 'Emergency Locksmith', item: 'https://bullardlocks.com/services/emergency-locksmith' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Emergency Locksmith North London | 24/7 Rapid Response | Bullard Locks"
+  description="Emergency locksmith North London — 24/7, 20-40 min response. Lockouts, break-in repair, urgent lock changes. Met Police approved. No call-out fee."
+  canonicalUrl="https://bullardlocks.com/services/emergency-locksmith"
+  schema={schema}
+>
+
+  <!-- HERO -->
+  <section class="loc-hero bg-dark">
+    <div class="loc-hero-bg" style={`background-image: url('${heroImage}')`} aria-hidden="true"></div>
+    <div class="loc-hero-overlay" aria-hidden="true"></div>
+    <div class="container-custom loc-hero-content">
+
+      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="/services">Services</a>
+        <span aria-hidden="true">/</span>
+        <span>Emergency Locksmith</span>
+      </nav>
+
+      <div class="loc-hero-grid">
+        <div class="loc-hero-left">
+          <h1 class="loc-hero-title">
+            <span class="loc-hero-service">Emergency Locksmith</span>
+            <span class="loc-hero-location">North London</span>
+          </h1>
+
+          <p class="loc-hero-postcodes">
+            <i class="fas fa-map-marker-alt"></i>
+            Camden · Islington · Haringey · Barnet · Enfield · Hackney
+          </p>
+
+          <p class="loc-hero-lead">
+            Locked out? Break-in? Urgent lock change? William Bullard provides professional 24/7 emergency locksmith services across North London with typical arrival in 20–40 minutes. No call-out fee, fixed price quoted upfront.
+          </p>
+
+          <div class="loc-hero-ctas">
+            <a href="tel:07809887883" class="btn-hero-primary">
+              <i class="fas fa-phone"></i> 07809 887 883
+            </a>
+            <a href="https://wa.me/447809887883" class="btn-hero-whatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+
+          <div class="loc-trust-bar">
+            <div class="loc-trust-item">
+              <i class="fas fa-star"></i>
+              <span>5.0 Google</span>
+            </div>
+            <div class="loc-trust-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>Met Police Approved</span>
+            </div>
+            <div class="loc-trust-item">
+              <i class="fas fa-award"></i>
+              <span>30+ Years Experience</span>
+            </div>
+            <div class="loc-trust-item">
+              <i class="fas fa-tag"></i>
+              <span>No Call-Out Fee</span>
+            </div>
+            <div class="loc-trust-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Fully Insured</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky conversion panel -->
+        <div class="loc-hero-panel">
+          <div class="conv-panel">
+            <div class="conv-panel-header">
+              <i class="fas fa-phone"></i>
+              <div>
+                <p class="conv-panel-label">Call us now</p>
+                <a href="tel:07809887883" class="conv-panel-number">07809 887 883</a>
+              </div>
+            </div>
+            <p class="conv-panel-note">Or request a callback:</p>
+            <form id="callback-form" class="conv-form">
+              <input type="text" name="name" placeholder="Your name" class="conv-input" required />
+              <input type="tel" name="phone" placeholder="Your phone number" class="conv-input" required />
+              <input type="hidden" name="service" value="emergency-locksmith" />
+              <input type="hidden" name="form_type" value="callback" />
+              <input type="hidden" name="message" value="Callback request for Emergency Locksmith" />
+              <button type="submit" class="conv-submit">
+                <i class="fas fa-phone"></i> Request Callback
+              </button>
+              <div class="conv-form-status" style="display:none;"></div>
+            </form>
+            <a href="https://wa.me/447809887883" class="conv-whatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Message on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEARBY BOROUGH PAGES -->
+  <section class="content-section bg-white">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">Emergency Locksmith by Borough</h2>
+        <p class="section-subtitle">Find the emergency locksmith service page for your specific area.</p>
+      </div>
+
+      <div class="nearby-grid">
+        <a href="/locations/haringey/emergency-locksmith" class="nearby-card">
+          <div class="nearby-card-content">
+            <h3 class="nearby-name">Haringey</h3>
+            <p class="nearby-postcodes">N4, N8, N15, N17, N22</p>
+            <p class="nearby-time"><i class="fas fa-clock"></i> 20–35 min</p>
+          </div>
+          <i class="fas fa-arrow-right nearby-arrow"></i>
+        </a>
+        <a href="/locations/barnet/emergency-locksmith" class="nearby-card">
+          <div class="nearby-card-content">
+            <h3 class="nearby-name">Barnet</h3>
+            <p class="nearby-postcodes">EN5, N12, N20, NW4</p>
+            <p class="nearby-time"><i class="fas fa-clock"></i> 25–40 min</p>
+          </div>
+          <i class="fas fa-arrow-right nearby-arrow"></i>
+        </a>
+        <a href="/locations/camden/emergency-locksmith" class="nearby-card">
+          <div class="nearby-card-content">
+            <h3 class="nearby-name">Camden</h3>
+            <p class="nearby-postcodes">NW1, NW3, NW5, N1</p>
+            <p class="nearby-time"><i class="fas fa-clock"></i> 20–35 min</p>
+          </div>
+          <i class="fas fa-arrow-right nearby-arrow"></i>
+        </a>
+        <a href="/locations/islington/emergency-locksmith" class="nearby-card">
+          <div class="nearby-card-content">
+            <h3 class="nearby-name">Islington</h3>
+            <p class="nearby-postcodes">N1, N5, N7, EC1</p>
+            <p class="nearby-time"><i class="fas fa-clock"></i> 20–35 min</p>
+          </div>
+          <i class="fas fa-arrow-right nearby-arrow"></i>
+        </a>
+        <a href="/locations/hackney/emergency-locksmith" class="nearby-card">
+          <div class="nearby-card-content">
+            <h3 class="nearby-name">Hackney</h3>
+            <p class="nearby-postcodes">E5, E8, E9, N16</p>
+            <p class="nearby-time"><i class="fas fa-clock"></i> 25–40 min</p>
+          </div>
+          <i class="fas fa-arrow-right nearby-arrow"></i>
+        </a>
+        <a href="/locations/enfield/emergency-locksmith" class="nearby-card">
+          <div class="nearby-card-content">
+            <h3 class="nearby-name">Enfield</h3>
+            <p class="nearby-postcodes">EN1, EN2, EN3, N9</p>
+            <p class="nearby-time"><i class="fas fa-clock"></i> 30–45 min</p>
+          </div>
+          <i class="fas fa-arrow-right nearby-arrow"></i>
+        </a>
+        <a href="/locations" class="nearby-card nearby-all">
+          <div class="nearby-card-content">
+            <h3 class="nearby-name">All Locations</h3>
+            <p class="nearby-postcodes">View all areas we serve</p>
+          </div>
+          <i class="fas fa-arrow-right nearby-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES DETAIL -->
+  <section class="content-section bg-light">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">Emergency Locksmith Services in North London</h2>
+        <p class="section-subtitle">Professional 24/7 emergency locksmith covering Camden, Islington, Haringey, Barnet, Enfield and Hackney.</p>
+      </div>
+
+      <div class="services-4-grid">
+        <div class="service-detail-card">
+          <div class="sdc-icon"><i class="fas fa-door-open"></i></div>
+          <h3 class="sdc-title">Locked Out</h3>
+          <p class="sdc-desc">Non-destructive entry to your home or business. William uses specialist tools to open the lock without damaging your door or frame in the vast majority of cases.</p>
+        </div>
+        <div class="service-detail-card">
+          <div class="sdc-icon"><i class="fas fa-tools"></i></div>
+          <h3 class="sdc-title">Burglary Repairs</h3>
+          <p class="sdc-desc">Emergency boarding-up and lock replacement following a break-in. Property made secure immediately so you can feel safe again.</p>
+        </div>
+        <div class="service-detail-card">
+          <div class="sdc-icon"><i class="fas fa-key"></i></div>
+          <h3 class="sdc-title">Broken Key Extraction</h3>
+          <p class="sdc-desc">Key snapped in the lock? Specialist tools extract the broken part cleanly. New key cut and fitted on the spot where possible.</p>
+        </div>
+        <div class="service-detail-card">
+          <div class="sdc-icon"><i class="fas fa-lock"></i></div>
+          <h3 class="sdc-title">Urgent Lock Change</h3>
+          <p class="sdc-desc">New locks fitted immediately — after a break-in, lost keys, or a change of tenancy. High-security British Standard locks supplied and installed.</p>
+        </div>
+      </div>
+
+      <div class="features-pill-row">
+        <span class="feature-pill"><i class="fas fa-check"></i> No call-out fee</span>
+        <span class="feature-pill"><i class="fas fa-check"></i> Fixed price upfront</span>
+        <span class="feature-pill"><i class="fas fa-check"></i> Non-destructive entry first</span>
+        <span class="feature-pill"><i class="fas fa-check"></i> 24/7 availability</span>
+        <span class="feature-pill"><i class="fas fa-check"></i> Residential & commercial</span>
+        <span class="feature-pill"><i class="fas fa-check"></i> British Standard locks</span>
+        <span class="feature-pill"><i class="fas fa-check"></i> Met Police approved</span>
+        <span class="feature-pill"><i class="fas fa-check"></i> DBS checked</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="content-section bg-dark">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Three simple steps to get the problem sorted — fast.</p>
+      </div>
+
+      <div class="how-it-works-grid">
+        <div class="hiw-step">
+          <div class="hiw-number">01</div>
+          <h3>Call Now</h3>
+          <p>Call <a href="tel:07809887883" style="color:var(--color-accent)">07809 887 883</a> or <a href="https://wa.me/447809887883" target="_blank" rel="noopener noreferrer" style="color:var(--color-accent)">WhatsApp</a>. Tell William your location in North London and what's happened. He'll give you an ETA immediately.</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-number">02</div>
+          <h3>Immediate Dispatch</h3>
+          <p>William heads straight to you. Typical arrival 20–40 minutes. You receive a fixed quote before any work begins — no surprises.</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-number">03</div>
+          <h3>Sorted on the Spot</h3>
+          <p>Work is completed on the spot in most cases. Non-destructive entry first, no call-out fee, and your property left secure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section class="content-section bg-white" id="get-quote">
+    <div class="container-custom">
+      <div class="quote-form-layout">
+        <div class="quote-form-card">
+          <form id="quote-form" enctype="multipart/form-data">
+            <input type="hidden" name="form_type" value="service-quote" />
+            <input type="hidden" name="service" value="emergency-locksmith" />
+
+            <div class="form-group">
+              <label for="q-name" class="form-label">Your Name *</label>
+              <input type="text" id="q-name" name="name" class="form-control-modern" placeholder="John Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="q-phone" class="form-label">Phone Number *</label>
+              <input type="tel" id="q-phone" name="phone" class="form-control-modern" placeholder="07700 900000" required />
+            </div>
+            <div class="form-group">
+              <label for="q-email" class="form-label">Email (optional)</label>
+              <input type="email" id="q-email" name="email" class="form-control-modern" placeholder="john@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="q-message" class="form-label">Describe Your Situation *</label>
+              <textarea
+                id="q-message"
+                name="message"
+                class="form-control-modern"
+                rows="4"
+                placeholder='e.g. "Locked out of my flat in Islington N1"'
+                required
+              ></textarea>
+            </div>
+
+            <div id="quote-form-status" class="form-status" style="display:none;"></div>
+
+            <button type="submit" class="btn-primary-lg w-full" style="justify-content:center;" id="quote-submit">
+              <i class="fas fa-paper-plane"></i>
+              <span class="btn-text">Get My Quote</span>
+              <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+            </button>
+
+            <p class="form-privacy-note">
+              <i class="fas fa-lock"></i> Your details are kept private and never shared.
+            </p>
+          </form>
+        </div>
+
+        <div class="quote-form-copy">
+          <h2 class="section-title" style="text-align:left;">Get a Quote for Emergency Locksmith</h2>
+          <p style="color:var(--color-text-muted); line-height:1.7; margin-bottom: 24px;">
+            Fill in the short form and William will get back to you promptly. For immediate emergency help, call
+            <a href="tel:07809887883" style="color:var(--color-accent); font-weight:700;">07809 887 883</a> now.
+          </p>
+          <ul class="quote-trust-list">
+            <li><i class="fas fa-check-circle"></i> No call-out fee</li>
+            <li><i class="fas fa-check-circle"></i> Fixed price quoted before work starts</li>
+            <li><i class="fas fa-check-circle"></i> 20–40 minute response across North London</li>
+            <li><i class="fas fa-check-circle"></i> Met Police approved contractor</li>
+            <li><i class="fas fa-check-circle"></i> 30+ years experience</li>
+          </ul>
+          <div class="photo-upload-callout">
+            <i class="fas fa-camera"></i>
+            <div>
+              <strong>Need to send a photo?</strong>
+              <p>Use our <a href="/contact">contact form</a> to upload up to 5 images of your lock, key or safe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ + RESPONSE TIME -->
+  <section class="content-section bg-light" id="faq">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">Emergency Locksmith — FAQ</h2>
+        <p class="section-subtitle">Common questions about the emergency locksmith service in North London.</p>
+      </div>
+
+      <div class="faq-with-card">
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>How much does an emergency locksmith cost in North London?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">There is no call-out fee. You pay only for the work completed. William provides a clear, fixed quote before starting so there are no hidden charges or surprises.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How quickly can you reach me?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">Typical response across North London is 20–40 minutes. Call 07809 887 883 for an accurate ETA based on your exact location and current conditions.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Will you damage my door to get me back in?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">Non-destructive entry is always the first approach. In the vast majority of cases William can open the lock without any damage to your door, frame, or the lock itself.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Is the service available 24 hours a day?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">Yes. The emergency locksmith service operates 24/7, 365 days a year — including weekends and bank holidays. If you have an emergency, call immediately.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Can you help with commercial properties and businesses?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">Absolutely. William regularly attends shops, offices, and commercial premises for emergency access, post-break-in repairs, and urgent lock changes. He is British Gas approved emergency access contractor.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>My property has been broken into — what should I do?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">Call the police first (999 for emergencies, 101 non-urgent), then call William on 07809 887 883. He can attend promptly to repair, replace, or upgrade your locks and make the property secure again.</div>
+          </details>
+        </div>
+        <div class="faq-sidebar">
+          <div class="response-time-card">
+            <div class="rtc-header">
+              <i class="fas fa-bolt"></i>
+              <h3>Response Time</h3>
+            </div>
+            <div class="rtc-time">20–40 min</div>
+            <p class="rtc-note">Typical arrival time across London</p>
+            <div class="rtc-divider"></div>
+            <div class="rtc-stat">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Based in Crouch End N8</span>
+            </div>
+            <div class="rtc-stat">
+              <i class="fas fa-car"></i>
+              <span>Fully equipped mobile unit</span>
+            </div>
+            <div class="rtc-stat">
+              <i class="fas fa-clock"></i>
+              <span>24/7 emergency availability</span>
+            </div>
+            <a href="tel:07809887883" class="btn-primary-lg" style="width:100%; justify-content:center; margin-top:20px;">
+              <i class="fas fa-phone"></i> Call Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <GoogleReviews bg="white" />
+
+  <CTASection
+    title="Need an Emergency Locksmith in North London?"
+    subtitle="24/7 rapid response | No call-out fee | 20–40 min arrival | 30+ years experience"
+  />
+
+</BaseLayout>
+
+<style>
+  /* ===== HERO ===== */
+  .loc-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+    overflow: hidden;
+  }
+
+  .loc-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.25) saturate(0.8);
+  }
+
+  .loc-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(14, 74, 77, 0.85) 0%, rgba(0, 0, 0, 0.6) 100%);
+  }
+
+  .loc-hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
+  .loc-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .loc-breadcrumb a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .loc-breadcrumb a:hover { color: white; }
+
+  .loc-breadcrumb span:last-child {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .loc-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .loc-hero-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .loc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .loc-badge-accent {
+    background: rgba(31, 174, 155, 0.25);
+    color: #7fe8d8;
+    border-color: rgba(31, 174, 155, 0.4);
+  }
+
+  .loc-badge-urgent {
+    background: rgba(220, 38, 38, 0.2);
+    color: #fca5a5;
+    border-color: rgba(220, 38, 38, 0.4);
+  }
+
+  .loc-hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loc-hero-service { color: var(--color-accent); }
+  .loc-hero-location { color: white; }
+
+  .loc-hero-postcodes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    margin: 0 0 16px;
+  }
+
+  .loc-hero-postcodes i { color: var(--color-accent); }
+
+  .loc-hero-lead {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 32px;
+    max-width: 560px;
+  }
+
+  .loc-hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(31, 174, 155, 0.4);
+  }
+
+  .btn-hero-primary:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(31, 174, 155, 0.5);
+  }
+
+  .btn-hero-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-hero-whatsapp:hover {
+    background: #1DA851;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.45);
+  }
+
+  .loc-trust-bar {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .loc-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+
+  .loc-trust-item:first-child { padding-left: 0; }
+  .loc-trust-item + .loc-trust-item { border-left: 1px solid rgba(255,255,255,0.28); }
+
+  .loc-trust-item i {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+  }
+
+  /* Conversion Panel */
+  .conv-panel {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    position: sticky;
+    top: 100px;
+  }
+
+  .conv-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .conv-panel-header > i {
+    width: 44px;
+    height: 44px;
+    background: rgba(31, 174, 155, 0.1);
+    color: var(--color-accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .conv-panel-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .conv-panel-number {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    text-decoration: none;
+    display: block;
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  .conv-panel-number:hover { color: var(--color-accent); }
+
+  .conv-panel-note {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0 0 16px;
+  }
+
+  .conv-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .conv-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(0,0,0,0.1);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    transition: border-color 0.2s;
+    background: var(--color-bg-light);
+  }
+
+  .conv-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: white;
+  }
+
+  .conv-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
+    font-family: var(--font-body);
+  }
+
+  .conv-submit:hover { background: var(--color-accent-hover); }
+
+  .conv-form-status {
+    font-size: 0.875rem;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+
+  .conv-form-status.success {
+    background: rgba(31,174,155,0.1);
+    color: #0e6b5e;
+  }
+
+  .conv-form-status.error {
+    background: rgba(220,38,38,0.05);
+    color: #dc2626;
+  }
+
+  .conv-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 12px;
+    background: #25d366;
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .conv-whatsapp:hover { background: #1db954; }
+
+  /* Services grid */
+  .services-4-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .service-detail-card {
+    background: var(--color-bg-light);
+    border-radius: 16px;
+    padding: 28px 24px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+  }
+
+  .service-detail-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
+  }
+
+  .sdc-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(31, 174, 155, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+
+  .sdc-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--color-text-main);
+  }
+
+  .sdc-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .features-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .feature-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  .feature-pill i {
+    color: var(--color-accent);
+    font-size: 0.75rem;
+  }
+
+  .response-time-card {
+    background: var(--color-bg-dark);
+    border-radius: 20px;
+    padding: 28px;
+    color: white;
+    position: sticky;
+    top: 100px;
+  }
+
+  .rtc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .rtc-header i { color: var(--color-accent); font-size: 1.1rem; }
+
+  .rtc-header h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .rtc-time {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .rtc-note {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    margin: 0 0 20px;
+  }
+
+  .rtc-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 16px;
+  }
+
+  .rtc-stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 10px;
+  }
+
+  .rtc-stat i {
+    color: var(--color-accent);
+    width: 16px;
+    text-align: center;
+  }
+
+  /* How it works */
+  .how-it-works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .hiw-step {
+    text-align: center;
+    padding: 32px 24px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hiw-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--color-accent);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    font-family: 'Public Sans', sans-serif;
+  }
+
+  .hiw-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(31,174,155,0.12);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--color-accent);
+    margin: 0 auto 16px;
+  }
+
+  .hiw-step h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 10px;
+  }
+
+  .hiw-step p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Quote form */
+  .quote-form-layout {
+    display: grid;
+    grid-template-columns: 480px 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .quote-trust-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .quote-trust-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .quote-trust-list i { color: var(--color-accent); }
+
+  .photo-upload-callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    background: rgba(31, 174, 155, 0.08);
+    border: 1px solid rgba(31, 174, 155, 0.2);
+    border-radius: 12px;
+    margin-top: 8px;
+  }
+
+  .photo-upload-callout > i {
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .photo-upload-callout strong {
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .photo-upload-callout p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .photo-upload-callout a {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .photo-upload-callout a:hover {
+    text-decoration: underline;
+  }
+
+  .quote-form-card {
+    background: var(--color-bg-light);
+    border-radius: 20px;
+    padding: 32px;
+    border: 1px solid rgba(0,0,0,0.06);
+    position: sticky;
+    top: 100px;
+  }
+
+  .form-control-modern {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    transition: var(--transition-fast);
+    background: white;
+    color: var(--color-text-main);
+  }
+
+  .form-control-modern:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(31, 174, 155, 0.1);
+  }
+
+  .form-status {
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+
+  .form-status.success {
+    background: rgba(31,174,155,0.1);
+    color: #0e6b5e;
+    border: 1px solid rgba(31,174,155,0.2);
+  }
+
+  .form-status.error {
+    background: rgba(220,38,38,0.05);
+    color: #dc2626;
+    border: 1px solid rgba(220,38,38,0.15);
+  }
+
+  .form-privacy-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--color-text-muted-light);
+    margin: 12px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* FAQ */
+  .faq-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question:hover { color: var(--color-accent); }
+
+  .faq-icon {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--color-text-muted-light);
+    transition: transform 0.2s ease;
+  }
+
+  details[open] .faq-icon { transform: rotate(180deg); }
+
+  .faq-answer {
+    padding: 16px 24px 20px;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .faq-with-card {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .faq-sidebar {
+    position: sticky;
+    top: 100px;
+  }
+
+  /* Nearby grid */
+  .nearby-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .nearby-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 20px;
+    background: var(--color-bg-light);
+    border-radius: 14px;
+    border: 1.5px solid rgba(0,0,0,0.06);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .nearby-card:hover {
+    border-color: var(--color-accent);
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nearby-all {
+    background: rgba(31, 174, 155, 0.05);
+    border-color: rgba(31, 174, 155, 0.2);
+  }
+
+  .nearby-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: var(--color-text-main);
+  }
+
+  .nearby-postcodes {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .nearby-time {
+    font-size: 0.78rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin: 4px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nearby-arrow {
+    color: var(--color-text-muted-light);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .nearby-card:hover .nearby-arrow {
+    transform: translateX(3px);
+    color: var(--color-accent);
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .services-4-grid { grid-template-columns: repeat(2, 1fr); }
+    .nearby-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 992px) {
+    .loc-hero { min-height: auto; }
+    .loc-hero-grid { grid-template-columns: 1fr; }
+    .loc-hero-panel { display: none; }
+    .response-time-card { position: static; }
+    .how-it-works-grid { grid-template-columns: 1fr; }
+    .quote-form-layout { grid-template-columns: 1fr; }
+    .quote-form-card { position: static; }
+    .faq-grid { max-width: 100%; }
+    .faq-with-card { grid-template-columns: 1fr; }
+    .faq-sidebar { position: static; }
+    .nearby-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .nearby-grid { grid-template-columns: 1fr; }
+    .services-4-grid { grid-template-columns: 1fr; }
+    .loc-trust-bar { gap: 12px; }
+    .loc-trust-item { padding: 0; border-left: none; }
+  }
+</style>
+
+<script>
+  const callbackForm = document.getElementById('callback-form') as HTMLFormElement;
+  callbackForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = callbackForm.querySelector('.conv-form-status') as HTMLDivElement;
+    const btn = callbackForm.querySelector('.conv-submit') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try {
+      const fd = new FormData(callbackForm);
+      const res = await fetch('/api/send-email', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (data.success) {
+        status.className = 'conv-form-status success';
+        status.textContent = 'Received! William will call you back shortly.';
+        status.style.display = 'block';
+        callbackForm.reset();
+      } else throw new Error();
+    } catch {
+      status.className = 'conv-form-status error';
+      status.textContent = 'Something went wrong. Please call us directly.';
+      status.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-phone"></i> Request Callback';
+    }
+  });
+
+  const quoteForm = document.getElementById('quote-form') as HTMLFormElement;
+  quoteForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = document.getElementById('quote-form-status') as HTMLDivElement;
+    const btn = document.getElementById('quote-submit') as HTMLButtonElement;
+    const btnText = btn.querySelector('.btn-text') as HTMLSpanElement;
+    const btnLoading = btn.querySelector('.btn-loading') as HTMLSpanElement;
+    btn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline-flex';
+    status.style.display = 'none';
+    try {
+      const fd = new FormData(quoteForm);
+      const res = await fetch('/api/send-email', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (data.success) {
+        status.className = 'form-status success';
+        status.innerHTML = 'Quote request sent! William will be in touch shortly. For urgent help, call <a href="tel:07809887883">07809 887 883</a>.';
+        status.style.display = 'block';
+        quoteForm.reset();
+      } else throw new Error(data.error);
+    } catch {
+      status.className = 'form-status error';
+      status.innerHTML = 'Something went wrong. Please call <a href="tel:07809887883">07809 887 883</a> directly.';
+      status.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btnText.style.display = '';
+      btnLoading.style.display = 'none';
+    }
+  });
+</script>

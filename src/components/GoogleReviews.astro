@@ -1,0 +1,270 @@
+---
+interface Props {
+  bg?: 'white' | 'light';
+}
+
+const { bg = 'light' } = Astro.props;
+
+const reviews = [
+  {
+    name: 'Elisha Lewis',
+    date: '8 months ago',
+    text: 'Locksmith arrived within 10 minutes on a sunny Sunday afternoon and got us back into the flat within an hour. He tried his best to get in without replacing the lock but had to replace it in the end. Very friendly and efficient service at a very good price.',
+    rating: 5,
+  },
+  {
+    name: 'Pete',
+    date: 'a year ago',
+    text: 'William was excellent. Came out promptly, clearly knows what he\'s doing. A really nice guy too! We\'d called out another so called "locksmith" beforehand who turned out to be a right conman. When William turned up you immediately felt he was someone who could be trusted, and he managed to unlock the door without damaging anything. Highly recommend!',
+    rating: 5,
+  },
+  {
+    name: 'Lucy',
+    date: '4 months ago',
+    text: 'Replaced the locks in my new home, super professional and friendly, also managed to resolve an issue with my door being difficult to close due to the original locking mechanism. Thank you!',
+    rating: 5,
+  },
+];
+---
+
+<section class={`reviews-section bg-${bg}`} id="reviews">
+  <div class="container-custom">
+    <div class="reviews-header">
+      <div class="reviews-badge">
+        <svg class="google-icon" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        <div class="reviews-rating">
+          <span class="reviews-score">5.0</span>
+          <div class="reviews-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <span class="reviews-count">23 Reviews</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      {reviews.map((review) => (
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">{review.name.charAt(0)}</div>
+            <div>
+              <p class="review-name">{review.name}</p>
+              <p class="review-date">{review.date}</p>
+            </div>
+            <svg class="review-google-icon" viewBox="0 0 24 24" width="20" height="20">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+          </div>
+          <div class="review-stars">
+            {Array.from({ length: review.rating }).map(() => (
+              <i class="fas fa-star"></i>
+            ))}
+          </div>
+          <p class="review-text">{review.text}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="reviews-cta">
+      <a
+        href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4"
+        class="btn-google-reviews"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        View All 23 Reviews on Google
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    padding: 80px 0;
+  }
+
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .reviews-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 24px;
+    background: white;
+    border-radius: 100px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .google-icon {
+    flex-shrink: 0;
+  }
+
+  .reviews-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .reviews-score {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+  }
+
+  .reviews-stars {
+    display: flex;
+    gap: 2px;
+    color: #FBBC05;
+    font-size: 0.85rem;
+  }
+
+  .reviews-count {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .review-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: all 0.2s ease;
+  }
+
+  .review-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .review-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .review-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0;
+  }
+
+  .review-date {
+    font-size: 0.78rem;
+    color: var(--color-text-muted-light);
+    margin: 0;
+  }
+
+  .review-google-icon {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .review-stars {
+    display: flex;
+    gap: 2px;
+    color: #FBBC05;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .review-text {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .reviews-cta {
+    text-align: center;
+    margin-top: 36px;
+  }
+
+  .btn-google-reviews {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: white;
+    color: var(--color-text-main);
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-google-reviews:hover {
+    border-color: #4285F4;
+    color: #4285F4;
+    box-shadow: 0 4px 16px rgba(66,133,244,0.15);
+    transform: translateY(-2px);
+  }
+
+  .bg-white .reviews-badge {
+    background: var(--color-bg-light);
+  }
+
+  .bg-white .review-card {
+    background: var(--color-bg-light);
+  }
+
+  .bg-white .btn-google-reviews {
+    background: var(--color-bg-light);
+  }
+
+  @media (max-width: 768px) {
+    .reviews-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .reviews-badge {
+      padding: 10px 18px;
+    }
+    .reviews-count {
+      display: none;
+    }
+  }
+</style>

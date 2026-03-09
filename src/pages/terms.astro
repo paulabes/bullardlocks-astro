@@ -1,0 +1,389 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://bullardlocks.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Terms & Conditions", "item": "https://bullardlocks.com/terms"}
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title="Terms & Conditions | Bullard Locks — Auto Locksmith London"
+  description="Terms and conditions for Bullard Locks locksmith services. Read our service terms, payment policy, cancellation policy, and liability information."
+  canonicalUrl="https://bullardlocks.com/terms"
+  schema={schema}
+>
+
+  <!-- HERO -->
+  <section class="policy-hero bg-dark">
+    <div class="policy-hero-overlay" aria-hidden="true"></div>
+    <div class="container-custom policy-hero-content">
+      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <span>Terms &amp; Conditions</span>
+      </nav>
+      <h1 class="policy-hero-title">Terms &amp; Conditions</h1>
+      <p class="policy-hero-lead">Please read these terms carefully before engaging our locksmith services.</p>
+      <p class="policy-updated">Last updated: February 2026</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="policy-content-section bg-white">
+    <div class="container-custom">
+      <div class="policy-layout">
+        <!-- Sidebar nav -->
+        <aside class="policy-sidebar">
+          <nav class="policy-nav">
+            <h3>Contents</h3>
+            <ol>
+              <li><a href="#definitions">Definitions</a></li>
+              <li><a href="#services">Our Services</a></li>
+              <li><a href="#quotes">Quotes &amp; Pricing</a></li>
+              <li><a href="#payment">Payment</a></li>
+              <li><a href="#cancellation">Cancellation</a></li>
+              <li><a href="#liability">Liability</a></li>
+              <li><a href="#guarantee">Guarantee &amp; Warranty</a></li>
+              <li><a href="#conduct">Code of Conduct</a></li>
+              <li><a href="#data">Your Data</a></li>
+              <li><a href="#governing-law">Governing Law</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <!-- Main content -->
+        <div class="policy-body">
+
+          <p class="policy-intro">
+            These terms and conditions govern the provision of locksmith services by <strong>William Bullard trading as Bullard Locks</strong> ("we", "us", "our") to customers ("you", "your"). By engaging our services — whether by telephone, WhatsApp, online enquiry, or in person — you agree to these terms.
+          </p>
+
+          <div class="policy-business-info">
+            <p><strong>Bullard Locks</strong><br />
+            William Bullard (Sole Trader)<br />
+            67 Weston Park, Crouch End, London N8 9TA<br />
+            Tel: <a href="tel:07809887883">07809 887 883</a><br />
+            Email: <a href="mailto:info@bullardlocks.com">info@bullardlocks.com</a></p>
+          </div>
+
+          <h2 id="definitions">1. Definitions</h2>
+          <p><strong>"Services"</strong> means any locksmith, auto locksmith, emergency locksmith, safe engineering, or related service provided by us.</p>
+          <p><strong>"Job"</strong> means a specific service call or appointment arranged between us and you.</p>
+          <p><strong>"Estimate"</strong> means a non-binding indication of likely cost provided before work begins.</p>
+          <p><strong>"Quote"</strong> means a firm price agreed in writing or verbally before work begins.</p>
+
+          <h2 id="services">2. Our Services</h2>
+          <p>Bullard Locks provides mobile locksmith services including but not limited to:</p>
+          <ul>
+            <li>Auto locksmith services — car key replacement, transponder programming, vehicle lockout</li>
+            <li>Emergency locksmith services — residential and commercial lockout, lock replacement</li>
+            <li>Safe engineer services — safe opening, combination changes, safe installation</li>
+          </ul>
+          <p>We reserve the right to decline any job at our discretion, including where we have reasonable grounds to believe the person requesting services is not authorised to access the property or vehicle in question.</p>
+          <p><strong>Proof of authority:</strong> We may ask you to provide proof of identity and authorisation (e.g. proof of vehicle ownership, tenancy agreement, or ID) before carrying out work. Failure to provide satisfactory evidence may result in us declining to proceed.</p>
+
+          <h2 id="quotes">3. Quotes &amp; Pricing</h2>
+          <p>All prices quoted are in pounds sterling (GBP) and are inclusive of VAT where applicable. As a sole trader below the VAT threshold, our prices are not subject to VAT unless stated otherwise.</p>
+          <ul>
+            <li><strong>No call-out fee:</strong> We do not charge a call-out fee for attending any job.</li>
+            <li><strong>Estimates:</strong> Telephone estimates are indicative only. A firm price will be provided on site after assessing the job.</li>
+            <li><strong>Quotes:</strong> Where a firm quote is given before work begins, we will honour that price unless the scope of work changes.</li>
+            <li><strong>Additional costs:</strong> If unforeseen complications arise during a job, we will inform you before carrying out any additional work that incurs additional cost.</li>
+          </ul>
+
+          <h2 id="payment">4. Payment</h2>
+          <p>Payment is due upon completion of work unless otherwise agreed in advance. We accept:</p>
+          <ul>
+            <li>Cash</li>
+            <li>Bank transfer (BACS)</li>
+            <li>Card payment (where available)</li>
+          </ul>
+          <p>We do not accept cheques. For larger jobs (typically above £500), we may request a deposit before commencing work. This will be agreed with you in advance.</p>
+          <p>Late payment may result in interest being charged at 8% per annum above the Bank of England base rate under the Late Payment of Commercial Debts (Interest) Act 1998, where applicable.</p>
+
+          <h2 id="cancellation">5. Cancellation</h2>
+          <p><strong>By you:</strong> If you need to cancel or reschedule a non-emergency appointment, please give us as much notice as possible. We do not charge a cancellation fee unless:</p>
+          <ul>
+            <li>We have already attended the location and been unable to carry out the work due to reasons within your control; or</li>
+            <li>A deposit has been paid for a specialist job (e.g. specialist key programming or safe installation) and materials have been ordered — in which case the deposit may be retained to cover costs incurred.</li>
+          </ul>
+          <p><strong>By us:</strong> We reserve the right to cancel or reschedule appointments due to unforeseen circumstances. We will provide as much notice as possible and arrange an alternative time at no additional cost to you.</p>
+
+          <h2 id="liability">6. Liability</h2>
+          <p>We carry full public liability insurance. Our liability is limited as follows:</p>
+          <ul>
+            <li>We will not be liable for any pre-existing damage to locks, safes, doors, or vehicles that existed before our work began.</li>
+            <li>We will not be liable for any consequential, indirect, or economic loss arising from our services or any delay in providing them.</li>
+            <li>In all cases, our total liability is limited to the amount paid for the relevant job.</li>
+            <li>Nothing in these terms excludes or limits our liability for death or personal injury caused by our negligence, or for fraud or fraudulent misrepresentation.</li>
+          </ul>
+          <p>It is your responsibility to ensure that the area is safe and accessible for us to carry out our work. We will not be held liable for damage caused by hazardous conditions that you failed to disclose.</p>
+
+          <h2 id="guarantee">7. Guarantee &amp; Warranty</h2>
+          <p>We stand behind our workmanship. All labour carried out by Bullard Locks is guaranteed for <strong>12 months</strong> from the date of completion, subject to the following conditions:</p>
+          <ul>
+            <li>The guarantee covers defects in workmanship only, not wear and tear or misuse.</li>
+            <li>Parts and materials supplied by us carry the manufacturer's warranty, which we will pass on to you where possible.</li>
+            <li>The guarantee is void if the work has been modified or tampered with by a third party.</li>
+          </ul>
+
+          <h2 id="conduct">8. Code of Conduct</h2>
+          <p>We operate to high professional standards. We are:</p>
+          <ul>
+            <li>Metropolitan Police approved through the Secured by Design scheme</li>
+            <li>British Gas approved contractor</li>
+            <li>Fully DBS (Disclosure and Barring Service) checked</li>
+            <li>Fully insured with public liability cover</li>
+          </ul>
+          <p>We expect all customers to treat us with respect. We reserve the right to cease work and leave a premises if we are subjected to abusive, threatening, or unreasonable behaviour. In such cases, any costs incurred up to that point will be payable.</p>
+
+          <h2 id="data">9. Your Data</h2>
+          <p>We collect and process your personal data only as necessary to provide our services and comply with legal obligations. For full details, please see our <a href="/privacy-policy">Privacy Policy</a>.</p>
+
+          <h2 id="governing-law">10. Governing Law</h2>
+          <p>These terms and conditions are governed by the laws of England and Wales. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+          <p>These terms do not affect your statutory rights as a consumer under the Consumer Rights Act 2015 or any other applicable consumer protection legislation.</p>
+
+          <h2 id="contact">11. Contact</h2>
+          <p>If you have any questions about these terms, or a complaint about our services, please contact us:</p>
+          <ul>
+            <li><strong>Phone:</strong> <a href="tel:07809887883">07809 887 883</a></li>
+            <li><strong>Email:</strong> <a href="mailto:info@bullardlocks.com">info@bullardlocks.com</a></li>
+            <li><strong>Post:</strong> William Bullard, 67 Weston Park, Crouch End, London N8 9TA</li>
+          </ul>
+          <p>We aim to respond to all complaints within 5 working days.</p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Questions? Just Call."
+    subtitle="Direct line to William | No call-out fee | 24/7 emergency service"
+  />
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .policy-hero {
+    position: relative;
+    background: var(--color-bg-dark);
+    padding: calc(var(--header-height) + 60px) 0 60px;
+  }
+
+  .policy-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(31,174,155,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .policy-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .loc-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+  }
+
+  .loc-breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .loc-breadcrumb a:hover { color: white; }
+  .loc-breadcrumb span { color: rgba(255,255,255,0.35); }
+  .loc-breadcrumb span:last-child { color: rgba(255,255,255,0.75); }
+
+  .policy-hero-title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .policy-hero-lead {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+
+  .policy-updated {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    margin: 0;
+  }
+
+  /* Layout */
+  .policy-content-section {
+    padding: 64px 0 80px;
+  }
+
+  .policy-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Sidebar */
+  .policy-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + 24px);
+  }
+
+  .policy-nav h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .policy-nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: none;
+  }
+
+  .policy-nav li {
+    margin-bottom: 8px;
+  }
+
+  .policy-nav a {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: block;
+    padding: 4px 0;
+    border-left: 2px solid transparent;
+    padding-left: 12px;
+    transition: all 0.15s ease;
+    line-height: 1.4;
+  }
+
+  .policy-nav a:hover {
+    color: var(--color-accent);
+    border-left-color: var(--color-accent);
+  }
+
+  /* Body */
+  .policy-body { max-width: 760px; }
+
+  .policy-intro {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .policy-business-info {
+    background: var(--color-bg-light);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    border-left: 3px solid var(--color-accent);
+  }
+
+  .policy-business-info p { margin: 0; }
+
+  .policy-body h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 40px 0 16px;
+    color: var(--color-text-main);
+    padding-top: 24px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .policy-body h2:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .policy-body p {
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    margin-bottom: 16px;
+    font-size: 0.975rem;
+  }
+
+  .policy-body ul, .policy-body ol {
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+    font-size: 0.975rem;
+  }
+
+  .policy-body li { margin-bottom: 8px; }
+
+  .policy-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .policy-body a:hover { color: var(--color-accent-hover); }
+
+  .policy-body strong { color: var(--color-text-main); }
+
+  @media (max-width: 900px) {
+    .policy-layout {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .policy-sidebar {
+      position: static;
+    }
+
+    .policy-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .policy-nav h3 { display: none; }
+
+    .policy-nav ol {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .policy-nav li { margin: 0; }
+
+    .policy-nav a {
+      border-left: none;
+      padding-left: 0;
+      background: var(--color-bg-light);
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    .policy-nav a:hover {
+      background: rgba(31,174,155,0.1);
+    }
+  }
+</style>

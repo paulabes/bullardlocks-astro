@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  ogType?: string;
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl = Astro.url.href,
+  ogImage = 'https://bullardlocks.com/images/william-bullard-trusted-london-locksmith.jpg',
+  ogType = 'website',
+  schema
+} = Astro.props;
+
+const siteUrl = 'https://bullardlocks.com';
+---
+
+<!DOCTYPE html>
+<html lang="en-GB" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#1fae9b" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content="Bullard Locks" />
+
+  <!-- X (formerly Twitter) -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={canonicalUrl} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={ogImage} />
+
+  <!-- Additional Meta Tags -->
+  <meta name="author" content="William Bullard" />
+  <meta name="robots" content="index, follow" />
+  <meta name="geo.region" content="GB-LND" />
+  <meta name="geo.placename" content="London" />
+
+  <title>{title}</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Preconnect to external resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <!-- Schema.org markup -->
+  {schema && (
+    Array.isArray(schema)
+      ? schema.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)
+      : <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+</head>
+
+<body class="antialiased">
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <Header />
+
+  <main style="position: relative; z-index: 1;">
+    <slot />
+  </main>
+
+  <Footer style="position: relative; z-index: 1;" />
+
+  <!-- Chat Widget -->
+  <ChatWidget />
+</body>
+</html>

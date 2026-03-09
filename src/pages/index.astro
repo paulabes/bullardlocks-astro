@@ -1,0 +1,1298 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
+import CTASection from '../components/CTASection.astro';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LocksmithBusiness",
+    "@id": "https://bullardlocks.com/#business",
+    "name": "Bullard Locks",
+    "image": "https://bullardlocks.com/images/bullard-locks-default-logo.png",
+    "logo": "https://bullardlocks.com/images/bullard-locks-retina-logo.png",
+    "description": "Mobile auto locksmith and emergency locksmith based in Crouch End N8, serving North & Central London. Car key replacement, vehicle lockout, emergency lockouts and safe engineering. 30+ years experience.",
+    "url": "https://bullardlocks.com",
+    "telephone": "+447809887883",
+    "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+447809887883",
+      "contactType": "customer service",
+      "areaServed": "GB",
+      "availableLanguage": ["en-GB"]
+    },
+    "priceRange": "££",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "67 Weston Park",
+      "addressLocality": "Crouch End, London",
+      "postalCode": "N8 9TA",
+      "addressCountry": "GB"
+    },
+    "geo": {"@type": "GeoCoordinates","latitude": 51.5752,"longitude": -0.1157},
+    "areaServed": [
+      "Crouch End (N8)","Islington (N1)","Camden (NW1)","Haringey (N4)","Barnet (EN5)","Enfield (EN2)","Finchley (N12)","Hampstead (NW3)","Highgate (N6)","Bloomsbury (WC1)","Holborn (WC2)","City of London (EC1 / EC2)","Westminster (SW1 / W1)"
+    ],
+    "openingHoursSpecification": {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens": "00:00","closes": "23:59"},
+    "sameAs": [
+      "https://facebook.com/bullardlocks",
+      "https://x.com/bullardlocks",
+      "https://instagram.com/bullardlocks",
+      "https://linkedin.com/company/bullardlocks"
+    ],
+    "founder": {"@type": "Person","name": "William Bullard","jobTitle": "Auto Locksmith & Safe Engineer"},
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Locksmith Services",
+      "itemListElement": [
+        {"@type": "Offer","itemOffered": {"@type": "Service","name": "Auto Locksmith","description": "Mobile auto locksmith – car key replacement, programming & vehicle lockout. All makes and models."}},
+        {"@type": "Offer","itemOffered": {"@type": "Service","name": "Emergency Locksmith","description": "24/7 emergency lockout & locksmith services North London."}},
+        {"@type": "Offer","itemOffered": {"@type": "Service","name": "Safe Engineer","description": "Professional safe opening, installation & repair UK-wide."}}
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem","position": 1, "name": "Home", "item": "https://bullardlocks.com/"}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://bullardlocks.com/#website",
+    "url": "https://bullardlocks.com/",
+    "name": "Bullard Locks",
+    "publisher": {"@id": "https://bullardlocks.com/#business"}
+  }
+];
+---
+
+<BaseLayout
+  title="Auto Locksmith London | Car Key Replacement & Emergency Locksmith | Bullard Locks"
+  description="Auto locksmith London — car key replacement, vehicle lockout & emergency locksmith. North & Central London. Met Police approved. No call-out fee. 07809 887 883."
+  canonicalUrl="https://bullardlocks.com/"
+  schema={schema}
+>
+
+  <!-- ============================================================
+       HERO — full-bleed background, wide centred column
+       ============================================================ -->
+  <section class="home-hero">
+    <!-- Background photo with dark overlay -->
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="container-custom hero-inner">
+
+      <!-- Live availability badge -->
+      <div class="hero-badge">
+        <span class="badge-pulse"></span>
+        Available Now — 24 / 7 Emergency Response
+      </div>
+
+      <!-- H1 -->
+      <h1 class="hero-title">
+        Auto Locksmith <span class="hero-accent">London</span>
+      </h1>
+
+      <!-- Three coloured service chips -->
+      <div class="hero-chips">
+        <a href="/services/auto-locksmith" class="chip chip-amber">
+          <i class="fas fa-car"></i>
+          <span>Auto Locksmith</span>
+        </a>
+        <a href="/services/emergency-locksmith" class="chip chip-coral">
+          <i class="fas fa-clock"></i>
+          <span>Emergency 24/7</span>
+        </a>
+        <a href="/services/safe-engineer" class="chip chip-blue">
+          <i class="fas fa-shield-alt"></i>
+          <span>Safe Engineer</span>
+        </a>
+      </div>
+
+      <!-- Lead -->
+      <p class="hero-lead">
+        Based in Crouch End N8, serving North &amp; Central London for over 30 years.
+        Car key replacement, emergency lockouts and professional safe engineering —
+        no call-out fee.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-ctas">
+        <a href="tel:07809887883" class="btn-call">
+          <i class="fas fa-phone"></i>
+          07809 887 883
+        </a>
+        <a href="https://wa.me/447809887883" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i>
+          WhatsApp
+        </a>
+      </div>
+
+      <!-- Trust bar -->
+      <div class="hero-trust">
+        <div class="trust-pill">
+          <i class="fas fa-star"></i>
+          <span>5.0 Google</span>
+        </div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-pill">
+          <i class="fas fa-shield-alt"></i>
+          <span>Met Police Approved</span>
+        </div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-pill">
+          <i class="fas fa-award"></i>
+          <span>30+ Years Experience</span>
+        </div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-pill">
+          <i class="fas fa-tag"></i>
+          <span>No Call-Out Fee</span>
+        </div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-pill">
+          <i class="fas fa-check-circle"></i>
+          <span>Fully Insured</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WILLIAM INTRO — text left, photo right
+       ============================================================ -->
+  <section class="william-section section-padding bg-white">
+    <div class="container-custom">
+      <div class="william-grid">
+
+        <!-- Left: copy -->
+        <div class="william-copy">
+          <p class="eyebrow">Your Local Locksmith Expert</p>
+          <h2 class="william-heading">
+            30+ Years Experience.<br />
+            <span class="text-accent">Trusted by London.</span>
+          </h2>
+          <p class="william-lead">
+            I'm William Bullard, a fully independent locksmith based in Crouch End N8. For over three decades I've provided rapid, professional locksmith services across North and Central London — from car key replacements to complex safe engineering.
+          </p>
+          <p class="william-body">
+            My work is trusted and approved by the Metropolitan Police and British Gas. I carry full photo ID, am DBS checked, and always provide a fixed quote before starting any job. No hidden fees, ever.
+          </p>
+          <ul class="william-creds">
+            <li><i class="fas fa-check-circle"></i> Met Police Approved Contractor</li>
+            <li><i class="fas fa-check-circle"></i> British Gas Emergency Contractor</li>
+            <li><i class="fas fa-check-circle"></i> DBS / CRB Checked</li>
+            <li><i class="fas fa-check-circle"></i> No Call-Out Fee</li>
+            <li><i class="fas fa-check-circle"></i> Non-Destructive Entry Specialist</li>
+            <li><i class="fas fa-check-circle"></i> Fully Insured &amp; Independent</li>
+          </ul>
+          <div class="william-actions">
+            <a href="tel:07809887883" class="btn-primary-solid">
+              <i class="fas fa-phone"></i> Call William
+            </a>
+            <a href="/about" class="btn-ghost">
+              About William <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: photo + floating 5-star card -->
+        <div class="william-photo-col">
+          <div class="william-img-wrap">
+            <img
+              src="/images/william-bullard-trusted-london-locksmith.jpg"
+              alt="William Bullard — Trusted London Locksmith"
+              class="william-img"
+              loading="lazy"
+            />
+            <!-- Floating 5-star card -->
+            <a href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4" target="_blank" rel="noopener noreferrer" class="star-card">
+              <div class="star-icon"><i class="fas fa-star"></i></div>
+              <div class="star-text">
+                <span class="star-rating">5.0 Rating</span>
+                <span class="star-source">Google Reviews</span>
+              </div>
+            </a>
+            <!-- Experience badge -->
+            <div class="exp-badge">
+              <span class="exp-num">30+</span>
+              <span class="exp-label">Years<br>Experience</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES
+       ============================================================ -->
+  <section class="services-section section-padding bg-light">
+    <div class="container-custom">
+      <div class="section-hdr">
+        <p class="eyebrow">What We Do</p>
+        <h2 class="section-title">Professional <span class="text-accent">Locksmith Services</span></h2>
+        <p class="section-subtitle">Expert security solutions for vehicles, homes and businesses — rapid response across London.</p>
+      </div>
+
+      <div class="svc-cards">
+
+        <a href="/services/auto-locksmith" class="svc-card svc-amber">
+          <div class="svc-icon"><i class="fas fa-car-side"></i></div>
+          <h3 class="svc-title">Auto Locksmith</h3>
+          <p class="svc-desc">Mobile car key replacement, transponder programming and vehicle lockout — all makes and models across London.</p>
+          <ul class="svc-list">
+            <li><i class="fas fa-check"></i> Car key cutting &amp; coding</li>
+            <li><i class="fas fa-check"></i> Vehicle lockout — no damage</li>
+            <li><i class="fas fa-check"></i> Lost all keys? No problem</li>
+            <li><i class="fas fa-check"></i> Key fob repair &amp; replacement</li>
+          </ul>
+          <span class="svc-link">Find Out More <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="/services/emergency-locksmith" class="svc-card svc-coral svc-featured">
+          <div class="svc-badge-label">24/7</div>
+          <div class="svc-icon"><i class="fas fa-clock"></i></div>
+          <h3 class="svc-title">Emergency Locksmith</h3>
+          <p class="svc-desc">Rapid 24/7 response for lockouts, break-ins and urgent lock changes across North London. No call-out fee.</p>
+          <ul class="svc-list">
+            <li><i class="fas fa-check"></i> Lockout assistance</li>
+            <li><i class="fas fa-check"></i> Break-in repair &amp; board-up</li>
+            <li><i class="fas fa-check"></i> British Standard locks fitted</li>
+            <li><i class="fas fa-check"></i> Key extraction</li>
+          </ul>
+          <span class="svc-link">Find Out More <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="/services/safe-engineer" class="svc-card svc-blue">
+          <div class="svc-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="svc-title">Safe Engineer</h3>
+          <p class="svc-desc">Professional safe opening, installation and repair for homes and businesses. Available UK-wide by appointment.</p>
+          <ul class="svc-list">
+            <li><i class="fas fa-check"></i> Non-destructive safe opening</li>
+            <li><i class="fas fa-check"></i> Safe supply &amp; installation</li>
+            <li><i class="fas fa-check"></i> Combination changes</li>
+            <li><i class="fas fa-check"></i> All major safe brands</li>
+          </ul>
+          <span class="svc-link">Find Out More <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MET POLICE
+       ============================================================ -->
+  <section class="section-padding met-section bg-white">
+    <div class="container-custom">
+      <div class="met-grid">
+
+        <div class="met-right">
+          <div class="met-badge-card">
+            <div class="met-shield"><i class="fas fa-shield-alt"></i></div>
+            <div>
+              <p class="met-badge-label">Metropolitan Police</p>
+              <p class="met-badge-title">Approved Contractor</p>
+              <p class="met-badge-sub">Vetted and approved by the Met Police — the gold standard for security and trustworthiness in London.</p>
+            </div>
+          </div>
+          <div class="met-features">
+            <div class="met-feat">
+              <div class="met-feat-icon"><i class="fas fa-id-badge"></i></div>
+              <div>
+                <strong>Full Vetting & DBS Checked</strong>
+                <span>Rigorously background-checked to meet Met Police standards</span>
+              </div>
+            </div>
+            <div class="met-feat">
+              <div class="met-feat-icon"><i class="fas fa-home"></i></div>
+              <div>
+                <strong>Police Callout Contractor</strong>
+                <span>Called by the Met to assist at crime scenes and secure properties</span>
+              </div>
+            </div>
+            <div class="met-feat">
+              <div class="met-feat-icon"><i class="fas fa-user-shield"></i></div>
+              <div>
+                <strong>Photo ID Always Carried</strong>
+                <span>Full identification on every job — your security is our priority</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="met-copy">
+          <p class="eyebrow">Metropolitan Police Approved</p>
+          <h2 class="met-heading">Trusted by the <span class="text-accent">Metropolitan Police</span></h2>
+          <p class="met-lead">
+            William Bullard is a Metropolitan Police approved contractor — one of only a small number of locksmiths in London who have passed the rigorous vetting required to work directly with the Met.
+          </p>
+          <ul class="met-list">
+            <li><i class="fas fa-check"></i> Met Police Approved & Vetted</li>
+            <li><i class="fas fa-check"></i> Called to assist at police incidents</li>
+            <li><i class="fas fa-check"></i> Secures properties after break-ins</li>
+            <li><i class="fas fa-check"></i> DBS / CRB checked &amp; fully insured</li>
+          </ul>
+          <div class="met-ctas">
+            <a href="tel:07809887883" class="btn-primary-solid">
+              <i class="fas fa-phone"></i> Call William Direct
+            </a>
+            <a href="/about" class="btn-ghost">
+              About William <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BRITISH GAS
+       ============================================================ -->
+  <section class="section-padding gas-section bg-light">
+    <div class="container-custom">
+      <div class="gas-grid">
+        <div class="gas-copy">
+          <p class="eyebrow">British Gas Certified — 20+ Years</p>
+          <h2 class="gas-heading">British Gas <span class="text-accent">Emergency Access Contractor</span></h2>
+          <p class="gas-lead">
+            When British Gas engineers respond to a gas emergency and the property owner can't be reached, they call William Bullard to gain safe, non-destructive access.
+          </p>
+          <ul class="gas-list">
+            <li><i class="fas fa-check"></i> British Gas Certified Contractor</li>
+            <li><i class="fas fa-check"></i> 20+ Years on the Gas Emergency Rota</li>
+            <li><i class="fas fa-check"></i> Non-Destructive Entry Specialist</li>
+            <li><i class="fas fa-check"></i> Rapid Response, Any Time of Day</li>
+          </ul>
+          <div class="gas-ctas">
+            <a href="tel:07809887883" class="btn-primary-solid">
+              <i class="fas fa-phone"></i> Call William Direct
+            </a>
+            <a href="/about" class="btn-ghost">
+              About William <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="gas-right">
+          <div class="gas-badge-card">
+            <div class="gas-flame"><i class="fas fa-fire"></i></div>
+            <div>
+              <p class="gas-badge-label">British Gas</p>
+              <p class="gas-badge-title">Emergency Access Contractor</p>
+              <p class="gas-badge-sub">Certified and trusted by British Gas to provide emergency entry — safely and without unnecessary damage.</p>
+            </div>
+          </div>
+          <div class="gas-features">
+            <div class="gas-feat">
+              <div class="gas-feat-icon"><i class="fas fa-door-open"></i></div>
+              <div>
+                <strong>Emergency Property Access</strong>
+                <span>Fast, safe entry when British Gas engineers need to act</span>
+              </div>
+            </div>
+            <div class="gas-feat">
+              <div class="gas-feat-icon"><i class="fas fa-lock"></i></div>
+              <div>
+                <strong>Re-secured After Entry</strong>
+                <span>Property locked and made secure once the emergency is resolved</span>
+              </div>
+            </div>
+            <div class="gas-feat">
+              <div class="gas-feat-icon"><i class="fas fa-clock"></i></div>
+              <div>
+                <strong>24/7 Availability</strong>
+                <span>On call around the clock — gas emergencies don't keep office hours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <GoogleReviews bg="white" />
+
+  <CTASection
+    title="Need a Locksmith?"
+    subtitle="Available 24/7 | No call-out fee | 30+ years experience"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+
+  .home-hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+    overflow: hidden;
+  }
+
+  /* Background photo */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/william-bullard-trusted-london-locksmith.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    filter: brightness(0.22) saturate(0.7);
+  }
+
+  /* Gradient overlay on top of photo */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(6, 30, 32, 0.92) 0%,
+      rgba(14, 74, 77, 0.78) 50%,
+      rgba(6, 30, 32, 0.88) 100%
+    );
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    max-width: 960px;        /* wide centred column */
+    margin-inline: auto;
+  }
+
+  /* Live badge */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #a7f3e8;
+    letter-spacing: 0.03em;
+    margin-bottom: 32px;
+  }
+
+  .badge-pulse {
+    width: 8px;
+    height: 8px;
+    background: #1fae9b;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(31,174,155,0.6); }
+    60%       { box-shadow: 0 0 0 7px rgba(31,174,155,0); }
+  }
+
+  /* H1 */
+  .hero-title {
+    font-size: clamp(2rem, 3.8vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.08;
+    color: #ffffff;
+    margin: 0 0 28px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .hero-accent {
+    color: var(--color-accent);
+  }
+
+  /* ---- Service chips ---- */
+  .hero-chips {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1.5px solid transparent;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .chip:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Amber — Auto Locksmith */
+  .chip-amber {
+    background: rgba(245, 158, 11, 0.22);
+    border-color: rgba(252, 196, 68, 0.75);
+    color: #fde68a;
+  }
+  .chip-amber:hover {
+    background: rgba(245, 158, 11, 0.32);
+    box-shadow: 0 6px 24px rgba(245, 158, 11, 0.35);
+  }
+
+  /* Coral — Emergency */
+  .chip-coral {
+    background: rgba(239, 68, 68, 0.22);
+    border-color: rgba(252, 129, 129, 0.75);
+    color: #fecaca;
+  }
+  .chip-coral:hover {
+    background: rgba(239, 68, 68, 0.32);
+    box-shadow: 0 6px 24px rgba(239, 68, 68, 0.35);
+  }
+
+  /* Blue — Safe Engineer */
+  .chip-blue {
+    background: rgba(59, 130, 246, 0.22);
+    border-color: rgba(147, 197, 253, 0.75);
+    color: #bfdbfe;
+  }
+  .chip-blue:hover {
+    background: rgba(59, 130, 246, 0.32);
+    box-shadow: 0 6px 24px rgba(59, 130, 246, 0.35);
+  }
+
+  /* Lead */
+  .hero-lead {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.75;
+    max-width: 640px;
+    margin: 0 0 40px;
+  }
+
+  /* CTAs */
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 44px;
+  }
+
+  .btn-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(31,174,155,0.45);
+    transition: all 0.2s ease;
+  }
+
+  .btn-call:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(31,174,155,0.55);
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-whatsapp:hover {
+    background: #1DA851;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.45);
+  }
+
+  /* Trust bar */
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .trust-pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.88);
+    padding: 0 18px;
+  }
+
+  .trust-pill i { color: #5ee8d4; font-size: 0.85rem; }
+
+  .trust-divider {
+    width: 1px;
+    height: 18px;
+    background: rgba(255,255,255,0.28);
+    flex-shrink: 0;
+  }
+
+  /* ============================================================
+     WILLIAM INTRO SECTION
+     ============================================================ */
+
+  .william-section { }
+
+  .william-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--color-accent);
+    margin: 0 0 14px;
+  }
+
+  .william-heading {
+    font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    color: var(--color-text-main);
+    line-height: 1.15;
+    margin: 0 0 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .william-lead {
+    font-size: 1.08rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0 0 16px;
+  }
+
+  .william-body {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    margin: 0 0 28px;
+  }
+
+  .william-creds {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 24px;
+  }
+
+  .william-creds li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  .william-creds i {
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .william-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* Shared buttons for light sections */
+  .btn-primary-solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(31,174,155,0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary-solid:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border: 2px solid rgba(14,74,77,0.2);
+    color: var(--color-text-main);
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* Photo column */
+  .william-photo-col { position: relative; }
+
+  .william-img-wrap { position: relative; }
+
+  .william-img {
+    width: 100%;
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-xl);
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    object-position: center top;
+  }
+
+  /* Floating 5-star card */
+  .star-card {
+    position: absolute;
+    bottom: 48px;
+    left: -28px;
+    background: white;
+    padding: 14px 22px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.16);
+    animation: floatY 3.2s ease-in-out infinite;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .star-card:hover {
+    box-shadow: 0 20px 56px rgba(0,0,0,0.22);
+  }
+
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-9px); }
+  }
+
+  .star-icon {
+    width: 46px;
+    height: 46px;
+    background: #FFD700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  .star-text { display: flex; flex-direction: column; }
+  .star-rating { font-weight: 700; color: var(--color-text-main); font-size: 0.95rem; }
+  .star-source { font-size: 0.78rem; color: var(--color-text-muted); }
+
+  /* Experience badge */
+  .exp-badge {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    width: 110px;
+    height: 110px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 8px 28px rgba(31,174,155,0.45);
+    border: 4px solid white;
+  }
+
+  .exp-num { font-size: 1.9rem; font-weight: 800; line-height: 1; }
+  .exp-label { font-size: 0.72rem; font-weight: 600; line-height: 1.3; }
+
+  /* ============================================================
+     SERVICES
+     ============================================================ */
+
+  .section-hdr {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 52px;
+  }
+
+  .svc-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .svc-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-radius-lg);
+    padding: 36px 30px;
+    border: none;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .svc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.12);
+  }
+
+  /* Amber card (Auto) */
+  .svc-amber { background: #fef3c7; }
+  .svc-amber .svc-icon { background: rgba(245,158,11,0.18); color: #d97706; }
+  .svc-amber .svc-title { color: #92400e; }
+  .svc-amber .svc-link { color: #d97706; }
+  .svc-amber .svc-list i { color: #d97706; }
+
+  /* Coral card (Emergency) */
+  .svc-coral.svc-featured { background: #fee2e2; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .svc-coral.svc-featured .svc-title { color: #991b1b; }
+  .svc-coral.svc-featured .svc-desc { color: #7f1d1d; }
+  .svc-coral.svc-featured .svc-list li { color: #7f1d1d; }
+  .svc-coral.svc-featured .svc-link { color: #dc2626; }
+  .svc-coral.svc-featured .svc-icon { background: rgba(239,68,68,0.18); color: #dc2626; }
+  .svc-coral.svc-featured .svc-list i { color: #ef4444; }
+
+  /* Blue card (Safe) */
+  .svc-blue { background: #dbeafe; }
+  .svc-blue .svc-icon { background: rgba(59,130,246,0.18); color: #2563eb; }
+  .svc-blue .svc-title { color: #1e3a5f; }
+  .svc-blue .svc-link { color: #2563eb; }
+  .svc-blue .svc-list i { color: #2563eb; }
+
+  .svc-badge-label {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    color: #EF4444;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .svc-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  .svc-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 0 0 10px;
+  }
+
+  .svc-desc {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0 0 20px;
+  }
+
+  .svc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    flex: 1;
+  }
+
+  .svc-list li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .svc-list i { font-size: 0.7rem; flex-shrink: 0; }
+
+  .svc-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-top: auto;
+    transition: gap 0.18s;
+  }
+
+  .svc-card:hover .svc-link { gap: 12px; }
+
+  /* ============================================================
+     MET POLICE
+     ============================================================ */
+
+  .met-section { border-top: none; }
+
+  .met-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .met-heading {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--color-text-main);
+    margin: 0 0 18px;
+    line-height: 1.15;
+    font-weight: 800;
+  }
+
+  .met-lead {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0 0 24px;
+  }
+
+  .met-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .met-list li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  .met-list i { color: #1d4ed8; font-size: 0.75rem; }
+
+  .met-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .met-right { display: flex; flex-direction: column; gap: 20px; }
+
+  .met-badge-card {
+    background: white;
+    border: 2px solid #1d4ed8;
+    border-radius: var(--border-radius-lg);
+    padding: 26px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    box-shadow: 0 8px 32px rgba(29,78,216,0.1);
+  }
+
+  .met-shield {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    background: #1d4ed8;
+    color: white;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  .met-badge-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #1d4ed8;
+    margin: 0 0 3px;
+  }
+
+  .met-badge-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0 0 6px;
+  }
+
+  .met-badge-sub {
+    font-size: 0.83rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .met-features {
+    background: white;
+    border-radius: var(--border-radius-md);
+    padding: 6px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .met-feat {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    transition: background 0.18s;
+  }
+
+  .met-feat:hover { background: #eff6ff; }
+  .met-feat + .met-feat { border-top: 1px solid #f0f0f0; }
+
+  .met-feat-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    background: rgba(29,78,216,0.08);
+    color: #1d4ed8;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .met-feat > div:last-child { display: flex; flex-direction: column; gap: 2px; }
+  .met-feat strong { font-size: 0.88rem; color: var(--color-text-main); }
+  .met-feat span { font-size: 0.8rem; color: var(--color-text-muted); }
+
+  /* ============================================================
+     BRITISH GAS
+     ============================================================ */
+
+  .gas-section { border-top: none; }
+
+  .gas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .gas-heading {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--color-text-main);
+    margin: 0 0 18px;
+    line-height: 1.15;
+    font-weight: 800;
+  }
+
+  .gas-lead {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0 0 24px;
+  }
+
+  .gas-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .gas-list li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  .gas-list i { color: var(--color-accent); font-size: 0.75rem; }
+
+  .gas-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .gas-right { display: flex; flex-direction: column; gap: 20px; }
+
+  .gas-badge-card {
+    background: white;
+    border: 2px solid #0072CE;
+    border-radius: var(--border-radius-lg);
+    padding: 26px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    box-shadow: 0 8px 32px rgba(0,114,206,0.1);
+  }
+
+  .gas-flame {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    background: #0072CE;
+    color: white;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  .gas-badge-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0072CE;
+    margin: 0 0 3px;
+  }
+
+  .gas-badge-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0 0 6px;
+  }
+
+  .gas-badge-sub {
+    font-size: 0.83rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .gas-features {
+    background: white;
+    border-radius: var(--border-radius-md);
+    padding: 6px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .gas-feat {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    transition: background 0.18s;
+  }
+
+  .gas-feat:hover { background: #f0f5ff; }
+  .gas-feat + .gas-feat { border-top: 1px solid #f0f0f0; }
+
+  .gas-feat-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    background: rgba(0,114,206,0.08);
+    color: #0072CE;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .gas-feat > div:last-child { display: flex; flex-direction: column; gap: 2px; }
+  .gas-feat strong { font-size: 0.88rem; color: var(--color-text-main); }
+  .gas-feat span { font-size: 0.8rem; color: var(--color-text-muted); }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+
+  @media (max-width: 1024px) {
+    .william-grid { grid-template-columns: 1fr; gap: 52px; }
+    .william-photo-col { max-width: 480px; margin: 0 auto; order: -1; }
+    .william-creds { grid-template-columns: 1fr; }
+    .svc-cards { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+    .met-grid { grid-template-columns: 1fr; gap: 48px; }
+    .met-list { grid-template-columns: 1fr; }
+    .met-right { order: -1; }
+    .gas-grid { grid-template-columns: 1fr; gap: 48px; }
+    .gas-list { grid-template-columns: 1fr; }
+  }
+
+  @media (min-width: 640px) and (max-width: 1024px) {
+    .svc-cards { grid-template-columns: repeat(3, 1fr); max-width: none; }
+    .william-creds { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .hero-title { white-space: normal; }
+    .home-hero { min-height: auto; padding-bottom: 20px; }
+    .hero-trust { border-radius: 20px; gap: 4px; padding: 14px 16px; }
+    .trust-divider { display: none; }
+    .trust-pill { padding: 4px 10px; font-size: 0.77rem; }
+    .star-card { left: 8px; bottom: 24px; }
+    .gas-badge-card { flex-direction: column; }
+    .william-img { aspect-ratio: 4 / 3; }
+  }
+</style>

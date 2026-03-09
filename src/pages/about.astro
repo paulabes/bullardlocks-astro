@@ -1,0 +1,606 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
+import CTASection from '../components/CTASection.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+
+const heroImage = '/images/william-bullard-trusted-london-locksmith.jpg';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About William Bullard — Bullard Locks',
+    description: 'William Bullard is an independent North London locksmith with over 30 years of experience. Met Police approved, British Gas emergency contractor, DBS checked.',
+    url: 'https://bullardlocks.com/about',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'William Bullard',
+    jobTitle: 'Auto Locksmith & Safe Engineer',
+    description: 'William Bullard is an independent auto locksmith and safe engineer based in Crouch End N8, North London. 30+ years experience. Metropolitan Police approved contractor and British Gas emergency access contractor.',
+    worksFor: { '@type': 'LocksmithBusiness', name: 'Bullard Locks', url: 'https://bullardlocks.com' },
+    knowsAbout: ['Auto Locksmith', 'Car Key Replacement', 'Emergency Locksmith', 'Safe Engineer', 'Non-Destructive Entry'],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '67 Weston Park',
+      addressLocality: 'Crouch End',
+      addressRegion: 'London',
+      postalCode: 'N8 9TA',
+      addressCountry: 'GB',
+    },
+    telephone: '07809887883',
+    url: 'https://bullardlocks.com/about',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://bullardlocks.com/' },
+      { '@type': 'ListItem', position: 2, name: 'About', item: 'https://bullardlocks.com/about' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="About William Bullard | Auto Locksmith North London | Bullard Locks"
+  description="William Bullard — auto locksmith & safe engineer, Crouch End N8. 30+ years, Met Police approved, British Gas contractor, DBS checked. Call 07809 887 883."
+  canonicalUrl="https://bullardlocks.com/about"
+  schema={schema}
+>
+
+  <!-- HERO -->
+  <section class="loc-hero bg-dark">
+    <div class="loc-hero-bg" style={`background-image: url('${heroImage}')`} aria-hidden="true"></div>
+    <div class="loc-hero-overlay" aria-hidden="true"></div>
+    <div class="container-custom loc-hero-content">
+
+      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <span>About</span>
+      </nav>
+
+      <div class="loc-hero-grid">
+        <div class="loc-hero-left">
+
+          <h1 class="loc-hero-title">
+            <span class="loc-hero-service">William Bullard</span>
+            <span class="loc-hero-location">Independent London Locksmith</span>
+          </h1>
+
+          <p class="loc-hero-postcodes">
+            <i class="fas fa-map-marker-alt"></i>
+            Based in Crouch End N8 · Serving North London &amp; Beyond
+          </p>
+
+          <p class="loc-hero-lead">
+            Over 30 years as North London's most trusted independent locksmith. Met Police approved, British Gas emergency contractor, and DBS checked. Where there's a Will, there's a way.
+          </p>
+
+          <div class="loc-hero-ctas">
+            <a href="tel:07809887883" class="btn-hero-primary">
+              <i class="fas fa-phone"></i> 07809 887 883
+            </a>
+            <a href="https://wa.me/447809887883" class="btn-hero-whatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+
+          <div class="loc-trust-bar">
+            <div class="loc-trust-item">
+              <i class="fas fa-star"></i>
+              <span>5.0 Google</span>
+            </div>
+            <div class="loc-trust-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>Met Police Approved</span>
+            </div>
+            <div class="loc-trust-item">
+              <i class="fas fa-award"></i>
+              <span>30+ Years Experience</span>
+            </div>
+            <div class="loc-trust-item">
+              <i class="fas fa-tag"></i>
+              <span>No Call-Out Fee</span>
+            </div>
+            <div class="loc-trust-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Fully Insured</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky contact panel -->
+        <div class="loc-hero-panel">
+          <div class="conv-panel">
+            <div class="conv-panel-header">
+              <i class="fas fa-phone"></i>
+              <div>
+                <p class="conv-panel-label">Call William now</p>
+                <a href="tel:07809887883" class="conv-panel-number">07809 887 883</a>
+              </div>
+            </div>
+            <p class="conv-panel-note">Or request a callback:</p>
+            <form id="callback-form" class="conv-form">
+              <input type="text" name="name" placeholder="Your name" class="conv-input" required />
+              <input type="tel" name="phone" placeholder="Your phone number" class="conv-input" required />
+              <input type="hidden" name="service" value="general" />
+              <input type="hidden" name="form_type" value="callback" />
+              <input type="hidden" name="message" value="Callback request from About page" />
+              <button type="submit" class="conv-submit">
+                <i class="fas fa-phone"></i> Request Callback
+              </button>
+              <div class="conv-form-status" style="display:none;"></div>
+            </form>
+            <a href="https://wa.me/447809887883" class="conv-whatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Message on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE STORY -->
+  <section class="content-section bg-white">
+    <div class="container-custom">
+      <div class="story-grid">
+        <div class="story-image-wrap">
+          <img
+            src="/images/why-choose-bullard-locks.jpg"
+            alt="William Bullard — North London locksmith with 30 years experience"
+            class="story-image"
+            loading="lazy"
+          />
+        </div>
+        <div class="story-content">
+          <h2 class="section-title" style="text-align:left; margin-bottom: 20px;">My Story...</h2>
+
+          <p class="story-text">
+            I started my career as a locksmith over three decades ago, learning the trade from master craftsmen who taught me that security is about more than just locks and keys — it's about trust, reliability, and peace of mind.
+          </p>
+
+          <p class="story-text">
+            Based in <strong>Crouch End, North London</strong>, I've spent 30 years getting to know the streets, properties, and people of this area. From the Victorian terraces of Islington to the mansion flats of Hampstead, I've seen — and solved — every kind of lock problem you can imagine.
+          </p>
+
+          <p class="story-text">
+            What sets me apart from larger operations is simple: when you call Bullard Locks, you get me. Not a call centre, not a franchise operative — William Bullard, in person, at your door. I carry out all the work myself, which means consistent standards and someone who stands behind every job.
+          </p>
+
+          <p class="story-text">
+            My work has been trusted by the <strong>Metropolitan Police</strong>, by <strong>British Gas</strong> as an approved emergency access contractor, and by thousands of homeowners and businesses across North London.
+          </p>
+
+          <blockquote class="story-quote">
+            <i class="fas fa-quote-left"></i>
+            Where there's a Will, there's a way!
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section class="content-section bg-light">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">Credentials &amp; Accreditations</h2>
+        <p class="section-subtitle">Trusted by some of the UK's most demanding clients for over 30 years.</p>
+      </div>
+
+      <div class="credentials-grid">
+        <div class="cred-card">
+          <div class="cred-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="cred-title">Met Police Approved</h3>
+          <p class="cred-desc">Approved contractor for the Metropolitan Police. The rigorous vetting process confirms William's integrity and professional standards.</p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon"><i class="fas fa-fire-alt"></i></div>
+          <h3 class="cred-title">British Gas Emergency Contractor</h3>
+          <p class="cred-desc">Trusted emergency access locksmith for British Gas for over 20 years — attending properties when urgent access is needed and no keyholder can be reached.</p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon"><i class="fas fa-user-check"></i></div>
+          <h3 class="cred-title">DBS / CRB Checked</h3>
+          <p class="cred-desc">Full Disclosure and Barring Service check completed. You can trust William in your home, with your property, and with your security.</p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon"><i class="fas fa-star"></i></div>
+          <h3 class="cred-title">5.0 Google Rating</h3>
+          <p class="cred-desc">A perfect Google review rating built on decades of honest pricing, punctual service, and quality workmanship across hundreds of satisfied customers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED PARTNERSHIPS -->
+  <section class="content-section bg-dark">
+    <div class="container-custom">
+      <div class="bg-section-grid">
+        <div class="bg-section-content">
+          <div class="bg-section-badge">
+            <i class="fas fa-handshake"></i>
+            <span>Trusted Partnerships</span>
+          </div>
+          <h2 class="section-title" style="color:white; text-align:left;">Approved by the Met Police &amp; British Gas</h2>
+          <p class="bg-section-text">
+            William is one of a small number of locksmiths in London approved by both the <strong style="color:white;">Metropolitan Police</strong> and <strong style="color:white;">British Gas</strong> — two organisations that demand the highest standards of integrity, skill and professionalism.
+          </p>
+          <p class="bg-section-text">
+            As a <strong style="color:white;">Metropolitan Police approved contractor</strong>, William is called upon for lock-related work where security, evidence preservation and discretion are critical. The Met's vetting process is rigorous — covering criminal record checks, professional references, insurance verification and ongoing performance review. Only locksmiths who meet these exacting standards are retained.
+          </p>
+          <p class="bg-section-text">
+            As an <strong style="color:white;">emergency access contractor for British Gas</strong> for over 20 years, William gains entry to properties when engineers need urgent access — for gas leaks, meter readings, or safety inspections — and no keyholder can be reached. Every entry is non-destructive, and every property is re-secured before he leaves.
+          </p>
+          <p class="bg-section-text">
+            These partnerships reflect decades of trust built through consistent, reliable work. They also give William unique expertise in sensitive access situations where damage avoidance and discretion are paramount.
+          </p>
+        </div>
+        <div class="bg-section-aside">
+          <div class="bg-aside-card">
+            <div class="bg-aside-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Met Police</h3>
+            <p>Approved contractor — vetted to the highest standards</p>
+          </div>
+          <div class="bg-aside-card">
+            <div class="bg-aside-icon"><i class="fas fa-fire-alt"></i></div>
+            <h3>British Gas</h3>
+            <p>Emergency access contractor for 20+ years</p>
+          </div>
+          <div class="bg-aside-card">
+            <div class="bg-aside-icon"><i class="fas fa-lock-open"></i></div>
+            <h3>Non-Destructive</h3>
+            <p>Specialist entry techniques — no damage to your property</p>
+          </div>
+          <div class="bg-aside-card">
+            <div class="bg-aside-icon"><i class="fas fa-user-check"></i></div>
+            <h3>Fully Vetted</h3>
+            <p>DBS checked, insured and security cleared</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="content-section bg-white">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">Services Offered</h2>
+        <p class="section-subtitle">Three specialist services — all provided personally by William Bullard.</p>
+      </div>
+
+      <ServiceCards />
+    </div>
+  </section>
+
+  <GoogleReviews bg="light" />
+
+  <CTASection
+    title="Work with North London's Most Trusted Locksmith"
+    subtitle="30+ years experience | Met Police approved | No call-out fee | 24/7 emergency availability"
+  />
+
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .loc-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+    overflow: hidden;
+  }
+
+  .loc-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center top;
+    filter: brightness(0.2) saturate(0.7);
+  }
+
+  .loc-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(14, 74, 77, 0.85) 0%, rgba(0, 0, 0, 0.65) 100%);
+  }
+
+  .loc-hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
+  .loc-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .loc-breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
+  .loc-breadcrumb a:hover { color: white; }
+  .loc-breadcrumb span:last-child { color: var(--color-accent); font-weight: 500; }
+
+  .loc-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .loc-hero-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+
+  .loc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .loc-badge-accent { background: rgba(31, 174, 155, 0.25); color: #7fe8d8; border-color: rgba(31, 174, 155, 0.4); }
+
+  .loc-hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loc-hero-service { color: var(--color-accent); }
+  .loc-hero-location { color: white; }
+
+  .loc-hero-postcodes { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.65); font-size: 0.9rem; margin: 0 0 16px; }
+  .loc-hero-postcodes i { color: var(--color-accent); }
+
+  .loc-hero-lead { color: rgba(255,255,255,0.8); font-size: 1.1rem; line-height: 1.6; margin: 0 0 32px; max-width: 560px; }
+
+  .loc-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+
+  .btn-hero-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px; background: var(--color-accent); color: white;
+    border-radius: 100px; font-weight: 700; font-size: 1.05rem;
+    text-decoration: none; transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(31, 174, 155, 0.4);
+  }
+
+  .btn-hero-primary:hover { background: var(--color-accent-hover); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(31, 174, 155, 0.5); }
+
+  .btn-hero-whatsapp {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px; background: #25D366; color: white;
+    border: none; border-radius: 100px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35); transition: all 0.2s ease;
+  }
+  .btn-hero-whatsapp:hover { background: #1DA851; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.45); }
+
+  .loc-trust-bar { display: flex; gap: 0; flex-wrap: wrap; }
+  .loc-trust-item { display: flex; align-items: center; gap: 8px; padding: 0 16px; font-size: 0.85rem; color: rgba(255,255,255,0.7); font-weight: 500; }
+  .loc-trust-item:first-child { padding-left: 0; }
+  .loc-trust-item + .loc-trust-item { border-left: 1px solid rgba(255,255,255,0.28); }
+  .loc-trust-item i { color: var(--color-accent); font-size: 0.9rem; }
+
+  /* Conversion Panel */
+  .conv-panel { background: white; border-radius: 20px; padding: 28px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); position: sticky; top: 100px; }
+
+  .conv-panel-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.07); }
+
+  .conv-panel-header > i { width: 44px; height: 44px; background: rgba(31, 174, 155, 0.1); color: var(--color-accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+
+  .conv-panel-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin: 0; font-weight: 600; }
+  .conv-panel-number { font-size: 1.4rem; font-weight: 800; color: var(--color-text-main); text-decoration: none; display: block; line-height: 1; margin-top: 2px; }
+  .conv-panel-number:hover { color: var(--color-accent); }
+  .conv-panel-note { font-size: 0.875rem; color: var(--color-text-muted); margin: 0 0 16px; }
+
+  .conv-form { display: flex; flex-direction: column; gap: 12px; }
+
+  .conv-input { width: 100%; padding: 12px 16px; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 10px; font-size: 0.95rem; font-family: var(--font-body); transition: border-color 0.2s; background: var(--color-bg-light); }
+  .conv-input:focus { outline: none; border-color: var(--color-accent); background: white; }
+
+  .conv-submit { width: 100%; padding: 14px; background: var(--color-accent); color: white; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; font-family: var(--font-body); }
+  .conv-submit:hover { background: var(--color-accent-hover); }
+
+  .conv-form-status { font-size: 0.875rem; padding: 10px 12px; border-radius: 8px; }
+  .conv-form-status.success { background: rgba(31,174,155,0.1); color: #0e6b5e; }
+  .conv-form-status.error { background: rgba(220,38,38,0.05); color: #dc2626; }
+
+  .conv-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; padding: 12px; background: #25d366; color: white; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: background 0.2s; }
+  .conv-whatsapp:hover { background: #1db954; }
+
+  /* Story section */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .story-image-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    position: sticky;
+    top: 100px;
+  }
+
+  .story-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .story-text {
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    font-size: 1rem;
+    margin: 0 0 18px;
+  }
+
+  .story-quote {
+    margin: 32px 0 0;
+    padding: 20px 24px;
+    background: rgba(31, 174, 155, 0.06);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 0 12px 12px 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .story-quote i { color: var(--color-accent); font-size: 1.3rem; flex-shrink: 0; }
+
+  /* Credentials */
+  .credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .cred-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 24px;
+    border: 1px solid rgba(0,0,0,0.06);
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+
+  .cred-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-accent); }
+
+  .cred-icon {
+    width: 56px; height: 56px;
+    background: rgba(31, 174, 155, 0.1);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    margin: 0 auto 18px;
+  }
+
+  .cred-title { font-size: 1rem; font-weight: 700; margin: 0 0 10px; color: var(--color-text-main); }
+  .cred-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6; margin: 0; }
+
+  /* British Gas section */
+  .bg-section-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bg-section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #7fe8d8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .bg-section-text {
+    color: rgba(255,255,255,0.75);
+    line-height: 1.75;
+    font-size: 0.975rem;
+    margin: 0 0 16px;
+  }
+
+  .bg-aside-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .bg-aside-icon {
+    width: 44px; height: 44px;
+    background: rgba(31, 174, 155, 0.2);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--color-accent);
+    font-size: 1.1rem;
+    margin: 0 auto 12px;
+  }
+
+  .bg-aside-card h3 { font-size: 1.1rem; font-weight: 800; color: white; margin: 0 0 6px; }
+  .bg-aside-card p { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin: 0; line-height: 1.4; }
+
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .credentials-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 992px) {
+    .loc-hero { min-height: auto; }
+    .loc-hero-grid { grid-template-columns: 1fr; }
+    .loc-hero-panel { display: none; }
+    .story-grid { grid-template-columns: 1fr; }
+    .story-image-wrap { position: static; }
+    .story-image { height: 300px; }
+    .bg-section-grid { grid-template-columns: 1fr; }
+
+  }
+
+  @media (max-width: 768px) {
+    .credentials-grid { grid-template-columns: 1fr; }
+    .loc-trust-bar { gap: 12px; }
+    .loc-trust-item { padding: 0; border-left: none; }
+  }
+</style>
+
+<script>
+  const callbackForm = document.getElementById('callback-form') as HTMLFormElement;
+  callbackForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = callbackForm.querySelector('.conv-form-status') as HTMLDivElement;
+    const btn = callbackForm.querySelector('.conv-submit') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try {
+      const fd = new FormData(callbackForm);
+      const res = await fetch('/api/send-email', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (data.success) {
+        status.className = 'conv-form-status success';
+        status.textContent = 'Received! William will call you back shortly.';
+        status.style.display = 'block';
+        callbackForm.reset();
+      } else throw new Error();
+    } catch {
+      status.className = 'conv-form-status error';
+      status.textContent = 'Something went wrong. Please call us directly.';
+      status.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-phone"></i> Request Callback';
+    }
+  });
+</script>

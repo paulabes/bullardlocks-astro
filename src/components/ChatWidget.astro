@@ -1,0 +1,383 @@
+---
+// AI ChatWidget - Full chatbot with Claude API integration
+---
+
+<!-- Chat Button -->
+<button id="chat-toggle" class="chat-btn" aria-label="Open chat">
+  <svg id="chat-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+  </svg>
+  <svg id="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+    <line x1="18" y1="6" x2="6" y2="18"></line>
+    <line x1="6" y1="6" x2="18" y2="18"></line>
+  </svg>
+</button>
+
+<!-- Chat Window -->
+<div id="chat-window" class="chat-modal" style="display: none;">
+  <div class="chat-modal-header">
+    <div class="chat-modal-header-info">
+      <div>
+        <h3>Bullard Locks</h3>
+        <p>Ask me anything</p>
+      </div>
+    </div>
+    <button id="chat-close" class="chat-modal-close" aria-label="Close chat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div id="chat-messages" class="chat-modal-messages">
+    <!-- Messages will be inserted here -->
+  </div>
+
+  <form id="chat-form" class="chat-modal-input">
+    <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" />
+    <button type="submit" id="chat-send">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </form>
+</div>
+
+<style>
+  .chat-btn {
+    position: fixed;
+    bottom: 48px;
+    right: 48px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 0 0 0 rgba(31, 174, 155, 0.5);
+    animation: chatPulse 2s ease-in-out infinite;
+    transition: transform 0.2s ease;
+    z-index: 9999;
+  }
+
+  .chat-btn:hover {
+    transform: scale(1.08);
+    animation: none;
+    box-shadow: 0 6px 25px rgba(31, 174, 155, 0.5);
+  }
+
+  .chat-btn.open {
+    animation: none;
+    box-shadow: 0 4px 20px rgba(31, 174, 155, 0.4);
+  }
+
+  @keyframes chatPulse {
+    0% { box-shadow: 0 0 0 0 rgba(31, 174, 155, 0.6); }
+    40% { box-shadow: 0 0 0 20px rgba(31, 174, 155, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(31, 174, 155, 0); }
+  }
+
+  .chat-modal {
+    position: fixed;
+    bottom: 124px;
+    right: 48px;
+    width: 380px;
+    height: 520px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideUp 0.3s ease;
+  }
+
+  @keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chat-modal-header {
+    background: linear-gradient(135deg, var(--color-accent), #0e4a4d);
+    color: white;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .chat-modal-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chat-modal-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .chat-modal-header p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+
+  .chat-modal-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .chat-modal-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .chat-message {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+
+  .chat-message.assistant {
+    background: white;
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .chat-message.user {
+    background: var(--color-accent);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  .chat-message.typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px;
+  }
+
+  .chat-message.typing span {
+    width: 8px;
+    height: 8px;
+    background: #999;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite;
+  }
+
+  .chat-message.typing span:nth-child(2) { animation-delay: 0.2s; }
+  .chat-message.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
+  }
+
+  .chat-modal-input {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    background: white;
+    border-top: 1px solid #eee;
+    flex-shrink: 0;
+  }
+
+  .chat-modal-input input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 14px;
+    outline: none;
+    font-family: var(--font-main);
+  }
+
+  .chat-modal-input input:focus {
+    border-color: var(--color-accent);
+  }
+
+  .chat-modal-input button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: none;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .chat-modal-input button:disabled {
+    background: #ddd;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 640px) {
+    .chat-modal {
+      width: 100vw;
+      height: 100vh;
+      right: 0;
+      bottom: 0;
+      border-radius: 0;
+    }
+    .chat-btn {
+      bottom: 24px;
+      right: 24px;
+    }
+  }
+</style>
+
+<script>
+  // Chat state
+  let messages: { role: string; content: string }[] = [];
+  let isLoading = false;
+  let detailsSent = false;
+
+  // DOM elements
+  const chatToggle = document.getElementById('chat-toggle')!;
+  const chatWindow = document.getElementById('chat-window')!;
+  const chatClose = document.getElementById('chat-close')!;
+  const chatMessages = document.getElementById('chat-messages')!;
+  const chatForm = document.getElementById('chat-form')!;
+  const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+  const chatIcon = document.getElementById('chat-icon')!;
+  const closeIcon = document.getElementById('close-icon')!;
+
+  // Toggle chat window
+  function toggleChat() {
+    const isOpen = chatWindow.style.display !== 'none';
+    chatWindow.style.display = isOpen ? 'none' : 'flex';
+    chatIcon.style.display = isOpen ? 'block' : 'none';
+    closeIcon.style.display = isOpen ? 'none' : 'block';
+    chatToggle.classList.toggle('open', !isOpen);
+
+    if (!isOpen && messages.length === 0) {
+      showWelcome();
+    }
+  }
+
+  chatToggle?.addEventListener('click', toggleChat);
+  chatClose?.addEventListener('click', toggleChat);
+
+  // Show welcome message
+  function showWelcome() {
+    addMessage('assistant', "Hello! I'm the Bullard Locks assistant.\n\nWhat's the situation — are you locked out, do you need a car key, or is it something else?");
+  }
+
+  // Add message to chat
+  function addMessage(role: string, content: string) {
+    messages.push({ role, content });
+    const div = document.createElement('div');
+    div.className = `chat-message ${role}`;
+    div.textContent = content;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Show typing indicator
+  function showTyping() {
+    const div = document.createElement('div');
+    div.className = 'chat-message assistant typing';
+    div.id = 'typing-indicator';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function hideTyping() {
+    document.getElementById('typing-indicator')?.remove();
+  }
+
+  // Send conversation to Gemini
+  async function sendToAI() {
+    if (isLoading) return;
+    isLoading = true;
+    showTyping();
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages })
+      });
+
+      const data = await response.json();
+      hideTyping();
+
+      if (data.error) {
+        addMessage('assistant', "I'm having trouble connecting. Please call us directly on 07809 887 883.");
+      } else {
+        addMessage('assistant', data.message);
+
+        // If Gemini signals details have been collected, email them to William
+        if (!detailsSent && (data.message.includes("I'll send these details") || data.message.includes("I'll pass these"))) {
+          detailsSent = true;
+          await sendDetailsEmail();
+        }
+      }
+    } catch {
+      hideTyping();
+      addMessage('assistant', "Sorry, something went wrong. Please call 07809 887 883 for immediate help.");
+    } finally {
+      isLoading = false;
+      chatInput.focus();
+    }
+  }
+
+  // Email the full conversation to William
+  async function sendDetailsEmail() {
+    try {
+      const conversationText = messages
+        .map(m => `${m.role === 'user' ? 'Customer' : 'Bot'}: ${m.content}`)
+        .join('\n\n');
+
+      const formData = new FormData();
+      formData.set('form_type', 'chatbot');
+      formData.set('name', 'Chatbot Lead');
+      formData.set('message', conversationText);
+      formData.set('service', 'chatbot-enquiry');
+
+      await fetch('/api/send-email', { method: 'POST', body: formData });
+    } catch {
+      // Silent fail — conversation is still visible
+    }
+  }
+
+  // Handle text input
+  chatForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text || isLoading) return;
+
+    chatInput.value = '';
+    addMessage('user', text);
+    await sendToAI();
+  });
+</script>

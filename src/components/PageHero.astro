@@ -1,0 +1,160 @@
+---
+interface Props {
+  title: string;
+  accent: string;
+  lead: string;
+  image: string;
+  imageAlt: string;
+  breadcrumbs: { label: string; href?: string }[];
+  featurePills: { icon: string; text: string }[];
+}
+
+const { title, accent, lead, image, imageAlt, breadcrumbs, featurePills } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container-custom">
+    <div class="page-hero-content">
+      <div class="page-hero-image">
+        <img src={image} alt={imageAlt} loading="eager" />
+      </div>
+      <div class="page-hero-text">
+        <nav class="breadcrumb-modern" aria-label="breadcrumb">
+          {breadcrumbs.map((crumb, index) => (
+            <>
+              {crumb.href ? (
+                <a href={crumb.href}>{crumb.label}</a>
+              ) : (
+                <span class="current">{crumb.label}</span>
+              )}
+              {index < breadcrumbs.length - 1 && <span class="separator">/</span>}
+            </>
+          ))}
+        </nav>
+        <h1 class="page-hero-title">
+          <span class="text-accent">{accent}</span> {title}
+        </h1>
+        <p class="page-hero-lead" set:html={lead} />
+        <div class="hero-features-pills">
+          {featurePills.map(pill => (
+            <span class="feature-pill">
+              <i class={`fas ${pill.icon}`}></i> {pill.text}
+            </span>
+          ))}
+        </div>
+        <div class="hero-cta-buttons">
+          <a href="tel:07809887883" class="btn-primary-lg">
+            <i class="fas fa-phone"></i> 07809 887 883
+          </a>
+          <a href="https://wa.me/447809887883" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding: 180px 0 100px;
+    background: linear-gradient(135deg, #fff5f2 0%, #fff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .page-hero-text {
+    order: 1;
+  }
+
+  .page-hero-image {
+    order: 2;
+    position: relative;
+  }
+
+  .page-hero-image img {
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-xl);
+    transition: var(--transition-bounce);
+  }
+
+  .breadcrumb-modern {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .breadcrumb-modern a {
+    transition: color 0.2s;
+  }
+
+  .breadcrumb-modern a:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb-modern .current {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .page-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: var(--color-text-main);
+  }
+
+  .page-hero-lead {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 32px;
+    max-width: 600px;
+    font-weight: 400;
+  }
+
+  .hero-features-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .feature-pill {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .feature-pill i { color: var(--color-accent); }
+
+  .hero-cta-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 992px) {
+    .page-hero-content {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+    
+    .page-hero-image { order: -1; }
+    .page-hero { padding: 140px 0 80px; }
+  }
+</style>

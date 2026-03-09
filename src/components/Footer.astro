@@ -1,0 +1,256 @@
+---
+// Footer component
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer-redesign">
+  <div class="footer-watermark">BULLARD</div>
+  <div class="container-custom">
+    <div class="footer-grid">
+      <div class="footer-col-brand">
+        <span class="footer-brand">BULLARD <span class="text-accent">LOCKS</span></span>
+        <p class="text-muted-light footer-desc">
+          24/7 Mobile Locksmith & Safe Engineer based in Crouch End, serving North London and beyond.
+        </p>
+        <blockquote class="footer-quote">
+          "Where there's a Will there's a way!"
+        </blockquote>
+      </div>
+      
+      <div class="footer-col-links">
+        <h4 class="footer-heading">Services</h4>
+        <ul class="footer-links">
+          <li><a href="/services/emergency-locksmith">Emergency Locksmith</a></li>
+          <li><a href="/services/auto-locksmith">Auto Locksmith</a></li>
+          <li><a href="/services/safe-engineer">Safe Engineer</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col-contact">
+        <h4 class="footer-heading">Contact</h4>
+        <ul class="footer-contact-list">
+          <li>
+            <i class="fas fa-phone footer-icon"></i>
+            <a href="tel:07809887883">07809 887 883</a>
+          </li>
+          <li>
+            <i class="fab fa-whatsapp footer-icon"></i>
+            <a href="https://wa.me/447809887883" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </li>
+          <li>
+            <i class="fas fa-map-marker-alt footer-icon"></i>
+            <span>67 Weston Park, Crouch End, London N8 9TA</span>
+          </li>
+          <li>
+            <i class="fas fa-clock footer-icon"></i>
+            <span>Open 24/7/365</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>
+          &copy; {currentYear} Bullard Locks. All rights reserved.
+        </p>
+        <div class="footer-legal">
+            <a href="/privacy-policy">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a href="/terms">Terms &amp; Conditions</a>
+        </div>
+      </div>
+      <p class="footer-credit">
+        Created by <a href="https://crouchendmedia.co.uk" target="_blank" rel="noopener">Crouch End Media</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-redesign {
+    background-color: var(--color-bg-dark);
+    color: white;
+    padding: 100px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-watermark {
+    position: absolute;
+    top: 0;
+    right: -2vw;
+    font-size: 20vw;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.02);
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    font-family: var(--font-heading);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    display: block;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .footer-col-brand { max-width: 320px; }
+
+  .footer-desc {
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  
+  .footer-quote {
+    font-style: italic;
+    color: var(--color-text-muted-light);
+    border-left: 3px solid var(--color-accent);
+    padding-left: 16px;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .footer-heading {
+    color: white;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li { margin-bottom: 12px; }
+  
+  .footer-links a {
+    color: var(--color-text-muted-light);
+    transition: all 0.2s ease;
+    display: block;
+  }
+  
+  .footer-links a:hover {
+    color: white;
+    transform: translateX(4px);
+  }
+
+  .footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    color: var(--color-text-muted-light);
+    font-size: 0.95rem;
+  }
+
+  .footer-icon {
+    color: var(--color-accent);
+    width: 24px;
+    margin-right: 12px;
+    margin-top: 4px;
+  }
+  
+  .footer-contact-list a {
+    color: var(--color-text-muted-light);
+    transition: color 0.2s;
+  }
+  
+  .footer-contact-list a:hover { color: white; }
+
+  .footer-bottom {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .footer-bottom-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    color: var(--color-text-muted-light);
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.8;
+  }
+  
+  .footer-legal {
+    display: flex;
+    gap: 12px;
+    font-size: 0.9rem;
+  }
+
+  .footer-legal a {
+    color: var(--color-text-muted-light);
+    transition: color 0.2s ease;
+  }
+
+  .footer-legal a:hover {
+    color: var(--color-accent);
+  }
+  
+  .separator { color: rgba(255,255,255,0.2); }
+
+  .footer-credit {
+    font-size: 0.8rem !important;
+    opacity: 0.5;
+  }
+  
+  .footer-credit a { color: inherit; text-decoration: underline; }
+  
+  @media (max-width: 992px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-col-brand {
+      grid-column: 1 / -1;
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-bottom-content {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>

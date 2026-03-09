@@ -1,0 +1,203 @@
+---
+interface Props {
+  /** Borough slug for location-based links, omit for /services/ links */
+  boroughSlug?: string;
+  /** Borough display name */
+  boroughName?: string;
+  /** Only show these services (default: all three) */
+  services?: ('auto-locksmith' | 'emergency-locksmith' | 'safe-engineer')[];
+}
+
+const { boroughSlug, boroughName, services } = Astro.props;
+const showServices = services ?? ['auto-locksmith', 'emergency-locksmith', 'safe-engineer'];
+
+function href(slug: string) {
+  return boroughSlug ? `/locations/${boroughSlug}/${slug}` : `/services/${slug}`;
+}
+
+function linkLabel(slug: string) {
+  if (boroughSlug && boroughName) {
+    const names: Record<string, string> = {
+      'auto-locksmith': 'Auto Locksmith',
+      'emergency-locksmith': 'Emergency Locksmith',
+      'safe-engineer': 'Safe Engineer',
+    };
+    return `View ${names[slug]} in ${boroughName}`;
+  }
+  return 'Find Out More';
+}
+---
+
+<div class="svc-cards">
+  {showServices.includes('auto-locksmith') && (
+    <a href={href('auto-locksmith')} class="svc-card svc-amber">
+      <div class="svc-icon"><i class="fas fa-car-side"></i></div>
+      <h3 class="svc-title">Auto Locksmith</h3>
+      <p class="svc-desc">Mobile car key replacement, transponder programming and vehicle lockout — all makes and models across London.</p>
+      <ul class="svc-list">
+        <li><i class="fas fa-check"></i> Car key cutting &amp; coding</li>
+        <li><i class="fas fa-check"></i> Vehicle lockout — no damage</li>
+        <li><i class="fas fa-check"></i> Lost all keys? No problem</li>
+        <li><i class="fas fa-check"></i> Key fob repair &amp; replacement</li>
+      </ul>
+      <span class="svc-link">{linkLabel('auto-locksmith')} <i class="fas fa-arrow-right"></i></span>
+    </a>
+  )}
+
+  {showServices.includes('emergency-locksmith') && (
+    <a href={href('emergency-locksmith')} class="svc-card svc-coral svc-featured">
+      <div class="svc-badge-label">24/7</div>
+      <div class="svc-icon"><i class="fas fa-clock"></i></div>
+      <h3 class="svc-title">Emergency Locksmith</h3>
+      <p class="svc-desc">Rapid 24/7 response for lockouts, break-ins and urgent lock changes across North London. No call-out fee.</p>
+      <ul class="svc-list">
+        <li><i class="fas fa-check"></i> Lockout assistance</li>
+        <li><i class="fas fa-check"></i> Break-in repair &amp; board-up</li>
+        <li><i class="fas fa-check"></i> British Standard locks fitted</li>
+        <li><i class="fas fa-check"></i> Key extraction</li>
+      </ul>
+      <span class="svc-link">{linkLabel('emergency-locksmith')} <i class="fas fa-arrow-right"></i></span>
+    </a>
+  )}
+
+  {showServices.includes('safe-engineer') && (
+    <a href={href('safe-engineer')} class="svc-card svc-blue">
+      <div class="svc-icon"><i class="fas fa-shield-alt"></i></div>
+      <h3 class="svc-title">Safe Engineer</h3>
+      <p class="svc-desc">Professional safe opening, installation and repair for homes and businesses. Available UK-wide by appointment.</p>
+      <ul class="svc-list">
+        <li><i class="fas fa-check"></i> Non-destructive safe opening</li>
+        <li><i class="fas fa-check"></i> Safe supply &amp; installation</li>
+        <li><i class="fas fa-check"></i> Combination changes</li>
+        <li><i class="fas fa-check"></i> All major safe brands</li>
+      </ul>
+      <span class="svc-link">{linkLabel('safe-engineer')} <i class="fas fa-arrow-right"></i></span>
+    </a>
+  )}
+</div>
+
+<style>
+  .svc-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .svc-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-radius-lg);
+    padding: 36px 30px;
+    border: none;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .svc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.12);
+  }
+
+  /* Amber card (Auto) */
+  .svc-amber { background: #fef3c7; }
+  .svc-amber .svc-icon { background: rgba(245,158,11,0.18); color: #d97706; }
+  .svc-amber .svc-title { color: #92400e; }
+  .svc-amber .svc-link { color: #d97706; }
+  .svc-amber .svc-list i { color: #d97706; }
+
+  /* Coral card (Emergency) */
+  .svc-coral.svc-featured { background: #fee2e2; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .svc-coral.svc-featured .svc-title { color: #991b1b; }
+  .svc-coral.svc-featured .svc-desc { color: #7f1d1d; }
+  .svc-coral.svc-featured .svc-list li { color: #7f1d1d; }
+  .svc-coral.svc-featured .svc-link { color: #dc2626; }
+  .svc-coral.svc-featured .svc-icon { background: rgba(239,68,68,0.18); color: #dc2626; }
+  .svc-coral.svc-featured .svc-list i { color: #ef4444; }
+
+  /* Blue card (Safe) */
+  .svc-blue { background: #dbeafe; }
+  .svc-blue .svc-icon { background: rgba(59,130,246,0.18); color: #2563eb; }
+  .svc-blue .svc-title { color: #1e3a5f; }
+  .svc-blue .svc-link { color: #2563eb; }
+  .svc-blue .svc-list i { color: #2563eb; }
+
+  .svc-badge-label {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    color: #EF4444;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .svc-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  .svc-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 0 0 10px;
+  }
+
+  .svc-desc {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0 0 20px;
+  }
+
+  .svc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    flex: 1;
+  }
+
+  .svc-list li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .svc-list i { font-size: 0.7rem; flex-shrink: 0; }
+
+  .svc-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-top: auto;
+    transition: gap 0.18s;
+  }
+
+  .svc-card:hover .svc-link { gap: 12px; }
+
+  @media (max-width: 768px) {
+    .svc-cards { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .svc-cards { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

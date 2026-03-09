@@ -1,0 +1,413 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy",
+    "description": "Privacy Policy for Bullard Locks — Professional locksmith services in North London. GDPR compliant.",
+    "url": "https://bullardlocks.com/privacy-policy"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://bullardlocks.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://bullardlocks.com/privacy-policy"}
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title="Privacy Policy | Bullard Locks — Auto Locksmith North London"
+  description="Privacy Policy for Bullard Locks. Learn how we collect, use and protect your personal information in compliance with UK GDPR and data protection laws."
+  canonicalUrl="https://bullardlocks.com/privacy-policy"
+  schema={schema}
+>
+
+  <!-- HERO -->
+  <section class="policy-hero bg-dark">
+    <div class="policy-hero-overlay" aria-hidden="true"></div>
+    <div class="container-custom policy-hero-content">
+      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <span>Privacy Policy</span>
+      </nav>
+      <h1 class="policy-hero-title">Privacy Policy</h1>
+      <p class="policy-hero-lead">How we collect, use and protect your personal information — in compliance with UK GDPR and data protection law.</p>
+      <p class="policy-updated">Last updated: September 2025</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="policy-content-section bg-white">
+    <div class="container-custom">
+      <div class="policy-layout">
+        <!-- Sidebar nav -->
+        <aside class="policy-sidebar">
+          <nav class="policy-nav">
+            <h3>Contents</h3>
+            <ol>
+              <li><a href="#information-collected">Information We Collect</a></li>
+              <li><a href="#how-we-use">How We Use It</a></li>
+              <li><a href="#legal-basis">Legal Basis</a></li>
+              <li><a href="#sharing">Information Sharing</a></li>
+              <li><a href="#security">Data Security</a></li>
+              <li><a href="#retention">Data Retention</a></li>
+              <li><a href="#cookies">Cookies &amp; Tracking</a></li>
+              <li><a href="#your-rights">Your Rights</a></li>
+              <li><a href="#third-party">Third-Party Links</a></li>
+              <li><a href="#children">Children's Privacy</a></li>
+              <li><a href="#changes">Changes to Policy</a></li>
+              <li><a href="#contact">Contact &amp; Complaints</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <!-- Main content -->
+        <div class="policy-body">
+
+          <p class="policy-intro">
+            This Privacy Policy describes how <strong>William Bullard trading as Bullard Locks</strong> ("we", "us", "our") collects, uses, and protects your personal information when you use our website, contact our services, or engage with our locksmith services in North London.
+          </p>
+
+          <div class="policy-business-info">
+            <p><strong>Bullard Locks</strong><br />
+            William Bullard (Sole Trader)<br />
+            67 Weston Park, Crouch End, London N8 9TA<br />
+            Tel: <a href="tel:07809887883">07809 887 883</a></p>
+          </div>
+
+          <h2 id="information-collected">1. Information We Collect</h2>
+          <p><strong>Personal information</strong> — We may collect:</p>
+          <ul>
+            <li><strong>Contact details:</strong> Name, phone number, email address</li>
+            <li><strong>Address information:</strong> Property address for service delivery</li>
+            <li><strong>Service details:</strong> Description of the locksmith services required</li>
+            <li><strong>Communication records:</strong> Details of our conversations and correspondence</li>
+          </ul>
+          <p><strong>Automatically collected information</strong> — When you visit our website, we may automatically collect:</p>
+          <ul>
+            <li><strong>Technical data:</strong> IP address, browser type, operating system</li>
+            <li><strong>Usage data:</strong> Pages visited, time spent on site, referral sources</li>
+            <li><strong>Cookies:</strong> Information about your browsing preferences (see section 7)</li>
+          </ul>
+
+          <h2 id="how-we-use">2. How We Use Your Information</h2>
+          <p>We use your personal information for the following purposes:</p>
+          <ul>
+            <li><strong>Service delivery:</strong> To provide locksmith services and respond to emergencies</li>
+            <li><strong>Communication:</strong> To contact you about your service requests and updates</li>
+            <li><strong>Customer service:</strong> To handle enquiries, complaints, and feedback</li>
+            <li><strong>Legal compliance:</strong> To comply with legal obligations and regulatory requirements</li>
+            <li><strong>Business improvement:</strong> To improve our services and customer experience</li>
+          </ul>
+
+          <h2 id="legal-basis">3. Legal Basis for Processing</h2>
+          <p>Under UK data protection law (including UK GDPR), we process your personal information based on:</p>
+          <ul>
+            <li><strong>Contract:</strong> To perform our locksmith services contract with you</li>
+            <li><strong>Legitimate interest:</strong> To communicate with you and improve our services</li>
+            <li><strong>Legal obligation:</strong> To comply with laws and regulations</li>
+            <li><strong>Consent:</strong> Where you have given explicit consent for specific processing</li>
+          </ul>
+
+          <h2 id="sharing">4. Information Sharing</h2>
+          <p>We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:</p>
+          <ul>
+            <li><strong>Service providers:</strong> Trusted partners who help us deliver services (e.g. payment processors, email delivery providers)</li>
+            <li><strong>Legal requirements:</strong> When required by law or to protect our rights</li>
+            <li><strong>Emergency situations:</strong> To protect the safety of individuals or property</li>
+            <li><strong>Business transfers:</strong> In the event of a business sale or merger</li>
+          </ul>
+
+          <h2 id="security">5. Data Security</h2>
+          <p>We implement appropriate technical and organisational measures to protect your personal information:</p>
+          <ul>
+            <li><strong>Encryption:</strong> Secure transmission and storage of data</li>
+            <li><strong>Access controls:</strong> Limited access to personal information on a need-to-know basis</li>
+            <li><strong>Regular updates:</strong> Security systems are regularly updated and maintained</li>
+            <li><strong>Physical security:</strong> Secure storage of paper records and devices</li>
+          </ul>
+
+          <h2 id="retention">6. Data Retention</h2>
+          <p>We retain your personal information for as long as necessary to:</p>
+          <ul>
+            <li>Provide our locksmith services</li>
+            <li>Comply with legal obligations</li>
+            <li>Resolve disputes and enforce agreements</li>
+            <li>Maintain business records for accounting purposes</li>
+          </ul>
+          <p>Typically, we retain customer records for 7 years after the last service, in line with UK accounting and tax requirements.</p>
+
+          <h2 id="cookies">7. Cookies &amp; Tracking</h2>
+          <p>Our website uses cookies to improve your browsing experience:</p>
+          <ul>
+            <li><strong>Essential cookies:</strong> Required for website functionality</li>
+            <li><strong>Analytics cookies:</strong> Help us understand how visitors use our site</li>
+            <li><strong>Preference cookies:</strong> Remember your settings and preferences</li>
+          </ul>
+          <p>You can control cookies through your browser settings. However, disabling essential cookies may affect website functionality.</p>
+          <p>Our website uses <strong>Google reCAPTCHA</strong> to protect against spam and automated abuse. reCAPTCHA collects hardware and software information and sends it to Google for analysis. Its use is subject to the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>.</p>
+
+          <h2 id="your-rights">8. Your Rights</h2>
+          <p>Under UK data protection law, you have the following rights:</p>
+          <ul>
+            <li><strong>Access:</strong> Request a copy of your personal information</li>
+            <li><strong>Rectification:</strong> Correct inaccurate or incomplete information</li>
+            <li><strong>Erasure:</strong> Request deletion of your personal information ("right to be forgotten")</li>
+            <li><strong>Restriction:</strong> Limit how we process your information</li>
+            <li><strong>Portability:</strong> Receive your data in a structured, machine-readable format</li>
+            <li><strong>Objection:</strong> Object to processing based on legitimate interests</li>
+          </ul>
+          <p>To exercise any of these rights, please contact us using the details in section 12.</p>
+
+          <h2 id="third-party">9. Third-Party Links</h2>
+          <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of those external sites. We encourage you to read the privacy policies of any third-party websites you visit.</p>
+
+          <h2 id="children">10. Children's Privacy</h2>
+          <p>Our services are not intended for children under 18 years of age. We do not knowingly collect personal information from children. If we become aware that we have collected personal information from a child, we will take steps to delete it promptly.</p>
+
+          <h2 id="changes">11. Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time to reflect changes in our practices or the law. The "Last updated" date at the top indicates when this policy was last revised. We encourage you to review this page periodically.</p>
+
+          <h2 id="contact">12. Contact &amp; Complaints</h2>
+          <p>If you have any questions about this Privacy Policy or wish to exercise your rights, please contact us:</p>
+          <ul>
+            <li><strong>Phone:</strong> <a href="tel:07809887883">07809 887 883</a></li>
+            <li><strong>Post:</strong> William Bullard, 67 Weston Park, Crouch End, London N8 9TA</li>
+          </ul>
+          <p>If you are unhappy with how we handle your personal information, you have the right to lodge a complaint with the <strong>Information Commissioner's Office (ICO)</strong>, the UK data protection regulator:</p>
+          <ul>
+            <li><strong>Website:</strong> <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a></li>
+            <li><strong>Phone:</strong> 0303 123 1113</li>
+            <li><strong>Address:</strong> Wycliffe House, Water Lane, Wilmslow, Cheshire SK9 5AF</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Questions About Your Privacy?"
+    subtitle="Contact William Bullard directly if you have any concerns"
+  />
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .policy-hero {
+    position: relative;
+    background: var(--color-bg-dark);
+    padding: calc(var(--header-height) + 60px) 0 60px;
+  }
+
+  .policy-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(31,174,155,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .policy-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .loc-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+  }
+
+  .loc-breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .loc-breadcrumb a:hover { color: white; }
+  .loc-breadcrumb span { color: rgba(255,255,255,0.35); }
+  .loc-breadcrumb span:last-child { color: rgba(255,255,255,0.75); }
+
+  .policy-hero-title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .policy-hero-lead {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+
+  .policy-updated {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    margin: 0;
+  }
+
+  /* Layout */
+  .policy-content-section {
+    padding: 64px 0 80px;
+  }
+
+  .policy-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Sidebar */
+  .policy-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + 24px);
+  }
+
+  .policy-nav h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .policy-nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .policy-nav li {
+    margin-bottom: 8px;
+  }
+
+  .policy-nav a {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: block;
+    padding: 4px 0 4px 12px;
+    border-left: 2px solid transparent;
+    transition: all 0.15s ease;
+    line-height: 1.4;
+  }
+
+  .policy-nav a:hover {
+    color: var(--color-accent);
+    border-left-color: var(--color-accent);
+  }
+
+  /* Body */
+  .policy-body { max-width: 760px; }
+
+  .policy-intro {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .policy-business-info {
+    background: var(--color-bg-light);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    border-left: 3px solid var(--color-accent);
+  }
+
+  .policy-business-info p { margin: 0; }
+
+  .policy-body h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 40px 0 16px;
+    color: var(--color-text-main);
+    padding-top: 24px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .policy-body h2:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .policy-body p {
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    margin-bottom: 16px;
+    font-size: 0.975rem;
+  }
+
+  .policy-body ul, .policy-body ol {
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+    font-size: 0.975rem;
+  }
+
+  .policy-body li { margin-bottom: 8px; }
+
+  .policy-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .policy-body a:hover { color: var(--color-accent-hover); }
+
+  .policy-body strong { color: var(--color-text-main); }
+
+  @media (max-width: 900px) {
+    .policy-layout {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .policy-sidebar {
+      position: static;
+    }
+
+    .policy-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .policy-nav h3 { display: none; }
+
+    .policy-nav ol {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .policy-nav li { margin: 0; }
+
+    .policy-nav a {
+      border-left: none;
+      padding-left: 0;
+      background: var(--color-bg-light);
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    .policy-nav a:hover {
+      background: rgba(31,174,155,0.1);
+    }
+  }
+</style>
