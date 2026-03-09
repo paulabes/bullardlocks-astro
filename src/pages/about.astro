@@ -222,47 +222,52 @@ const schema = [
   <!-- TRUSTED PARTNERSHIPS -->
   <section class="content-section bg-dark">
     <div class="container-custom">
-      <div class="bg-section-grid">
-        <div class="bg-section-content">
-          <div class="bg-section-badge">
-            <i class="fas fa-handshake"></i>
-            <span>Trusted Partnerships</span>
-          </div>
-          <h2 class="section-title" style="color:white; text-align:left;">Approved by the Met Police &amp; British Gas</h2>
+      <div class="section-header">
+        <div class="bg-section-badge">
+          <i class="fas fa-handshake"></i>
+          <span>Trusted Partnerships</span>
+        </div>
+        <h2 class="section-title" style="color:white;">Approved by the Met Police &amp; British Gas</h2>
+        <p class="section-subtitle" style="color:rgba(255,255,255,0.7);">William is one of a small number of locksmiths in London approved by both organisations — a reflection of three decades of trust, integrity and skill.</p>
+      </div>
+
+      <div class="tp-columns">
+        <div class="tp-col">
+          <div class="tp-col-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="tp-col-title">Metropolitan Police</h3>
           <p class="bg-section-text">
-            William is one of a small number of locksmiths in London approved by both the <strong style="color:white;">Metropolitan Police</strong> and <strong style="color:white;">British Gas</strong> — two organisations that demand the highest standards of integrity, skill and professionalism.
-          </p>
-          <p class="bg-section-text">
-            As a <strong style="color:white;">Metropolitan Police approved contractor</strong>, William is called upon for lock-related work where security, evidence preservation and discretion are critical. The Met's vetting process is rigorous — covering criminal record checks, professional references, insurance verification and ongoing performance review. Only locksmiths who meet these exacting standards are retained.
-          </p>
-          <p class="bg-section-text">
-            As an <strong style="color:white;">emergency access contractor for British Gas</strong> for over 20 years, William gains entry to properties when engineers need urgent access — for gas leaks, meter readings, or safety inspections — and no keyholder can be reached. Every entry is non-destructive, and every property is re-secured before he leaves.
-          </p>
-          <p class="bg-section-text">
-            These partnerships reflect decades of trust built through consistent, reliable work. They also give William unique expertise in sensitive access situations where damage avoidance and discretion are paramount.
+            As a Metropolitan Police approved contractor, William is called upon for lock-related work where security, evidence preservation and discretion are critical. The Met's vetting process is rigorous — covering criminal record checks, professional references, insurance verification and ongoing performance review.
           </p>
         </div>
-        <div class="bg-section-aside">
-          <div class="bg-aside-card">
-            <div class="bg-aside-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>Met Police</h3>
-            <p>Approved contractor — vetted to the highest standards</p>
-          </div>
-          <div class="bg-aside-card">
-            <div class="bg-aside-icon"><i class="fas fa-fire-alt"></i></div>
-            <h3>British Gas</h3>
-            <p>Emergency access contractor for 20+ years</p>
-          </div>
-          <div class="bg-aside-card">
-            <div class="bg-aside-icon"><i class="fas fa-lock-open"></i></div>
-            <h3>Non-Destructive</h3>
-            <p>Specialist entry techniques — no damage to your property</p>
-          </div>
-          <div class="bg-aside-card">
-            <div class="bg-aside-icon"><i class="fas fa-user-check"></i></div>
-            <h3>Fully Vetted</h3>
-            <p>DBS checked, insured and security cleared</p>
-          </div>
+        <div class="tp-col">
+          <div class="tp-col-icon tp-col-icon-gas"><i class="fas fa-fire"></i></div>
+          <h3 class="tp-col-title">British Gas</h3>
+          <p class="bg-section-text">
+            As an emergency access contractor for British Gas for over 20 years, William gains entry to properties when engineers need urgent access — for gas leaks, meter readings, or safety inspections. Every entry is non-destructive, and every property is re-secured before he leaves.
+          </p>
+        </div>
+      </div>
+
+      <div class="tp-features-row">
+        <div class="bg-aside-card">
+          <div class="bg-aside-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Met Police Approved</h3>
+          <p>Vetted to the highest standards</p>
+        </div>
+        <div class="bg-aside-card">
+          <div class="bg-aside-icon bg-aside-icon-gas"><i class="fas fa-fire"></i></div>
+          <h3>British Gas Certified</h3>
+          <p>Emergency contractor for 20+ years</p>
+        </div>
+        <div class="bg-aside-card">
+          <div class="bg-aside-icon"><i class="fas fa-lock-open"></i></div>
+          <h3>Non-Destructive Entry</h3>
+          <p>No damage to your property</p>
+        </div>
+        <div class="bg-aside-card">
+          <div class="bg-aside-icon"><i class="fas fa-user-check"></i></div>
+          <h3>Fully Vetted &amp; Insured</h3>
+          <p>DBS checked and security cleared</p>
         </div>
       </div>
     </div>
@@ -507,14 +512,7 @@ const schema = [
   .cred-title { font-size: 1rem; font-weight: 700; margin: 0 0 10px; color: var(--color-text-main); }
   .cred-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6; margin: 0; }
 
-  /* British Gas section */
-  .bg-section-grid {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 60px;
-    align-items: start;
-  }
-
+  /* Trusted Partnerships */
   .bg-section-badge {
     display: inline-flex;
     align-items: center;
@@ -522,14 +520,49 @@ const schema = [
     color: #7fe8d8;
     font-size: 0.85rem;
     font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .tp-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .tp-col-icon {
+    width: 52px; height: 52px;
+    background: rgba(29, 78, 216, 0.2);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    color: #93c5fd;
+    font-size: 1.3rem;
     margin-bottom: 20px;
+  }
+
+  .tp-col-icon-gas {
+    background: rgba(0, 114, 206, 0.2);
+    color: #7dd3fc;
+  }
+
+  .tp-col-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: white;
+    margin: 0 0 14px;
   }
 
   .bg-section-text {
     color: rgba(255,255,255,0.75);
     line-height: 1.75;
     font-size: 0.975rem;
-    margin: 0 0 16px;
+    margin: 0;
+  }
+
+  .tp-features-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
   }
 
   .bg-aside-card {
@@ -538,7 +571,6 @@ const schema = [
     border-radius: 14px;
     padding: 20px;
     text-align: center;
-    margin-bottom: 16px;
   }
 
   .bg-aside-icon {
@@ -551,13 +583,19 @@ const schema = [
     margin: 0 auto 12px;
   }
 
-  .bg-aside-card h3 { font-size: 1.1rem; font-weight: 800; color: white; margin: 0 0 6px; }
+  .bg-aside-icon-gas {
+    background: rgba(0, 114, 206, 0.2);
+    color: #7dd3fc;
+  }
+
+  .bg-aside-card h3 { font-size: 0.95rem; font-weight: 800; color: white; margin: 0 0 6px; }
   .bg-aside-card p { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin: 0; line-height: 1.4; }
 
 
   /* Responsive */
   @media (max-width: 1200px) {
     .credentials-grid { grid-template-columns: repeat(2, 1fr); }
+    .tp-features-row { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 992px) {
@@ -567,12 +605,12 @@ const schema = [
     .story-grid { grid-template-columns: 1fr; }
     .story-image-wrap { position: static; }
     .story-image { height: 300px; }
-    .bg-section-grid { grid-template-columns: 1fr; }
-
+    .tp-columns { grid-template-columns: 1fr; gap: 36px; }
   }
 
   @media (max-width: 768px) {
     .credentials-grid { grid-template-columns: 1fr; }
+    .tp-features-row { grid-template-columns: 1fr 1fr; }
     .loc-trust-bar { gap: 12px; }
     .loc-trust-item { padding: 0; border-left: none; }
   }
