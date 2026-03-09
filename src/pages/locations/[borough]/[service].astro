@@ -44,11 +44,11 @@ const metaDescription = `${service.name} in ${borough.name} (${borough.postcodes
     : 'Non-destructive safe opening, installation & combination changes.'
 } No call-out fee. Call 07809 887 883.`;
 
-// Hero images (Unsplash)
+// Hero images (local)
 const heroImages: Record<ServiceSlug, string> = {
-  'auto-locksmith': 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900&q=80',
-  'emergency-locksmith': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
-  'safe-engineer': 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=900&q=80',
+  'auto-locksmith': '/images/hero-auto-locksmith.webp',
+  'emergency-locksmith': '/images/hero-emergency-locksmith.webp',
+  'safe-engineer': '/images/hero-safe-engineer.webp',
 };
 const heroImage = heroImages[serviceSlug as ServiceSlug];
 
@@ -240,7 +240,7 @@ const schema = [
     <div class="container-custom">
       <div class="area-content-grid">
         <div class="area-content-image">
-          <img src={areaContent.image} alt={areaContent.imageAlt} loading="lazy" />
+          <img src={areaContent.image} alt={areaContent.imageAlt} width="900" height="600" loading="lazy" />
           <a href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4" target="_blank" rel="noopener noreferrer" class="area-star-card">
             <div class="area-star-icon"><i class="fas fa-star"></i></div>
             <div class="area-star-text">
@@ -259,11 +259,21 @@ const schema = [
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- Other Services in this Borough -->
+  <section class="content-section bg-white">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">Other Services in {borough.name}</h2>
+      </div>
+      <ServiceCards boroughSlug={boroughSlug} boroughName={borough.name} services={borough.services.filter(s => s !== serviceSlug)} />
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
   <section class="content-section bg-dark">
     <div class="container-custom">
       <div class="section-header">
-        <h2 class="section-title">How It Works</h2>
+        <h2 class="section-title">How We Work</h2>
         <p class="section-subtitle">Three simple steps to get the problem sorted.</p>
       </div>
 
@@ -448,17 +458,7 @@ const schema = [
     </section>
   )}
 
-  <!-- Other Services in this Borough -->
-  <section class="content-section bg-light">
-    <div class="container-custom">
-      <div class="section-header">
-        <h2 class="section-title">Other Services in {borough.name}</h2>
-      </div>
-      <ServiceCards boroughSlug={boroughSlug} boroughName={borough.name} services={borough.services.filter(s => s !== serviceSlug)} />
-    </div>
-  </section>
-
-  <GoogleReviews bg="white" />
+  <GoogleReviews bg="light" />
 
   <CTASection
     title={`Need a ${service.name} in ${borough.name}?`}

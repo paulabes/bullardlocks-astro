@@ -22,7 +22,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'Haringey\'s mix of Victorian terraces and post-war estates means street parking is the norm — and that means more exposure to key theft and accidental lockouts. We regularly attend car key emergencies along Hornsey High Street, outside the shops on Crouch End Broadway, and near Alexandra Palace where event parking often leads to rushed lock-ins.',
       'As the nearest auto locksmith to most of N4, N6, N8, N10 and N22, we carry a full set of blanks and diagnostic tools for Ford, Vauxhall, BMW, Mercedes, VW, Audi, Toyota and more. Keys are cut, coded and tested on the spot — no tow truck, no dealer wait.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Auto locksmith replacing car key in Crouch End, Haringey',
   },
 
@@ -33,7 +33,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'Being based in Crouch End gives us the fastest possible response across the borough. Late-night lockouts in Finsbury Park, early-morning break-in repairs in Muswell Hill, or a snapped key in an Archway front door — we\'ve attended them all hundreds of times. Typical arrival across Haringey is 20–30 minutes, often faster.',
       'After a break-in, we don\'t just get you back inside — we leave your property fully secured the same night. We carry British Standard anti-snap cylinders, deadlocks and rim locks on the van, so there\'s no waiting for parts. Every job is quoted upfront with no call-out fee.',
     ],
-    image: '/images/locksmith-near-me-bullard-locks.jpg',
+    image: '/images/locksmith-near-me-bullard-locks.webp',
     imageAlt: 'Emergency locksmith responding to lockout in Haringey',
   },
 
@@ -44,7 +44,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'For homeowners in Muswell Hill, Crouch End and Hornsey, we regularly open forgotten-combination safes that have sat untouched for years — often inherited or found during renovations of the area\'s many Victorian and Edwardian properties. Non-destructive opening is always attempted first, preserving the safe for continued use.',
       'As our home borough, Haringey safe engineer appointments are particularly easy to arrange. William can often fit in same-week visits for residential work and next-day for urgent commercial needs. We cover Chubb, Fichet, Burton, Dudley and all other major brands.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Safe engineer William Bullard with specialist tools in Haringey',
   },
 
@@ -59,7 +59,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'We see a lot of keyless-entry and push-to-start faults in Barnet — the area has a higher proportion of newer vehicles and premium marques than much of North London. Whether it\'s a Range Rover in Totteridge, a Mercedes on Ballards Lane in Finchley, or a Ford at Mill Hill Broadway station, we carry the diagnostic kit to handle it all.',
       'Typical response time across Barnet is 25–40 minutes from our Crouch End base. We reach East Finchley and Finchley Central in under 25 minutes via the A1000, while High Barnet and Whetstone are around 30–35 minutes via the A1000 or A109.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Mobile auto locksmith attending vehicle in Barnet',
   },
 
@@ -70,7 +70,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough also has a large number of converted flats, particularly in Finchley and New Barnet, where communal door locks see heavy use and frequently fail at the worst time. We carry mortice locks, Euro cylinders, rim locks and UPVC multipoint mechanisms so we can fix or replace whatever\'s failed without a return visit.',
       'Our typical response across Barnet is 25–40 minutes. East Finchley and Finchley Central are closest (often under 25 minutes), while High Barnet, Edgware and Mill Hill take a little longer. No call-out fee, no hidden charges, and a fixed quote before we start any work.',
     ],
-    image: '/images/locksmith-near-me-bullard-locks.jpg',
+    image: '/images/locksmith-near-me-bullard-locks.webp',
     imageAlt: 'Emergency locksmith securing property in Barnet after break-in',
   },
 
@@ -81,7 +81,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'On the commercial side, Barnet has a busy high-street retail scene around Chipping Barnet, New Barnet and Finchley Central, plus industrial units along the A1. We install, open and service safes for shops, restaurants, dental practices and other businesses that need secure cash handling.',
       'All safe work in Barnet is by appointment. William visits to assess the safe, provides a written quote, and completes the work on-site in most cases. We work on all major brands including Chubb, Burton, Fichet and Phoenix, and can supply and fit new safes where needed.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Professional safe engineer attending home in Barnet',
   },
 
@@ -96,7 +96,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The mix of vehicles in Camden ranges from delivery vans on the high street to high-end cars in Primrose Hill and Hampstead. We carry equipment for everything from a Ford Transit lockout to programming a new key for a BMW or Porsche. All work is done at the roadside with no need for towing.',
       'We reach most of Camden in 25–35 minutes from our Crouch End base, with Kentish Town and Gospel Oak often under 20 minutes via the Archway Road. NW1, NW3, NW5, NW6 and WC1 are all within our core coverage area.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Auto locksmith working on vehicle in Camden Town',
   },
 
@@ -107,7 +107,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The area\'s nightlife and high footfall around Camden Town and Chalk Farm mean we attend a lot of late-night lockouts — keys left in bars, locks jammed after coming home in a rush, or locks deliberately changed by flatmates during disputes. Whatever the situation, we respond without judgement, day or night.',
       'Hampstead and Belsize Park residents often call for lock upgrades after burglary scares. We fit insurance-approved British Standard locks that meet the requirements of most household policies, and can advise on overall door security while we\'re there. Typical arrival in Camden is 25–35 minutes.',
     ],
-    image: '/images/locksmith-near-me-bullard-locks.jpg',
+    image: '/images/locksmith-near-me-bullard-locks.webp',
     imageAlt: 'Locksmith attending emergency call in Camden',
   },
 
@@ -118,7 +118,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough\'s many period properties often contain old safes that were built into the house — sometimes bricked in or hidden behind panelling. We have extensive experience opening and servicing these older units, including Milner, Chubb and Ratner safes dating back decades.',
       'For businesses around Camden Market and Kentish Town Road, we provide rapid-response safe opening when daily floats are locked away and the combination has been forgotten or the lock has failed. We also supply and install new safes rated to cash and valuables standards for retail, hospitality and office use.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Safe engineer attending property in Camden',
   },
 
@@ -133,7 +133,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'We attend a lot of call-outs around the Angel and Clerkenwell area, where office workers leave keys on desks and return to find their cars locked. The residential streets of Barnsbury and Canonbury also generate regular work — often transponder key failures on modern vehicles parked on narrow Victorian streets where a tow truck can\'t easily access.',
       'Islington is one of our fastest-response boroughs at 20–30 minutes, thanks to the direct route from Crouch End via Hornsey Rise and Holloway Road. We cover all postcodes: N1, N7, N19 and EC1.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Auto locksmith replacing car keys near Angel, Islington',
   },
 
@@ -144,7 +144,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The Holloway Road corridor and the streets around Finsbury Park station see a higher rate of burglaries than the borough average. After a break-in, we secure the property immediately — fitting new British Standard anti-snap cylinders, repairing damaged door frames, and boarding up if needed. We carry all parts on the van so there\'s no second visit required.',
       'Whether it\'s a lockout at a Clerkenwell townhouse, a snapped key in an Archway flat, or a jammed lock on a shop front in Chapel Market, we\'re typically on scene within 20–30 minutes. Available 24/7, 365 days a year, with no call-out fee.',
     ],
-    image: '/images/locksmith-near-me-bullard-locks.jpg',
+    image: '/images/locksmith-near-me-bullard-locks.webp',
     imageAlt: 'Emergency locksmith attending flat lockout in Islington',
   },
 
@@ -155,7 +155,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough\'s Georgian and Victorian residential properties in Barnsbury, Canonbury and Highbury often contain original built-in safes or more recent fire safes installed for documents and valuables. We open, service and install safes for homeowners across all of Islington, always attempting non-destructive methods first.',
       'With our Crouch End base just a short drive away via Hornsey Rise, we can often arrange next-day appointments for Islington residents and same-week for businesses. All work is quoted in writing before we start, with no hidden charges.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Safe engineer servicing commercial safe in Islington',
   },
 
@@ -170,7 +170,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough has seen a significant increase in keyless car theft over recent years, particularly around Dalston, London Fields and Stoke Newington. We provide emergency key replacement when keys are stolen, as well as preventative key reprogramming to block stolen fobs from accessing your vehicle.',
       'Typical response time across Hackney is 25–40 minutes from Crouch End. Stoke Newington and Dalston are often under 25 minutes via the back roads through Finsbury Park. We cover all E8, E9, E5, N16 and N1 postcodes in the borough.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Mobile auto locksmith attending car in Hackney',
   },
 
@@ -181,7 +181,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'We attend a lot of post-burglary call-outs in Hackney, particularly along the E8 and E5 corridors. Our approach is always the same: secure the property first, then advise on what upgrades will prevent a repeat. We carry anti-snap Euro cylinders rated to TS007 3-star standard, London bars, and BS3621 mortice deadlocks.',
       'Stoke Newington residents often call after being locked out of their Victorian-conversion flats — original front doors with nightlatches that slam shut in the wind. We open these without damage in minutes. Typical response across Hackney: 25–40 minutes, available around the clock.',
     ],
-    image: '/images/locksmith-near-me-bullard-locks.jpg',
+    image: '/images/locksmith-near-me-bullard-locks.webp',
     imageAlt: 'Emergency locksmith attending break-in repair in Hackney',
   },
 
@@ -192,7 +192,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough\'s residential safe work often involves opening older units found during property renovations — Hackney\'s Victorian and Edwardian housing stock regularly yields forgotten safes during building work. We\'ve opened safes hidden under floorboards, bricked into chimney breasts, and concealed behind false walls.',
       'We also work with Hackney landlords and property managers who need safes installed in HMO properties for key management, or combination changes between tenancies. All work is by appointment, with a written quote provided before we begin.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Safe engineer opening safe in Hackney property',
   },
 
@@ -207,7 +207,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough\'s suburban streets in Winchmore Hill, Bush Hill Park and Chase Side have a high proportion of family cars — and it\'s the school run that catches people out most often. Keys left in the boot, spare keys locked inside the house, or a key fob battery dying in the Tesco car park at Ponders End. We handle all of these on the spot.',
       'Enfield is our furthest North London borough, with typical arrival times of 30–45 minutes depending on where you are. Southgate and Palmers Green are closest (around 30 mins), while Enfield Town and Edmonton take a little longer. We cover all EN1, EN2, EN3, N9, N13, N14, N18 and N21 postcodes.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Auto locksmith attending vehicle in Enfield',
   },
 
@@ -218,7 +218,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'Edmonton and the areas around Fore Street have a higher burglary rate than the borough average. We attend post-break-in security work regularly here, fitting insurance-grade locks and repairing damaged doors on the same visit. For the more affluent streets in Winchmore Hill and Hadley Wood, we often advise on upgrading existing locks to anti-snap, anti-bump specifications.',
       'Despite being the most northerly borough in our coverage, we still maintain a 30–45 minute typical response across Enfield. Southgate is reachable in around 30 minutes via the A109, while Enfield Town and Ponders End take closer to 40–45 minutes. Available 24/7 with no call-out fee.',
     ],
-    image: '/images/locksmith-near-me-bullard-locks.jpg',
+    image: '/images/locksmith-near-me-bullard-locks.webp',
     imageAlt: 'Emergency locksmith securing property in Enfield',
   },
 
@@ -229,7 +229,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough also has a significant light-industrial and commercial sector, with business parks along the A10 corridor and retail units around Enfield Town. We install, open and service safes for businesses from corner shops to large warehouse operations, matching the safe specification to the insurance requirements.',
       'Enfield safe appointments are typically arranged within the week for residential work and next-day for urgent commercial needs. William travels to your location with all specialist tools — there\'s no need to bring the safe anywhere. We work on Chubb, Burton, Fichet, Phoenix, SMP and all other major brands.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Safe engineer attending appointment in Enfield',
   },
 
@@ -244,7 +244,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'Westminster has a high concentration of premium and luxury vehicles — the streets around Park Lane, St James\'s and Belgravia are lined with Range Rovers, Bentleys and Porsches. We carry the advanced diagnostic equipment needed for these marques, including dealer-level key programming for most European prestige brands.',
       'We reach most of Westminster in 30–45 minutes from our North London base, with Marylebone and Paddington often closer to 30 minutes via the Westway or Finchley Road. We cover all W1, W2, SW1, WC2 and the Westminster portion of NW1.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Auto locksmith programming car key in Westminster',
   },
 
@@ -255,7 +255,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough\'s dense concentration of hotels, private members\' clubs, restaurants and luxury retail also generates significant commercial safe work. We attend Park Lane hotels, Bond Street jewellers and West End restaurants for everything from emergency opening when a safe won\'t release, to scheduled combination changes and annual servicing.',
       'For Westminster clients, we understand that discretion and professionalism are paramount. William arrives in an unmarked vehicle, carries photo ID, and all work is conducted confidentially. We service all major safe brands and can advise on new installations rated to Eurograde standards for high-value contents.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Safe engineer providing specialist service in Westminster',
   },
 
@@ -270,7 +270,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The City\'s weekday population of over 500,000 means a lot of commuter vehicles — many parked in NCP and private car parks around Barbican, Moorgate and Aldgate. We regularly attend these sites for lockouts, lost keys and broken fobs. We can also meet you at your office if you\'ve left keys at home and need a spare cut from the lock.',
       'We reach the City in 30–45 minutes via the A1 and City Road, covering all EC1, EC2, EC3 and EC4 postcodes. Weekend call-outs in the City are often faster due to lighter traffic. All work is quoted upfront with no call-out fee.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Auto locksmith attending vehicle in the City of London',
   },
 
@@ -281,7 +281,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The Barbican residential estate — one of the largest in Europe — is also a regular source of domestic safe work. The complex\'s 1960s and 70s construction means many flats contain original built-in safes, and residents contact us when combinations are lost or locks seize. We specialise in opening these older units without damage.',
       'For City clients, we offer flexible appointment scheduling including early morning and evening visits to work around business operations. All safe engineers carry photo ID and are DBS checked — essential for access to the secure premises common in EC1–EC4.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Safe engineer attending City of London commercial premises',
   },
 
@@ -296,7 +296,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The Royal Borough\'s strict parking enforcement makes any vehicle lockout an urgent situation. Whether you\'re on a meter in South Kensington, in a residents\' bay on a Chelsea side street, or stuck in the Kensington High Street one-way system, we prioritise reaching you before the penalty notice arrives.',
       'We reach Kensington and Chelsea in 35–50 minutes from North London, with Notting Hill and Holland Park often closer to 35 minutes via the Westway. We cover W8, W11, SW3, SW5, SW7 and SW10 postcodes across the borough.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Auto locksmith working on premium vehicle in Kensington',
   },
 
@@ -307,7 +307,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'Many properties in the borough feature concealed safes built into wardrobes, dressing rooms or home offices — sometimes behind custom panelling or within bespoke furniture. We have extensive experience accessing and servicing these installations without disturbing the surrounding décor, working carefully in high-end interiors.',
       'We also serve the borough\'s luxury retail premises — jewellers, art galleries and boutiques on King\'s Road, Brompton Road and Portobello Road — providing installation, emergency opening and scheduled maintenance for commercial safes rated to Eurograde standards.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Safe engineer attending private residence in Kensington',
   },
 
@@ -322,7 +322,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough has a broad vehicle mix: work vans serving the Hammersmith office district, family cars in Fulham\'s residential streets, and everything from student run-arounds to premium SUVs around Ravenscourt Park and Brackenbury Village. We carry blanks and programming equipment for all mainstream and prestige makes.',
       'Hammersmith and Fulham is our furthest regular coverage area at 40–55 minutes, though Shepherd\'s Bush is often reachable in 35–40 minutes via the Westway. We cover all W6, W12, W14 and SW6 postcodes.',
     ],
-    image: '/images/auto_locksmith_crouch-end.jpg',
+    image: '/images/auto_locksmith_crouch-end.webp',
     imageAlt: 'Auto locksmith attending vehicle in Hammersmith',
   },
 
@@ -333,7 +333,7 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The Hammersmith office district and the retail centres around Westfield and King Street generate regular commercial safe work. We install deposit safes for hospitality businesses, service existing units for retail chains, and provide emergency opening when electronic locks fail or staff changes leave combinations unknown.',
       'Despite being in West London, we maintain reliable appointment scheduling for Hammersmith and Fulham clients. William carries all specialist tools in the van — no need for multiple visits. We work on all brands and can recommend and install new safes where an upgrade or replacement is more cost-effective than repair.',
     ],
-    image: '/images/william-bullard-locks.jpg',
+    image: '/images/william-bullard-locks.webp',
     imageAlt: 'Safe engineer providing service in Hammersmith & Fulham',
   },
 };
@@ -343,7 +343,7 @@ export function getAreaContent(boroughSlug: string, serviceSlug: ServiceSlug): A
   return areaContent[key] ?? {
     heading: `${serviceSlug.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ')} Service`,
     paragraphs: ['Contact us to discuss your requirements.'],
-    image: '/images/william-bullard-trusted-london-locksmith.jpg',
+    image: '/images/william-bullard-trusted-london-locksmith.webp',
     imageAlt: 'Bullard Locks professional locksmith service',
   };
 }

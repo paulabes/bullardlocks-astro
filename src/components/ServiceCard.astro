@@ -14,7 +14,7 @@ const { number, icon, title, description, href, image } = Astro.props;
 <a href={href} class="service-card">
   {image && (
     <div class="service-card-image">
-      <img src={image} alt={title} loading="lazy" />
+      <img src={image} alt={title} width="800" height="533" loading="lazy" />
       <div class="service-card-image-overlay"></div>
     </div>
   )}

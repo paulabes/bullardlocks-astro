@@ -4,7 +4,7 @@ import GoogleReviews from '../components/GoogleReviews.astro';
 import CTASection from '../components/CTASection.astro';
 import ServiceCards from '../components/ServiceCards.astro';
 
-const heroImage = '/images/william-bullard-trusted-london-locksmith.jpg';
+const heroImage = '/images/william-bullard-trusted-london-locksmith.webp';
 
 const schema = [
   {
@@ -150,9 +150,11 @@ const schema = [
       <div class="story-grid">
         <div class="story-image-wrap">
           <img
-            src="/images/why-choose-bullard-locks.jpg"
+            src="/images/why-choose-bullard-locks.webp"
             alt="William Bullard — North London locksmith with 30 years experience"
             class="story-image"
+            width="900"
+            height="600"
             loading="lazy"
           />
         </div>
@@ -184,34 +186,34 @@ const schema = [
     </div>
   </section>
 
-  <!-- CREDENTIALS -->
+  <!-- WHY CHOOSE WILLIAM -->
   <section class="content-section bg-light">
     <div class="container-custom">
       <div class="section-header">
-        <h2 class="section-title">Credentials &amp; Accreditations</h2>
-        <p class="section-subtitle">Trusted by some of the UK's most demanding clients for over 30 years.</p>
+        <h2 class="section-title">Why Choose <span class="text-accent">William</span></h2>
+        <p class="section-subtitle">What makes working with an independent locksmith different.</p>
       </div>
 
       <div class="credentials-grid">
         <div class="cred-card">
-          <div class="cred-icon"><i class="fas fa-shield-alt"></i></div>
-          <h3 class="cred-title">Met Police Approved</h3>
-          <p class="cred-desc">Approved contractor for the Metropolitan Police. The rigorous vetting process confirms William's integrity and professional standards.</p>
+          <div class="cred-icon"><i class="fas fa-user"></i></div>
+          <h3 class="cred-title">One Person, Every Job</h3>
+          <p class="cred-desc">No call centres, no subcontractors. When you book Bullard Locks, William turns up in person — consistent quality on every job.</p>
         </div>
         <div class="cred-card">
-          <div class="cred-icon"><i class="fas fa-fire-alt"></i></div>
-          <h3 class="cred-title">British Gas Emergency Contractor</h3>
-          <p class="cred-desc">Trusted emergency access locksmith for British Gas for over 20 years — attending properties when urgent access is needed and no keyholder can be reached.</p>
+          <div class="cred-icon"><i class="fas fa-tag"></i></div>
+          <h3 class="cred-title">Honest, Fixed Pricing</h3>
+          <p class="cred-desc">You get a firm quote before any work starts. No call-out fee, no hidden charges, no surprises. The price agreed is the price you pay.</p>
         </div>
         <div class="cred-card">
-          <div class="cred-icon"><i class="fas fa-user-check"></i></div>
-          <h3 class="cred-title">DBS / CRB Checked</h3>
-          <p class="cred-desc">Full Disclosure and Barring Service check completed. You can trust William in your home, with your property, and with your security.</p>
+          <div class="cred-icon"><i class="fas fa-lock-open"></i></div>
+          <h3 class="cred-title">Non-Destructive Entry</h3>
+          <p class="cred-desc">30 years of technique means gaining entry without damage in the vast majority of cases — saving you the cost of replacement locks and doors.</p>
         </div>
         <div class="cred-card">
-          <div class="cred-icon"><i class="fas fa-star"></i></div>
-          <h3 class="cred-title">5.0 Google Rating</h3>
-          <p class="cred-desc">A perfect Google review rating built on decades of honest pricing, punctual service, and quality workmanship across hundreds of satisfied customers.</p>
+          <div class="cred-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <h3 class="cred-title">Truly Local</h3>
+          <p class="cred-desc">Based in Crouch End N8 for over three decades. William knows the streets, the properties and the community — not a national franchise.</p>
         </div>
       </div>
     </div>
