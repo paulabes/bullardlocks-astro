@@ -3,22 +3,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTASection from '../components/CTASection.astro';
 import ServiceCards from '../components/ServiceCards.astro';
 import { boroughs, servicesMeta } from '../data/locations';
+import type { ServiceSlug } from '../data/locations';
+
+const services = Object.entries(servicesMeta) as [ServiceSlug, typeof servicesMeta[ServiceSlug]][];
 
 const schema = [
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Auto Locksmith London — Service Locations by Borough",
-    "description": "Bullard Locks covers North and Central London boroughs for auto locksmith, emergency locksmith and safe engineer services.",
-    "url": "https://bullardlocks.com/locations",
-    "itemListElement": boroughs.map((b, i) => ({
+    "name": "Locksmith Services — Bullard Locks",
+    "description": "Auto locksmith, emergency locksmith and safe engineer services across North and Central London.",
+    "url": "https://bullardlocks.com/services",
+    "itemListElement": services.map(([slug, meta], i) => ({
       "@type": "ListItem",
       "position": i + 1,
       "item": {
-        "@type": "LocksmithBusiness",
-        "name": `Bullard Locks — ${b.name}`,
-        "url": `https://bullardlocks.com/locations/${b.slug}`,
-        "areaServed": b.name
+        "@type": "Service",
+        "name": meta.name,
+        "url": `https://bullardlocks.com/services/${slug}`,
+        "description": meta.tagline,
       }
     }))
   },
@@ -27,38 +30,37 @@ const schema = [
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://bullardlocks.com/"},
-      {"@type": "ListItem", "position": 2, "name": "Locations", "item": "https://bullardlocks.com/locations"}
+      {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://bullardlocks.com/services"}
     ]
   }
 ];
 ---
 
 <BaseLayout
-  title="Auto Locksmith London — All Service Locations & Boroughs | Bullard Locks"
-  description="Auto locksmith & emergency locksmith across North and Central London. Choose your borough for local coverage, pricing and response times. No call-out fee."
-  canonicalUrl="https://bullardlocks.com/locations"
+  title="Locksmith Services — Auto Locksmith, Emergency Locksmith & Safe Engineer | Bullard Locks"
+  description="Professional locksmith services across North & Central London. Auto locksmith, 24/7 emergency locksmith & safe engineer (UK-wide). No call-out fee. 07809 887 883."
+  canonicalUrl="https://bullardlocks.com/services"
   schema={schema}
 >
   <!-- HERO -->
   <section class="loc-hero bg-dark">
-    <div class="loc-hero-bg" style="background-image: url('/images/hero-emergency-locksmith.webp')" aria-hidden="true"></div>
+    <div class="loc-hero-bg" style="background-image: url('/images/hero-auto-locksmith.webp')" aria-hidden="true"></div>
     <div class="loc-hero-overlay" aria-hidden="true"></div>
     <div class="container-custom lh-content">
       <nav class="loc-breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a>
         <span>/</span>
-        <span>Locations</span>
+        <span>Services</span>
       </nav>
 
       <h1 class="loc-hero-title">
-        <span class="loc-hero-service">Locksmith</span>
-        <span class="loc-hero-location">&amp; Safe Cracker</span>
-        <span class="loc-hero-sub">Select Your Borough</span>
+        <span class="loc-hero-service">Our Services</span>
+        <span class="loc-hero-location">Professional Locksmith &amp; Safe Engineer</span>
       </h1>
 
       <p class="loc-hero-lead">
-        Bullard Locks covers North and Central London for auto locksmith, emergency locksmith and safe engineer services.
-        Select your borough below for local response times, coverage areas and pricing.
+        William Bullard provides three specialist services — auto locksmith, emergency locksmith and safe engineering.
+        One person, every job. No call centres, no subcontractors.
       </p>
 
       <div class="loc-hero-ctas">
@@ -72,32 +74,32 @@ const schema = [
     </div>
   </section>
 
-  <!-- Services overview -->
+  <!-- SERVICE CARDS -->
   <section class="content-section bg-white">
     <div class="container-custom">
       <div class="section-header">
-        <h2 class="section-title">Professional <span class="text-accent">Locksmith Services</span></h2>
-        <p class="section-subtitle">Expert security solutions for vehicles, homes and businesses — rapid response across London.</p>
+        <h2 class="section-title">Three Specialist <span class="text-accent">Services</span></h2>
+        <p class="section-subtitle">Each service is delivered personally by William Bullard — over 30 years of experience, Metropolitan Police approved.</p>
       </div>
       <ServiceCards />
     </div>
   </section>
 
-  <!-- Service × Borough quick links table -->
+  <!-- SERVICE × BOROUGH MATRIX -->
   <section class="content-section bg-light">
     <div class="container-custom">
       <div class="section-header">
-        <h2 class="section-title">Select Your Location</h2>
-        <p class="section-subtitle">Choose your borough to see local response times, coverage and pricing.</p>
+        <h2 class="section-title">Service Availability by Borough</h2>
+        <p class="section-subtitle">See which services are available in your area, with local response times.</p>
       </div>
 
       <div class="service-matrix">
         <!-- Header -->
         <div class="matrix-header">
           <div class="matrix-cell matrix-corner">Borough</div>
-          {Object.values(servicesMeta).map(sm => (
+          {services.map(([, meta]) => (
             <div class="matrix-cell matrix-service-head">
-              <span>{sm.name}</span>
+              <span>{meta.name}</span>
             </div>
           ))}
         </div>
@@ -147,14 +149,14 @@ const schema = [
 
       <p class="matrix-note">
         <i class="fas fa-info-circle"></i>
-        Emergency locksmith is available in North London boroughs only. Auto locksmith and safe engineer cover all listed boroughs.
+        Emergency locksmith is available in North London boroughs only. Auto locksmith and safe engineer cover all listed boroughs. Safe engineer is also available UK-wide by appointment.
       </p>
     </div>
   </section>
 
   <CTASection
-    title="Not Sure If We Cover Your Area?"
-    subtitle="Call us on 07809 887 883 or WhatsApp — we'll let you know our response time for your exact location."
+    title="Need Help Choosing a Service?"
+    subtitle="Call William on 07809 887 883 or WhatsApp — he'll advise which service you need and give you a clear quote."
   />
 </BaseLayout>
 
@@ -162,7 +164,7 @@ const schema = [
   /* Hero */
   .loc-hero {
     position: relative;
-    min-height: 80vh;
+    min-height: 70vh;
     display: flex;
     align-items: center;
     padding-top: var(--header-height);
@@ -180,11 +182,7 @@ const schema = [
   .loc-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(14, 74, 77, 0.85) 0%,
-      rgba(0, 0, 0, 0.6) 100%
-    );
+    background: linear-gradient(135deg, rgba(14, 74, 77, 0.85) 0%, rgba(0, 0, 0, 0.6) 100%);
   }
 
   .lh-content {
@@ -204,11 +202,7 @@ const schema = [
     flex-wrap: wrap;
   }
 
-  .loc-breadcrumb a {
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-  }
-
+  .loc-breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
   .loc-breadcrumb a:hover { color: white; }
   .loc-breadcrumb span:last-child { color: var(--color-accent); }
 
@@ -222,15 +216,7 @@ const schema = [
   }
 
   .loc-hero-service { color: var(--color-accent); }
-  .loc-hero-location { color: white; }
-
-  .loc-hero-sub {
-    font-size: clamp(1rem, 2.2vw, 1.4rem);
-    font-weight: 400;
-    color: rgba(255,255,255,0.6);
-    font-family: var(--font-body);
-    margin-top: 8px;
-  }
+  .loc-hero-location { color: white; font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 400; font-family: var(--font-body); margin-top: 8px; }
 
   .loc-hero-lead {
     color: rgba(255,255,255,0.8);
@@ -240,11 +226,7 @@ const schema = [
     max-width: 560px;
   }
 
-  .loc-hero-ctas {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+  .loc-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 
   .btn-hero-primary {
     display: inline-flex;
@@ -339,9 +321,7 @@ const schema = [
     letter-spacing: 0.05em;
   }
 
-  .matrix-borough-cell {
-    padding: 10px 16px;
-  }
+  .matrix-borough-cell { padding: 10px 16px; }
 
   .matrix-borough-link {
     text-decoration: none;
@@ -356,9 +336,7 @@ const schema = [
     color: var(--color-text-main);
   }
 
-  .matrix-borough-link:hover span:first-child {
-    color: var(--color-accent);
-  }
+  .matrix-borough-link:hover span:first-child { color: var(--color-accent); }
 
   .matrix-response {
     font-size: 0.75rem;
@@ -366,9 +344,7 @@ const schema = [
     font-weight: 400;
   }
 
-  .matrix-service-cell {
-    justify-content: center;
-  }
+  .matrix-service-cell { justify-content: center; }
 
   .matrix-available {
     width: 32px;
@@ -390,10 +366,7 @@ const schema = [
     transform: scale(1.1);
   }
 
-  .matrix-na {
-    color: var(--color-text-muted-light);
-    font-size: 1.1rem;
-  }
+  .matrix-na { color: var(--color-text-muted-light); font-size: 1.1rem; }
 
   .matrix-note {
     font-size: 0.85rem;
@@ -404,11 +377,7 @@ const schema = [
     line-height: 1.5;
   }
 
-  .matrix-note i {
-    color: var(--color-accent);
-    margin-top: 2px;
-    flex-shrink: 0;
-  }
+  .matrix-note i { color: var(--color-accent); margin-top: 2px; flex-shrink: 0; }
 
   /* Responsive */
   @media (max-width: 992px) {
@@ -423,12 +392,11 @@ const schema = [
     .matrix-row {
       grid-template-columns: 120px repeat(3, 1fr);
     }
-    .matrix-cell {
-      padding: 10px 10px;
-    }
+    .matrix-cell { padding: 10px 10px; }
     .matrix-service-head span {
       font-size: 0.65rem;
       letter-spacing: 0;
     }
   }
+
 </style>

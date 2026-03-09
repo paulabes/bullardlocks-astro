@@ -338,6 +338,119 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
   },
 };
 
+// Borough overview content (for /locations/[borough] index pages)
+const boroughOverviewContent: Record<string, AreaContentBlock> = {
+  'haringey': {
+    heading: 'Your Local Locksmith in Haringey',
+    paragraphs: [
+      'Bullard Locks is based in Crouch End N8 — right in the heart of Haringey. That means faster response times, genuine local knowledge, and a locksmith who actually knows your streets. William has been working across Haringey for over 30 years, from the Victorian terraces of Stroud Green to the residential streets around Alexandra Palace.',
+      'Whether you need a car key replaced outside Wood Green Shopping City, an emergency lockout sorted at 2am in Muswell Hill, or a safe opened in a Hornsey home office, William handles it all personally. No subcontractors, no call centres — just one experienced professional who answers the phone and does the work himself.',
+      'As a Metropolitan Police approved contractor with a perfect 5-star Google rating, William is the locksmith Haringey residents and businesses trust most. No call-out fee, fixed pricing, and 24/7 availability for emergencies.',
+    ],
+    image: '/images/locksmith-near-me-bullard-locks.webp',
+    imageAlt: 'William Bullard, local locksmith serving Haringey from Crouch End N8',
+  },
+  'barnet': {
+    heading: 'Trusted Locksmith Serving All of Barnet',
+    paragraphs: [
+      'From East Finchley to High Barnet, Bullard Locks covers the entire London Borough of Barnet with professional auto locksmith, emergency locksmith and safe engineer services. William is based just a short drive away in Crouch End N8, reaching most of Barnet within 25–40 minutes.',
+      'Barnet\'s suburban streets and larger residential properties mean William regularly attends car key replacements at supermarket car parks, emergency lockouts at family homes in Whetstone and Totteridge, and safe openings in the larger properties around Hadley Wood. He carries all equipment on his fully stocked mobile unit — no return visits needed.',
+      'With over 30 years in the trade, Metropolitan Police approved status, and a 5-star Google rating, William provides the reliable, honest locksmith service that Barnet residents expect. Fixed pricing quoted before work starts, no call-out fee.',
+    ],
+    image: '/images/auto_locksmith_crouch-end.webp',
+    imageAlt: 'Professional locksmith serving Barnet, North London',
+  },
+  'camden': {
+    heading: 'Professional Locksmith Across Camden',
+    paragraphs: [
+      'Camden\'s mix of busy high streets, residential conversions and period properties creates a constant demand for skilled locksmith work. William Bullard has been serving Camden from his Crouch End base for over 30 years — reaching Kentish Town and Gospel Oak in under 20 minutes, and Hampstead, Swiss Cottage and Camden Town in around 25 minutes.',
+      'Whether it\'s a car lockout on a meter in NW1, a late-night flat lockout in Belsize Park, or a forgotten safe combination in a Hampstead townhouse, William handles every job personally. He carries a full range of British Standard locks, car key blanks, and safe engineering tools — so the job gets done in one visit.',
+      'Metropolitan Police approved, fully insured, and DBS checked. No call-out fee, no hidden charges, and a fixed quote before any work begins.',
+    ],
+    image: '/images/locksmith-near-me-bullard-locks.webp',
+    imageAlt: 'Locksmith attending property in Camden, North London',
+  },
+  'islington': {
+    heading: 'Locksmith in Islington — Angel to Archway',
+    paragraphs: [
+      'Islington is one of William\'s fastest-response boroughs — just 20–30 minutes from his Crouch End N8 base via Hornsey Rise and Holloway Road. From the Georgian squares of Barnsbury to the converted flats of Holloway, he knows every type of lock found in this borough inside out.',
+      'The high concentration of converted flats in Islington means William regularly deals with shared front doors, individual flat locks, and the complications that come with multi-occupancy buildings. He also attends car key emergencies around Angel, Clerkenwell and the Emirates Stadium area, carrying dealer-level diagnostic equipment for all major vehicle makes.',
+      'Over 30 years of experience, Metropolitan Police approved, 5-star Google rating. William provides auto locksmith, emergency locksmith and safe engineer services across all N1, N7, N19 and EC1 postcodes. No call-out fee.',
+    ],
+    image: '/images/auto_locksmith_crouch-end.webp',
+    imageAlt: 'Locksmith serving Islington, from Angel to Archway',
+  },
+  'hackney': {
+    heading: 'Locksmith Covering All of Hackney',
+    paragraphs: [
+      'Hackney\'s rapidly evolving mix of warehouse conversions in Shoreditch, Victorian terraces in Clapton, and residential estates in Homerton keeps William busy. He attends car lockouts around Broadway Market, emergency lock changes after break-ins in Dalston, and safe openings for businesses across Kingsland Road and Stoke Newington.',
+      'Keyless car theft has been a growing concern in Hackney — William provides emergency key replacement when fobs are stolen, as well as preventative reprogramming to block stolen keys from accessing your vehicle. For home security, he fits insurance-approved anti-snap cylinders and British Standard deadlocks.',
+      'Typical response across Hackney is 25–40 minutes from Crouch End, with Stoke Newington and Dalston often under 25 minutes. Available 24/7 for emergencies, no call-out fee, fixed pricing. Metropolitan Police approved and DBS checked.',
+    ],
+    image: '/images/locksmith-near-me-bullard-locks.webp',
+    imageAlt: 'Professional locksmith serving Hackney, East London',
+  },
+  'enfield': {
+    heading: 'Locksmith Serving Enfield Borough',
+    paragraphs: [
+      'Enfield is North London\'s largest borough, and William covers all of it — from Southgate and Palmers Green in the south to Enfield Town and Ponders End in the north. Typical arrival times are 30–45 minutes, with Southgate and Palmers Green closest at around 30 minutes from his Crouch End N8 base.',
+      'The borough\'s suburban character means most residents rely heavily on their cars, making auto locksmith services particularly in demand. William also attends emergency lockouts at the many family homes across Winchmore Hill, Bush Hill Park and Chase Side, and provides safe engineering for the larger residential properties around Hadley Wood.',
+      'Over 30 years of experience, Metropolitan Police approved contractor, 5-star Google rating. Auto locksmith, emergency locksmith and safe engineer services available across all EN1, EN2, EN3, N9, N13, N14, N18 and N21 postcodes. No call-out fee.',
+    ],
+    image: '/images/auto_locksmith_crouch-end.webp',
+    imageAlt: 'Locksmith covering Enfield, North London',
+  },
+  'westminster': {
+    heading: 'Locksmith in Westminster — Central London',
+    paragraphs: [
+      'Westminster presents unique challenges — the most expensive parking in the UK, strict enforcement, and a high concentration of prestige vehicles. When you\'re locked out of your car on a meter in Mayfair or stuck in a Marylebone residents\' bay, speed matters. William reaches most of Westminster in 30–45 minutes from his North London base.',
+      'William carries advanced diagnostic equipment for premium and luxury marques — essential in a borough where Range Rovers, Bentleys and Porsches line the streets of Belgravia and St James\'s. For safe work, he provides discreet, professional service to private clients and businesses across W1, W2, SW1 and WC2.',
+      'Metropolitan Police approved, fully insured, DBS checked. Auto locksmith and safe engineer services available across all Westminster postcodes. Fixed pricing quoted upfront, no call-out fee, no hidden charges.',
+    ],
+    image: '/images/auto_locksmith_crouch-end.webp',
+    imageAlt: 'Auto locksmith serving Westminster, Central London',
+  },
+  'city-of-london': {
+    heading: 'Locksmith in the City of London',
+    paragraphs: [
+      'The Square Mile\'s access restrictions, security checkpoints and high parking charges make any vehicle lockout an urgent situation. William reaches the City in 30–45 minutes via the A1 and City Road, covering all EC1 to EC4 postcodes. Weekend call-outs are often faster due to lighter traffic.',
+      'The City\'s weekday population of over 500,000 means a lot of commuter vehicles in NCP and private car parks around Barbican, Moorgate and Aldgate. William also provides specialist safe engineering for the financial institutions, law firms and commercial premises that need secure storage for documents, encryption keys and valuables.',
+      'Metropolitan Police approved contractor with over 30 years of experience. Auto locksmith and safe engineer services available across the City. Fixed pricing, no call-out fee, DBS checked.',
+    ],
+    image: '/images/auto_locksmith_crouch-end.webp',
+    imageAlt: 'Locksmith attending the City of London, EC postcodes',
+  },
+  'kensington-chelsea': {
+    heading: 'Locksmith in Kensington & Chelsea',
+    paragraphs: [
+      'The Royal Borough of Kensington and Chelsea has one of the highest concentrations of prestige vehicles in the UK. William carries advanced diagnostic tools for Porsche, Ferrari, Bentley, Rolls-Royce and all other premium marques found on the streets of Sloane Square, Holland Park and Notting Hill.',
+      'For safe engineering, William provides a discreet, expert service for the high-value residential properties across Chelsea, Kensington and Holland Park — many of which contain safes protecting significant jewellery, watches and important documents. He also serves the borough\'s luxury retail premises, jewellers and art galleries.',
+      'William reaches Kensington and Chelsea in 35–50 minutes from his Crouch End N8 base, with Notting Hill and Holland Park often closer to 35 minutes via the Westway. Metropolitan Police approved, fully insured, DBS checked. No call-out fee.',
+    ],
+    image: '/images/auto_locksmith_crouch-end.webp',
+    imageAlt: 'Professional locksmith serving Kensington & Chelsea',
+  },
+  'hammersmith-fulham': {
+    heading: 'Locksmith in Hammersmith & Fulham',
+    paragraphs: [
+      'Hammersmith and Fulham sits on key West London routes, and William covers the full borough — from Shepherd\'s Bush and White City to Fulham and Parsons Green. Whether you\'re stuck in the Westfield London car park, locked out near Stamford Bridge, or need a safe opened in a Parsons Green Victorian terrace, William gets to you as quickly as traffic allows.',
+      'The borough\'s broad vehicle mix — work vans near the Hammersmith office district, family cars in Fulham\'s residential streets, premium SUVs around Ravenscourt Park — is no problem. William carries blanks and programming equipment for all mainstream and prestige makes on his fully equipped mobile unit.',
+      'Hammersmith and Fulham is 40–55 minutes from Crouch End, though Shepherd\'s Bush is often reachable in 35–40 minutes via the Westway. Auto locksmith and safe engineer services available. Metropolitan Police approved, no call-out fee, fixed pricing.',
+    ],
+    image: '/images/auto_locksmith_crouch-end.webp',
+    imageAlt: 'Locksmith covering Hammersmith & Fulham, West London',
+  },
+};
+
+export function getBoroughAreaContent(boroughSlug: string): AreaContentBlock {
+  return boroughOverviewContent[boroughSlug] ?? {
+    heading: 'Professional Locksmith Service',
+    paragraphs: ['Contact us to discuss your requirements.'],
+    image: '/images/william-bullard-trusted-london-locksmith.webp',
+    imageAlt: 'Bullard Locks professional locksmith service',
+  };
+}
+
 export function getAreaContent(boroughSlug: string, serviceSlug: ServiceSlug): AreaContentBlock {
   const key = `${boroughSlug}/${serviceSlug}` as ContentKey;
   return areaContent[key] ?? {

@@ -252,8 +252,42 @@ const schema = [
     </div>
   </section>
 
-  <!-- SERVICES DETAIL -->
+  <!-- ABOUT THIS SERVICE -->
   <section class="content-section bg-light">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">When You're Locked Out, William Answers</h2>
+      </div>
+      <div class="area-content-grid">
+        <div class="area-content-image">
+          <img src="/images/emergency-auto-locksmith-north-london.webp" alt="William Bullard responding to an emergency lockout in North London" width="900" height="600" loading="lazy" />
+          <a href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4" target="_blank" rel="noopener noreferrer" class="area-star-card">
+            <div class="area-star-icon"><i class="fas fa-star"></i></div>
+            <div class="area-star-text">
+              <span class="area-star-rating">5.0 on Google</span>
+              <span class="area-star-source">Read our reviews</span>
+            </div>
+          </a>
+        </div>
+        <div class="area-content-text">
+          <p class="area-paragraph">Getting locked out is stressful enough without the added worry of who's actually going to turn up. With Bullard Locks, there's no mystery. William answers your call personally, gives you a realistic arrival time, and gets to you fast — typically within 20 to 40 minutes across North London. No call centres, no being passed around.</p>
+          <p class="area-paragraph">William's approach to emergency work is non-destructive first. Whether it's a residential lockout, a broken lock after a break-in, or an urgent lock change, he uses specialist tools and techniques to gain entry without damaging your door or frame. If a lock needs replacing, he carries a full range of high-security British Standard cylinders and mortice locks on board.</p>
+          <p class="area-paragraph">Available 24/7 and based in Crouch End N8, William provides genuine emergency cover across Haringey, Camden, Islington, Barnet, Hackney, and Enfield. He's Metropolitan Police approved, fully insured, and DBS checked — the credentials that matter when you're letting someone into your home at 2am. Fixed pricing agreed before work starts, no call-out fee.</p>
+        </div>
+      </div>
+      <div class="area-content-ctas">
+        <a href="tel:07809887883" class="btn-primary-lg">
+          <i class="fas fa-phone"></i> 07809 887 883
+        </a>
+        <a href="https://wa.me/447809887883" class="btn-whatsapp-lg" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES DETAIL -->
+  <section class="content-section bg-white">
     <div class="container-custom">
       <div class="section-header">
         <h2 class="section-title">Emergency Locksmith Services in North London</h2>
@@ -1284,6 +1318,116 @@ const schema = [
     .faq-with-card { grid-template-columns: 1fr; }
     .faq-sidebar { position: static; }
     .nearby-grid { grid-template-columns: 1fr 1fr; }
+    .area-content-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ===== AREA CONTENT ===== */
+  .area-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .area-content-image {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: visible;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  }
+
+  .area-content-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .area-star-card {
+    position: absolute;
+    bottom: -20px;
+    left: -16px;
+    background: white;
+    padding: 14px 22px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.16);
+    animation: areaFloatY 3.2s ease-in-out infinite;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease;
+    z-index: 2;
+  }
+
+  .area-star-card:hover {
+    box-shadow: 0 20px 56px rgba(0,0,0,0.22);
+  }
+
+  @keyframes areaFloatY {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-9px); }
+  }
+
+  .area-star-icon {
+    width: 46px;
+    height: 46px;
+    background: #FFD700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  .area-star-text { display: flex; flex-direction: column; }
+  .area-star-rating { font-weight: 700; color: var(--color-text-main); font-size: 0.95rem; }
+  .area-star-source { font-size: 0.78rem; color: var(--color-text-muted); }
+
+  .area-paragraph {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+    margin: 0 0 16px;
+  }
+
+  .area-paragraph:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .area-content-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .btn-whatsapp-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-whatsapp-lg:hover {
+    background: #1DA851;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.45);
   }
 
   @media (max-width: 600px) {

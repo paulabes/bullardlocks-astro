@@ -182,6 +182,40 @@ const schema = [
     </div>
   </section>
 
+  <!-- AREA CONTENT -->
+  <section class="content-section bg-light">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">A Safe Engineer Who Travels to You</h2>
+      </div>
+      <div class="area-content-grid">
+        <div class="area-content-image">
+          <img src="/images/why-choose-bullard-locks.webp" alt="William Bullard, safe engineer with specialist tools" width="900" height="600" loading="lazy" />
+          <a href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4" target="_blank" rel="noopener noreferrer" class="area-star-card">
+            <div class="area-star-icon"><i class="fas fa-star"></i></div>
+            <div class="area-star-text">
+              <span class="area-star-rating">5.0 on Google</span>
+              <span class="area-star-source">Read our reviews</span>
+            </div>
+          </a>
+        </div>
+        <div class="area-content-text">
+          <p class="area-paragraph">Most locksmiths won't travel far for safe work — and most who advertise "UK-wide" are call centres who send whoever is nearest. William Bullard travels personally to every safe engineering job, bringing over 30 years of specialist experience and a fully equipped vehicle to your door, wherever you are in the UK.</p>
+          <p class="area-paragraph">William's approach is always non-destructive first. Using manipulation techniques and specialist tooling, he aims to open your safe without drilling or cutting — preserving it for continued use. When destructive entry is the only option, he's upfront about it before starting. Every job begins with a clear, written quote — no surprises.</p>
+          <p class="area-paragraph">Based in Crouch End N8, North London, William provides priority response across London and the Home Counties, with nationwide appointments arranged at times that suit you. He handles all major brands including Chubb, Phoenix, Dudley, Yale, Burton and SentrySafe — from compact home fire safes to large commercial vault units.</p>
+        </div>
+      </div>
+      <div class="area-content-ctas">
+        <a href="tel:07809887883" class="btn-primary-lg">
+          <i class="fas fa-phone"></i> 07809 887 883
+        </a>
+        <a href="https://wa.me/447809887883" class="btn-whatsapp-lg" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- SERVICES DETAIL -->
   <section class="content-section bg-white">
     <div class="container-custom">
@@ -769,6 +803,116 @@ const schema = [
     .quote-form-card { position: static; }
     .faq-grid { max-width: 100%; }
     .nearby-grid { grid-template-columns: 1fr 1fr; }
+    .area-content-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ===== AREA CONTENT ===== */
+  .area-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .area-content-image {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: visible;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  }
+
+  .area-content-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .area-star-card {
+    position: absolute;
+    bottom: -20px;
+    left: -16px;
+    background: white;
+    padding: 14px 22px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.16);
+    animation: areaFloatY 3.2s ease-in-out infinite;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease;
+    z-index: 2;
+  }
+
+  .area-star-card:hover {
+    box-shadow: 0 20px 56px rgba(0,0,0,0.22);
+  }
+
+  @keyframes areaFloatY {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-9px); }
+  }
+
+  .area-star-icon {
+    width: 46px;
+    height: 46px;
+    background: #FFD700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  .area-star-text { display: flex; flex-direction: column; }
+  .area-star-rating { font-weight: 700; color: var(--color-text-main); font-size: 0.95rem; }
+  .area-star-source { font-size: 0.78rem; color: var(--color-text-muted); }
+
+  .area-paragraph {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+    margin: 0 0 16px;
+  }
+
+  .area-paragraph:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .area-content-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .btn-whatsapp-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-whatsapp-lg:hover {
+    background: #1DA851;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.45);
   }
 
   @media (max-width: 600px) {

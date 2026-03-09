@@ -238,6 +238,9 @@ const schema = [
   <!-- AREA CONTENT -->
   <section class="content-section bg-light">
     <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">{areaContent.heading}</h2>
+      </div>
       <div class="area-content-grid">
         <div class="area-content-image">
           <img src={areaContent.image} alt={areaContent.imageAlt} width="900" height="600" loading="lazy" />
@@ -250,11 +253,18 @@ const schema = [
           </a>
         </div>
         <div class="area-content-text">
-          <h2 class="section-title" style="text-align:left;">{areaContent.heading}</h2>
           {areaContent.paragraphs.map((p) => (
             <p class="area-paragraph">{p}</p>
           ))}
         </div>
+      </div>
+      <div class="area-content-ctas">
+        <a href="tel:07809887883" class="btn-primary-lg">
+          <i class="fas fa-phone"></i> 07809 887 883
+        </a>
+        <a href="https://wa.me/447809887883" class="btn-whatsapp-lg" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
       </div>
     </div>
   </section>
@@ -1000,6 +1010,36 @@ const schema = [
 
   .area-paragraph:last-of-type {
     margin-bottom: 0;
+  }
+
+  .area-content-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .btn-whatsapp-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-whatsapp-lg:hover {
+    background: #1DA851;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.45);
   }
 
   /* ===== HOW IT WORKS ===== */
