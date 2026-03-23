@@ -258,7 +258,7 @@
   // Chat state
   let messages: { role: string; content: string }[] = [];
   let isLoading = false;
-  let detailsSent = false;
+  let leadSent = false;
 
   // DOM elements
   const chatToggle = document.getElementById('chat-toggle')!;
@@ -288,15 +288,43 @@
 
   // Show welcome message
   function showWelcome() {
-    addMessage('assistant', "Hello! I'm the Bullard Locks assistant.\n\nWhat's the situation — are you locked out, do you need a car key, or is it something else?");
+    addMessage('assistant', "Hey there! I'm the Bullard Locks assistant — here to help with anything lock, key, or safe related.\n\nWhat can I help with today?");
+  }
+
+  // Parse [LEAD] block from AI response
+  function parseLeadBlock(text: string): Record<string, string> | null {
+    const match = text.match(/\[LEAD\]([\s\S]*?)\[\/LEAD\]/);
+    if (!match) return null;
+
+    const fields: Record<string, string> = {};
+    const lines = match[1].trim().split('\n');
+    for (const line of lines) {
+      const colonIdx = line.indexOf(':');
+      if (colonIdx === -1) continue;
+      const key = line.slice(0, colonIdx).trim().toLowerCase();
+      const value = line.slice(colonIdx + 1).trim();
+      if (key && value) fields[key] = value;
+    }
+
+    // Must have at minimum: name, telephone, email
+    if (fields.name && fields.telephone && fields.email) return fields;
+    return null;
+  }
+
+  // Strip [LEAD]...[/LEAD] block from display text
+  function stripLeadBlock(text: string): string {
+    return text.replace(/\[LEAD\][\s\S]*?\[\/LEAD\]\s*/g, '').trim();
   }
 
   // Add message to chat
   function addMessage(role: string, content: string) {
+    // For assistant messages, strip the lead block before displaying
+    const displayContent = role === 'assistant' ? stripLeadBlock(content) : content;
+
     messages.push({ role, content });
     const div = document.createElement('div');
     div.className = `chat-message ${role}`;
-    div.textContent = content;
+    div.textContent = displayContent;
     chatMessages.appendChild(div);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
@@ -334,13 +362,16 @@
       if (data.error) {
         addMessage('assistant', "I'm having trouble connecting. Please call us directly on 07809 887 883.");
       } else {
-        addMessage('assistant', data.message);
-
-        // If Gemini signals details have been collected, email them to William
-        if (!detailsSent && (data.message.includes("I'll send these details") || data.message.includes("I'll pass these"))) {
-          detailsSent = true;
-          await sendDetailsEmail();
+        // Check for structured lead data before adding message
+        if (!leadSent) {
+          const lead = parseLeadBlock(data.message);
+          if (lead) {
+            leadSent = true;
+            await sendLeadEmail(lead);
+          }
         }
+
+        addMessage('assistant', data.message);
       }
     } catch {
       hideTyping();
@@ -351,20 +382,56 @@
     }
   }
 
-  // Email the full conversation to William
-  async function sendDetailsEmail() {
+  // Email the structured lead to paul@crouchendmedia.co.uk
+  async function sendLeadEmail(lead: Record<string, string>) {
     try {
+      const serviceLabels: Record<string, string> = {
+        'auto-locksmith': 'Auto Locksmith',
+        'emergency-locksmith': 'Emergency Locksmith',
+        'safe-engineer': 'Safe Engineer',
+      };
+      const serviceName = serviceLabels[lead.service] || lead.service || 'Locksmith';
+
+      // Build conversation transcript for context
       const conversationText = messages
         .map(m => `${m.role === 'user' ? 'Customer' : 'Bot'}: ${m.content}`)
         .join('\n\n');
 
+      // Build structured message
+      const structuredMessage = [
+        `SERVICE: ${serviceName}`,
+        `NAME: ${lead.name}`,
+        `LOCATION: ${lead.location || 'Not provided'}`,
+        `TELEPHONE: ${lead.telephone}`,
+        `EMAIL: ${lead.email}`,
+        lead.vehicle && lead.vehicle !== 'N/A' ? `VEHICLE: ${lead.vehicle}` : '',
+        lead.issue ? `ISSUE: ${lead.issue}` : '',
+        '',
+        '--- FULL CONVERSATION ---',
+        conversationText,
+      ].filter(Boolean).join('\n');
+
       const formData = new FormData();
       formData.set('form_type', 'chatbot');
-      formData.set('name', 'Chatbot Lead');
-      formData.set('message', conversationText);
-      formData.set('service', 'chatbot-enquiry');
+      formData.set('name', lead.name);
+      formData.set('phone', lead.telephone);
+      formData.set('email', lead.email);
+      formData.set('service', lead.service || 'chatbot-enquiry');
+      formData.set('message', structuredMessage);
 
-      await fetch('/api/send-email', { method: 'POST', body: formData });
+      await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: lead.name,
+          phone: lead.telephone,
+          email: lead.email,
+          service: lead.service || 'chatbot-enquiry',
+          message: structuredMessage,
+          type: 'chatbot',
+          to: 'paul@crouchendmedia.co.uk',
+        }),
+      });
     } catch {
       // Silent fail — conversation is still visible
     }

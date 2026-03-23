@@ -1,0 +1,132 @@
+---
+// Lightweight GDPR cookie consent banner
+---
+
+<div id="cookie-consent" class="cookie-banner" role="dialog" aria-label="Cookie consent" style="display: none;">
+  <div class="cookie-inner">
+    <p class="cookie-text">
+      We use cookies to analyse site traffic and improve your experience. By continuing, you agree to our
+      <a href="/privacy-policy">privacy policy</a>.
+    </p>
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="cookie-btn cookie-accept">Accept</button>
+      <button id="cookie-decline" class="cookie-btn cookie-decline">Decline</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    background: var(--color-bg-dark);
+    border-top: 1px solid rgba(31, 174, 155, 0.3);
+    padding: 16px 24px;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .cookie-inner {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .cookie-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .cookie-text a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .cookie-accept {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .cookie-accept:hover {
+    background: var(--color-accent-hover);
+  }
+
+  .cookie-decline {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .cookie-decline:hover {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (max-width: 640px) {
+    .cookie-inner {
+      flex-direction: column;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .cookie-text {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+<script>
+  const CONSENT_KEY = 'bl_cookie_consent';
+  const banner = document.getElementById('cookie-consent');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const declineBtn = document.getElementById('cookie-decline');
+
+  // Check if consent already given
+  const existing = localStorage.getItem(CONSENT_KEY);
+
+  if (!existing) {
+    // Show banner after short delay
+    setTimeout(() => {
+      if (banner) banner.style.display = 'block';
+    }, 1500);
+  }
+
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    if (banner) banner.style.display = 'none';
+  });
+
+  declineBtn?.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'declined');
+    if (banner) banner.style.display = 'none';
+  });
+</script>

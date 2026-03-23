@@ -87,7 +87,7 @@ export const boroughs: Borough[] = [
     responseTime: '25–40 mins',
     description: 'Covering Hackney, Dalston, Stoke Newington and surrounding areas with professional 24/7 auto locksmith and emergency locksmith services.',
     landmarks: ['Broadway Market', 'Victoria Park', 'Hackney Central Station', 'Dalston Junction'],
-    nearbyBoroughs: ['islington', 'haringey', 'tower-hamlets'],
+    nearbyBoroughs: ['islington', 'haringey'],
   },
   {
     slug: 'enfield',
@@ -123,7 +123,7 @@ export const boroughs: Borough[] = [
     responseTime: '30–45 mins',
     description: 'Auto locksmith services in the Square Mile — EC1 to EC4 covered for car key replacement and vehicle lockout assistance.',
     landmarks: ["St Paul's Cathedral", 'Bank of England', "Lloyd's of London", 'The Gherkin'],
-    nearbyBoroughs: ['islington', 'hackney', 'southwark'],
+    nearbyBoroughs: ['islington', 'hackney', 'westminster'],
   },
   {
     slug: 'kensington-chelsea',

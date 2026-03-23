@@ -1288,13 +1288,27 @@ const schema = [
   }
 
   @media (max-width: 640px) {
-    .hero-title { white-space: normal; }
+    .hero-title { white-space: normal; font-size: clamp(1.6rem, 7vw, 2.4rem); }
     .home-hero { min-height: auto; padding-bottom: 20px; }
+    .hero-inner { padding-top: 48px; padding-bottom: 60px; }
+    .hero-lead { font-size: 1rem; margin-bottom: 28px; }
+    .hero-badge { font-size: 0.75rem; margin-bottom: 20px; }
+    .hero-chips { gap: 8px; margin-bottom: 24px; }
+    .chip { padding: 8px 14px; font-size: 0.8rem; }
+    .hero-ctas { gap: 10px; margin-bottom: 32px; }
+    .btn-call, .hero-ctas .btn-whatsapp { padding: 14px 24px; font-size: 0.95rem; }
     .hero-trust { border-radius: 20px; gap: 4px; padding: 14px 16px; }
     .trust-divider { display: none; }
     .trust-pill { padding: 4px 10px; font-size: 0.77rem; }
-    .star-card { left: 8px; bottom: 24px; }
+    .star-card { left: 8px; bottom: 24px; padding: 10px 16px; }
+    .exp-badge { width: 80px; height: 80px; top: -10px; right: -10px; }
+    .exp-num { font-size: 1.4rem; }
+    .exp-label { font-size: 0.6rem; }
     .gas-badge-card { flex-direction: column; }
+    .met-badge-card { flex-direction: column; }
     .william-img { aspect-ratio: 4 / 3; }
+    .william-grid { gap: 36px; }
+    .met-grid { gap: 36px; }
+    .gas-grid { gap: 36px; }
   }
 </style>

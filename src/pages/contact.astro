@@ -813,7 +813,7 @@ const schema = [
       const url = URL.createObjectURL(file);
       return `
         <div class="preview-item">
-          <img src="${url}" alt="Photo ${i + 1}" />
+          <img src="${url}" alt="Uploaded reference photo ${i + 1} of lock, key or safe issue" />
           <button type="button" onclick="removeFileByIndex(${i})" aria-label="Remove photo ${i + 1}">
             <i class="fas fa-times"></i>
           </button>
@@ -824,18 +824,56 @@ const schema = [
 
   (window as any).removeFileByIndex = removeFile;
 
+  // --- Client-side validation ---
+  function validateForm(formData: FormData): string | null {
+    const name = (formData.get('name') as string || '').trim();
+    const phone = (formData.get('phone') as string || '').trim();
+    const email = (formData.get('email') as string || '').trim();
+    const message = (formData.get('message') as string || '').trim();
+
+    // Name
+    if (!name || name.length < 2) return 'Please enter your full name.';
+    if (!/^[a-zA-Z\s\-']+$/.test(name)) return 'Name contains invalid characters.';
+
+    // Phone
+    if (!phone) return 'Please enter your phone number.';
+    const phoneClean = phone.replace(/[\s\-\(\)\.]/g, '');
+    if (!/^(\+?44|0)?[1-9]\d{9,10}$/.test(phoneClean)) return 'Please enter a valid UK phone number.';
+
+    // Email (if provided)
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Please enter a valid email address.';
+
+    // Message
+    if (!message || message.length < 5) return 'Please provide some details about your enquiry.';
+
+    return null; // Valid
+  }
+
+  function showError(msg: string) {
+    formStatus.className = 'form-status error';
+    formStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${msg}`;
+    formStatus.style.display = 'block';
+  }
+
   // Form Submit
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    formStatus.style.display = 'none';
+
+    const formData = new FormData(form);
+
+    // Client-side validation first
+    const validationError = validateForm(formData);
+    if (validationError) {
+      showError(validationError);
+      return;
+    }
 
     submitBtn.disabled = true;
     btnText.style.display = 'none';
     btnLoading.style.display = 'inline-flex';
-    formStatus.style.display = 'none';
 
     try {
-      const formData = new FormData(form);
-
       // Remove any existing photos field, then add selected files
       formData.delete('photos');
       selectedFiles.forEach((file, i) => {
@@ -858,12 +896,10 @@ const schema = [
         selectedFiles = [];
         renderPreviews();
       } else {
-        throw new Error(data.error || 'Failed to send');
+        showError(data.error || 'Failed to send. Please call 07809 887 883 directly.');
       }
     } catch {
-      formStatus.className = 'form-status error';
-      formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Sorry, something went wrong. Please call <a href="tel:07809887883">07809 887 883</a> directly.';
-      formStatus.style.display = 'block';
+      showError('Sorry, something went wrong. Please call <a href="tel:07809887883">07809 887 883</a> directly.');
     } finally {
       submitBtn.disabled = false;
       btnText.style.display = '';

@@ -1,43 +1,104 @@
-# Astro Starter Kit: Minimal
+# Bullard Locks — Astro Website
 
-```sh
-npm create astro@latest -- --template minimal
+Professional locksmith website for **Bullard Locks** (bullardlocks.com), built with Astro v5 and deployed on Vercel.
+
+## About
+
+Bullard Locks is an independent locksmith service based in Crouch End, North London (N8 9TA), run by William Bullard. The site covers three core services:
+
+- **Auto Locksmith** — Car key replacement, programming & vehicle lockout (North & Central London)
+- **Emergency Locksmith** — 24/7 lockout, break-in repair & lock changes (North London)
+- **Safe Engineer** — Safe opening, installation & repair (UK-wide by appointment)
+
+## Tech Stack
+
+- **Framework:** Astro v5 (SSR mode)
+- **Adapter:** Vercel with Web Analytics
+- **Chatbot:** Gemini 1.5 Flash API
+- **Email:** Resend API
+- **Vehicle Lookup:** DVLA Vehicle Enquiry API
+- **Sitemap:** @astrojs/sitemap
+- **React:** @astrojs/react (for interactive components)
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server (runs on port 3000)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Environment Variables
 
-## 🚀 Project Structure
+Create a `.env.local` file in the project root:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```env
+GEMINI_API_KEY=your_gemini_api_key          # Required — AI chatbot (aistudio.google.com)
+RESEND_API_KEY=re_xxxxxxxxxxxxx             # Required — email delivery (resend.com)
+DVLA_API_KEY=your_dvla_api_key              # Optional — vehicle registration lookup
+PUBLIC_SITE_URL=https://bullardlocks.com    # Site URL
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Project Structure
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```
+src/
+├── components/       # Reusable Astro components
+│   ├── Header.astro
+│   ├── Footer.astro
+│   ├── ChatWidget.astro     # AI chatbot widget
+│   ├── CTASection.astro
+│   ├── GoogleReviews.astro
+│   ├── PageHero.astro
+│   ├── ServiceCard.astro
+│   └── ServiceCards.astro
+├── data/
+│   ├── locations.ts         # Borough & service data (10 boroughs x 3 services)
+│   └── area-content.ts      # Localised content blocks per borough/service
+├── layouts/
+│   └── BaseLayout.astro     # Base HTML layout with SEO meta tags
+├── pages/
+│   ├── index.astro          # Homepage
+│   ├── about.astro          # About William Bullard
+│   ├── contact.astro        # Contact form with photo upload
+│   ├── 404.astro            # Error page
+│   ├── privacy-policy.astro
+│   ├── terms.astro
+│   ├── services/            # Service hub + detail pages
+│   ├── locations/           # Location hub + dynamic borough/service pages
+│   └── api/                 # Server endpoints (chat, email, DVLA)
+├── styles/
+│   ├── design-tokens.css    # CSS custom properties
+│   └── global.css           # Global styles & utilities
+public/
+├── images/                  # Optimised WebP images
+├── robots.txt
+├── favicon.svg
+└── site.webmanifest
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Key Features
 
-## 🧞 Commands
+- **AI Chatbot** — Gemini-powered lead qualification with DVLA vehicle lookup
+- **30 location pages** — Dynamic borough x service combinations with unique content
+- **Schema.org markup** — LocksmithBusiness, FAQPage, BreadcrumbList, Service schemas
+- **Form validation** — Client-side + server-side with spam/profanity/gibberish detection
+- **Photo upload** — Drag & drop on contact form, sent as email attachments via Resend
+- **Service matrix** — Interactive borough x service availability grid
 
-All commands are run from the root of the project, from a terminal:
+## Deployment
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+The site deploys automatically to Vercel. Ensure all environment variables are set in the Vercel project settings.
 
-## 👀 Want to learn more?
+## Contact
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Business:** William Bullard — 07809 887 883
+- **Development:** Paul — paul@crouchendmedia.co.uk

@@ -1,0 +1,21 @@
+{
+  "name": "Bullard Locks — Auto Locksmith London",
+  "short_name": "Bullard Locks",
+  "description": "Auto locksmith, emergency locksmith & safe engineer — North & Central London. 30+ years experience. No call-out fee.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1fae9b",
+  "icons": [
+    {
+      "src": "/images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -61,14 +61,140 @@ export const POST: APIRoute = async ({ request }) => {
 
     const { name, phone, email, service, message, type, to } = emailData;
 
-    // Validate required fields (relaxed for chatbot leads — details are in the message)
+    // --- Validation helpers ---
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const disposableDomains = ['tempmail', 'throwaway', 'guerrilla', 'mailinator', '10minute', 'temp-mail', 'fakeinbox'];
+
+    const ukPhoneRegex = /^(\+?44|0)?[1-9]\d{9,10}$/;
+    const nameRegex = /^[a-zA-Z\s\-']+$/;
+
+    const profanityPatterns = [
+      /\b(fu+ck|f+u+k|fuk|fck|fcuk|phuck|phuk)/i,
+      /\b(sh[i1]+t|sh[i1]te|bullsh)/i,
+      /\b(a+ss\s*ho+le|arsehole|arse)/i,
+      /\b(bastard|wanker|tosser|bellend|prick|dick\s*head|twat|cunt)/i,
+      /\b(bitch|slut|whore)/i,
+      /\bfuck\s*(off|you|u|ya|this|that|ing)/i,
+      /\bpi+ss\s*(off|ed)/i,
+    ];
+
+    const spamPatterns = [
+      /\[url=/i, /\[link=/i, /<a\s+href/i,
+      /viagra|cialis|casino|crypto|bitcoin|lottery/i,
+      /click here|buy now|act now|limited time/i,
+      /(.)\1{10,}/,
+    ];
+
+    const isGibberish = (text: string): boolean => {
+      const cleaned = text.replace(/\s+/g, '').toLowerCase();
+      if (cleaned.length < 3) return false;
+      const words = text.trim().split(/\s+/);
+      if (words.length >= 3) return false;
+      if (/^[asdfghjklqwertyuiopzxcvbnm]{8,}$/i.test(cleaned)) {
+        const vowelRatio = (cleaned.match(/[aeiou]/gi) || []).length / cleaned.length;
+        if (vowelRatio < 0.1) return true;
+      }
+      if (/[bcdfghjklmnpqrstvwxyz]{7,}/i.test(cleaned)) return true;
+      if (/(.)\1{5,}/.test(cleaned)) return true;
+      if (/(.{1,3})\1{4,}/.test(cleaned)) return true;
+      if (cleaned.length > 6 && !/[aeiou]/i.test(cleaned)) return true;
+      return false;
+    };
+
+    const escapeHtml = (text: string): string => {
+      const map: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return text.replace(/[&<>"']/g, (c) => map[c]);
+    };
+
+    // --- Determine request type ---
     const isChatbot = type === 'chatbot-lead' || type === 'chatbot';
-    if (!isChatbot && (!name || !phone || !message)) {
+
+    // --- Spam & profanity checks (all submissions) ---
+    const allText = `${name} ${message}`;
+    if (spamPatterns.some(p => p.test(allText))) {
       return new Response(
-        JSON.stringify({ success: false, error: 'Please fill in all required fields.' }),
+        JSON.stringify({ success: true, message: 'Thank you for your message.' }), // Fake success for bots
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (profanityPatterns.some(p => p.test(allText))) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Your message contains language we can't send. Please update it and try again." }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
+
+    // --- Validate contact form submissions ---
+    if (!isChatbot) {
+      if (!name || name.trim().length < 2) {
+        return new Response(
+          JSON.stringify({ success: false, error: 'Please enter your full name.' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      if (!nameRegex.test(name.trim())) {
+        return new Response(
+          JSON.stringify({ success: false, error: 'Name contains invalid characters.' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      if (isGibberish(name)) {
+        return new Response(
+          JSON.stringify({ success: false, error: "That doesn't look quite right. Please check your name and try again." }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      if (!phone) {
+        return new Response(
+          JSON.stringify({ success: false, error: 'Please enter your phone number.' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      const phoneClean = phone.replace(/[\s\-\(\)\.]/g, '');
+      if (!ukPhoneRegex.test(phoneClean)) {
+        return new Response(
+          JSON.stringify({ success: false, error: 'Please enter a valid UK phone number.' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      if (email && email !== 'Not provided') {
+        if (!emailRegex.test(email)) {
+          return new Response(
+            JSON.stringify({ success: false, error: 'Please enter a valid email address.' }),
+            { status: 400, headers: { 'Content-Type': 'application/json' } }
+          );
+        }
+        const emailDomain = email.split('@')[1]?.toLowerCase() || '';
+        if (disposableDomains.some(d => emailDomain.includes(d))) {
+          return new Response(
+            JSON.stringify({ success: false, error: 'Please use a valid email address.' }),
+            { status: 400, headers: { 'Content-Type': 'application/json' } }
+          );
+        }
+      }
+
+      if (!message || message.trim().length < 5) {
+        return new Response(
+          JSON.stringify({ success: false, error: 'Please provide details about your enquiry.' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      if (isGibberish(message)) {
+        return new Response(
+          JSON.stringify({ success: false, error: "That doesn't look quite right. Please check your message and try again." }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+    }
+
+    // --- Validate chatbot lead submissions ---
     if (isChatbot && !message) {
       return new Response(
         JSON.stringify({ success: false, error: 'No conversation data.' }),
@@ -123,9 +249,10 @@ export const POST: APIRoute = async ({ request }) => {
     <div class="header"><h1>New Lead from AI Chatbot</h1></div>
     <div class="content">
       ${message.includes('IMMEDIATE') ? '<div class="urgent-badge">URGENT — CALL BACK IMMEDIATELY</div>' : ''}
-      <div class="field"><span class="label">Customer Name:</span><p>${name}</p></div>
-      <div class="field"><span class="label">Phone Number:</span><p><a href="tel:${phone}" style="font-size: 18px; font-weight: bold;">${phone}</a></p></div>
-      <div class="field"><span class="label">Details:</span><pre>${message}</pre></div>
+      <div class="field"><span class="label">Customer Name:</span><p>${escapeHtml(name)}</p></div>
+      <div class="field"><span class="label">Phone Number:</span><p><a href="tel:${escapeHtml(phone)}" style="font-size: 18px; font-weight: bold;">${escapeHtml(phone)}</a></p></div>
+      ${email && email !== 'Not provided' ? `<div class="field"><span class="label">Email:</span><p><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p></div>` : ''}
+      <div class="field"><span class="label">Details:</span><pre>${escapeHtml(message)}</pre></div>
       ${photoNote}
     </div>
     <div class="footer">
@@ -153,11 +280,11 @@ export const POST: APIRoute = async ({ request }) => {
   <div class="container">
     <div class="header"><h1>New Contact Form Submission</h1></div>
     <div class="content">
-      <div class="field"><span class="label">Name:</span><p>${name}</p></div>
-      <div class="field"><span class="label">Phone:</span><p><a href="tel:${phone}" style="font-weight:bold;">${phone}</a></p></div>
-      <div class="field"><span class="label">Email:</span><p><a href="mailto:${email}">${email}</a></p></div>
-      <div class="field"><span class="label">Service Required:</span><p>${serviceLabels[service] || service}</p></div>
-      <div class="field"><span class="label">Message:</span><p>${message.replace(/\n/g, '<br>')}</p></div>
+      <div class="field"><span class="label">Name:</span><p>${escapeHtml(name)}</p></div>
+      <div class="field"><span class="label">Phone:</span><p><a href="tel:${escapeHtml(phone)}" style="font-weight:bold;">${escapeHtml(phone)}</a></p></div>
+      <div class="field"><span class="label">Email:</span><p><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p></div>
+      <div class="field"><span class="label">Service Required:</span><p>${escapeHtml(serviceLabels[service] || service)}</p></div>
+      <div class="field"><span class="label">Message:</span><p>${escapeHtml(message).replace(/\n/g, '<br>')}</p></div>
       ${hasPhotos ? `<div class="field"><span class="label">Photos:</span><p><span class="photo-badge"><i>📷 ${photoAttachments.length} photo(s) attached</i></span></p></div>` : ''}
     </div>
     <div class="footer">

@@ -8,7 +8,7 @@ const currentYear = new Date().getFullYear();
   <div class="container-custom">
     <div class="footer-grid">
       <div class="footer-col-brand">
-        <span class="footer-brand">BULLARD <span class="text-accent">LOCKS</span></span>
+        <span class="footer-brand"><i class="fas fa-car brand-icon"></i> Bullard <span class="text-accent">Locks</span></span>
         <p class="text-muted-light footer-desc">
           24/7 Mobile Locksmith & Safe Engineer based in Crouch End, serving North London and beyond.
         </p>
@@ -73,6 +73,7 @@ const currentYear = new Date().getFullYear();
     color: white;
     padding: 100px 0 40px;
     position: relative;
+    z-index: 1;
     overflow: hidden;
   }
 
@@ -98,12 +99,18 @@ const currentYear = new Date().getFullYear();
 
   .footer-brand {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: white;
     display: block;
     margin-bottom: 20px;
     letter-spacing: -0.02em;
+  }
+
+  .footer-brand .brand-icon {
+    color: var(--color-accent);
+    font-size: 0.85em;
+    margin-right: 4px;
   }
 
   .footer-col-brand { max-width: 320px; }
@@ -240,6 +247,9 @@ const currentYear = new Date().getFullYear();
   }
 
   @media (max-width: 768px) {
+    .footer-redesign {
+      padding: 60px 0 32px;
+    }
     .footer-grid {
       grid-template-columns: 1fr;
     }
