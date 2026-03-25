@@ -412,9 +412,15 @@ const schema = [
     gap: 10px;
     font-size: 0.82rem;
     font-weight: 600;
-    color: #a7f3e8;
     letter-spacing: 0.03em;
     margin-bottom: 32px;
+    animation: badgeFlash 4s ease-in-out infinite;
+  }
+
+  @keyframes badgeFlash {
+    0%, 100% { color: #fcd34d; }
+    33% { color: #fca5a5; }
+    66% { color: #93c5fd; }
   }
 
   .badge-pulse {
