@@ -72,10 +72,34 @@
     
     <ul class="mobile-nav-links">
       <li><a href="/">Home</a></li>
-      <li><a href="/services/auto-locksmith">Auto Locksmith</a></li>
-      <li><a href="/services/emergency-locksmith">Emergency Locksmith</a></li>
-      <li><a href="/services/safe-engineer">Safe Engineer</a></li>
-      <li><a href="/locations">Locations</a></li>
+      <li class="mobile-accordion">
+        <button class="mobile-accordion-btn" aria-expanded="false">
+          Services <i class="fas fa-chevron-down mobile-chevron"></i>
+        </button>
+        <ul class="mobile-sub-links">
+          <li><a href="/services/auto-locksmith">Auto Locksmith</a></li>
+          <li><a href="/services/emergency-locksmith">Emergency Locksmith</a></li>
+          <li><a href="/services/safe-engineer">Safe Engineer</a></li>
+        </ul>
+      </li>
+      <li class="mobile-accordion">
+        <button class="mobile-accordion-btn" aria-expanded="false">
+          Locations <i class="fas fa-chevron-down mobile-chevron"></i>
+        </button>
+        <ul class="mobile-sub-links">
+          <li><a href="/locations/haringey">Haringey</a></li>
+          <li><a href="/locations/barnet">Barnet</a></li>
+          <li><a href="/locations/camden">Camden</a></li>
+          <li><a href="/locations/islington">Islington</a></li>
+          <li><a href="/locations/hackney">Hackney</a></li>
+          <li><a href="/locations/enfield">Enfield</a></li>
+          <li><a href="/locations/westminster">Westminster</a></li>
+          <li><a href="/locations/city-of-london">City of London</a></li>
+          <li><a href="/locations/kensington-chelsea">Kensington &amp; Chelsea</a></li>
+          <li><a href="/locations/hammersmith-fulham">Hammersmith &amp; Fulham</a></li>
+          <li><a href="/locations">All Locations</a></li>
+        </ul>
+      </li>
       <li><a href="/about">About</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
@@ -493,6 +517,49 @@
     padding: 10px 0;
   }
 
+  .mobile-accordion-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-main);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 10px 0;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-chevron {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    transition: transform 0.2s ease;
+  }
+
+  .mobile-accordion-btn[aria-expanded="true"] .mobile-chevron {
+    transform: rotate(180deg);
+  }
+
+  .mobile-sub-links {
+    list-style: none;
+    padding: 0 0 8px 16px;
+    margin: 0;
+    display: none;
+  }
+
+  .mobile-sub-links.open {
+    display: block;
+  }
+
+  .mobile-sub-links a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    padding: 8px 0;
+  }
+
   /* Tablet — hide button text, keep icons */
   @media (max-width: 1200px) {
     .call-text {
@@ -573,6 +640,16 @@
   // Close menu when clicking a link
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Accordion toggles
+  document.querySelectorAll('.mobile-accordion-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const sub = btn.nextElementSibling as HTMLElement;
+      sub?.classList.toggle('open');
+    });
   });
 
   // Close on Escape key
