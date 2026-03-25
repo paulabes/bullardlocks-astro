@@ -1206,18 +1206,6 @@ const schema = [
     .nearby-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  @media (max-width: 992px) {
-    .loc-hero { min-height: auto; }
-    .loc-hero-grid { grid-template-columns: 1fr; }
-    .loc-hero-panel { display: none; }
-    .response-time-card { position: static; }
-    .how-it-works-grid { grid-template-columns: 1fr; }
-    .faq-grid { max-width: 100%; }
-    .faq-with-card { grid-template-columns: 1fr; }
-    .faq-sidebar { position: static; }
-    .nearby-grid { grid-template-columns: 1fr 1fr; }
-    .area-content-grid { grid-template-columns: 1fr; gap: 32px; }
-  }
 
   /* ===== AREA CONTENT ===== */
   .area-content-grid {
@@ -1305,6 +1293,20 @@ const schema = [
     margin-top: 48px;
     flex-wrap: wrap;
   }
+
+  @media (max-width: 992px) {
+    .loc-hero { min-height: auto; }
+    .loc-hero-grid { grid-template-columns: 1fr; }
+    .loc-hero-panel { display: none; }
+    .response-time-card { position: static; }
+    .how-it-works-grid { grid-template-columns: 1fr; }
+    .faq-grid { max-width: 100%; }
+    .faq-with-card { grid-template-columns: 1fr; }
+    .faq-sidebar { position: static; }
+    .nearby-grid { grid-template-columns: 1fr 1fr; }
+    .area-content-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
 
   .btn-whatsapp-lg {
     display: inline-flex;
