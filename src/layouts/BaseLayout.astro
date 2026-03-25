@@ -42,12 +42,16 @@ const siteUrl = 'https://bullardlocks.com';
   <meta property="og:image" content={ogImage} />
   <meta property="og:site_name" content="Bullard Locks" />
 
+  <!-- Open Graph image hints -->
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
   <!-- X (formerly Twitter) -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content={canonicalUrl} />
-  <meta property="twitter:title" content={title} />
-  <meta property="twitter:description" content={description} />
-  <meta property="twitter:image" content={ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonicalUrl} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
 
   <!-- Additional Meta Tags -->
   <meta name="author" content="William Bullard" />
@@ -59,6 +63,10 @@ const siteUrl = 'https://bullardlocks.com';
 
   <!-- Canonical URL -->
   <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en-GB" href={canonicalUrl} />
+  <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
   <!-- Preconnect to external resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

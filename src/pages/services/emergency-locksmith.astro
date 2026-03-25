@@ -32,6 +32,7 @@ const schema = [
       {'@type': 'City', 'name': 'Enfield', 'containedInPlace': {'@type': 'City', 'name': 'London'}},
       {'@type': 'City', 'name': 'Hackney', 'containedInPlace': {'@type': 'City', 'name': 'London'}}
     ],
+    serviceType: ['Emergency Lockout', 'Break-in Repair', 'Lock Replacement', 'Key Extraction', 'Emergency Lock Change'],
     description: '24/7 emergency locksmith North London — rapid 20–40 min response for lockouts, break-in repair and urgent lock changes. No call-out fee. Call Bullard Locks: 07809 887 883.',
     url: 'https://bullardlocks.com/services/emergency-locksmith',
   },
@@ -84,9 +85,10 @@ const schema = [
 ---
 
 <BaseLayout
-  title="Emergency Locksmith North London | 24/7 Rapid Response | Bullard Locks"
-  description="Emergency locksmith North London — 24/7, 20-40 min response. Lockouts, break-in repair, urgent lock changes. Met Police approved. No call-out fee."
+  title="Emergency Locksmith North London - 24/7 | Bullard Locks"
+  description="Emergency locksmith North London - 24/7, 20-40 min response. Lockouts, break-in repair, urgent lock changes. Met Police approved. No call-out fee."
   canonicalUrl="https://bullardlocks.com/services/emergency-locksmith"
+  ogImage="https://bullardlocks.com/images/hero-emergency-locksmith.webp"
   schema={schema}
 >
 
@@ -260,7 +262,7 @@ const schema = [
       </div>
       <div class="area-content-grid">
         <div class="area-content-image">
-          <img src="/images/emergency-auto-locksmith-north-london.webp" alt="William Bullard responding to an emergency lockout in North London" width="900" height="600" loading="lazy" />
+          <img src="/images/locksmith-near-me-bullard-locks.webp" alt="William Bullard responding to an emergency lockout in North London" width="900" height="600" loading="lazy" />
           <a href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4" target="_blank" rel="noopener noreferrer" class="area-star-card">
             <div class="area-star-icon"><i class="fas fa-star"></i></div>
             <div class="area-star-text">
@@ -361,71 +363,15 @@ const schema = [
   <!-- QUOTE FORM -->
   <section class="content-section bg-white" id="get-quote">
     <div class="container-custom">
-      <div class="quote-form-layout">
-        <div class="quote-form-card">
-          <form id="quote-form" enctype="multipart/form-data">
-            <input type="hidden" name="form_type" value="service-quote" />
-            <input type="hidden" name="service" value="emergency-locksmith" />
-
-            <div class="form-group">
-              <label for="q-name" class="form-label">Your Name *</label>
-              <input type="text" id="q-name" name="name" class="form-control-modern" placeholder="John Smith" required />
-            </div>
-            <div class="form-group">
-              <label for="q-phone" class="form-label">Phone Number *</label>
-              <input type="tel" id="q-phone" name="phone" class="form-control-modern" placeholder="07700 900000" required />
-            </div>
-            <div class="form-group">
-              <label for="q-email" class="form-label">Email (optional)</label>
-              <input type="email" id="q-email" name="email" class="form-control-modern" placeholder="john@example.com" />
-            </div>
-            <div class="form-group">
-              <label for="q-message" class="form-label">Describe Your Situation *</label>
-              <textarea
-                id="q-message"
-                name="message"
-                class="form-control-modern"
-                rows="4"
-                placeholder='e.g. "Locked out of my flat in Islington N1"'
-                required
-              ></textarea>
-            </div>
-
-            <div id="quote-form-status" class="form-status" style="display:none;"></div>
-
-            <button type="submit" class="btn-primary-lg w-full" style="justify-content:center;" id="quote-submit">
-              <i class="fas fa-paper-plane"></i>
-              <span class="btn-text">Get My Quote</span>
-              <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
-            </button>
-
-            <p class="form-privacy-note">
-              <i class="fas fa-lock"></i> Your details are kept private and never shared.
-            </p>
-          </form>
-        </div>
-
-        <div class="quote-form-copy">
-          <h2 class="section-title" style="text-align:left;">Get a Quote for Emergency Locksmith</h2>
-          <p style="color:var(--color-text-muted); line-height:1.7; margin-bottom: 24px;">
-            Fill in the short form and William will get back to you promptly. For immediate emergency help, call
-            <a href="tel:07809887883" style="color:var(--color-accent); font-weight:700;">07809 887 883</a> now.
-          </p>
-          <ul class="quote-trust-list">
-            <li><i class="fas fa-check-circle"></i> No call-out fee</li>
-            <li><i class="fas fa-check-circle"></i> Fixed price quoted before work starts</li>
-            <li><i class="fas fa-check-circle"></i> 20–40 minute response across North London</li>
-            <li><i class="fas fa-check-circle"></i> Met Police approved contractor</li>
-            <li><i class="fas fa-check-circle"></i> 30+ years experience</li>
-          </ul>
-          <div class="photo-upload-callout">
-            <i class="fas fa-camera"></i>
-            <div>
-              <strong>Need to send a photo?</strong>
-              <p>Use our <a href="/contact">contact form</a> to upload up to 5 images of your lock, key or safe.</p>
-            </div>
-          </div>
-        </div>
+      <div class="quote-cta-section">
+        <h2 class="section-title">Get a Quote for Emergency Locksmith</h2>
+        <p class="quote-cta-text">
+          Get in touch and William will get back to you promptly. For immediate emergency help, call
+          <a href="tel:07809887883" style="color:var(--color-accent); font-weight:700;">07809 887 883</a> now.
+        </p>
+        <a href="/contact" class="btn-primary-lg" style="justify-content:center; display:inline-flex;">
+          <i class="fas fa-paper-plane"></i> Get a Quote
+        </a>
       </div>
     </div>
   </section>
@@ -1047,82 +993,36 @@ const schema = [
   }
 
   /* Quote form */
-  .quote-form-layout {
-    display: grid;
-    grid-template-columns: 480px 1fr;
-    gap: 60px;
-    align-items: start;
+  .quote-cta-section {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
   }
 
-  .quote-trust-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .quote-cta-text {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    font-size: 1.05rem;
   }
 
-  .quote-trust-list li {
+  .quote-trust-inline {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+    margin-bottom: 32px;
+  }
+
+  .quote-trust-inline span {
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-  }
-
-  .quote-trust-list i { color: var(--color-accent); }
-
-  .photo-upload-callout {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 16px 20px;
-    background: rgba(31, 174, 155, 0.08);
-    border: 1px solid rgba(31, 174, 155, 0.2);
-    border-radius: 12px;
-    margin-top: 8px;
-  }
-
-  .photo-upload-callout > i {
-    color: var(--color-accent);
-    font-size: 1.2rem;
-    margin-top: 2px;
-    flex-shrink: 0;
-  }
-
-  .photo-upload-callout strong {
+    gap: 6px;
     font-size: 0.9rem;
-    color: var(--color-text-main);
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .photo-upload-callout p {
-    font-size: 0.85rem;
     color: var(--color-text-muted);
-    line-height: 1.5;
-    margin: 0;
+    white-space: nowrap;
   }
 
-  .photo-upload-callout a {
-    color: var(--color-accent);
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .photo-upload-callout a:hover {
-    text-decoration: underline;
-  }
-
-  .quote-form-card {
-    background: var(--color-bg-light);
-    border-radius: 20px;
-    padding: 32px;
-    border: 1px solid rgba(0,0,0,0.06);
-    position: sticky;
-    top: 100px;
-  }
 
   .form-control-modern {
     width: 100%;
@@ -1312,8 +1212,6 @@ const schema = [
     .loc-hero-panel { display: none; }
     .response-time-card { position: static; }
     .how-it-works-grid { grid-template-columns: 1fr; }
-    .quote-form-layout { grid-template-columns: 1fr; }
-    .quote-form-card { position: static; }
     .faq-grid { max-width: 100%; }
     .faq-with-card { grid-template-columns: 1fr; }
     .faq-sidebar { position: static; }
@@ -1466,35 +1364,4 @@ const schema = [
     }
   });
 
-  const quoteForm = document.getElementById('quote-form') as HTMLFormElement;
-  quoteForm?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const status = document.getElementById('quote-form-status') as HTMLDivElement;
-    const btn = document.getElementById('quote-submit') as HTMLButtonElement;
-    const btnText = btn.querySelector('.btn-text') as HTMLSpanElement;
-    const btnLoading = btn.querySelector('.btn-loading') as HTMLSpanElement;
-    btn.disabled = true;
-    btnText.style.display = 'none';
-    btnLoading.style.display = 'inline-flex';
-    status.style.display = 'none';
-    try {
-      const fd = new FormData(quoteForm);
-      const res = await fetch('/api/send-email', { method: 'POST', body: fd });
-      const data = await res.json();
-      if (data.success) {
-        status.className = 'form-status success';
-        status.innerHTML = 'Quote request sent! William will be in touch shortly. For urgent help, call <a href="tel:07809887883">07809 887 883</a>.';
-        status.style.display = 'block';
-        quoteForm.reset();
-      } else throw new Error(data.error);
-    } catch {
-      status.className = 'form-status error';
-      status.innerHTML = 'Something went wrong. Please call <a href="tel:07809887883">07809 887 883</a> directly.';
-      status.style.display = 'block';
-    } finally {
-      btn.disabled = false;
-      btnText.style.display = '';
-      btnLoading.style.display = 'none';
-    }
-  });
 </script>

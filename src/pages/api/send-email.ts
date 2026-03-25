@@ -220,7 +220,7 @@ export const POST: APIRoute = async ({ request }) => {
       '': 'Not specified',
     };
 
-    const recipient = to || 'paul@crouchendmedia.co.uk';
+    const recipient = to || 'william@bullardlocks.co.uk';
     const isChatbotLead = type === 'chatbot-lead' || type === 'chatbot';
     const hasPhotos = photoAttachments.length > 0;
 
@@ -228,31 +228,34 @@ export const POST: APIRoute = async ({ request }) => {
       ? `<div class="field"><span class="label">Photos attached:</span><p>${photoAttachments.length} photo(s) attached — see attachments below.</p></div>`
       : '';
 
+    const emailStyles = `
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; font-size: 14px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #1fae9b; color: white; padding: 20px; text-align: center; }
+    .header h1 { margin: 0; font-size: 20px; font-weight: 700; }
+    .content { padding: 20px; background: #f9f9f9; }
+    .field { margin-bottom: 16px; }
+    .label { font-weight: 700; color: #1fae9b; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; }
+    .field p { margin: 0; font-size: 15px; color: #333; }
+    .field a { color: #1fae9b; text-decoration: none; font-size: 15px; }
+    .urgent-badge { background: #ff4444; color: white; padding: 8px 14px; display: inline-block; margin-bottom: 15px; font-weight: bold; font-size: 14px; }
+    .photo-badge { display: inline-block; background: rgba(31,174,155,0.1); border: 1px solid #1fae9b; color: #1fae9b; padding: 4px 12px; font-size: 13px; margin-top: 4px; }
+    .footer { padding: 20px; text-align: center; font-size: 12px; color: #999; }
+    pre { white-space: pre-wrap; font-family: Arial, sans-serif; font-size: 15px; margin: 0; }`;
+
     const emailHtml = isChatbotLead
       ? `<!DOCTYPE html>
 <html>
-<head>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background: #1fae9b; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-    .content { padding: 20px; background: #f9f9f9; border-radius: 0 0 8px 8px; }
-    .field { margin-bottom: 15px; }
-    .label { font-weight: bold; color: #1fae9b; }
-    .urgent-badge { background: #ff4444; color: white; padding: 8px 14px; display: inline-block; margin-bottom: 15px; border-radius: 4px; font-weight: bold; }
-    .footer { padding: 20px; text-align: center; font-size: 12px; color: #666; }
-    pre { white-space: pre-wrap; font-family: Arial, sans-serif; }
-  </style>
-</head>
+<head><style>${emailStyles}</style></head>
 <body>
   <div class="container">
     <div class="header"><h1>New Lead from AI Chatbot</h1></div>
     <div class="content">
-      ${message.includes('IMMEDIATE') ? '<div class="urgent-badge">URGENT — CALL BACK IMMEDIATELY</div>' : ''}
-      <div class="field"><span class="label">Customer Name:</span><p>${escapeHtml(name)}</p></div>
-      <div class="field"><span class="label">Phone Number:</span><p><a href="tel:${escapeHtml(phone)}" style="font-size: 18px; font-weight: bold;">${escapeHtml(phone)}</a></p></div>
-      ${email && email !== 'Not provided' ? `<div class="field"><span class="label">Email:</span><p><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p></div>` : ''}
-      <div class="field"><span class="label">Details:</span><pre>${escapeHtml(message)}</pre></div>
+      ${message.includes('IMMEDIATE') ? '<div class="urgent-badge">URGENT - CALL BACK IMMEDIATELY</div>' : ''}
+      <div class="field"><span class="label">Name</span><p>${escapeHtml(name)}</p></div>
+      <div class="field"><span class="label">Phone</span><p><a href="tel:${escapeHtml(phone)}">${escapeHtml(phone)}</a></p></div>
+      ${email && email !== 'Not provided' ? `<div class="field"><span class="label">Email</span><p><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p></div>` : ''}
+      <div class="field"><span class="label">Details</span><pre>${escapeHtml(message)}</pre></div>
       ${photoNote}
     </div>
     <div class="footer">
@@ -264,28 +267,17 @@ export const POST: APIRoute = async ({ request }) => {
 </html>`
       : `<!DOCTYPE html>
 <html>
-<head>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background: #1fae9b; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-    .content { padding: 20px; background: #f9f9f9; border-radius: 0 0 8px 8px; }
-    .field { margin-bottom: 15px; }
-    .label { font-weight: bold; color: #1fae9b; }
-    .photo-badge { display: inline-block; background: rgba(31,174,155,0.1); border: 1px solid #1fae9b; color: #1fae9b; padding: 4px 12px; border-radius: 20px; font-size: 13px; margin-top: 4px; }
-    .footer { padding: 20px; text-align: center; font-size: 12px; color: #666; }
-  </style>
-</head>
+<head><style>${emailStyles}</style></head>
 <body>
   <div class="container">
-    <div class="header"><h1>New Contact Form Submission</h1></div>
+    <div class="header"><h1>${type === 'callback' ? 'New Callback Request' : 'New Contact Form Submission'}</h1></div>
     <div class="content">
-      <div class="field"><span class="label">Name:</span><p>${escapeHtml(name)}</p></div>
-      <div class="field"><span class="label">Phone:</span><p><a href="tel:${escapeHtml(phone)}" style="font-weight:bold;">${escapeHtml(phone)}</a></p></div>
-      <div class="field"><span class="label">Email:</span><p><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p></div>
-      <div class="field"><span class="label">Service Required:</span><p>${escapeHtml(serviceLabels[service] || service)}</p></div>
-      <div class="field"><span class="label">Message:</span><p>${escapeHtml(message).replace(/\n/g, '<br>')}</p></div>
-      ${hasPhotos ? `<div class="field"><span class="label">Photos:</span><p><span class="photo-badge"><i>📷 ${photoAttachments.length} photo(s) attached</i></span></p></div>` : ''}
+      <div class="field"><span class="label">Name</span><p>${escapeHtml(name)}</p></div>
+      <div class="field"><span class="label">Phone</span><p><a href="tel:${escapeHtml(phone)}">${escapeHtml(phone)}</a></p></div>
+      <div class="field"><span class="label">Email</span><p><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p></div>
+      <div class="field"><span class="label">Service</span><p>${escapeHtml(serviceLabels[service] || service)}</p></div>
+      <div class="field"><span class="label">Message</span><p>${escapeHtml(message).replace(/\n/g, '<br>')}</p></div>
+      ${hasPhotos ? `<div class="field"><span class="label">Photos</span><p><span class="photo-badge">${photoAttachments.length} photo(s) attached</span></p></div>` : ''}
     </div>
     <div class="footer">
       <p>Submitted from bullardlocks.com | ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })}</p>
@@ -294,9 +286,8 @@ export const POST: APIRoute = async ({ request }) => {
 </body>
 </html>`;
 
-    const subject = isChatbotLead
-      ? `${message.includes('IMMEDIATE') ? 'URGENT: ' : ''}New ${serviceLabels[service] || 'Locksmith'} Lead — ${name}`
-      : `New ${serviceLabels[service] || 'Contact'} Enquiry from ${name}${hasPhotos ? ` (${photoAttachments.length} photo${photoAttachments.length > 1 ? 's' : ''})` : ''}`;
+    const sourceLabel = isChatbotLead ? 'Chatbot' : type === 'callback' ? 'Callback' : 'Contact Form';
+    const subject = `[${sourceLabel}] ${message.includes('IMMEDIATE') ? 'URGENT: ' : ''}${serviceLabels[service] || 'Enquiry'} - ${name}${hasPhotos ? ` (${photoAttachments.length} photo${photoAttachments.length > 1 ? 's' : ''})` : ''}`;
 
     const emailPayload: Record<string, unknown> = {
       from: 'Bullard Locks <noreply@bullardlocks.com>',

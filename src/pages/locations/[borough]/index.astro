@@ -13,8 +13,8 @@ if (!borough) return new Response(null, { status: 404 });
 const siteUrl = 'https://bullardlocks.com';
 const pageUrl = `${siteUrl}/locations/${boroughSlug}`;
 
-const pageTitle = `Locksmith ${borough.name} | ${borough.postcodes[0]} Locksmith Services | Bullard Locks`;
-const metaDescription = `Professional locksmith in ${borough.name} — ${borough.postcodes.slice(0, 3).join(', ')}. Auto locksmith, emergency locksmith${borough.services.includes('safe-engineer') ? ' & safe engineer' : ''} services. No call-out fee. Call 07809 887 883.`;
+const pageTitle = `Locksmith ${borough.name} - ${borough.postcodes.slice(0, 3).join(', ')} | Bullard Locks`;
+const metaDescription = `Professional locksmith in ${borough.name} - ${borough.postcodes.slice(0, 3).join(', ')}. Auto locksmith, emergency locksmith${borough.services.includes('safe-engineer') ? ' & safe engineer' : ''} services. No call-out fee. Call 07809 887 883.`;
 
 // Borough-specific FAQ items
 const faqItems = [
@@ -66,8 +66,12 @@ const schema = [
     },
     areaServed: [
       ...borough.postcodes.map((pc) => ({ '@type': 'PostalAddress', postalCode: pc, addressCountry: 'GB' })),
-      { '@type': 'City', name: borough.name }
+      { '@type': 'City', name: borough.name, containedInPlace: { '@type': 'City', name: 'London' } }
     ],
+    makesOffer: borough.services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: servicesMeta[s].name },
+    })),
     description: metaDescription,
   },
   {
@@ -98,6 +102,7 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
   title={pageTitle}
   description={metaDescription}
   canonicalUrl={pageUrl}
+  ogImage="https://bullardlocks.com/images/hero-emergency-locksmith.webp"
   schema={schema}
 >
 
