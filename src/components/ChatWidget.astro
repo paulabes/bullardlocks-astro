@@ -4,13 +4,8 @@
 
 <!-- Chat Button -->
 <button id="chat-toggle" class="chat-btn" aria-label="Open chat">
-  <svg id="chat-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-  </svg>
-  <svg id="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
-    <line x1="18" y1="6" x2="6" y2="18"></line>
-    <line x1="6" y1="6" x2="18" y2="18"></line>
-  </svg>
+  <i id="chat-icon" class="fas fa-robot" style="font-size:1.5rem;"></i>
+  <i id="close-icon" class="fas fa-times" style="font-size:1.5rem; display:none;"></i>
 </button>
 
 <!-- Chat Window -->
@@ -51,7 +46,7 @@
     height: 60px;
     border-radius: 50%;
     background: var(--color-bg-dark);
-    border: 2px solid white;
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
