@@ -426,15 +426,20 @@ const schema = [
   .badge-pulse {
     width: 8px;
     height: 8px;
-    background: #1fae9b;
     border-radius: 50%;
     flex-shrink: 0;
-    animation: pulse 2s ease-in-out infinite;
+    animation: pulse 2s ease-in-out infinite, dotFlash 4s ease-in-out infinite;
   }
 
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(31,174,155,0.6); }
-    60%       { box-shadow: 0 0 0 7px rgba(31,174,155,0); }
+    0%, 100% { box-shadow: 0 0 0 0 currentColor; }
+    60%       { box-shadow: 0 0 0 7px transparent; }
+  }
+
+  @keyframes dotFlash {
+    0%, 100% { background: #fcd34d; }
+    33% { background: #fca5a5; }
+    66% { background: #93c5fd; }
   }
 
   /* H1 */
