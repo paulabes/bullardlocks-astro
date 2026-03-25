@@ -12,7 +12,7 @@ const { title, subtitle } = Astro.props;
     <h2>{title}</h2>
     <p>{subtitle}</p>
     <div class="cta-buttons">
-      <a href="tel:07809887883" class="btn-cta-phone">
+      <a href="tel:07809887883" class="btn-primary-lg btn-cta-phone">
         <i class="fas fa-phone"></i> 07809 887 883
       </a>
       <a href="https://wa.me/447809887883" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
@@ -68,17 +68,9 @@ const { title, subtitle } = Astro.props;
   }
 
   .btn-cta-phone {
-    padding: 16px 32px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: var(--transition-normal);
     background: var(--color-accent);
     color: white;
-    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(31, 174, 155, 0.3);
   }
 
   .btn-cta-phone:hover {
