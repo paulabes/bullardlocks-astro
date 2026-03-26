@@ -44,8 +44,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'For homeowners in Muswell Hill, Crouch End and Hornsey, we regularly open forgotten-combination safes that have sat untouched for years — often inherited or found during renovations of the area\'s many Victorian and Edwardian properties. Non-destructive opening is always attempted first, preserving the safe for continued use.',
       'As our home borough, Haringey safe engineer appointments are particularly easy to arrange. William can often fit in same-week visits for residential work and next-day for urgent commercial needs. We cover Chubb, Fichet, Burton, Dudley and all other major brands.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Safe engineer William Bullard with specialist tools in Haringey',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in Haringey',
   },
 
   // ========================================
@@ -81,8 +81,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'On the commercial side, Barnet has a busy high-street retail scene around Chipping Barnet, New Barnet and Finchley Central, plus industrial units along the A1. We install, open and service safes for shops, restaurants, dental practices and other businesses that need secure cash handling.',
       'All safe work in Barnet is by appointment. William visits to assess the safe, provides a written quote, and completes the work on-site in most cases. We work on all major brands including Chubb, Burton, Fichet and Phoenix, and can supply and fit new safes where needed.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Professional safe engineer attending home in Barnet',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in Barnet',
   },
 
   // ========================================
@@ -118,8 +118,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough\'s many period properties often contain old safes that were built into the house — sometimes bricked in or hidden behind panelling. We have extensive experience opening and servicing these older units, including Milner, Chubb and Ratner safes dating back decades.',
       'For businesses around Camden Market and Kentish Town Road, we provide rapid-response safe opening when daily floats are locked away and the combination has been forgotten or the lock has failed. We also supply and install new safes rated to cash and valuables standards for retail, hospitality and office use.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Safe engineer attending property in Camden',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in Camden',
   },
 
   // ========================================
@@ -155,8 +155,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough\'s Georgian and Victorian residential properties in Barnsbury, Canonbury and Highbury often contain original built-in safes or more recent fire safes installed for documents and valuables. We open, service and install safes for homeowners across all of Islington, always attempting non-destructive methods first.',
       'With our Crouch End base just a short drive away via Hornsey Rise, we can often arrange next-day appointments for Islington residents and same-week for businesses. All work is quoted in writing before we start, with no hidden charges.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Safe engineer servicing commercial safe in Islington',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in Islington',
   },
 
   // ========================================
@@ -192,8 +192,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough\'s residential safe work often involves opening older units found during property renovations — Hackney\'s Victorian and Edwardian housing stock regularly yields forgotten safes during building work. We\'ve opened safes hidden under floorboards, bricked into chimney breasts, and concealed behind false walls.',
       'We also work with Hackney landlords and property managers who need safes installed in HMO properties for key management, or combination changes between tenancies. All work is by appointment, with a written quote provided before we begin.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Safe engineer opening safe in Hackney property',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in Hackney',
   },
 
   // ========================================
@@ -229,8 +229,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough also has a significant light-industrial and commercial sector, with business parks along the A10 corridor and retail units around Enfield Town. We install, open and service safes for businesses from corner shops to large warehouse operations, matching the safe specification to the insurance requirements.',
       'Enfield safe appointments are typically arranged within the week for residential work and next-day for urgent commercial needs. William travels to your location with all specialist tools — there\'s no need to bring the safe anywhere. We work on Chubb, Burton, Fichet, Phoenix, SMP and all other major brands.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Safe engineer attending appointment in Enfield',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in Enfield',
   },
 
   // ========================================
@@ -255,8 +255,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The borough\'s dense concentration of hotels, private members\' clubs, restaurants and luxury retail also generates significant commercial safe work. We attend Park Lane hotels, Bond Street jewellers and West End restaurants for everything from emergency opening when a safe won\'t release, to scheduled combination changes and annual servicing.',
       'For Westminster clients, we understand that discretion and professionalism are paramount. William arrives in an unmarked vehicle, carries photo ID, and all work is conducted confidentially. We service all major safe brands and can advise on new installations rated to Eurograde standards for high-value contents.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Safe engineer providing specialist service in Westminster',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in Westminster',
   },
 
   // ========================================
@@ -281,8 +281,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The Barbican residential estate — one of the largest in Europe — is also a regular source of domestic safe work. The complex\'s 1960s and 70s construction means many flats contain original built-in safes, and residents contact us when combinations are lost or locks seize. We specialise in opening these older units without damage.',
       'For City clients, we offer flexible appointment scheduling including early morning and evening visits to work around business operations. All safe engineers carry photo ID and are DBS checked — essential for access to the secure premises common in EC1–EC4.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Safe engineer attending City of London commercial premises',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in the City of London',
   },
 
   // ========================================
@@ -307,8 +307,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'Many properties in the borough feature concealed safes built into wardrobes, dressing rooms or home offices — sometimes behind custom panelling or within bespoke furniture. We have extensive experience accessing and servicing these installations without disturbing the surrounding décor, working carefully in high-end interiors.',
       'We also serve the borough\'s luxury retail premises — jewellers, art galleries and boutiques on King\'s Road, Brompton Road and Portobello Road — providing installation, emergency opening and scheduled maintenance for commercial safes rated to Eurograde standards.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Safe engineer attending private residence in Kensington',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in Kensington & Chelsea',
   },
 
   // ========================================
@@ -333,8 +333,8 @@ const areaContent: Record<ContentKey, AreaContentBlock> = {
       'The Hammersmith office district and the retail centres around Westfield and King Street generate regular commercial safe work. We install deposit safes for hospitality businesses, service existing units for retail chains, and provide emergency opening when electronic locks fail or staff changes leave combinations unknown.',
       'Despite being in West London, we maintain reliable appointment scheduling for Hammersmith and Fulham clients. William carries all specialist tools in the van — no need for multiple visits. We work on all brands and can recommend and install new safes where an upgrade or replacement is more cost-effective than repair.',
     ],
-    image: '/images/william-bullard-locks.webp',
-    imageAlt: 'Safe engineer providing service in Hammersmith & Fulham',
+    image: '/images/safe-engineer-service.jpg',
+    imageAlt: 'Professional safe engineer service in Hammersmith & Fulham',
   },
 };
 
