@@ -241,7 +241,7 @@
   @media (max-width: 640px) {
     .chat-modal {
       width: 100vw;
-      height: 100vh;
+      height: 100dvh;
       right: 0;
       bottom: 0;
       border-radius: 0;
@@ -461,6 +461,13 @@
       // Silent fail — conversation is still visible
     }
   }
+
+  // Scroll messages to bottom when keyboard appears
+  chatInput?.addEventListener('focus', () => {
+    setTimeout(() => {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 300);
+  });
 
   // Handle text input
   chatForm?.addEventListener('submit', async (e) => {
