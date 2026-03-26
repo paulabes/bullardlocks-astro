@@ -116,17 +116,31 @@
   if (!existing) {
     // Show banner after short delay
     setTimeout(() => {
-      if (banner) banner.style.display = 'block';
+      if (banner) {
+        banner.style.display = 'block';
+        pushChatButton(true);
+      }
     }, 1500);
+  }
+
+  function pushChatButton(show: boolean) {
+    const chatBtn = document.getElementById('chat-toggle');
+    if (chatBtn) {
+      const bannerHeight = banner?.offsetHeight || 0;
+      chatBtn.style.transition = 'bottom 0.3s ease';
+      chatBtn.style.bottom = show ? `${bannerHeight + 16}px` : '';
+    }
   }
 
   acceptBtn?.addEventListener('click', () => {
     localStorage.setItem(CONSENT_KEY, 'accepted');
     if (banner) banner.style.display = 'none';
+    pushChatButton(false);
   });
 
   declineBtn?.addEventListener('click', () => {
     localStorage.setItem(CONSENT_KEY, 'declined');
     if (banner) banner.style.display = 'none';
+    pushChatButton(false);
   });
 </script>
