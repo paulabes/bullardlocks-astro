@@ -1,10 +1,11 @@
 import type { APIRoute } from 'astro';
 
-// UK postcode pattern — used to exclude postcodes from reg plate matching
+// UK postcode patterns — full and partial (outcode only like N8, SW1, EC1)
 const UK_POSTCODE_REGEX = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
+const UK_OUTCODE_REGEX = /^[A-Z]{1,2}\d[A-Z\d]?$/i;
 
-// UK registration plate pattern (covers current, prefix, suffix, and NI formats)
-const REG_PLATE_REGEX = /\b([A-Z]{2}\d{2}\s?[A-Z]{3}|[A-Z]\d{1,3}\s?[A-Z]{3}|[A-Z]{3}\s?\d{1,3}[A-Z]|[A-Z]{1,3}\s?\d{1,4}|[A-Z]{2,3}\s?\d{1,3})\b/i;
+// UK registration plate pattern — minimum 5 chars to avoid matching postcodes/outcodes
+const REG_PLATE_REGEX = /\b([A-Z]{2}\d{2}\s?[A-Z]{3}|[A-Z]\d{1,3}\s?[A-Z]{3}|[A-Z]{3}\s?\d{1,3}[A-Z])\b/i;
 
 async function lookupVehicle(registration: string): Promise<string | null> {
   const DVLA_API_KEY = import.meta.env.DVLA_API_KEY;
@@ -390,9 +391,10 @@ export const POST: APIRoute = async ({ request }) => {
     if (lastUserMsg) {
       const regMatch = lastUserMsg.content.match(REG_PLATE_REGEX);
       if (regMatch) {
-        // Don't send postcodes to DVLA — check full message for postcode pattern
+        // Don't send postcodes to DVLA — check for full or partial postcodes
         const fullText = lastUserMsg.content.trim();
-        const isPostcode = UK_POSTCODE_REGEX.test(fullText) || UK_POSTCODE_REGEX.test(regMatch[0]);
+        const matched = regMatch[0].trim();
+        const isPostcode = UK_POSTCODE_REGEX.test(fullText) || UK_POSTCODE_REGEX.test(matched) || UK_OUTCODE_REGEX.test(fullText) || UK_OUTCODE_REGEX.test(matched);
         if (!isPostcode) {
           const dvlaResult = await lookupVehicle(regMatch[0]);
           if (dvlaResult) {
