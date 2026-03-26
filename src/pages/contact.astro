@@ -879,16 +879,31 @@ const schema = [
     btnLoading.style.display = 'inline-flex';
 
     try {
-      // Remove any existing photos field, then add selected files
-      formData.delete('photos');
-      selectedFiles.forEach((file, i) => {
-        formData.append(`photo_${i}`, file, file.name);
-      });
-      formData.set('photo_count', String(selectedFiles.length));
+      // Build JSON payload with base64 photos
+      const payload: Record<string, unknown> = {
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        email: formData.get('email') || 'Not provided',
+        service: formData.get('service'),
+        message: formData.get('message'),
+        type: formData.get('form_type') || 'contact',
+        photos: [] as { filename: string; content: string }[],
+      };
+
+      // Convert photos to base64
+      for (const file of selectedFiles) {
+        const buffer = await file.arrayBuffer();
+        const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+        (payload.photos as { filename: string; content: string }[]).push({
+          filename: file.name,
+          content: base64,
+        });
+      }
 
       const response = await fetch('/api/send-email', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();

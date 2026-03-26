@@ -33,6 +33,18 @@ export const POST: APIRoute = async ({ request }) => {
         type: body.type || 'contact',
         to: body.to,
       };
+
+      // Handle base64 photos from JSON
+      if (Array.isArray(body.photos)) {
+        for (const photo of body.photos) {
+          if (photo.filename && photo.content) {
+            photoAttachments.push({
+              filename: photo.filename,
+              content: photo.content,
+            });
+          }
+        }
+      }
     } else {
       const formData = await request.formData();
       emailData = {
