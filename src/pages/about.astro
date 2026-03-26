@@ -627,7 +627,9 @@ const schema = [
     try {
       const fd = new FormData(callbackForm);
       const res = await fetch('/api/send-email', { method: 'POST', body: fd });
-      const data = await res.json();
+      const text = await res.text();
+      console.log('Callback response:', res.status, text);
+      const data = JSON.parse(text);
       if (data.success) {
         status.className = 'conv-form-status success';
         status.textContent = 'Received! William will call you back shortly.';
@@ -638,7 +640,8 @@ const schema = [
         status.textContent = data.error || 'Something went wrong. Please call us directly.';
         status.style.display = 'block';
       }
-    } catch {
+    } catch (err) {
+      console.error('Callback error:', err);
       status.className = 'conv-form-status error';
       status.textContent = 'Something went wrong. Please call us directly.';
       status.style.display = 'block';
