@@ -741,7 +741,7 @@ const schema = [
     width: 100%;
     padding: 12px 16px;
     border: 1.5px solid rgba(0,0,0,0.1);
-    border-radius: 10px;
+    border-radius: 100px;
     font-size: 0.95rem;
     font-family: var(--font-body);
     transition: border-color 0.2s;
@@ -760,7 +760,7 @@ const schema = [
     background: var(--color-accent);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 100px;
     font-size: 0.95rem;
     font-weight: 700;
     cursor: pointer;
@@ -799,7 +799,7 @@ const schema = [
     padding: 12px;
     background: #25d366;
     color: white;
-    border-radius: 10px;
+    border-radius: 100px;
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
@@ -1043,7 +1043,7 @@ const schema = [
 
   .form-status {
     padding: 14px 16px;
-    border-radius: 10px;
+    border-radius: 100px;
     font-size: 0.9rem;
     margin-bottom: 12px;
   }
@@ -1352,14 +1352,21 @@ const schema = [
     try {
       const fd = new FormData(callbackForm);
       const res = await fetch('/api/send-email', { method: 'POST', body: fd });
-      const data = await res.json();
+      const text = await res.text();
+      console.log('Callback response:', res.status, text);
+      const data = JSON.parse(text);
       if (data.success) {
         status.className = 'conv-form-status success';
         status.textContent = 'Received! William will call you back shortly.';
         status.style.display = 'block';
         callbackForm.reset();
-      } else throw new Error();
-    } catch {
+      } else {
+        status.className = 'conv-form-status error';
+        status.textContent = data.error || 'Something went wrong. Please call us directly.';
+        status.style.display = 'block';
+      }
+    } catch (err) {
+      console.error('Callback error:', err);
       status.className = 'conv-form-status error';
       status.textContent = 'Something went wrong. Please call us directly.';
       status.style.display = 'block';

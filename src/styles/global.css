@@ -517,11 +517,15 @@ main>section:nth-of-type(even):not(.bg-dark):not(.bg-white):not(.bg-light):not(.
     width: 100%;
     padding: 16px 20px;
     border: 2px solid rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
+    border-radius: 100px;
     font-size: 1rem;
     font-family: var(--font-body);
     transition: var(--transition-fast);
     background: var(--color-bg-light);
+}
+
+textarea.form-control-modern {
+    border-radius: 20px;
 }
 
 .form-control-modern:focus {
