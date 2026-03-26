@@ -1,17 +1,40 @@
 {
   "permissions": {
     "allow": [
-      "Bash(for file in services.html locations.html privacy-policy.html 404.html)",
-      "Bash(do)",
-      "Bash(if grep -q \"validation.js\" \"$file\")",
-      "Bash(then)",
-      "Bash(echo:*)",
-      "Bash(else)",
-      "Bash(fi)",
+      "Bash(npm run dev)",
+      "Bash(taskkill:*)",
+      "Bash(npm install:*)",
+      "mcp__plugin_compound-engineering_pw__browser_navigate",
+      "mcp__plugin_compound-engineering_pw__browser_take_screenshot",
+      "mcp__plugin_compound-engineering_pw__browser_resize",
+      "mcp__plugin_compound-engineering_pw__browser_run_code",
+      "WebFetch(domain:adhd-clinic-landing-90.aura.build)",
+      "mcp__plugin_compound-engineering_pw__browser_evaluate",
+      "Bash(curl:*)",
+      "mcp__plugin_compound-engineering_pw__browser_hover",
+      "WebSearch",
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node:*)",
       "Bash(done)",
-      "Bash(for file in services.html 404.html locations.html privacy-policy.html)"
-    ],
-    "deny": [],
-    "ask": []
+      "Bash(npx astro check:*)",
+      "Bash(find:*)",
+      "Bash(npx astro:*)",
+      "Bash(rm:*)",
+      "WebFetch(domain:bullardlocks.com)",
+      "WebFetch(domain:www.google.com)",
+      "mcp__plugin_compound-engineering_pw__browser_click",
+      "mcp__plugin_compound-engineering_pw__browser_close",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(while read f)",
+      "Bash(do ls -lh \"$f\")",
+      "Bash(cat:*)",
+      "Bash(rmdir:*)",
+      "Bash(npx:*)",
+      "Bash(ls:*)",
+      "Bash(tasklist:*)",
+      "WebFetch(domain:localhost)"
+    ]
   }
 }
