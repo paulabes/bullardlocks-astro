@@ -633,7 +633,11 @@ const schema = [
         status.textContent = 'Received! William will call you back shortly.';
         status.style.display = 'block';
         callbackForm.reset();
-      } else throw new Error();
+      } else {
+        status.className = 'conv-form-status error';
+        status.textContent = data.error || 'Something went wrong. Please call us directly.';
+        status.style.display = 'block';
+      }
     } catch {
       status.className = 'conv-form-status error';
       status.textContent = 'Something went wrong. Please call us directly.';

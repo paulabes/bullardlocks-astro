@@ -108,6 +108,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // --- Determine request type ---
     const isChatbot = type === 'chatbot-lead' || type === 'chatbot';
+    const isCallback = type === 'callback';
 
     // --- Spam & profanity checks (all submissions) ---
     const allText = `${name} ${message}`;
@@ -163,34 +164,37 @@ export const POST: APIRoute = async ({ request }) => {
         );
       }
 
-      if (email && email !== 'Not provided') {
-        if (!emailRegex.test(email)) {
+      // Skip email/message validation for callback forms (they have preset messages)
+      if (!isCallback) {
+        if (email && email !== 'Not provided') {
+          if (!emailRegex.test(email)) {
+            return new Response(
+              JSON.stringify({ success: false, error: 'Please enter a valid email address.' }),
+              { status: 400, headers: { 'Content-Type': 'application/json' } }
+            );
+          }
+          const emailDomain = email.split('@')[1]?.toLowerCase() || '';
+          if (disposableDomains.some(d => emailDomain.includes(d))) {
+            return new Response(
+              JSON.stringify({ success: false, error: 'Please use a valid email address.' }),
+              { status: 400, headers: { 'Content-Type': 'application/json' } }
+            );
+          }
+        }
+
+        if (!message || message.trim().length < 5) {
           return new Response(
-            JSON.stringify({ success: false, error: 'Please enter a valid email address.' }),
+            JSON.stringify({ success: false, error: 'Please provide details about your enquiry.' }),
             { status: 400, headers: { 'Content-Type': 'application/json' } }
           );
         }
-        const emailDomain = email.split('@')[1]?.toLowerCase() || '';
-        if (disposableDomains.some(d => emailDomain.includes(d))) {
+
+        if (isGibberish(message)) {
           return new Response(
-            JSON.stringify({ success: false, error: 'Please use a valid email address.' }),
+            JSON.stringify({ success: false, error: "That doesn't look quite right. Please check your message and try again." }),
             { status: 400, headers: { 'Content-Type': 'application/json' } }
           );
         }
-      }
-
-      if (!message || message.trim().length < 5) {
-        return new Response(
-          JSON.stringify({ success: false, error: 'Please provide details about your enquiry.' }),
-          { status: 400, headers: { 'Content-Type': 'application/json' } }
-        );
-      }
-
-      if (isGibberish(message)) {
-        return new Response(
-          JSON.stringify({ success: false, error: "That doesn't look quite right. Please check your message and try again." }),
-          { status: 400, headers: { 'Content-Type': 'application/json' } }
-        );
       }
     }
 
