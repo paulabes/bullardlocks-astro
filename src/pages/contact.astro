@@ -860,6 +860,34 @@ const schema = [
     formStatus.style.display = 'block';
   }
 
+  // Resize image to max dimension and compress as JPEG
+  function resizeImage(file: File, maxSize: number, quality: number): Promise<string> {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let { width, height } = img;
+        if (width > maxSize || height > maxSize) {
+          if (width > height) {
+            height = Math.round((height * maxSize) / width);
+            width = maxSize;
+          } else {
+            width = Math.round((width * maxSize) / height);
+            height = maxSize;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d')!;
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', quality);
+        // Strip the data:image/jpeg;base64, prefix
+        resolve(dataUrl.split(',')[1]);
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
   // Form Submit
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -890,12 +918,11 @@ const schema = [
         photos: [] as { filename: string; content: string }[],
       };
 
-      // Convert photos to base64
+      // Resize and convert photos to base64 (max 800px, JPEG 0.7 quality)
       for (const file of selectedFiles) {
-        const buffer = await file.arrayBuffer();
-        const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+        const base64 = await resizeImage(file, 800, 0.7);
         (payload.photos as { filename: string; content: string }[]).push({
-          filename: file.name,
+          filename: file.name.replace(/\.[^.]+$/, '.jpg'),
           content: base64,
         });
       }
