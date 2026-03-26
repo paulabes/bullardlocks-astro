@@ -50,24 +50,63 @@ const schema = [
         <span>Locations</span>
       </nav>
 
-      <h1 class="loc-hero-title">
-        <span class="loc-hero-service">Auto, Emergency & Safe Engineer</span>
-        <span class="loc-hero-location">London Locksmith</span>
-        <span class="loc-hero-sub">Select Your Borough</span>
-      </h1>
+      <div class="loc-hero-grid">
+        <div class="loc-hero-left">
+          <h1 class="loc-hero-title">
+            <span class="loc-hero-service">Auto, Emergency & Safe Engineer</span>
+            <span class="loc-hero-location">London Locksmith</span>
+            <span class="loc-hero-sub">Select Your Borough</span>
+          </h1>
 
-      <p class="loc-hero-lead">
-        Bullard Locks covers North and Central London for auto locksmith, emergency locksmith and safe engineer services.
-        Select your borough below for local response times, coverage areas and pricing.
-      </p>
+          <p class="loc-hero-lead">
+            Bullard Locks covers North and Central London for auto locksmith, emergency locksmith and safe engineer services.
+            Select your borough below for local response times, coverage areas and pricing.
+          </p>
 
-      <div class="loc-hero-ctas">
-        <a href="tel:07809887883" class="btn-hero-primary">
-          <i class="fas fa-phone"></i> 07809 887 883
-        </a>
-        <a href="https://wa.me/447809887883" class="btn-hero-whatsapp" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
+          <div class="loc-hero-ctas">
+            <a href="tel:07809887883" class="btn-hero-primary">
+              <i class="fas fa-phone"></i> 07809 887 883
+            </a>
+            <a href="https://wa.me/447809887883" class="btn-hero-whatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+
+          <div class="loc-trust-bar">
+            <div class="loc-trust-item"><i class="fas fa-star"></i><span>5.0 Google</span></div>
+            <div class="loc-trust-item"><i class="fas fa-shield-alt"></i><span>Met Police Approved</span></div>
+            <div class="loc-trust-item"><i class="fas fa-award"></i><span>30+ Years Experience</span></div>
+            <div class="loc-trust-item"><i class="fas fa-tag"></i><span>No Call-Out Fee</span></div>
+            <div class="loc-trust-item"><i class="fas fa-check"></i><span>Fully Insured</span></div>
+          </div>
+        </div>
+
+        <div class="loc-hero-panel">
+          <div class="conv-panel">
+            <div class="conv-panel-header">
+              <i class="fas fa-phone"></i>
+              <div>
+                <p class="conv-panel-label">Call us now</p>
+                <a href="tel:07809887883" class="conv-panel-number">07809 887 883</a>
+              </div>
+            </div>
+            <p class="conv-panel-note">Or request a callback:</p>
+            <form id="callback-form" class="conv-form">
+              <input type="text" name="name" placeholder="Your name" class="conv-input" required />
+              <input type="tel" name="phone" placeholder="Your phone number" class="conv-input" required />
+              <input type="hidden" name="service" value="general" />
+              <input type="hidden" name="form_type" value="callback" />
+              <input type="hidden" name="message" value="Callback request from Locations page" />
+              <button type="submit" class="conv-submit">
+                <i class="fas fa-phone"></i> Request Callback
+              </button>
+              <div class="conv-form-status" style="display:none;"></div>
+            </form>
+            <a href="https://wa.me/447809887883" class="conv-whatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Message on WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -232,6 +271,13 @@ const schema = [
     margin-top: 8px;
   }
 
+  .loc-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px;
+    align-items: start;
+  }
+
   .loc-hero-lead {
     color: rgba(255,255,255,0.8);
     font-size: 1.1rem;
@@ -244,7 +290,32 @@ const schema = [
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+    margin-bottom: 40px;
   }
+
+  .loc-trust-bar { display: flex; gap: 0; flex-wrap: wrap; }
+  .loc-trust-item { display: flex; align-items: center; gap: 8px; padding: 0 16px; font-size: 0.85rem; color: rgba(255,255,255,0.7); font-weight: 500; }
+  .loc-trust-item:first-child { padding-left: 0; }
+  .loc-trust-item + .loc-trust-item { border-left: 1px solid rgba(255,255,255,0.28); }
+  .loc-trust-item i { color: var(--color-accent); font-size: 0.9rem; }
+
+  .conv-panel { background: white; border-radius: 20px; padding: 28px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); position: sticky; top: 100px; }
+  .conv-panel-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.07); }
+  .conv-panel-header > i { width: 44px; height: 44px; background: rgba(31, 174, 155, 0.1); color: var(--color-accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .conv-panel-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin: 0; font-weight: 600; }
+  .conv-panel-number { font-size: 1.4rem; font-weight: 800; color: var(--color-text-main); text-decoration: none; display: block; line-height: 1; margin-top: 2px; }
+  .conv-panel-number:hover { color: var(--color-accent); }
+  .conv-panel-note { font-size: 0.875rem; color: var(--color-text-muted); margin: 0 0 16px; }
+  .conv-form { display: flex; flex-direction: column; gap: 12px; }
+  .conv-input { width: 100%; padding: 12px 16px; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 100px; font-size: 0.95rem; font-family: var(--font-body); transition: border-color 0.2s; background: var(--color-bg-light); }
+  .conv-input:focus { outline: none; border-color: var(--color-accent); background: white; }
+  .conv-submit { width: 100%; padding: 14px; background: var(--color-accent); color: white; border: none; border-radius: 100px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; font-family: var(--font-body); }
+  .conv-submit:hover { background: var(--color-accent-hover); }
+  .conv-form-status { font-size: 0.875rem; padding: 10px 12px; border-radius: 8px; }
+  .conv-form-status.success { background: rgba(31,174,155,0.1); color: #0e6b5e; }
+  .conv-form-status.error { background: rgba(220,38,38,0.05); color: #dc2626; }
+  .conv-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; padding: 12px; background: #25d366; color: white; border-radius: 100px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: background 0.2s; }
+  .conv-whatsapp:hover { background: #1db954; }
 
   .btn-hero-primary {
     display: inline-flex;
@@ -412,10 +483,17 @@ const schema = [
 
   /* Responsive */
   @media (max-width: 992px) {
+    .loc-hero-grid { grid-template-columns: 1fr; }
+    .loc-hero-panel { display: none; }
     .matrix-header,
     .matrix-row {
       grid-template-columns: 140px repeat(3, 1fr);
     }
+  }
+
+  @media (max-width: 768px) {
+    .loc-trust-bar { gap: 12px; }
+    .loc-trust-item { padding: 0; border-left: none; }
   }
 
   @media (max-width: 768px) {
@@ -445,3 +523,55 @@ const schema = [
     .matrix-response { font-size: 0.65rem; }
   }
 </style>
+
+<script>
+  const callbackForm = document.getElementById('callback-form') as HTMLFormElement;
+  callbackForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = callbackForm.querySelector('.conv-form-status') as HTMLDivElement;
+    const btn = callbackForm.querySelector('.conv-submit') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try {
+      const fd = new FormData(callbackForm);
+      const payload: Record<string, string> = {};
+      fd.forEach((v, k) => { payload[k] = v as string; });
+      payload.type = payload.form_type || 'callback';
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.success) {
+        status.className = 'conv-form-status success';
+        status.textContent = 'Received! William will call you back shortly.';
+        status.style.display = 'block';
+        callbackForm.reset();
+      } else {
+        status.className = 'conv-form-status error';
+        status.textContent = data.error || 'Something went wrong. Please call us directly.';
+        status.style.display = 'block';
+      }
+    } catch (err) {
+      console.error('Callback error:', err);
+      status.className = 'conv-form-status error';
+      status.textContent = 'Something went wrong. Please call us directly.';
+      status.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-phone"></i> Request Callback';
+    }
+  });
+
+  const waLink = document.querySelector('.conv-whatsapp') as HTMLAnchorElement;
+  waLink?.addEventListener('click', (e) => {
+    const name = (callbackForm?.querySelector('[name="name"]') as HTMLInputElement)?.value?.trim();
+    const phone = (callbackForm?.querySelector('[name="phone"]') as HTMLInputElement)?.value?.trim();
+    if (name || phone) {
+      e.preventDefault();
+      const msg = `Hi, I'd like to request a callback. Name: ${name || 'not provided'}, Phone: ${phone || 'not provided'}`;
+      window.open(`https://wa.me/447809887883?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  });
+</script>
