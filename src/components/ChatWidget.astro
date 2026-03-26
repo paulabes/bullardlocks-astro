@@ -333,6 +333,7 @@
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
       .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">$1</a>')
       .replace(/(https:\/\/wa\.me\/\d+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">$1</a>')
+      .replace(/07809\s?887\s?883/g, '<a href="tel:07809887883" style="color:inherit;text-decoration:underline;font-weight:700;">07809 887 883</a>')
       .replace(/\n/g, '<br>');
   }
 
