@@ -988,4 +988,15 @@ const schema = [
     }
   });
 
+  // Pre-fill WhatsApp with name & phone from callback form
+  const waLink = document.querySelector('.conv-whatsapp') as HTMLAnchorElement;
+  waLink?.addEventListener('click', (e) => {
+    const name = (callbackForm?.querySelector('[name="name"]') as HTMLInputElement)?.value?.trim();
+    const phone = (callbackForm?.querySelector('[name="phone"]') as HTMLInputElement)?.value?.trim();
+    if (name || phone) {
+      e.preventDefault();
+      const msg = `Hi, I'd like to request a callback. Name: ${name || 'not provided'}, Phone: ${phone || 'not provided'}`;
+      window.open(`https://wa.me/447809887883?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  });
 </script>
