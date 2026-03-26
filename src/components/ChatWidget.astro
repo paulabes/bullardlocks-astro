@@ -313,8 +313,8 @@
       if (key && value) fields[key] = value;
     }
 
-    // Must have at minimum: name, telephone, email
-    if (fields.name && fields.telephone && fields.email) return fields;
+    // Must have at minimum: name and telephone
+    if (fields.name && fields.telephone) return fields;
     return null;
   }
 
