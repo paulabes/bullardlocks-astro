@@ -66,7 +66,8 @@
 
   .chat-btn.open {
     animation: none;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
   }
 
   @keyframes chatPulse {
@@ -77,7 +78,7 @@
 
   .chat-modal {
     position: fixed;
-    bottom: 124px;
+    bottom: 48px;
     right: 48px;
     width: 380px;
     height: 520px;
