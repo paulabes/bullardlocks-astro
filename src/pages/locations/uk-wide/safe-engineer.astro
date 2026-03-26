@@ -859,10 +859,15 @@ const schema = [
     btn.textContent = 'Sending...';
     try {
       const fd = new FormData(callbackForm);
-      const res = await fetch('/api/send-email', { method: 'POST', body: fd });
-      const text = await res.text();
-      console.log('Callback response:', res.status, text);
-      const data = JSON.parse(text);
+      const payload: Record<string, string> = {};
+      fd.forEach((v, k) => { payload[k] = v as string; });
+      payload.type = payload.form_type || 'callback';
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
       if (data.success) {
         status.className = 'conv-form-status success';
         status.textContent = 'Received! William will call you back shortly.';
