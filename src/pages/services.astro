@@ -399,4 +399,17 @@ const schema = [
     }
   }
 
+  @media (max-width: 640px) {
+    .loc-hero { min-height: auto; }
+    .lh-content { padding-top: 40px; padding-bottom: 48px; }
+    .loc-hero-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    .loc-hero-lead { font-size: 0.95rem; }
+    .matrix-header,
+    .matrix-row {
+      grid-template-columns: 100px repeat(3, 1fr);
+    }
+    .matrix-borough-link span:first-child { font-size: 0.8rem; }
+    .matrix-response { font-size: 0.65rem; }
+  }
+
 </style>
