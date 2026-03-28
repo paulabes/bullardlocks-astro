@@ -70,19 +70,75 @@ const siteUrl = 'https://bullardlocks.com';
   <link rel="alternate" hreflang="en-GB" href={canonicalUrl} />
   <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
-  <!-- Preload hero image for LCP -->
-  {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
-
   <!-- Preconnect to external resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  
-  <!-- Font Awesome -->
+
+  <!-- Preload hero image for LCP -->
+  {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+
+  <!-- Google Fonts — async load to avoid render-blocking -->
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+  />
   <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    media="print"
+    onload="this.media='all'"
   />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  </noscript>
+
+  <!-- Font Awesome — only solid + brands (no regular/thin/duotone), async loaded -->
+  <link
+    rel="preload"
+    as="style"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css"
+  />
+  <link
+    rel="preload"
+    as="style"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css"
+  />
+  <link
+    rel="preload"
+    as="style"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css"
+    media="print"
+    onload="this.media='all'"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css"
+    media="print"
+    onload="this.media='all'"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css" />
+  </noscript>
+
+  <!-- Font Awesome font-display override to prevent FOIT -->
+  <style>
+    @font-face { font-family: 'Font Awesome 6 Free'; font-display: swap; }
+    @font-face { font-family: 'Font Awesome 6 Brands'; font-display: swap; }
+  </style>
 
   <!-- Schema.org markup -->
   {schema && (
