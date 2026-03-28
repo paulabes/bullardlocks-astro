@@ -76,7 +76,7 @@
         <div class="mobile-accordion-header">
           <a href="/services" class="mobile-accordion-link">Services</a>
           <button class="mobile-accordion-toggle" aria-expanded="false" aria-label="Toggle services submenu">
-            <i class="fas fa-chevron-down mobile-chevron"></i>
+            <i class="fas fa-caret-down mobile-chevron"></i>
           </button>
         </div>
         <ul class="mobile-sub-links">
@@ -89,7 +89,7 @@
         <div class="mobile-accordion-header">
           <a href="/locations" class="mobile-accordion-link">Locations</a>
           <button class="mobile-accordion-toggle" aria-expanded="false" aria-label="Toggle locations submenu">
-            <i class="fas fa-chevron-down mobile-chevron"></i>
+            <i class="fas fa-caret-down mobile-chevron"></i>
           </button>
         </div>
         <ul class="mobile-sub-links">
@@ -535,25 +535,18 @@
 
   .mobile-accordion-toggle {
     background: none;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 8px;
+    border: none;
     width: 44px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background 0.2s ease;
-  }
-
-  .mobile-accordion-toggle:hover,
-  .mobile-accordion-toggle:active {
-    background: rgba(0,0,0,0.05);
   }
 
   .mobile-chevron {
-    font-size: 0.85rem;
-    color: var(--color-text-main);
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
     transition: transform 0.2s ease;
   }
 
