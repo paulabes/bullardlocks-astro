@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ChatWidget from '../components/ChatWidget.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -172,5 +173,8 @@ const siteUrl = 'https://bullardlocks.com';
 
   <!-- Cookie Consent -->
   <CookieConsent />
+
+  <!-- Vercel Speed Insights -->
+  <SpeedInsights />
 </body>
 </html>
