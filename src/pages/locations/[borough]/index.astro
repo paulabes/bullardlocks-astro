@@ -2,9 +2,17 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import GoogleReviews from '../../../components/GoogleReviews.astro';
 import CTASection from '../../../components/CTASection.astro';
+import TrustCredentials from '../../../components/TrustCredentials.astro';
 import { boroughs, servicesMeta } from '../../../data/locations';
 import { getBoroughAreaContent } from '../../../data/area-content';
+import { boroughGeoData } from '../../../data/borough-geo';
 import ServiceCards from '../../../components/ServiceCards.astro';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return boroughs.map((b) => ({ params: { borough: b.slug } }));
+}
 
 const { borough: boroughSlug } = Astro.params;
 const borough = boroughs.find((b) => b.slug === boroughSlug);
@@ -16,38 +24,39 @@ const pageUrl = `${siteUrl}/locations/${boroughSlug}`;
 const pageTitle = `Locksmith ${borough.name} - ${borough.postcodes.slice(0, 3).join(', ')} | Bullard Locks`;
 const metaDescription = `Professional locksmith in ${borough.name} - ${borough.postcodes.slice(0, 3).join(', ')}. Auto locksmith, emergency locksmith${borough.services.includes('safe-engineer') ? ' & safe engineer' : ''} services. No call-out fee. Call 07809 887 883.`;
 
-// Borough-specific FAQ items
+// Borough-specific FAQ items (AEO-optimised — each answer is a standalone, quotable response)
 const faqItems = [
   {
-    q: `How quickly can you reach ${borough.name}?`,
-    a: `Our typical response time in ${borough.name} is ${borough.responseTime}. We're based in Crouch End N8 — one of the closest locksmith services to most of ${borough.name}. For emergencies, call us directly on 07809 887 883.`,
+    q: `How quickly can a locksmith reach ${borough.name}?`,
+    a: `Bullard Locks typically arrives anywhere in ${borough.name} within ${borough.responseTime}. William Bullard operates from a fully equipped mobile unit based in Crouch End N8, which places him among the closest professional locksmiths to most of ${borough.name}. For emergencies, call 07809 887 883 — you speak directly to William, not a call centre, and he gives you an accurate arrival estimate immediately.`,
   },
   {
-    q: `Do you charge a call-out fee in ${borough.name}?`,
-    a: `No — there is no call-out fee for any of our services in ${borough.name}. You only pay for the work actually carried out. We always provide a clear fixed quote before starting any job.`,
+    q: `Is there a call-out fee for locksmith services in ${borough.name}?`,
+    a: `No. Bullard Locks does not charge a call-out fee for any service in ${borough.name}, including emergency work at unsociable hours. Many locksmith services advertise low call-out fees then add surcharges for evenings, weekends or bank holidays. With Bullard Locks, you receive a single fixed-price quote before any work begins, and that is the only amount you pay — no hidden charges, no invoice surprises.`,
   },
   {
-    q: `What locksmith services do you offer in ${borough.name}?`,
-    a: `In ${borough.name} we offer: ${borough.services.map(s => servicesMeta[s].name).join(', ')}. Each service is mobile — we come to you wherever you are in ${borough.name}.`,
+    q: `What locksmith services are available in ${borough.name}?`,
+    a: `Bullard Locks provides ${borough.services.map(s => servicesMeta[s].name.toLowerCase()).join(', ')} services across all of ${borough.name}. Every service is fully mobile — William drives to your exact location with all tools, parts and diagnostic equipment. There is no need to visit a shop or wait for parts to be ordered. Most jobs are completed in a single visit.`,
   },
   {
-    q: `Are you available 24/7 in ${borough.name}?`,
+    q: `Is the locksmith service available 24/7 in ${borough.name}?`,
     a: borough.services.includes('emergency-locksmith')
-      ? `Our emergency locksmith service in ${borough.name} is available 24 hours a day, 7 days a week, 365 days a year. Auto locksmith and safe engineer appointments are available 7 days a week during normal hours.`
-      : `Our auto locksmith and safe engineer services in ${borough.name} operate 7 days a week. For urgent enquiries outside normal hours, please call 07809 887 883.`,
+      ? `The emergency locksmith service in ${borough.name} operates 24 hours a day, 7 days a week, 365 days a year — including Christmas Day and bank holidays. This is a genuine around-the-clock service, not an answering machine that redirects to a daytime callback. Auto locksmith and safe engineer appointments are available 7 days a week during normal working hours.`
+      : `Auto locksmith and safe engineer services in ${borough.name} are available 7 days a week during normal working hours. For urgent enquiries outside these hours, call 07809 887 883 — William will advise on availability and can often accommodate same-day requests.`,
   },
   {
-    q: `Do you cover all areas within ${borough.name}?`,
-    a: `Yes — we cover every area within ${borough.name}, including ${borough.areas.slice(0, 4).join(', ')} and all ${borough.postcodes.join(', ')} postcodes. If you're unsure, just call us and we'll confirm coverage instantly.`,
+    q: `Which areas and postcodes does Bullard Locks cover in ${borough.name}?`,
+    a: `Bullard Locks covers every area within the London Borough of ${borough.name}, including ${borough.areas.slice(0, 5).join(', ')} and all surrounding neighbourhoods. All ${borough.postcodes.join(', ')} postcodes are within the standard coverage area. If you are unsure whether your specific location is covered, call 07809 887 883 for instant confirmation.`,
   },
   {
-    q: `Who is Bullard Locks?`,
-    a: `Bullard Locks is run by William Bullard, a professional locksmith with 30+ years of experience based in Crouch End N8, North London. William is a Metropolitan Police approved contractor, fully insured, DBS checked, and holds a 5-star Google rating. He personally attends every job.`,
+    q: `Who runs Bullard Locks and what are their credentials?`,
+    a: `Bullard Locks is owned and operated by William Bullard, a professional locksmith with over 30 years of hands-on experience. William is based in Crouch End N8, North London. He is a Metropolitan Police approved contractor, a Master Locksmiths Association member, DBS (Disclosure and Barring Service) checked, and holds comprehensive public liability insurance. He maintains a perfect 5.0-star Google rating from verified customers and personally attends every job — no subcontractors are used.`,
   },
 ];
 
 const areaContent = getBoroughAreaContent(boroughSlug!);
 const nearbyBoroughsList = boroughs.filter((b) => borough.nearbyBoroughs.includes(b.slug));
+const geoData = boroughGeoData[boroughSlug!];
 
 const schema = [
   {
@@ -56,6 +65,19 @@ const schema = [
     name: 'Bullard Locks',
     telephone: '07809887883',
     url: pageUrl,
+    image: `${siteUrl}/images/william-bullard-trusted-london-locksmith.webp`,
+    priceRange: '££',
+    currenciesAccepted: 'GBP',
+    paymentAccepted: 'Cash, Credit Card, Debit Card, Bank Transfer',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+        description: 'Emergency locksmith available 24/7',
+      },
+    ],
     address: {
       '@type': 'PostalAddress',
       streetAddress: '67 Weston Park',
@@ -64,9 +86,35 @@ const schema = [
       postalCode: 'N8 9TA',
       addressCountry: 'GB',
     },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 51.5785,
+      longitude: -0.1199,
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5.0',
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: '23',
+      reviewCount: '23',
+    },
+    sameAs: [
+      'https://g.page/bullardlocks',
+      'https://www.facebook.com/bullardlocks',
+      'https://www.instagram.com/bullardlocks',
+    ],
     areaServed: [
       ...borough.postcodes.map((pc) => ({ '@type': 'PostalAddress', postalCode: pc, addressCountry: 'GB' })),
-      { '@type': 'City', name: borough.name, containedInPlace: { '@type': 'City', name: 'London' } }
+      {
+        '@type': 'City',
+        name: borough.name,
+        containedInPlace: { '@type': 'City', name: 'London' },
+      },
+      ...(geoData ? [{
+        '@type': 'GeoShape',
+        polygon: geoData.polygon,
+      }] : []),
     ],
     makesOffer: borough.services.map((s) => ({
       '@type': 'Offer',
@@ -80,8 +128,15 @@ const schema = [
     mainEntity: faqItems.map((item) => ({
       '@type': 'Question',
       name: item.q,
-      acceptedAnswer: { '@type': 'Answer', text: item.a },
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
     })),
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.faq-answer'],
+    },
   },
   {
     '@context': 'https://schema.org',
@@ -104,6 +159,7 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
   canonicalUrl={pageUrl}
   ogImage="https://bullardlocks.com/images/hero-emergency-locksmith.webp"
   schema={schema}
+  preloadImage={heroImage}
 >
 
   <!-- HERO -->
@@ -430,6 +486,8 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
       </div>
     </section>
   )}
+
+  <TrustCredentials />
 
   <GoogleReviews bg="light" />
 
@@ -1365,22 +1423,20 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
 
       const res = await fetch('/api/send-email', { method: 'POST', body: fd });
       const text = await res.text();
-      console.log('Form response:', res.status, text);
       const data = JSON.parse(text);
       if (data.success) {
         status.className = 'form-status success';
-        status.innerHTML = 'Enquiry sent! William will be in touch shortly.';
+        status.textContent = 'Enquiry sent! William will be in touch shortly.';
         status.style.display = 'block';
         form.reset();
       } else {
         status.className = 'form-status error';
-        status.innerHTML = data.error || 'Something went wrong. Please call <a href="tel:07809887883">07809 887 883</a>.';
+        status.textContent = data.error || 'Something went wrong. Please call 07809 887 883.';
         status.style.display = 'block';
       }
     } catch (err) {
-      console.error('Form error:', err);
       status.className = 'form-status error';
-      status.innerHTML = 'Something went wrong. Please call <a href="tel:07809887883">07809 887 883</a>.';
+      status.textContent = 'Something went wrong. Please call 07809 887 883.';
       status.style.display = 'block';
     } finally {
       btn.disabled = false;

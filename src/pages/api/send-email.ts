@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { checkRateLimit, checkOrigin } from '../../utils/api-security';
 
 interface EmailData {
   name: string;
@@ -16,6 +17,12 @@ interface PhotoAttachment {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  // Security: rate limit and origin check
+  const rateLimited = checkRateLimit(request, { maxRequests: 5, windowMs: 60_000, prefix: 'email' });
+  if (rateLimited) return rateLimited;
+  const originBlocked = checkOrigin(request);
+  if (originBlocked) return originBlocked;
+
   try {
     let emailData: EmailData;
     let photoAttachments: PhotoAttachment[] = [];

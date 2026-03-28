@@ -269,27 +269,27 @@ export function getFAQItems(serviceSlug: ServiceSlug, borough: Borough): { q: st
     return [
       {
         q: `How quickly can an auto locksmith reach me in ${borough.name}?`,
-        a: `We typically reach anywhere in ${borough.name} within ${borough.responseTime}. Our van is based in Crouch End N8, so we're especially fast in ${postcodeList} and neighbouring areas.`,
+        a: `An auto locksmith from Bullard Locks typically arrives anywhere in ${borough.name} within ${borough.responseTime}. William Bullard operates from a fully equipped mobile workshop based in Crouch End N8, which means postcodes ${postcodeList} and surrounding areas benefit from some of the fastest auto locksmith response times in London. All diagnostic tools, key blanks and programming equipment travel in the van, so work begins immediately on arrival — there is no waiting for parts or return visits.`,
       },
       {
-        q: `Do you replace car keys for all makes in ${borough.name}?`,
-        a: 'Yes — we cover all major UK and European makes including Ford, Vauxhall, BMW, Mercedes, Audi, Volkswagen, Toyota, Honda, Nissan and many more. We carry specialist equipment to cut and programme keys on-site.',
+        q: `What car makes and models can you replace keys for in ${borough.name}?`,
+        a: `Bullard Locks carries key cutting and transponder programming equipment for virtually every vehicle on UK roads. This includes all Ford, Vauxhall, BMW, Mercedes-Benz, Audi, Volkswagen, Toyota, Honda, Nissan, Hyundai, Kia, Peugeot, Citroën, Renault, Fiat, SEAT, Škoda, Land Rover and Jaguar models — as well as specialist tools for prestige marques such as Porsche, Bentley and Maserati. Keys are cut from high-security blanks, programmed to the vehicle's immobiliser system, and fully tested before the locksmith leaves.`,
       },
       {
-        q: `How much does car key replacement cost in ${borough.name}?`,
-        a: "Prices vary depending on your vehicle make, model and year. We'll give you a clear fixed quote before starting any work. There's no call-out fee and no hidden charges.",
+        q: `How much does a car key replacement cost?`,
+        a: `Car key replacement costs depend on three factors: the vehicle make, the model year, and the type of key required (standard transponder, remote fob, or proximity smart key). As a guide, standard transponder keys for common makes start from around £80–£120, while proximity smart keys for newer vehicles typically range from £150–£300. Bullard Locks provides a fixed written quote before any work begins, with no call-out fee and no hidden charges — you only pay the agreed price.`,
       },
       {
-        q: `Can you help if I've lost all my car keys in ${borough.name}?`,
-        a: "Yes — even if you've lost every key to the vehicle. We can cut new keys from the lock code and programme them to match your car's immobiliser and central locking system.",
+        q: `Can you help if I've lost all my car keys?`,
+        a: `Yes. Losing every key to a vehicle is more common than most people realise, and it does not require a dealer visit or a tow truck. A qualified auto locksmith can read the lock code from the vehicle, cut a new mechanical blade to match, and then programme a fresh transponder chip to communicate with the car's immobiliser and central locking system. The entire process is completed at your location in ${borough.name} — typically within 60–90 minutes depending on the make and model.`,
       },
       {
-        q: `Do you come to me, or do I need to bring the car to you?`,
-        a: `We are fully mobile — we come to you anywhere in ${borough.name}. Whether you're at home, at work, or stuck in a car park, we'll come to your exact location.`,
+        q: `Do you come to my location in ${borough.name}?`,
+        a: `Bullard Locks is a fully mobile auto locksmith service. William drives to your exact location anywhere in ${borough.name} — whether that is your home driveway, a workplace car park, a supermarket, or the side of the road. There is no need to tow the vehicle to a garage or dealer. The mobile workshop carries all the diagnostic computers, key cutting machines and programming devices needed to complete the job on the spot.`,
       },
       {
-        q: `Are you available for car lockouts on weekends in ${borough.name}?`,
-        a: `Yes. We operate 7 days a week across ${borough.name}. For vehicle lockouts, call us directly on 07809 887 883 and we'll aim to reach you within ${borough.responseTime}.`,
+        q: `Are you available for car lockouts on weekends and evenings?`,
+        a: `Yes. Vehicle lockout assistance is available 7 days a week across ${borough.name}, including evenings and bank holidays. A car lockout — where the keys are locked inside the vehicle or the boot — is resolved using non-destructive entry techniques that open the car without causing damage to locks, paintwork or door seals. Most lockouts are resolved within 15–30 minutes of the locksmith arriving. Call 07809 887 883 directly for the fastest response.`,
       },
     ];
   }
@@ -297,28 +297,28 @@ export function getFAQItems(serviceSlug: ServiceSlug, borough: Borough): { q: st
   if (serviceSlug === 'emergency-locksmith') {
     return [
       {
-        q: `How quickly can you reach me in ${borough.name} for an emergency?`,
-        a: `Our typical response time across ${borough.name} is ${borough.responseTime}. Being based in Crouch End, we are particularly quick in ${postcodeList} and nearby areas.`,
+        q: `How fast can an emergency locksmith reach ${borough.name}?`,
+        a: `Bullard Locks typically reaches any address in ${borough.name} within ${borough.responseTime} for emergency calls. The service operates from Crouch End N8, making postcodes ${postcodeList} and neighbouring areas among the fastest-response locations. Emergency calls are prioritised — when you phone 07809 887 883, you speak directly to William Bullard (not a call centre), who can give you an accurate arrival estimate within seconds.`,
       },
       {
-        q: `Do you charge a call-out fee for emergency locksmith work in ${borough.name}?`,
-        a: 'No — there is no call-out fee for any of our services. You only pay for the work actually carried out, and we quote before we start.',
+        q: `Is there a call-out fee for emergency locksmith services?`,
+        a: `No. Bullard Locks does not charge a call-out fee for any service, including emergency work at unsociable hours. This is an important distinction — many locksmith services advertise low call-out fees but then add charges for evenings, weekends or bank holidays. With Bullard Locks, you receive a single fixed price quote before any work begins, and that is the only amount you pay. There are no surcharges, no additional fees for parts already on the van, and no invoice surprises.`,
       },
       {
-        q: `What happens if my lock is damaged during a break-in in ${borough.name}?`,
-        a: "We carry a full range of British Standard anti-snap locks on the van. We'll replace your damaged lock with a quality upgrade the same day, leaving your property fully secure.",
+        q: `What should I do after a burglary to secure my home?`,
+        a: `After a break-in, the first step is to call the police on 101 (or 999 if the intruder may still be present) and obtain a crime reference number — you will need this for your insurance claim. Next, call an emergency locksmith to secure the property. Bullard Locks carries British Standard BS3621 mortice deadlocks and TS007 3-star anti-snap Euro cylinders on the van, so damaged locks are replaced with insurance-approved upgrades on the same visit. Door frames are repaired or reinforced, and temporary boarding is fitted if glass panels are broken. The goal is to leave your property fully secure the same night.`,
       },
       {
-        q: `Can you extract a broken key from a lock in ${borough.name}?`,
-        a: "Yes — broken key extraction is a specialist skill we deal with regularly. We remove the broken piece cleanly in most cases without needing to replace the entire lock cylinder.",
+        q: `Can a locksmith extract a broken key from a lock?`,
+        a: `Yes. Broken key extraction is a routine procedure for a qualified locksmith. The snapped portion of the key is removed from the lock cylinder using specialist extraction tools — in most cases without damaging the lock mechanism itself. If the lock cylinder has been weakened by the break, the locksmith will advise on replacement. Bullard Locks carries a full range of Euro cylinders, rim cylinders and mortice lock cases on the van, so if replacement is needed, it happens on the same visit with no additional call-out.`,
       },
       {
-        q: `Is your emergency locksmith service available 24/7 in ${borough.name}?`,
-        a: `Yes — 24 hours a day, 7 days a week, 365 days a year. Lockouts and security emergencies don't keep office hours, and neither do we.`,
+        q: `Is the emergency locksmith service genuinely available 24 hours?`,
+        a: `Yes — Bullard Locks operates a genuine 24/7 emergency locksmith service across ${borough.name}, 365 days a year including Christmas Day and bank holidays. This is not an answering service that redirects to a daytime callback. When you call 07809 887 883 at 3am, William Bullard answers the phone personally and dispatches to your location. The same experienced locksmith who handles daytime appointments also handles overnight emergencies.`,
       },
       {
-        q: `What identification do you carry so I know you're legitimate?`,
-        a: "William Bullard carries full photo ID, proof of professional registration, and is listed on the Metropolitan Police approved contractor scheme. We are also DBS checked and fully insured.",
+        q: `How do I verify a locksmith is legitimate before letting them in?`,
+        a: `A legitimate locksmith should be able to show you photo identification, proof of professional registration or trade association membership, and evidence of insurance. William Bullard carries a photographic ID card, his Master Locksmiths Association membership, and documentation confirming his listing on the Metropolitan Police approved contractor scheme. He is also DBS (Disclosure and Barring Service) checked and holds comprehensive public liability insurance. You can verify his credentials independently through the MLA website or by contacting the Metropolitan Police.`,
       },
     ];
   }
@@ -326,28 +326,28 @@ export function getFAQItems(serviceSlug: ServiceSlug, borough: Borough): { q: st
   // safe-engineer
   return [
     {
-      q: `Do you offer safe opening in ${borough.name}?`,
-      a: `Yes — safe engineer services are available in ${borough.name} by appointment. We specialise in non-destructive opening, which means we open your safe without damaging it in the vast majority of cases.`,
+      q: `How does non-destructive safe opening work?`,
+      a: `Non-destructive safe opening uses specialist techniques to open a safe without drilling, cutting or forcing the door. The exact method depends on the safe type: mechanical combination locks may be opened through manipulation (listening and feeling for the lock's internal gates), while electronic locks can sometimes be bypassed through diagnostic override procedures. Key-operated safes may be picked or decoded. The advantage is that the safe remains fully functional afterwards — the door, lock and body are undamaged, and the safe can continue to be used with a new combination or key. Bullard Locks achieves non-destructive opening in approximately 85% of cases.`,
     },
     {
-      q: `What brands of safe can you open in ${borough.name}?`,
-      a: "We work on all major safe brands including Chubb, Fichet, Burton, Dudley, De Raat, Phoenix, Brattonsound and many more. If in doubt, call us with the make and model.",
+      q: `What safe brands can you work on?`,
+      a: `Bullard Locks services all major safe brands sold in the UK, including Chubb, Fichet-Bauche, Burton Safes, Dudley Safes, De Raat, Phoenix Safe, SMP Security, Brattonsound, Securikey, Burg-Wächter and Yale. This extends to older and discontinued models — many safes in London properties date back decades and were manufactured by companies like Milner, Ratner or Thomas Withers. If you can provide the make and model number (usually on a plate inside the door or on the base), William can confirm compatibility before visiting.`,
     },
     {
-      q: `Do you come to ${borough.name}, or do I need to bring the safe to you?`,
-      a: `We come to you. Our safe engineer service is fully mobile and covers ${borough.name} and the wider London area by appointment.`,
+      q: `Do you travel to ${borough.name} for safe work?`,
+      a: `Yes. The safe engineer service is fully mobile — William Bullard travels to your home or business premises in ${borough.name} with all specialist tools and equipment. There is no need to transport the safe anywhere. For London appointments, William visits to assess the safe, provides a written quote, and in most cases completes the work during the same visit. Heavier safes (floor-standing models bolted to concrete) are always worked on in situ.`,
     },
     {
-      q: `How long does safe opening take?`,
-      a: "This depends on the make, model and nature of the problem. Most non-destructive openings are completed within 1–2 hours. We'll give you an honest assessment before we begin.",
+      q: `How long does it take to open a safe?`,
+      a: `The time required to open a safe depends on its make, model, lock type and the reason it won't open. A straightforward electronic safe with a flat battery can sometimes be resolved in under 30 minutes. A high-security mechanical combination safe requiring manipulation may take 2–4 hours. Drilling — used only as a last resort on safes that cannot be opened non-destructively — typically takes 1–3 hours depending on the safe's hardplate and relocker configuration. William provides an honest time estimate before work begins, so there are no surprises.`,
     },
     {
-      q: `Can you install a new safe in ${borough.name}?`,
-      a: `Yes — we supply and install safes for homes and businesses across ${borough.name}. We'll help you choose the right safe for your security needs and budget, and arrange professional fitting.`,
+      q: `Can you supply and install a new safe in ${borough.name}?`,
+      a: `Yes. Bullard Locks supplies and installs safes for both homes and businesses across ${borough.name}. Safe selection depends on what you need to protect and your insurance requirements — domestic safes are typically rated to £1,000–£10,000 cash cover, while commercial safes range from £10,000 to £150,000+ at Eurograde levels. William advises on the right specification, handles delivery, and professionally installs the safe — including bolting to floors or walls where required. All installations meet insurance underwriter requirements.`,
     },
     {
-      q: `Is the safe engineer service available UK-wide?`,
-      a: "Yes — while we're based in North London, our safe engineer service covers the whole of the UK by appointment. Please call us to discuss your requirements and we'll arrange a convenient time.",
+      q: `Is the safe engineer service available outside London?`,
+      a: `Yes. While Bullard Locks is based in North London and primarily serves the Greater London area, the safe engineer service is available UK-wide by appointment. Safe work outside London is scheduled in advance to allow for travel time, and is particularly common for commercial clients with safes in multiple locations. Call 07809 887 883 to discuss your requirements — William will confirm availability, travel arrangements and provide a quote before committing to a visit.`,
     },
   ];
 }

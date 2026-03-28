@@ -864,7 +864,11 @@ const schema = [
 
   function showError(msg: string) {
     formStatus.className = 'form-status error';
-    formStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${msg}`;
+    formStatus.textContent = '';
+    const icon = document.createElement('i');
+    icon.className = 'fas fa-exclamation-circle';
+    formStatus.appendChild(icon);
+    formStatus.appendChild(document.createTextNode(' ' + msg));
     formStatus.style.display = 'block';
   }
 

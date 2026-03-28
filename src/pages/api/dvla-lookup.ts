@@ -1,6 +1,13 @@
 import type { APIRoute } from 'astro';
+import { checkRateLimit, checkOrigin } from '../../utils/api-security';
 
 export const POST: APIRoute = async ({ request }) => {
+  // Security: rate limit and origin check
+  const rateLimited = checkRateLimit(request, { maxRequests: 10, windowMs: 60_000, prefix: 'dvla' });
+  if (rateLimited) return rateLimited;
+  const originBlocked = checkOrigin(request);
+  if (originBlocked) return originBlocked;
+
   try {
     const body = await request.json();
     const { registration } = body;

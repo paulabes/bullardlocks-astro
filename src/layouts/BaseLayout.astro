@@ -12,6 +12,7 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   schema?: object | object[];
+  preloadImage?: string;
 }
 
 const {
@@ -20,7 +21,8 @@ const {
   canonicalUrl = Astro.url.href,
   ogImage = 'https://bullardlocks.com/images/william-bullard-trusted-london-locksmith.jpg',
   ogType = 'website',
-  schema
+  schema,
+  preloadImage
 } = Astro.props;
 
 const siteUrl = 'https://bullardlocks.com';
@@ -68,6 +70,9 @@ const siteUrl = 'https://bullardlocks.com';
   <link rel="alternate" hreflang="en-GB" href={canonicalUrl} />
   <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
+  <!-- Preload hero image for LCP -->
+  {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
+
   <!-- Preconnect to external resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -95,11 +100,12 @@ const siteUrl = 'https://bullardlocks.com';
 </head>
 
 <body class="antialiased">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <div class="bg-grid-overlay" aria-hidden="true"></div>
 
   <Header />
 
-  <main class="main-content">
+  <main class="main-content" id="main-content">
     <slot />
   </main>
 

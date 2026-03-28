@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { checkRateLimit, checkOrigin } from '../../utils/api-security';
 
 // UK postcode patterns — full and partial (outcode only like N8, SW1, EC1)
 const UK_POSTCODE_REGEX = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
@@ -323,6 +324,12 @@ function getRandomResponse(pool: string[]): string {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  // Security: rate limit and origin check
+  const rateLimited = checkRateLimit(request, { maxRequests: 15, windowMs: 60_000, prefix: 'chat' });
+  if (rateLimited) return rateLimited;
+  const originBlocked = checkOrigin(request);
+  if (originBlocked) return originBlocked;
+
   try {
     const body = await request.json();
     const { messages } = body;
