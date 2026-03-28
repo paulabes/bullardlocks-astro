@@ -236,7 +236,7 @@ export const POST: APIRoute = async ({ request }) => {
       '': 'Not specified',
     };
 
-    const recipient = to || 'william@bullardlocks.co.uk';
+    const recipient = to || 'william@bullardlocks.com';
     const isChatbotLead = type === 'chatbot-lead' || type === 'chatbot';
     const hasPhotos = photoAttachments.length > 0;
 

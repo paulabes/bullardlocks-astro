@@ -98,7 +98,7 @@ src/
 
 - **AI Chatbot** - Gemini-powered lead capture with DVLA vehicle lookup, coverage verification, photo upload suggestions
 - **~50 pages** - 10 boroughs x 3 services with unique content, FAQs, and schema
-- **Email system** - Contact form, callback form, and chatbot leads via Resend (to william@bullardlocks.co.uk)
+- **Email system** - Contact form, callback form, and chatbot leads via Resend (to william@bullardlocks.com)
 - **Photo upload** - Drag & drop on contact form, sent as email attachments
 - **Spam protection** - Server-side validation, profanity filtering, gibberish detection
 
