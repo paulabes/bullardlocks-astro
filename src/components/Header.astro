@@ -73,22 +73,26 @@
     <ul class="mobile-nav-links">
       <li><a href="/">Home</a></li>
       <li class="mobile-accordion">
-        <button class="mobile-accordion-btn" aria-expanded="false">
-          Services <i class="fas fa-chevron-down mobile-chevron"></i>
-        </button>
+        <div class="mobile-accordion-header">
+          <a href="/services" class="mobile-accordion-link">Services</a>
+          <button class="mobile-accordion-toggle" aria-expanded="false" aria-label="Toggle services submenu">
+            <i class="fas fa-chevron-down mobile-chevron"></i>
+          </button>
+        </div>
         <ul class="mobile-sub-links">
-          <li><a href="/services" class="mobile-view-all">All Services</a></li>
           <li><a href="/services/auto-locksmith">Auto Locksmith</a></li>
           <li><a href="/services/emergency-locksmith">Emergency Locksmith</a></li>
           <li><a href="/services/safe-engineer">Safe Engineer</a></li>
         </ul>
       </li>
       <li class="mobile-accordion">
-        <button class="mobile-accordion-btn" aria-expanded="false">
-          Locations <i class="fas fa-chevron-down mobile-chevron"></i>
-        </button>
+        <div class="mobile-accordion-header">
+          <a href="/locations" class="mobile-accordion-link">Locations</a>
+          <button class="mobile-accordion-toggle" aria-expanded="false" aria-label="Toggle locations submenu">
+            <i class="fas fa-chevron-down mobile-chevron"></i>
+          </button>
+        </div>
         <ul class="mobile-sub-links">
-          <li><a href="/locations" class="mobile-view-all">All Locations</a></li>
           <li><a href="/locations/haringey">Haringey</a></li>
           <li><a href="/locations/barnet">Barnet</a></li>
           <li><a href="/locations/camden">Camden</a></li>
@@ -519,28 +523,41 @@
     padding: 10px 0;
   }
 
-  .mobile-accordion-btn {
-    background: none;
-    border: none;
-    color: var(--color-text-main);
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 10px 0;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
+  .mobile-accordion-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
+  .mobile-accordion-link {
+    flex: 1;
+  }
+
+  .mobile-accordion-toggle {
+    background: none;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .mobile-accordion-toggle:hover,
+  .mobile-accordion-toggle:active {
+    background: rgba(0,0,0,0.05);
+  }
+
   .mobile-chevron {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    color: var(--color-text-main);
     transition: transform 0.2s ease;
   }
 
-  .mobile-accordion-btn[aria-expanded="true"] .mobile-chevron {
+  .mobile-accordion-toggle[aria-expanded="true"] .mobile-chevron {
     transform: rotate(180deg);
   }
 
@@ -562,10 +579,6 @@
     padding: 8px 0;
   }
 
-  .mobile-view-all {
-    color: var(--color-accent) !important;
-    font-weight: 600 !important;
-  }
 
   /* Tablet — hide button text, keep icons */
   @media (max-width: 1200px) {
@@ -650,11 +663,11 @@
   });
 
   // Accordion toggles
-  document.querySelectorAll('.mobile-accordion-btn').forEach(btn => {
+  document.querySelectorAll('.mobile-accordion-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!expanded));
-      const sub = btn.nextElementSibling as HTMLElement;
+      const sub = btn.closest('.mobile-accordion')?.querySelector('.mobile-sub-links') as HTMLElement;
       sub?.classList.toggle('open');
     });
   });
