@@ -68,6 +68,17 @@ export default defineConfig({
       },
     }),
   ],
+  redirects: {
+    '/index.html': '/',
+    '/about.html': '/about',
+    '/services.html': '/services',
+    '/contact.html': '/contact',
+    '/locations.html': '/locations',
+    '/privacy-policy.html': '/privacy-policy',
+    '/services/emergency-locksmith.html': '/services/emergency-locksmith',
+    '/services/auto-locksmith.html': '/services/auto-locksmith',
+    '/services/safe-engineer.html': '/services/safe-engineer',
+  },
   adapter: vercel({
     webAnalytics: { enabled: true }
   }),
