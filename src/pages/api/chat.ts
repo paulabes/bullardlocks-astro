@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { checkRateLimit, checkOrigin } from '../../utils/api-security';
 
+export const prerender = false;
+
 // UK postcode patterns — full and partial (outcode only like N8, SW1, EC1)
 const UK_POSTCODE_REGEX = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
 const UK_OUTCODE_REGEX = /^[A-Z]{1,2}\d[A-Z\d]?$/i;

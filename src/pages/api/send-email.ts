@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { checkRateLimit, checkOrigin } from '../../utils/api-security';
 
+export const prerender = false;
+
 interface EmailData {
   name: string;
   phone: string;

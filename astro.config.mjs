@@ -83,6 +83,5 @@ export default defineConfig({
     webAnalytics: { enabled: true }
   }),
   trailingSlash: 'never',
-  output: 'server',
   server: { port: 3000 }
 });
