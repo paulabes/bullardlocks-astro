@@ -539,13 +539,11 @@ const schema = [
   }
 
   .hero-link {
-    color: white;
-    text-decoration: underline;
-    text-decoration-color: var(--color-accent);
-    text-underline-offset: 3px;
+    color: var(--color-accent);
+    text-decoration: none;
     transition: color 0.2s;
   }
-  .hero-link:hover { color: var(--color-accent); }
+  .hero-link:hover { text-decoration: underline; }
 
   /* CTAs */
   .hero-ctas {
