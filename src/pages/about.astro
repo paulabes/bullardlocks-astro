@@ -167,11 +167,11 @@ const schema = [
           </p>
 
           <p class="story-text">
-            Based in <strong>Crouch End, North London</strong>, I've spent 30 years getting to know the streets, properties, and people of this area. From the Victorian terraces of Islington to the mansion flats of Hampstead, I've seen — and solved — every kind of lock problem you can imagine.
+            Based in <strong>Crouch End, North London</strong>, I've spent 30 years getting to know the streets, properties, and people of this area. From the Victorian terraces of <a href="/locations/islington">Islington</a> to the mansion flats of <a href="/locations/camden">Hampstead</a>, I've seen — and solved — every kind of lock problem you can imagine.
           </p>
 
           <p class="story-text">
-            What sets me apart from larger operations is simple: when you call Bullard Locks, you get me. Not a call centre, not a franchise operative — William Bullard, in person, at your door. I carry out all the work myself, which means consistent standards and someone who stands behind every job.
+            What sets me apart from larger operations is simple: when you call Bullard Locks, you get me. Not a call centre, not a franchise operative — William Bullard, in person, at your door. Whether it's <a href="/services/auto-locksmith">car key replacement</a>, an <a href="/services/emergency-locksmith">emergency lockout</a>, or <a href="/services/safe-engineer">safe engineering</a>, I carry out all the work myself — consistent standards and someone who stands behind every job.
           </p>
 
           <p class="story-text">
@@ -464,6 +464,15 @@ const schema = [
     font-size: 1rem;
     margin: 0 0 18px;
   }
+
+  .story-text a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(31, 174, 155, 0.4);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+  .story-text a:hover { text-decoration-color: var(--color-accent); }
 
   .story-quote {
     margin: 32px 0 0;

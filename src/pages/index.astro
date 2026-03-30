@@ -41,6 +41,7 @@ const schema = [
       "https://instagram.com/bullardlocks",
       "https://linkedin.com/company/bullardlocks"
     ],
+    "aggregateRating": {"@type": "AggregateRating","ratingValue": "5.0","reviewCount": "23","bestRating": "5"},
     "founder": {"@type": "Person","name": "William Bullard","jobTitle": "Auto Locksmith & Safe Engineer"},
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -127,7 +128,7 @@ const schema = [
       <!-- Lead -->
       <p class="hero-lead">
         Based in Crouch End N8, serving North &amp; Central London for over 30 years.
-        Car key replacement, emergency lockouts and professional safe cracker —
+        <a href="/services/auto-locksmith" class="hero-link">Car key replacement</a>, <a href="/services/emergency-locksmith" class="hero-link">emergency lockouts</a> and professional <a href="/services/safe-engineer" class="hero-link">safe cracker</a> —
         no call-out fee.
       </p>
 
@@ -189,7 +190,7 @@ const schema = [
             <span class="text-accent">Trusted by London.</span>
           </h2>
           <p class="william-lead">
-            I'm William Bullard, a fully independent locksmith based in Crouch End N8. For over three decades I've provided rapid, professional locksmith services across North and Central London — from car key replacements to complex safe engineering.
+            I'm <a href="/about">William Bullard</a>, a fully independent locksmith based in Crouch End N8. For over three decades I've provided rapid, professional locksmith services across <a href="/locations">North and Central London</a> — from <a href="/services/auto-locksmith">car key replacements</a> to complex <a href="/services/safe-engineer">safe engineering</a>.
           </p>
           <p class="william-body">
             My work is trusted and approved by the Metropolitan Police and British Gas. I carry full photo ID, am DBS checked, and always provide a fixed quote before starting any job. No hidden fees, ever.
@@ -537,6 +538,15 @@ const schema = [
     margin: 0 0 40px;
   }
 
+  .hero-link {
+    color: white;
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+  .hero-link:hover { color: var(--color-accent); }
+
   /* CTAs */
   .hero-ctas {
     display: flex;
@@ -662,6 +672,15 @@ const schema = [
     line-height: 1.75;
     margin: 0 0 28px;
   }
+
+  .william-lead a, .william-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(31, 174, 155, 0.4);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+  .william-lead a:hover, .william-body a:hover { text-decoration-color: var(--color-accent); }
 
   .william-creds {
     list-style: none;
