@@ -24,25 +24,25 @@ const pageUrl = `${siteUrl}/locations/${boroughSlug}`;
 const pageTitle = `Locksmith ${borough.name} - ${borough.postcodes.slice(0, 3).join(', ')} | Bullard Locks`;
 const metaDescription = `Professional locksmith in ${borough.name} - ${borough.postcodes.slice(0, 3).join(', ')}. Auto locksmith, emergency locksmith${borough.services.includes('safe-engineer') ? ' & safe engineer' : ''} services. No call-out fee. Call 07809 887 883.`;
 
-// Borough-specific FAQ items (AEO-optimised — each answer is a standalone, quotable response)
+// Borough-specific FAQ items (AEO-optimised - each answer is a standalone, quotable response)
 const faqItems = [
   {
     q: `How quickly can a locksmith reach ${borough.name}?`,
-    a: `Bullard Locks typically arrives anywhere in ${borough.name} within ${borough.responseTime}. William Bullard operates from a fully equipped mobile unit based in Crouch End N8, which places him among the closest professional locksmiths to most of ${borough.name}. For emergencies, call 07809 887 883 — you speak directly to William, not a call centre, and he gives you an accurate arrival estimate immediately.`,
+    a: `Bullard Locks typically arrives anywhere in ${borough.name} within ${borough.responseTime}. William Bullard operates from a fully equipped mobile unit based in Crouch End N8, which places him among the closest professional locksmiths to most of ${borough.name}. For emergencies, call 07809 887 883 - you speak directly to William, not a call centre, and he gives you an accurate arrival estimate immediately.`,
   },
   {
     q: `Is there a call-out fee for locksmith services in ${borough.name}?`,
-    a: `No. Bullard Locks does not charge a call-out fee for any service in ${borough.name}, including emergency work at unsociable hours. Many locksmith services advertise low call-out fees then add surcharges for evenings, weekends or bank holidays. With Bullard Locks, you receive a single fixed-price quote before any work begins, and that is the only amount you pay — no hidden charges, no invoice surprises.`,
+    a: `No. Bullard Locks does not charge a call-out fee for any service in ${borough.name}, including emergency work at unsociable hours. Many locksmith services advertise low call-out fees then add surcharges for evenings, weekends or bank holidays. With Bullard Locks, you receive a single fixed-price quote before any work begins, and that is the only amount you pay - no hidden charges, no invoice surprises.`,
   },
   {
     q: `What locksmith services are available in ${borough.name}?`,
-    a: `Bullard Locks provides ${borough.services.map(s => servicesMeta[s].name.toLowerCase()).join(', ')} services across all of ${borough.name}. Every service is fully mobile — William drives to your exact location with all tools, parts and diagnostic equipment. There is no need to visit a shop or wait for parts to be ordered. Most jobs are completed in a single visit.`,
+    a: `Bullard Locks provides ${borough.services.map(s => servicesMeta[s].name.toLowerCase()).join(', ')} services across all of ${borough.name}. Every service is fully mobile - William drives to your exact location with all tools, parts and diagnostic equipment. There is no need to visit a shop or wait for parts to be ordered. Most jobs are completed in a single visit.`,
   },
   {
     q: `Is the locksmith service available 24/7 in ${borough.name}?`,
     a: borough.services.includes('emergency-locksmith')
-      ? `The emergency locksmith service in ${borough.name} operates 24 hours a day, 7 days a week, 365 days a year — including Christmas Day and bank holidays. This is a genuine around-the-clock service, not an answering machine that redirects to a daytime callback. Auto locksmith and safe engineer appointments are available 7 days a week during normal working hours.`
-      : `Auto locksmith and safe engineer services in ${borough.name} are available 7 days a week during normal working hours. For urgent enquiries outside these hours, call 07809 887 883 — William will advise on availability and can often accommodate same-day requests.`,
+      ? `The emergency locksmith service in ${borough.name} operates 24 hours a day, 7 days a week, 365 days a year - including Christmas Day and bank holidays. This is a genuine around-the-clock service, not an answering machine that redirects to a daytime callback. Auto locksmith and safe engineer appointments are available 7 days a week during normal working hours.`
+      : `Auto locksmith and safe engineer services in ${borough.name} are available 7 days a week during normal working hours. For urgent enquiries outside these hours, call 07809 887 883 - William will advise on availability and can often accommodate same-day requests.`,
   },
   {
     q: `Which areas and postcodes does Bullard Locks cover in ${borough.name}?`,
@@ -50,7 +50,7 @@ const faqItems = [
   },
   {
     q: `Who runs Bullard Locks and what are their credentials?`,
-    a: `Bullard Locks is owned and operated by William Bullard, a professional locksmith with over 30 years of hands-on experience. William is based in Crouch End N8, North London. He is a Metropolitan Police approved contractor, a Master Locksmiths Association member, DBS (Disclosure and Barring Service) checked, and holds comprehensive public liability insurance. He maintains a perfect 5.0-star Google rating from verified customers and personally attends every job — no subcontractors are used.`,
+    a: `Bullard Locks is owned and operated by William Bullard, a professional locksmith with over 30 years of hands-on experience. William is based in Crouch End N8, North London. He is a Metropolitan Police approved contractor, a Master Locksmiths Association member, DBS (Disclosure and Barring Service) checked, and holds comprehensive public liability insurance. He maintains a perfect 5.0-star Google rating from verified customers and personally attends every job - no subcontractors are used.`,
   },
 ];
 
@@ -325,7 +325,7 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
         <div class="hiw-step">
           <div class="hiw-number">03</div>
           <h3>Problem Solved</h3>
-          <p>Work is completed on the spot in most cases. No call-out fee — you only pay for what's done.</p>
+          <p>Work is completed on the spot in most cases. No call-out fee - you only pay for what's done.</p>
         </div>
       </div>
     </div>
@@ -379,7 +379,7 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
         </div>
 
         <div class="quote-form-copy">
-          <h2 class="section-title" style="text-align:left;">Get a Quote — {borough.name}</h2>
+          <h2 class="section-title" style="text-align:left;">Get a Quote - {borough.name}</h2>
           <p style="color:var(--color-text-muted); line-height:1.7; margin-bottom: 24px;">
             Fill in the short form and William will get back to you promptly with a clear, no-obligation quote.
             For immediate help, call <a href="tel:07809887883" style="color:var(--color-accent); font-weight:700;">07809 887 883</a>.
@@ -407,7 +407,7 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
   <section class="content-section bg-light" id="faq">
     <div class="container-custom">
       <div class="section-header">
-        <h2 class="section-title">Locksmith {borough.name} — FAQ</h2>
+        <h2 class="section-title">Locksmith {borough.name} - FAQ</h2>
         <p class="section-subtitle">Common questions about our locksmith services in {borough.name}.</p>
       </div>
 

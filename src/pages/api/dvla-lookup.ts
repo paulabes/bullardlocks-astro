@@ -28,7 +28,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (!DVLA_API_KEY) {
       // Return mock data for development/testing
-      // DVLA_API_KEY not configured — return fallback response
+      // DVLA_API_KEY not configured - return fallback response
       return new Response(
         JSON.stringify({
           success: true,

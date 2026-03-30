@@ -8,7 +8,7 @@ const schema = [
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Auto Locksmith London — Service Locations by Borough",
+    "name": "Auto Locksmith London - Service Locations by Borough",
     "description": "Bullard Locks covers North and Central London boroughs for auto locksmith, emergency locksmith and safe engineer services.",
     "url": "https://bullardlocks.com/locations",
     "itemListElement": boroughs.map((b, i) => ({
@@ -16,7 +16,7 @@ const schema = [
       "position": i + 1,
       "item": {
         "@type": "LocksmithBusiness",
-        "name": `Bullard Locks — ${b.name}`,
+        "name": `Bullard Locks - ${b.name}`,
         "url": `https://bullardlocks.com/locations/${b.slug}`,
         "areaServed": b.name
       }
@@ -35,7 +35,7 @@ const schema = [
 
 <BaseLayout
   title="Locksmith London - All Boroughs & Services | Bullard Locks"
-  description="Auto locksmith near me — find your local locksmith across North and Central London. Choose your borough for local coverage, pricing and response times. No call-out fee."
+  description="Auto locksmith near me - find your local locksmith across North and Central London. Choose your borough for local coverage, pricing and response times. No call-out fee."
   canonicalUrl="https://bullardlocks.com/locations"
   schema={schema}
   preloadImage="/images/hero-emergency-locksmith.webp"
@@ -146,7 +146,7 @@ const schema = [
                     <i class="fas fa-check"></i>
                   </a>
                 ) : (
-                  <span class="matrix-na" title="Not available in this area">—</span>
+                  <span class="matrix-na" title="Not available in this area">-</span>
                 )}
               </div>
             ))}
@@ -167,7 +167,7 @@ const schema = [
                   <i class="fas fa-check"></i>
                 </a>
               ) : (
-                <span class="matrix-na" title="Not available">—</span>
+                <span class="matrix-na" title="Not available">-</span>
               )}
             </div>
           ))}
@@ -186,7 +186,7 @@ const schema = [
     <div class="container-custom">
       <div class="section-header">
         <h2 class="section-title">Professional <span class="text-accent">Locksmith Services</span></h2>
-        <p class="section-subtitle">Expert security solutions for vehicles, homes and businesses — rapid response across London.</p>
+        <p class="section-subtitle">Expert security solutions for vehicles, homes and businesses - rapid response across London.</p>
       </div>
       <ServiceCards />
     </div>
@@ -194,7 +194,7 @@ const schema = [
 
   <CTASection
     title="Not Sure If We Cover Your Area?"
-    subtitle="Call us on 07809 887 883 or WhatsApp — we'll let you know our response time for your exact location."
+    subtitle="Call us on 07809 887 883 or WhatsApp - we'll let you know our response time for your exact location."
   />
 </BaseLayout>
 

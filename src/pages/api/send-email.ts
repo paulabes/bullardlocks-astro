@@ -250,7 +250,7 @@ export const POST: APIRoute = async ({ request }) => {
     const hasPhotos = photoAttachments.length > 0;
 
     const photoNote = hasPhotos
-      ? `<div class="field"><span class="label">Photos attached:</span><p>${photoAttachments.length} photo(s) attached — see attachments below.</p></div>`
+      ? `<div class="field"><span class="label">Photos attached:</span><p>${photoAttachments.length} photo(s) attached - see attachments below.</p></div>`
       : '';
 
     const emailStyles = `

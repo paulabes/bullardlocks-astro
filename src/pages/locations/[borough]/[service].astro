@@ -70,7 +70,7 @@ const siteUrl = 'https://bullardlocks.com';
 const pageUrl = `${siteUrl}/locations/${boroughSlug}/${serviceSlug}`;
 const geoData = boroughGeoData[boroughSlug!];
 
-// HowTo schema — service-specific steps
+// HowTo schema - service-specific steps
 const howToSchema = serviceSlug === 'auto-locksmith' ? {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
@@ -79,7 +79,7 @@ const howToSchema = serviceSlug === 'auto-locksmith' ? {
   totalTime: 'PT90M',
   estimatedCost: { '@type': 'MonetaryAmount', currency: 'GBP', value: '80-300' },
   step: [
-    { '@type': 'HowToStep', position: 1, name: 'Stay calm and check all doors', text: 'Before calling a locksmith, check all doors, the boot, and any windows that may be slightly open. If you have a spare key nearby, try to retrieve it. Do not attempt to force the door open — this can cause costly damage to the lock mechanism and door frame.' },
+    { '@type': 'HowToStep', position: 1, name: 'Stay calm and check all doors', text: 'Before calling a locksmith, check all doors, the boot, and any windows that may be slightly open. If you have a spare key nearby, try to retrieve it. Do not attempt to force the door open - this can cause costly damage to the lock mechanism and door frame.' },
     { '@type': 'HowToStep', position: 2, name: 'Call a qualified auto locksmith', text: 'Call Bullard Locks on 07809 887 883. Provide your exact location, the vehicle make, model and year, and a description of the problem. You will receive an estimated arrival time and a fixed price quote before the locksmith dispatches.' },
     { '@type': 'HowToStep', position: 3, name: 'Wait in a safe location', text: 'Stay near the vehicle in a safe, well-lit area. If you are in a car park, inform the attendant. If on a public road, ensure the vehicle is not causing an obstruction. The locksmith will call when nearby.' },
     { '@type': 'HowToStep', position: 4, name: 'Locksmith opens the vehicle', text: 'The auto locksmith uses specialist non-destructive tools to gain entry to the vehicle without damaging the lock, paintwork or door seals. Most vehicle lockouts are resolved within 15–30 minutes of the locksmith arriving.' },
@@ -91,10 +91,10 @@ const howToSchema = serviceSlug === 'auto-locksmith' ? {
   description: `Step-by-step guide for dealing with a home lockout in ${borough.name}. Emergency locksmith help is available 24/7 within ${borough.responseTime}.`,
   totalTime: 'PT60M',
   step: [
-    { '@type': 'HowToStep', position: 1, name: 'Check all entry points', text: 'Check all doors and accessible windows before calling a locksmith. If you live in a shared building, try the intercom or contact your landlord or managing agent for a spare key. Do not attempt to force any door or window — this may cause damage and could trigger an alarm.' },
+    { '@type': 'HowToStep', position: 1, name: 'Check all entry points', text: 'Check all doors and accessible windows before calling a locksmith. If you live in a shared building, try the intercom or contact your landlord or managing agent for a spare key. Do not attempt to force any door or window - this may cause damage and could trigger an alarm.' },
     { '@type': 'HowToStep', position: 2, name: 'Call an emergency locksmith', text: 'Call Bullard Locks on 07809 887 883 (available 24/7, 365 days). Describe the lock type if you can (Yale nightlatch, Euro cylinder, multipoint UPVC) and your exact address. You will receive an arrival estimate and upfront price before the locksmith dispatches.' },
     { '@type': 'HowToStep', position: 3, name: 'Verify the locksmith\'s identity', text: 'When the locksmith arrives, ask to see photo identification and proof of professional registration. A legitimate locksmith will carry an ID card, trade association membership, and be happy to show you these documents before starting work.' },
-    { '@type': 'HowToStep', position: 4, name: 'Locksmith gains entry and secures the property', text: 'The locksmith uses specialist non-destructive techniques to open the door. In most cases, the existing lock can be used again. If the lock needs replacing — for example, after a break-in — the locksmith fits a new British Standard lock on the same visit.' },
+    { '@type': 'HowToStep', position: 4, name: 'Locksmith gains entry and secures the property', text: 'The locksmith uses specialist non-destructive techniques to open the door. In most cases, the existing lock can be used again. If the lock needs replacing - for example, after a break-in - the locksmith fits a new British Standard lock on the same visit.' },
   ],
 } : {
   '@context': 'https://schema.org',
@@ -103,10 +103,10 @@ const howToSchema = serviceSlug === 'auto-locksmith' ? {
   description: `Step-by-step guide for dealing with a safe that won't open. Professional safe engineer services available in ${borough.name} by appointment.`,
   totalTime: 'PT180M',
   step: [
-    { '@type': 'HowToStep', position: 1, name: 'Try the obvious solutions first', text: 'For electronic safes, replace the battery (usually a 9V or 4×AA behind the keypad). Try the combination slowly and deliberately — rushing is the most common cause of failed attempts. For key-operated safes, try lubricating the keyhole with graphite spray. Do not force the handle or attempt to drill the safe yourself.' },
+    { '@type': 'HowToStep', position: 1, name: 'Try the obvious solutions first', text: 'For electronic safes, replace the battery (usually a 9V or 4×AA behind the keypad). Try the combination slowly and deliberately - rushing is the most common cause of failed attempts. For key-operated safes, try lubricating the keyhole with graphite spray. Do not force the handle or attempt to drill the safe yourself.' },
     { '@type': 'HowToStep', position: 2, name: 'Note the safe details', text: 'Write down the safe make, model number, and the type of lock (electronic keypad, mechanical dial, key). This information is usually on a plate inside the door or on the base of the safe. Having these details ready helps the safe engineer prepare the correct tools.' },
     { '@type': 'HowToStep', position: 3, name: 'Contact a qualified safe engineer', text: 'Call Bullard Locks on 07809 887 883. Provide the safe details and describe the problem. You will receive an honest assessment of the likely method, time required and cost before any appointment is booked.' },
-    { '@type': 'HowToStep', position: 4, name: 'Safe engineer opens and services the safe', text: 'The safe engineer attempts non-destructive opening first — this preserves the safe for continued use. If the safe must be drilled (a last resort), the engineer will discuss this with you before proceeding. After opening, the combination or key is reset so the safe can be used again.' },
+    { '@type': 'HowToStep', position: 4, name: 'Safe engineer opens and services the safe', text: 'The safe engineer attempts non-destructive opening first - this preserves the safe for continued use. If the safe must be drilled (a last resort), the engineer will discuss this with you before proceeding. After opening, the combination or key is reset so the safe can be used again.' },
   ],
 };
 
@@ -405,7 +405,7 @@ const schema = [
         <div class="hiw-step">
           <div class="hiw-number">03</div>
           <h3>Problem Solved</h3>
-          <p>Work is completed on the spot in most cases. No call-out fee — you only pay for what's done.</p>
+          <p>Work is completed on the spot in most cases. No call-out fee - you only pay for what's done.</p>
         </div>
       </div>
     </div>
@@ -431,7 +431,7 @@ const schema = [
   <section class="content-section bg-light" id="faq">
     <div class="container-custom">
       <div class="section-header">
-        <h2 class="section-title">{service.name} {borough.name} — FAQ</h2>
+        <h2 class="section-title">{service.name} {borough.name} - FAQ</h2>
         <p class="section-subtitle">Common questions about our {service.name.toLowerCase()} service in {borough.name}.</p>
       </div>
 
