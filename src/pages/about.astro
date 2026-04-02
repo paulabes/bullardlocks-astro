@@ -9,7 +9,7 @@ const heroImage = '/images/william-bullard-trusted-london-locksmith.webp';
 const schema = [
   {
     '@context': 'https://schema.org',
-    '@type': 'AboutPage',
+    '@type': ['WebPage', 'AboutPage'],
     name: 'About William Bullard - Bullard Locks',
     description: 'William Bullard is an independent North London locksmith with over 30 years of experience. Met Police approved, British Gas emergency contractor, DBS checked.',
     url: 'https://bullardlocks.com/about',
@@ -20,7 +20,7 @@ const schema = [
     name: 'William Bullard',
     jobTitle: 'Auto Locksmith & Safe Engineer',
     description: 'William Bullard is an independent auto locksmith and safe engineer based in Crouch End N8, North London. 30+ years experience. Metropolitan Police approved contractor and British Gas emergency access contractor.',
-    worksFor: { '@type': 'LocksmithBusiness', name: 'Bullard Locks', url: 'https://bullardlocks.com' },
+    worksFor: { '@type': ['LocalBusiness', 'LocksmithBusiness'], name: 'Bullard Locks', url: 'https://bullardlocks.com' },
     knowsAbout: ['Auto Locksmith', 'Car Key Replacement', 'Emergency Locksmith', 'Safe Engineer', 'Non-Destructive Entry'],
     address: {
       '@type': 'PostalAddress',
@@ -30,7 +30,7 @@ const schema = [
       postalCode: 'N8 9TA',
       addressCountry: 'GB',
     },
-    telephone: '07809887883',
+    telephone: '+447809887883',
     url: 'https://bullardlocks.com/about',
   },
   {

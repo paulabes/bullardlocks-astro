@@ -15,7 +15,7 @@ const schema = [
       "@type": "ListItem",
       "position": i + 1,
       "item": {
-        "@type": "LocksmithBusiness",
+        "@type": ["LocalBusiness", "LocksmithBusiness"],
         "name": `Bullard Locks - ${b.name}`,
         "url": `https://bullardlocks.com/locations/${b.slug}`,
         "areaServed": b.name

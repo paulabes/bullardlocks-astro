@@ -12,9 +12,9 @@ const schema = [
     name: 'Safe Engineer UK-Wide',
     serviceType: ['Safe Opening', 'Safe Cracking', 'Safe Installation', 'Safe Repair', 'Combination Change'],
     provider: {
-      '@type': 'LocksmithBusiness',
+      '@type': ['LocalBusiness', 'LocksmithBusiness'],
       name: 'Bullard Locks',
-      telephone: '07809887883',
+      telephone: '+447809887883',
       url: 'https://bullardlocks.com',
       address: {
         '@type': 'PostalAddress',
@@ -71,8 +71,7 @@ const schema = [
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://bullardlocks.com/' },
       { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://bullardlocks.com/locations' },
-      { '@type': 'ListItem', position: 3, name: 'UK-Wide', item: 'https://bullardlocks.com/locations/uk-wide/safe-engineer' },
-      { '@type': 'ListItem', position: 4, name: 'Safe Engineer', item: 'https://bullardlocks.com/locations/uk-wide/safe-engineer' },
+      { '@type': 'ListItem', position: 3, name: 'UK-Wide Safe Engineer', item: 'https://bullardlocks.com/locations/uk-wide/safe-engineer' },
     ],
   },
 ];
