@@ -66,7 +66,7 @@ const heroImages: Record<ServiceSlug, string> = {
 const heroImage = heroImages[serviceSlug as ServiceSlug];
 
 // Schema
-const siteUrl = 'https://bullardlocks.com';
+const siteUrl = 'https://www.bullardlocks.com';
 const pageUrl = `${siteUrl}/locations/${boroughSlug}/${serviceSlug}`;
 const geoData = boroughGeoData[boroughSlug!];
 
@@ -119,7 +119,7 @@ const schema = [
       '@type': ['LocalBusiness', 'LocksmithBusiness'],
       name: 'Bullard Locks',
       telephone: '+447809887883',
-      url: 'https://bullardlocks.com',
+      url: 'https://www.bullardlocks.com',
       image: `${siteUrl}/images/william-bullard-trusted-london-locksmith.webp`,
       priceRange: '££',
       openingHoursSpecification: [
@@ -204,7 +204,7 @@ const schema = [
   title={pageTitle}
   description={metaDescription}
   canonicalUrl={pageUrl}
-  ogImage={`https://bullardlocks.com${heroImage}`}
+  ogImage={`https://www.bullardlocks.com${heroImage}`}
   schema={schema}
   preloadImage={heroImage}
 >

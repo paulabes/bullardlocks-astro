@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import { boroughs } from './src/data/locations.ts';
 
-const siteUrl = 'https://bullardlocks.com';
+const siteUrl = 'https://www.bullardlocks.com';
 const lastmod = new Date().toISOString();
 
 const dynamicPages = boroughs.flatMap(({ slug, services }) => [

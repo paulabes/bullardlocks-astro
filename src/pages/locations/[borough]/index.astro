@@ -18,7 +18,7 @@ const { borough: boroughSlug } = Astro.params;
 const borough = boroughs.find((b) => b.slug === boroughSlug);
 if (!borough) return new Response(null, { status: 404 });
 
-const siteUrl = 'https://bullardlocks.com';
+const siteUrl = 'https://www.bullardlocks.com';
 const pageUrl = `${siteUrl}/locations/${boroughSlug}`;
 
 const pageTitle = `Locksmith ${borough.name} - ${borough.postcodes.slice(0, 3).join(', ')} | Bullard Locks`;
@@ -157,7 +157,7 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
   title={pageTitle}
   description={metaDescription}
   canonicalUrl={pageUrl}
-  ogImage="https://bullardlocks.com/images/hero-emergency-locksmith.webp"
+  ogImage="https://www.bullardlocks.com/images/hero-emergency-locksmith.webp"
   schema={schema}
   preloadImage={heroImage}
 >
