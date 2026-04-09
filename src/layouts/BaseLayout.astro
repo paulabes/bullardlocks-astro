@@ -14,6 +14,7 @@ interface Props {
   ogType?: string;
   schema?: object | object[];
   preloadImage?: string;
+  robots?: string;
 }
 
 const {
@@ -23,7 +24,8 @@ const {
   ogImage = 'https://www.bullardlocks.com/images/william-bullard-trusted-london-locksmith.jpg',
   ogType = 'website',
   schema,
-  preloadImage
+  preloadImage,
+  robots = 'index, follow'
 } = Astro.props;
 
 const siteUrl = 'https://www.bullardlocks.com';
@@ -58,7 +60,7 @@ const siteUrl = 'https://www.bullardlocks.com';
 
   <!-- Additional Meta Tags -->
   <meta name="author" content="William Bullard" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content={robots} />
   <meta name="geo.region" content="GB-LND" />
   <meta name="geo.placename" content="London" />
 

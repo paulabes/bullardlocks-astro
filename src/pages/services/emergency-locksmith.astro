@@ -43,34 +43,38 @@ const schema = [
       {
         '@type': 'Question',
         name: 'How much does an emergency locksmith call-out cost in North London?',
-        acceptedAnswer: { '@type': 'Answer', text: 'There is no call-out fee. You pay only for the work done. William provides a fixed quote before any work begins so there are no surprises.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks does not charge a call-out fee for any emergency locksmith work in North London, regardless of the time of day. Many locksmith services advertise low headline rates then add surcharges for evenings, weekends, or bank holidays. With Bullard Locks, William provides a single fixed-price quote before any work begins - that is the only amount you pay. There are no hidden charges, no invoice surprises, and no additional fees for unsociable hours. This transparent pricing policy applies to all emergency work including lockouts, break-in repairs, and urgent lock changes across all North London boroughs.' },
       },
       {
         '@type': 'Question',
         name: 'How quickly can you reach me?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Typical response time is 20–40 minutes across North London. Call 07809 887 883 for an accurate ETA based on your exact location.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks typically arrives within 20 to 40 minutes across North London for emergency calls. William operates from a fully equipped mobile workshop based in Crouch End N8, which places him among the closest professional locksmiths to most of Haringey, Islington, Camden, Barnet, Hackney, and Enfield. When you call 07809 887 883, you speak directly to William - not a call centre - and he gives you an accurate arrival estimate based on your exact location and current traffic conditions. For addresses in the immediate Crouch End area, response times can be as fast as 15 minutes.' },
       },
       {
         '@type': 'Question',
         name: 'Will you damage my door or lock to get me back in?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Non-destructive entry is always the first approach. In the vast majority of cases William can gain entry without any damage to your door, frame, or lock.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Non-destructive entry is always the first approach used by Bullard Locks. William is a specialist in non-destructive lock opening techniques developed over 30 years of practice, and in the vast majority of lockout situations he gains entry without any damage to the door, frame, lock, or paintwork. This skill is one of the reasons William holds Metropolitan Police and British Gas approved contractor status - both organisations require non-destructive entry as a condition of their contracts. If a lock does need to be drilled as a last resort, William discusses this with you first and fits a new British Standard replacement on the same visit.' },
       },
       {
         '@type': 'Question',
         name: 'Do you work 24/7?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The emergency locksmith service operates 24 hours a day, 7 days a week including weekends and bank holidays.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'The Bullard Locks emergency locksmith service operates 24 hours a day, 7 days a week, 365 days a year - including Christmas Day, New Year, and all bank holidays. This is a genuine around-the-clock service staffed by William personally, not an answering machine that redirects to a daytime callback or a national call centre that dispatches an unknown subcontractor. When you call 07809 887 883 at 3am on a Sunday, William answers the phone, provides a quote, and attends your location. The same experienced, Met Police approved locksmith handles every job regardless of when you call.' },
       },
       {
         '@type': 'Question',
         name: 'Can you help businesses as well as homes?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. William regularly attends commercial premises - shops, offices, and residential blocks - for emergency access, break-in repairs, and urgent lock changes.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks regularly attends commercial premises across North London for emergency locksmith work. This includes shops, offices, restaurants, residential blocks, surgeries, and warehouses. Common commercial jobs include emergency access after lockouts, break-in board-up and repair, urgent lock changes for staff security, and master key system issues. William carries a range of commercial-grade locks and cylinders in his mobile workshop, so most commercial lock replacements are completed on the first visit. As a Metropolitan Police approved contractor, William is trusted to work on premises where security and evidence preservation are critical.' },
       },
       {
         '@type': 'Question',
         name: 'What should I do if my property has been broken into?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Call the police first (999 or 101), then call William on 07809 887 883. He can attend to board up, repair, or replace locks to make your property secure again quickly.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'If your property has been broken into, call the police first on 999 (if intruders may still be present) or 101 (to report after the event). Do not touch or move anything until police have attended, as this preserves forensic evidence. Once the police have finished, call Bullard Locks on 07809 887 883. William can attend urgently to board up any damaged entry points, repair or replace compromised locks, and fit new British Standard BS3621 locks that satisfy home insurance requirements. Securing the property quickly is important to prevent repeat intrusions. William carries boarding materials and replacement locks as standard stock in his mobile workshop.' },
       },
     ],
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.faq-answer'],
+    },
   },
   {
     '@context': 'https://schema.org',
@@ -392,7 +396,7 @@ const schema = [
               <span>How much does an emergency locksmith cost in North London?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">There is no call-out fee. You pay only for the work completed. William provides a clear, fixed quote before starting so there are no hidden charges or surprises.</div>
+            <div class="faq-answer">Bullard Locks does not charge a call-out fee for any emergency locksmith work in North London, regardless of the time of day. Many locksmith services advertise low headline rates then add surcharges for evenings, weekends, or bank holidays. With Bullard Locks, William provides a single fixed-price quote before any work begins - that is the only amount you pay. There are no hidden charges, no invoice surprises, and no additional fees for unsociable hours. This transparent pricing policy applies to all emergency work including lockouts, break-in repairs, and urgent lock changes across all North London boroughs.</div>
           </details>
 
           <details class="faq-item">
@@ -400,7 +404,7 @@ const schema = [
               <span>How quickly can you reach me?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Typical response across North London is 20–40 minutes. Call 07809 887 883 for an accurate ETA based on your exact location and current conditions.</div>
+            <div class="faq-answer">Bullard Locks typically arrives within 20 to 40 minutes across North London for emergency calls. William operates from a fully equipped mobile workshop based in Crouch End N8, which places him among the closest professional locksmiths to most of Haringey, Islington, Camden, Barnet, Hackney, and Enfield. When you call 07809 887 883, you speak directly to William - not a call centre - and he gives you an accurate arrival estimate based on your exact location and current traffic conditions. For addresses in the immediate Crouch End area, response times can be as fast as 15 minutes.</div>
           </details>
 
           <details class="faq-item">
@@ -408,7 +412,7 @@ const schema = [
               <span>Will you damage my door to get me back in?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Non-destructive entry is always the first approach. In the vast majority of cases William can open the lock without any damage to your door, frame, or the lock itself.</div>
+            <div class="faq-answer">Non-destructive entry is always the first approach used by Bullard Locks. William is a specialist in non-destructive lock opening techniques developed over 30 years of practice, and in the vast majority of lockout situations he gains entry without any damage to the door, frame, lock, or paintwork. This skill is one of the reasons William holds Metropolitan Police and British Gas approved contractor status - both organisations require non-destructive entry as a condition of their contracts. If a lock does need to be drilled as a last resort, William discusses this with you first and fits a new British Standard replacement on the same visit.</div>
           </details>
 
           <details class="faq-item">
@@ -416,7 +420,7 @@ const schema = [
               <span>Is the service available 24 hours a day?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Yes. The emergency locksmith service operates 24/7, 365 days a year - including weekends and bank holidays. If you have an emergency, call immediately.</div>
+            <div class="faq-answer">The Bullard Locks emergency locksmith service operates 24 hours a day, 7 days a week, 365 days a year - including Christmas Day, New Year, and all bank holidays. This is a genuine around-the-clock service staffed by William personally, not an answering machine that redirects to a daytime callback or a national call centre that dispatches an unknown subcontractor. When you call 07809 887 883 at 3am on a Sunday, William answers the phone, provides a quote, and attends your location. The same experienced, Met Police approved locksmith handles every job regardless of when you call.</div>
           </details>
 
           <details class="faq-item">
@@ -424,7 +428,7 @@ const schema = [
               <span>Can you help with commercial properties and businesses?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Absolutely. William regularly attends shops, offices, and commercial premises for emergency access, post-break-in repairs, and urgent lock changes. He is British Gas approved emergency access contractor.</div>
+            <div class="faq-answer">Bullard Locks regularly attends commercial premises across North London for emergency locksmith work. This includes shops, offices, restaurants, residential blocks, surgeries, and warehouses. Common commercial jobs include emergency access after lockouts, break-in board-up and repair, urgent lock changes for staff security, and master key system issues. William carries a range of commercial-grade locks and cylinders in his mobile workshop, so most commercial lock replacements are completed on the first visit. As a Metropolitan Police approved contractor, William is trusted to work on premises where security and evidence preservation are critical.</div>
           </details>
 
           <details class="faq-item">
@@ -432,7 +436,7 @@ const schema = [
               <span>My property has been broken into - what should I do?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Call the police first (999 for emergencies, 101 non-urgent), then call William on 07809 887 883. He can attend promptly to repair, replace, or upgrade your locks and make the property secure again.</div>
+            <div class="faq-answer">If your property has been broken into, call the police first on 999 (if intruders may still be present) or 101 (to report after the event). Do not touch or move anything until police have attended, as this preserves forensic evidence. Once the police have finished, call Bullard Locks on 07809 887 883. William can attend urgently to board up any damaged entry points, repair or replace compromised locks, and fit new British Standard BS3621 locks that satisfy home insurance requirements. Securing the property quickly is important to prevent repeat intrusions. William carries boarding materials and replacement locks as standard stock in his mobile workshop.</div>
           </details>
         </div>
         <div class="faq-sidebar">

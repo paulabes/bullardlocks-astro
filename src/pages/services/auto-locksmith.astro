@@ -47,34 +47,38 @@ const schema = [
       {
         '@type': 'Question',
         name: 'Can you cut and program a new car key on the spot?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Yes. William\'s fully equipped mobile unit carries key-cutting machinery and dealer-level programming equipment. In most cases a new key is cut, programmed, and ready to use during a single visit.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks provides on-the-spot car key cutting and programming from a fully equipped mobile workshop. William carries dealer-level diagnostic and programming equipment, blank key stock, and precision key-cutting machinery for all major vehicle manufacturers. In most cases, a brand-new key is cut, electronically programmed to your vehicle\'s immobiliser, and fully tested within a single visit - typically 30 to 90 minutes. There is no need to have the car towed to a dealership or wait days for parts. Call 07809 887 883 for immediate availability across North and Central London.' },
       },
       {
         '@type': 'Question',
         name: 'What makes and models do you cover?',
-        acceptedAnswer: { '@type': 'Answer', text: 'All major manufacturers including Ford, Vauxhall, BMW, Mercedes, Audi, Volkswagen, Toyota, Honda, Nissan, Peugeot, Renault, Citroën, Kia, Hyundai, and many more. Call to confirm your specific vehicle.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks covers all major vehicle manufacturers sold in the UK, including Ford, Vauxhall, BMW, Mercedes-Benz, Audi, Volkswagen, Toyota, Honda, Nissan, Peugeot, Renault, Citroen, Kia, Hyundai, Land Rover, Jaguar, Volvo, MINI, SEAT, Skoda, Fiat, and many more. William carries programming equipment that supports vehicles from the early 2000s through to the latest 2026 models, including proximity keys, smart keys, and keyless entry systems. If you are unsure whether your vehicle is covered, call 07809 887 883 - William can confirm immediately based on your make, model, and year.' },
       },
       {
         '@type': 'Question',
         name: 'How much does a replacement car key cost?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Prices vary by vehicle make, model, and key type. William provides a firm quote before any work begins. There is no call-out fee and no hidden charges.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Replacement car key prices depend on the vehicle make, model, year, and key type. A basic transponder key for a common vehicle is typically less expensive than a proximity smart key for a premium brand. William provides a firm, fixed-price quote before any work begins - the price quoted is the only amount you pay. There is no call-out fee, no surcharge for evenings or weekends, and no hidden charges. In most cases, an auto locksmith replacement key costs significantly less than the equivalent from a main dealer, often saving 30-50% while being completed on the same day at your location.' },
       },
       {
         '@type': 'Question',
         name: 'How long does car key replacement take?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Most replacement car keys are cut and programmed within 30–90 minutes on site. Complex keys for newer high-security vehicles may take a little longer.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Most replacement car keys are cut and fully programmed within 30 to 90 minutes on site. Standard transponder keys for common makes like Ford, Vauxhall, and Volkswagen are typically at the faster end. More complex keys - such as proximity smart keys for BMW, Mercedes, or Audi - may take closer to 90 minutes due to the additional programming steps required. William works at your location, so there is no waiting for a tow truck or parts delivery. Once the new key is programmed, it is tested to ensure it starts the engine, locks and unlocks all doors, and activates any remote functions before the job is signed off.' },
       },
       {
         '@type': 'Question',
         name: 'I have lost all my car keys - can you still help?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Even if you have no keys at all, William can cut and program a completely new key set for most vehicles. This is often significantly cheaper than going to a main dealer.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks specialises in all-keys-lost situations, which is one of the most common reasons customers call. Even with no working keys at all, William can generate, cut, and program a completely new key set for most vehicles directly at your location. This involves reading the vehicle\'s immobiliser data, cutting a fresh key blade to match the locks, and programming the new transponder chip so the car recognises and starts with the replacement key. This service is often 30-50% cheaper than going through a main dealer and avoids the cost and inconvenience of having the vehicle towed to a dealership.' },
       },
       {
         '@type': 'Question',
         name: 'Do you repair and reprogram key fobs and transponders?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Faulty key fob buttons, dead transponder chips, and remote entry issues are all handled. William also supplies and programs proximity/smart keys for keyless entry systems.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks handles all key fob and transponder issues, including faulty buttons, worn cases, dead transponder chips, battery replacement, and remote central locking faults. William also supplies and programs proximity keys and smart keys for keyless entry and push-button start systems. If your key fob has stopped locking or unlocking the car remotely, or the engine immobiliser no longer recognises your key, these problems are usually resolved within a single visit. Replacement fob cases and buttons are carried as standard stock, and reprogramming is done on-site using the same dealer-level equipment used by main franchised dealers.' },
       },
     ],
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.faq-answer'],
+    },
   },
   {
     '@context': 'https://schema.org',
@@ -433,7 +437,7 @@ const schema = [
               <span>Can you cut and program a new car key on the spot?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Yes. William's fully equipped mobile unit carries key-cutting machinery and dealer-level programming equipment. In most cases a new key is cut, programmed, and ready to use during a single visit to your location.</div>
+            <div class="faq-answer">Bullard Locks provides on-the-spot car key cutting and programming from a fully equipped mobile workshop. William carries dealer-level diagnostic and programming equipment, blank key stock, and precision key-cutting machinery for all major vehicle manufacturers. In most cases, a brand-new key is cut, electronically programmed to your vehicle's immobiliser, and fully tested within a single visit - typically 30 to 90 minutes. There is no need to have the car towed to a dealership or wait days for parts. Call 07809 887 883 for immediate availability across North and Central London.</div>
           </details>
 
           <details class="faq-item">
@@ -441,7 +445,7 @@ const schema = [
               <span>What vehicle makes and models do you cover?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">All major manufacturers including Ford, Vauxhall, BMW, Mercedes, Audi, Volkswagen, Toyota, Honda, Nissan, Peugeot, Renault, Citroën, Kia, Hyundai, and many more. Call to confirm your specific vehicle before booking.</div>
+            <div class="faq-answer">Bullard Locks covers all major vehicle manufacturers sold in the UK, including Ford, Vauxhall, BMW, Mercedes-Benz, Audi, Volkswagen, Toyota, Honda, Nissan, Peugeot, Renault, Citroen, Kia, Hyundai, Land Rover, Jaguar, Volvo, MINI, SEAT, Skoda, Fiat, and many more. William carries programming equipment that supports vehicles from the early 2000s through to the latest 2026 models, including proximity keys, smart keys, and keyless entry systems. If you are unsure whether your vehicle is covered, call 07809 887 883 - William can confirm immediately based on your make, model, and year.</div>
           </details>
 
           <details class="faq-item">
@@ -449,7 +453,7 @@ const schema = [
               <span>How much does a replacement car key cost?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Prices vary by vehicle make, model, and key type (standard, transponder, smart/proximity). William provides a firm, no-obligation quote before any work begins. There is no call-out fee and no hidden charges.</div>
+            <div class="faq-answer">Replacement car key prices depend on the vehicle make, model, year, and key type. A basic transponder key for a common vehicle is typically less expensive than a proximity smart key for a premium brand. William provides a firm, fixed-price quote before any work begins - the price quoted is the only amount you pay. There is no call-out fee, no surcharge for evenings or weekends, and no hidden charges. In most cases, an auto locksmith replacement key costs significantly less than the equivalent from a main dealer, often saving 30-50% while being completed on the same day at your location.</div>
           </details>
 
           <details class="faq-item">
@@ -457,7 +461,7 @@ const schema = [
               <span>How long does car key replacement take?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Most replacement keys are cut and programmed within 30–90 minutes on site. Complex keys for newer high-security vehicles with advanced encryption may take a little longer.</div>
+            <div class="faq-answer">Most replacement car keys are cut and fully programmed within 30 to 90 minutes on site. Standard transponder keys for common makes like Ford, Vauxhall, and Volkswagen are typically at the faster end. More complex keys - such as proximity smart keys for BMW, Mercedes, or Audi - may take closer to 90 minutes due to the additional programming steps required. William works at your location, so there is no waiting for a tow truck or parts delivery. Once the new key is programmed, it is tested to ensure it starts the engine, locks and unlocks all doors, and activates any remote functions before the job is signed off.</div>
           </details>
 
           <details class="faq-item">
@@ -465,7 +469,7 @@ const schema = [
               <span>I have lost all my car keys - can you still help?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Yes. Even with no keys at all, William can cut and program a completely new key set for most vehicles. This is typically faster and significantly cheaper than going to a main dealer.</div>
+            <div class="faq-answer">Bullard Locks specialises in all-keys-lost situations, which is one of the most common reasons customers call. Even with no working keys at all, William can generate, cut, and program a completely new key set for most vehicles directly at your location. This involves reading the vehicle's immobiliser data, cutting a fresh key blade to match the locks, and programming the new transponder chip so the car recognises and starts with the replacement key. This service is often 30-50% cheaper than going through a main dealer and avoids the cost and inconvenience of having the vehicle towed to a dealership.</div>
           </details>
 
           <details class="faq-item">
@@ -473,7 +477,7 @@ const schema = [
               <span>Do you repair and reprogram key fobs and transponders?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Yes. Faulty fob buttons, dead transponder chips, and unresponsive keyless entry systems are all handled. William also supplies and programs proximity/smart keys for modern keyless entry systems.</div>
+            <div class="faq-answer">Bullard Locks handles all key fob and transponder issues, including faulty buttons, worn cases, dead transponder chips, battery replacement, and remote central locking faults. William also supplies and programs proximity keys and smart keys for keyless entry and push-button start systems. If your key fob has stopped locking or unlocking the car remotely, or the engine immobiliser no longer recognises your key, these problems are usually resolved within a single visit. Replacement fob cases and buttons are carried as standard stock, and reprogramming is done on-site using the same dealer-level equipment used by main franchised dealers.</div>
           </details>
         </div>
         <div class="faq-sidebar">

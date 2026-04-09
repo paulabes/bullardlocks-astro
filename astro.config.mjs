@@ -8,10 +8,13 @@ import { boroughs } from './src/data/locations.ts';
 const siteUrl = 'https://www.bullardlocks.com';
 const lastmod = new Date().toISOString();
 
-const dynamicPages = boroughs.flatMap(({ slug, services }) => [
-  `${siteUrl}/locations/${slug}`,
-  ...services.map(s => `${siteUrl}/locations/${slug}/${s}`),
-]);
+const dynamicPages = [
+  ...boroughs.flatMap(({ slug, services }) => [
+    `${siteUrl}/locations/${slug}`,
+    ...services.map(s => `${siteUrl}/locations/${slug}/${s}`),
+  ]),
+  `${siteUrl}/locations/uk-wide/safe-engineer`,
+];
 
 import os from 'node:os';
 import path from 'node:path';
@@ -45,6 +48,11 @@ export default defineConfig({
 
         // Borough index pages
         if (url.match(/\/locations\/[^/]+\/?$/) && !url.endsWith('/locations/') && !url.endsWith('/locations')) {
+          return { ...item, lastmod, priority: 0.7, changefreq: 'monthly' };
+        }
+
+        // UK-wide safe engineer page
+        if (url.includes('/locations/uk-wide/safe-engineer')) {
           return { ...item, lastmod, priority: 0.7, changefreq: 'monthly' };
         }
 

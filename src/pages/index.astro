@@ -23,6 +23,8 @@ const schema = [
       "availableLanguage": ["en-GB"]
     },
     "priceRange": "££",
+    "currenciesAccepted": "GBP",
+    "paymentAccepted": "Cash, Credit Card, Debit Card, Bank Transfer",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "67 Weston Park",
@@ -32,14 +34,24 @@ const schema = [
     },
     "geo": {"@type": "GeoCoordinates","latitude": 51.5752,"longitude": -0.1157},
     "areaServed": [
-      "Crouch End (N8)","Islington (N1)","Camden (NW1)","Haringey (N4)","Barnet (EN5)","Enfield (EN2)","Finchley (N12)","Hampstead (NW3)","Highgate (N6)","Bloomsbury (WC1)","Holborn (WC2)","City of London (EC1 / EC2)","Westminster (SW1 / W1)"
+      {"@type": "City", "name": "Haringey", "containedInPlace": {"@type": "City", "name": "London"}},
+      {"@type": "City", "name": "Barnet", "containedInPlace": {"@type": "City", "name": "London"}},
+      {"@type": "City", "name": "Camden", "containedInPlace": {"@type": "City", "name": "London"}},
+      {"@type": "City", "name": "Islington", "containedInPlace": {"@type": "City", "name": "London"}},
+      {"@type": "City", "name": "Hackney", "containedInPlace": {"@type": "City", "name": "London"}},
+      {"@type": "City", "name": "Enfield", "containedInPlace": {"@type": "City", "name": "London"}},
+      {"@type": "City", "name": "Westminster", "containedInPlace": {"@type": "City", "name": "London"}},
+      {"@type": "City", "name": "City of London", "containedInPlace": {"@type": "City", "name": "London"}},
+      {"@type": "City", "name": "Kensington and Chelsea", "containedInPlace": {"@type": "City", "name": "London"}},
+      {"@type": "City", "name": "Hammersmith and Fulham", "containedInPlace": {"@type": "City", "name": "London"}}
     ],
     "openingHoursSpecification": {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens": "00:00","closes": "23:59"},
     "sameAs": [
-      "https://facebook.com/bullardlocks",
+      "https://g.page/bullardlocks",
+      "https://www.facebook.com/bullardlocks",
       "https://x.com/bullardlocks",
-      "https://instagram.com/bullardlocks",
-      "https://linkedin.com/company/bullardlocks"
+      "https://www.instagram.com/bullardlocks",
+      "https://www.linkedin.com/company/bullardlocks"
     ],
     "aggregateRating": {"@type": "AggregateRating","ratingValue": "5.0","reviewCount": "23","bestRating": "5","worstRating": "1","ratingCount": "23"},
     "founder": {"@type": "Person","name": "William Bullard","jobTitle": "Auto Locksmith & Safe Engineer"},

@@ -48,34 +48,38 @@ const schema = [
       {
         '@type': 'Question',
         name: 'What safe brands do you work with?',
-        acceptedAnswer: { '@type': 'Answer', text: 'All major manufacturers including Chubb, Phoenix, Dudley, Yale, Burton, SentrySafe, Honeywell, Securikey, De Raat, and many more. Call to confirm your specific safe.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks works with all major safe manufacturers sold in the UK and internationally. This includes Chubb, Phoenix Safe, Dudley Safes, Yale, Burton Safes, SentrySafe, Honeywell, Securikey, Fichet-Bauche, De Raat, Burg-Wachter, Titan, Safeguard, and many more. William has over 30 years of hands-on experience with residential, commercial, and high-security safes from these manufacturers, covering mechanical dial locks, electronic keypads, key locks, and dual-locking systems. If you have a safe that is not from a well-known brand - particularly older or imported models - call 07809 887 883 with the make and model number for confirmation.' },
       },
       {
         '@type': 'Question',
         name: 'How much does safe opening cost?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Cost depends on the safe type, locking mechanism, and method required to open it. William provides a clear, written quote before any work begins - no hidden fees.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Safe opening costs depend on the safe type, locking mechanism, and the method required to gain access. A small home safe with a jammed electronic keypad will cost less to open than a large commercial vault with a high-security mechanical dial. William provides a clear, written quote before any work begins - the quoted price is the only amount you pay. There is no charge if he is unable to open the safe. For UK-wide appointments, the quote includes travel costs. Most non-destructive openings are completed during a single visit, and William resets the combination or key so the safe can continue to be used afterwards.' },
       },
       {
         '@type': 'Question',
         name: 'How long does safe opening take?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Non-destructive opening typically takes 30 minutes to a few hours depending on the safe. More complex or older safes may require more time. A realistic estimate is given at the time of quoting.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Non-destructive safe opening typically takes between 30 minutes and a few hours, depending on the safe\'s construction, locking mechanism, and the reason it will not open. Common issues like a dead battery on an electronic keypad or a jammed bolt are usually resolved quickly. More complex situations - such as a mechanical dial lock with a broken relocker or an older safe with worn components - may take longer. William provides a realistic time estimate during the quoting stage. Approximately 85% of safes are opened non-destructively, preserving the safe for continued use after the combination or key is reset.' },
       },
       {
         '@type': 'Question',
         name: 'Can you come to my home or business anywhere in the UK?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Safe engineering is available UK-wide by appointment. Priority response is given to North London, but William regularly travels nationally for this specialist work.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks provides safe engineering services UK-wide by appointment. William regularly travels to homes and businesses across England, Scotland, Wales, and Northern Ireland for this specialist work. Safe engineering is a niche discipline that requires specific tools, knowledge, and experience - there are relatively few qualified safe engineers in the UK, which is why national travel is a standard part of this service. Priority response is given to North London and surrounding areas, but UK-wide appointments are typically arranged within a few working days. Travel costs are included in the written quote provided before booking.' },
       },
       {
         '@type': 'Question',
         name: 'What is the difference between a combination safe and a key safe?',
-        acceptedAnswer: { '@type': 'Answer', text: 'A combination safe opens via a dial or electronic keypad code. A key safe requires a physical key. Some safes use both. William handles opening, repair, and combination/key changes for both types.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'A combination safe opens using a numerical code entered via a mechanical dial or electronic keypad - there is no physical key involved in the primary locking mechanism. A key-operated safe requires a physical key to unlock. Many modern safes use dual locking, combining an electronic keypad with a key override or a dial with a secondary key lock for added security. Bullard Locks handles opening, repair, and combination or key changes for all three types. Electronic safes are the most common in domestic settings, while commercial safes often use mechanical dials or dual-lock configurations for insurance compliance.' },
       },
       {
         '@type': 'Question',
         name: 'Do you handle commercial and high-security safes?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Yes. William has experience with commercial-grade safes, deposit safes, fire-rated safes, floor and wall safes, and gun cabinets. All work is carried out discreetly and professionally.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bullard Locks has extensive experience with commercial-grade and high-security safes, including cash-rated deposit safes, Eurograde safes (Grades 0 through 6), fire-rated document safes, floor safes, wall safes, gun cabinets, and jewellery safes. William also works on time-lock mechanisms, dual-custody systems, and safes with anti-manipulation features like relockers and glass plates. All commercial work is carried out discreetly and professionally, with particular attention to security protocols. William is DBS checked, Metropolitan Police approved, and carries full public liability insurance - credentials that commercial clients and insurers require.' },
       },
     ],
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.faq-answer'],
+    },
   },
   {
     '@context': 'https://schema.org',
@@ -442,7 +446,7 @@ const schema = [
               <span>What safe brands do you work with?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">All major manufacturers including Chubb, Phoenix, Dudley, Yale, Burton, SentrySafe, Honeywell, Securikey, De Raat, and many more. Call to confirm your specific make and model.</div>
+            <div class="faq-answer">Bullard Locks works with all major safe manufacturers sold in the UK and internationally. This includes Chubb, Phoenix Safe, Dudley Safes, Yale, Burton Safes, SentrySafe, Honeywell, Securikey, Fichet-Bauche, De Raat, Burg-Wachter, Titan, Safeguard, and many more. William has over 30 years of hands-on experience with residential, commercial, and high-security safes from these manufacturers, covering mechanical dial locks, electronic keypads, key locks, and dual-locking systems. If you have a safe that is not from a well-known brand - particularly older or imported models - call 07809 887 883 with the make and model number for confirmation.</div>
           </details>
 
           <details class="faq-item">
@@ -450,7 +454,7 @@ const schema = [
               <span>How much does safe opening cost?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Cost depends on the safe type, the locking mechanism, and the method required to open it. William provides a clear, written quote before any work begins - no hidden fees or surprises.</div>
+            <div class="faq-answer">Safe opening costs depend on the safe type, locking mechanism, and the method required to gain access. A small home safe with a jammed electronic keypad will cost less to open than a large commercial vault with a high-security mechanical dial. William provides a clear, written quote before any work begins - the quoted price is the only amount you pay. There is no charge if he is unable to open the safe. For UK-wide appointments, the quote includes travel costs. Most non-destructive openings are completed during a single visit, and William resets the combination or key so the safe can continue to be used afterwards.</div>
           </details>
 
           <details class="faq-item">
@@ -458,7 +462,7 @@ const schema = [
               <span>How long does safe opening take?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Non-destructive opening typically takes 30 minutes to a few hours depending on the safe make, age, and locking mechanism. A realistic time estimate is given at the time of quoting.</div>
+            <div class="faq-answer">Non-destructive safe opening typically takes between 30 minutes and a few hours, depending on the safe's construction, locking mechanism, and the reason it will not open. Common issues like a dead battery on an electronic keypad or a jammed bolt are usually resolved quickly. More complex situations - such as a mechanical dial lock with a broken relocker or an older safe with worn components - may take longer. William provides a realistic time estimate during the quoting stage. Approximately 85% of safes are opened non-destructively, preserving the safe for continued use after the combination or key is reset.</div>
           </details>
 
           <details class="faq-item">
@@ -466,7 +470,7 @@ const schema = [
               <span>Can you travel to my location anywhere in the UK?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Yes. Safe engineering is available UK-wide by appointment. Priority response is given to North London and Greater London, but William regularly travels nationally for this specialist work.</div>
+            <div class="faq-answer">Bullard Locks provides safe engineering services UK-wide by appointment. William regularly travels to homes and businesses across England, Scotland, Wales, and Northern Ireland for this specialist work. Safe engineering is a niche discipline that requires specific tools, knowledge, and experience - there are relatively few qualified safe engineers in the UK, which is why national travel is a standard part of this service. Priority response is given to North London and surrounding areas, but UK-wide appointments are typically arranged within a few working days. Travel costs are included in the written quote provided before booking.</div>
           </details>
 
           <details class="faq-item">
@@ -474,7 +478,7 @@ const schema = [
               <span>What is the difference between a combination safe and a key safe?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">A combination safe opens via a dial or electronic keypad code. A key safe requires a physical key. Some safes use both. William handles opening, repair, and combination or key changes for all types.</div>
+            <div class="faq-answer">A combination safe opens using a numerical code entered via a mechanical dial or electronic keypad - there is no physical key involved in the primary locking mechanism. A key-operated safe requires a physical key to unlock. Many modern safes use dual locking, combining an electronic keypad with a key override or a dial with a secondary key lock for added security. Bullard Locks handles opening, repair, and combination or key changes for all three types. Electronic safes are the most common in domestic settings, while commercial safes often use mechanical dials or dual-lock configurations for insurance compliance.</div>
           </details>
 
           <details class="faq-item">
@@ -482,7 +486,7 @@ const schema = [
               <span>Do you handle commercial and high-security safes?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </summary>
-            <div class="faq-answer">Yes. William has experience with commercial-grade safes, deposit safes, fire-rated data safes, floor and wall safes, and gun cabinets. All work is carried out discreetly and professionally.</div>
+            <div class="faq-answer">Bullard Locks has extensive experience with commercial-grade and high-security safes, including cash-rated deposit safes, Eurograde safes (Grades 0 through 6), fire-rated document safes, floor safes, wall safes, gun cabinets, and jewellery safes. William also works on time-lock mechanisms, dual-custody systems, and safes with anti-manipulation features like relockers and glass plates. All commercial work is carried out discreetly and professionally, with particular attention to security protocols. William is DBS checked, Metropolitan Police approved, and carries full public liability insurance - credentials that commercial clients and insurers require.</div>
           </details>
         </div>
         <div class="faq-sidebar">
