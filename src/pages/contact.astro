@@ -187,14 +187,15 @@ const schema = [
               <label class="form-label">
                 <i class="fas fa-camera"></i> Attach Photos (optional)
               </label>
-              <div class="upload-zone" id="upload-zone">
+              <div id="upload-preview" class="upload-preview" style="display:none;"></div>
+              <label class="upload-zone" id="upload-zone">
                 <input
                   type="file"
                   id="photos"
                   name="photos"
                   accept="image/*"
                   multiple
-                  class="upload-input"
+                  class="upload-input-hidden"
                   aria-label="Upload photos"
                 />
                 <div class="upload-zone-content" id="upload-prompt">
@@ -206,8 +207,8 @@ const schema = [
                   </p>
                   <p class="upload-hint">JPG, PNG, HEIC up to 10MB each. Max 5 photos.</p>
                 </div>
-                <div class="upload-preview" id="upload-preview" style="display:none;"></div>
-              </div>
+              </label>
+              <p id="upload-error" class="upload-error" style="display:none;"></p>
             </div>
 
             <div id="form-status" class="form-status" style="display:none;"></div>
@@ -529,17 +530,15 @@ const schema = [
 
   /* Photo Upload Zone */
   .upload-zone {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 2px dashed rgba(0, 0, 0, 0.15);
     border-radius: 20px;
     background: white;
     transition: all 0.2s ease;
     cursor: pointer;
-    overflow: hidden;
     min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .upload-zone:hover,
@@ -548,19 +547,25 @@ const schema = [
     background: rgba(31, 174, 155, 0.03);
   }
 
-  .upload-input {
+  .upload-input-hidden {
     position: absolute;
-    inset: 0;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .upload-zone-content {
     text-align: center;
     padding: 24px;
-    pointer-events: none;
+  }
+
+  .upload-error {
+    color: #dc2626;
+    font-size: 0.85rem;
+    margin: 8px 0 0;
   }
 
   .upload-icon {
@@ -772,12 +777,14 @@ const schema = [
   const uploadInput = document.getElementById('photos') as HTMLInputElement;
   const uploadPrompt = document.getElementById('upload-prompt')!;
   const uploadPreview = document.getElementById('upload-preview')!;
+  const uploadError = document.getElementById('upload-error')!;
   const formStatus = document.getElementById('form-status')!;
   const submitBtn = form?.querySelector('.submit-btn') as HTMLButtonElement;
   const btnText = form?.querySelector('.btn-text') as HTMLSpanElement;
   const btnLoading = form?.querySelector('.btn-loading') as HTMLSpanElement;
 
   let selectedFiles: File[] = [];
+  let blobUrls: string[] = [];
 
   // Drag & Drop
   uploadZone.addEventListener('dragover', (e) => {
@@ -799,43 +806,83 @@ const schema = [
   uploadInput.addEventListener('change', () => {
     const files = Array.from(uploadInput.files || []);
     addFiles(files);
-    uploadInput.value = ''; // reset so same file can be re-added
+    uploadInput.value = '';
   });
 
   function addFiles(files: File[]) {
+    uploadError.style.display = 'none';
+    const maxSize = 10 * 1024 * 1024;
+    const tooLarge = files.filter(f => f.size > maxSize);
+    if (tooLarge.length > 0) {
+      uploadError.textContent = 'Some photos are over 10MB and were not added.';
+      uploadError.style.display = 'block';
+      files = files.filter(f => f.size <= maxSize);
+    }
     const remaining = 5 - selectedFiles.length;
+    if (remaining <= 0) {
+      uploadError.textContent = 'Maximum 5 photos allowed.';
+      uploadError.style.display = 'block';
+      return;
+    }
+    if (files.length > remaining) {
+      uploadError.textContent = `You can only upload ${remaining} more photo${remaining === 1 ? '' : 's'}.`;
+      uploadError.style.display = 'block';
+    }
     const toAdd = files.slice(0, remaining);
     selectedFiles = [...selectedFiles, ...toAdd];
     renderPreviews();
   }
 
   function removeFile(index: number) {
+    if (blobUrls[index]) URL.revokeObjectURL(blobUrls[index]);
     selectedFiles.splice(index, 1);
     renderPreviews();
   }
 
   function renderPreviews() {
+    // Revoke old blob URLs
+    blobUrls.forEach(url => URL.revokeObjectURL(url));
+    blobUrls = [];
+
     if (selectedFiles.length === 0) {
-      uploadPrompt.style.display = '';
+      uploadZone.style.display = '';
       uploadPreview.style.display = 'none';
       return;
     }
-    uploadPrompt.style.display = 'none';
-    uploadPreview.style.display = 'flex';
-    uploadPreview.innerHTML = selectedFiles.map((file, i) => {
-      const url = URL.createObjectURL(file);
-      return `
-        <div class="preview-item">
-          <img src="${url}" alt="Uploaded reference photo ${i + 1} of lock, key or safe issue" />
-          <button type="button" onclick="removeFileByIndex(${i})" aria-label="Remove photo ${i + 1}">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-      `;
-    }).join('');
-  }
 
-  (window as any).removeFileByIndex = removeFile;
+    uploadPreview.style.display = 'flex';
+    uploadPreview.innerHTML = '';
+
+    selectedFiles.forEach((file, i) => {
+      const url = URL.createObjectURL(file);
+      blobUrls.push(url);
+
+      const item = document.createElement('div');
+      item.className = 'preview-item';
+
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = `Photo ${i + 1}`;
+      img.onerror = () => { img.alt = 'Could not load preview'; };
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('aria-label', `Remove photo ${i + 1}`);
+      btn.innerHTML = '<i class="fas fa-times"></i>';
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        removeFile(i);
+      });
+
+      item.appendChild(img);
+      item.appendChild(btn);
+      uploadPreview.appendChild(item);
+    });
+
+    // Show the "add more" zone only if under 5
+    uploadZone.style.display = selectedFiles.length < 5 ? '' : 'none';
+  }
 
   // --- Client-side validation ---
   function validateForm(formData: FormData): string | null {
