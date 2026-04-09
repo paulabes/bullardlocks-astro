@@ -921,9 +921,10 @@ const schema = [
   }
 
   // Resize image to max dimension and compress as JPEG
-  function resizeImage(file: File, maxSize: number, quality: number): Promise<string> {
+  function resizeImage(file: File, maxSize: number, quality: number): Promise<string | null> {
     return new Promise((resolve) => {
       const img = new Image();
+      const blobUrl = URL.createObjectURL(file);
       img.onload = () => {
         const canvas = document.createElement('canvas');
         let { width, height } = img;
@@ -941,10 +942,14 @@ const schema = [
         const ctx = canvas.getContext('2d')!;
         ctx.drawImage(img, 0, 0, width, height);
         const dataUrl = canvas.toDataURL('image/jpeg', quality);
-        // Strip the data:image/jpeg;base64, prefix
+        URL.revokeObjectURL(blobUrl);
         resolve(dataUrl.split(',')[1]);
       };
-      img.src = URL.createObjectURL(file);
+      img.onerror = () => {
+        URL.revokeObjectURL(blobUrl);
+        resolve(null);
+      };
+      img.src = blobUrl;
     });
   }
 
@@ -981,10 +986,12 @@ const schema = [
       // Resize and convert photos to base64 (max 800px, JPEG 0.7 quality)
       for (const file of selectedFiles) {
         const base64 = await resizeImage(file, 800, 0.7);
-        (payload.photos as { filename: string; content: string }[]).push({
-          filename: file.name.replace(/\.[^.]+$/, '.jpg'),
-          content: base64,
-        });
+        if (base64) {
+          (payload.photos as { filename: string; content: string }[]).push({
+            filename: file.name.replace(/\.[^.]+$/, '.jpg'),
+            content: base64,
+          });
+        }
       }
 
       const response = await fetch('/api/send-email', {
