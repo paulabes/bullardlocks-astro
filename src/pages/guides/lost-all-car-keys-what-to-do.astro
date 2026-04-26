@@ -1,0 +1,449 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const siteUrl = 'https://www.bullardlocks.com';
+const pageUrl = `${siteUrl}/guides/lost-all-car-keys-what-to-do`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Lost All Your Car Keys? Here\'s What to Do',
+    description: 'Step-by-step guide to the all-keys-lost situation. How an auto locksmith resolves it without dealer involvement, what it costs, and how long it takes.',
+    image: `${siteUrl}/images/hero-auto-locksmith.webp`,
+    datePublished: '2026-04-26',
+    dateModified: '2026-04-26',
+    author: {
+      '@type': 'Person',
+      name: 'William Bullard',
+      jobTitle: 'Auto Locksmith & Safe Engineer',
+      url: `${siteUrl}/about`,
+      worksFor: { '@id': `${siteUrl}/#organization` },
+    },
+    publisher: { '@id': `${siteUrl}/#organization` },
+    mainEntityOfPage: pageUrl,
+    inLanguage: 'en-GB',
+    articleSection: 'Auto',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'What to do when you have lost all your car keys',
+    description: 'Step-by-step guide for when every key to your vehicle is lost or stolen.',
+    totalTime: 'PT90M',
+    estimatedCost: { '@type': 'MonetaryAmount', currency: 'GBP', value: '250' },
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Confirm the keys are genuinely lost (not just misplaced)',
+        text: 'Before calling a locksmith, search the obvious places thoroughly: pockets of recently worn coats, between sofa cushions, the bottom of bags, the kitchen, and the area around your front door. Check whether anyone in the household borrowed the spare. Roughly one in five "lost all keys" calls end up resolved by finding a key during the search - it is worth 30 minutes before committing to a replacement.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Note your vehicle make, model, year and VIN',
+        text: 'The auto locksmith needs the make, model, year and VIN (vehicle identification number) to confirm key compatibility and prepare the correct programming equipment. The VIN is on the driver-side dashboard visible through the windscreen, on a sticker inside the driver door frame, and on the V5C (logbook). Have these details ready when you call.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Call a qualified mobile auto locksmith',
+        text: 'Call a Master Locksmiths Association registered or otherwise verifiable independent auto locksmith. Provide the vehicle details and your location. You will receive a fixed quote and an estimated arrival time. Refuse offers from anyone who will not commit to a written quote before attending.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Locksmith generates a new key from the immobiliser',
+        text: 'The locksmith reads the vehicle\'s immobiliser data via the OBD port (or via direct module access on some marques), cuts a fresh mechanical blade matching the door and ignition lock, and programmes a new transponder chip or proximity fob to the immobiliser. The process typically takes 30-90 minutes depending on the vehicle.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 5,
+        name: 'Existing keys are wiped (when possible)',
+        text: 'On most modern vehicles, the locksmith can wipe any other keys that may have been stolen so they no longer start the car or operate central locking. This is important if the keys may have been stolen rather than lost - it prevents subsequent vehicle theft using the missing keys.',
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/guides` },
+      { '@type': 'ListItem', position: 3, name: 'Lost All Car Keys', item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Lost All Car Keys? Step-by-Step Guide 2026 | Bullard Locks"
+  description="Lost every key to your car? Don't tow to the dealer. Here's exactly what to do, how an auto locksmith resolves it on-site, and what it costs."
+  canonicalUrl={pageUrl}
+  schema={schema}
+  datePublished="2026-04-26"
+  dateModified="2026-04-26"
+>
+  <article class="article-page">
+    <section class="article-hero bg-dark">
+      <div class="article-hero-overlay" aria-hidden="true"></div>
+      <div class="container-custom article-hero-content">
+        <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/guides">Guides</a>
+          <span aria-hidden="true">/</span>
+          <span>Lost All Car Keys</span>
+        </nav>
+        <span class="article-category">Auto Locksmith</span>
+        <h1 class="article-title">Lost All Your Car Keys? Here's What to Do</h1>
+        <p class="article-lead">
+          Every key gone, no spare in the drawer, the car parked exactly where you left it. This is
+          one of the most common reasons people call an auto locksmith - and it almost never needs
+          a tow truck or a main dealer visit. Here is the proper sequence.
+        </p>
+        <div class="article-byline">
+          <div class="article-byline-text">
+            <p class="byline-name">By <a href="/about">William Bullard</a></p>
+            <p class="byline-meta">Auto locksmith, Crouch End N8 · Published 26 April 2026 · 7 min read</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section bg-white">
+      <div class="container-custom article-body">
+        <p class="lead-paragraph">
+          A surprising number of "lost all keys" callers end up paying a small fortune to a main
+          dealer because they assume that's the only option. It almost never is. A qualified mobile
+          auto locksmith can generate a fresh key for most vehicles directly at the roadside,
+          typically for 30-50% less than the dealer route, and on the same day rather than the
+          following week.
+        </p>
+
+        <h2>Step 1 — Confirm the keys are actually lost</h2>
+
+        <p>
+          Roughly one in five "lost all keys" calls end up resolved by finding a key partway
+          through the search. Before committing to a full replacement, do a thorough sweep:
+          recently worn coat pockets, the bottom of bags, between sofa cushions, the kitchen
+          counter, and the area immediately around your front door. Check whether a partner,
+          flatmate or family member borrowed the spare and forgot to mention it.
+        </p>
+
+        <p>
+          If the keys may have been stolen (handbag taken, keys missing along with a wallet,
+          break-in at the house), this matters - it changes what your locksmith should do at
+          step 4.
+        </p>
+
+        <h2>Step 2 — Gather your vehicle details</h2>
+
+        <p>
+          The auto locksmith needs three things to confirm they can do the job and prepare the
+          right equipment:
+        </p>
+
+        <ul>
+          <li><strong>Make, model and year</strong> - e.g. "2019 Ford Fiesta Titanium"</li>
+          <li><strong>VIN (Vehicle Identification Number)</strong> - 17 characters, visible on the driver-side dashboard through the windscreen, on a sticker inside the driver door frame, and on the V5C logbook</li>
+          <li><strong>Where the car is parked</strong> - exact street, any access constraints (CPZ, gated estate, basement car park)</li>
+        </ul>
+
+        <p>
+          Having the VIN ready saves a lot of phone time. Without it, the locksmith may need to
+          travel to the car just to read it, then book a return visit with the right blank and
+          programming kit.
+        </p>
+
+        <h2>Step 3 — Call a qualified mobile auto locksmith</h2>
+
+        <p>
+          Look for a locksmith who is either Master Locksmiths Association registered or has a
+          verifiable independent presence (own website, real Google reviews under their actual
+          name, traceable address). Avoid the top paid Google search results for locksmith terms
+          - these are dominated by call-centre operations that subcontract jobs to whoever is
+          closest, with no quality control on pricing or workmanship.
+        </p>
+
+        <p>
+          A reputable
+          <a href="/services/auto-locksmith">auto locksmith</a> will:
+        </p>
+
+        <ul>
+          <li>Ask for vehicle details before quoting</li>
+          <li>Quote a fixed price (not "from £X")</li>
+          <li>Tell you whether the job is on-site or whether the car needs to come to them</li>
+          <li>Give a realistic time on site (most all-keys-lost jobs are 60-90 minutes)</li>
+          <li>Be willing to put it in writing before attending</li>
+        </ul>
+
+        <h2>Step 4 — The locksmith generates a new key</h2>
+
+        <p>
+          The actual process varies by manufacturer but the pattern is consistent:
+        </p>
+
+        <ol>
+          <li>
+            <strong>Read the immobiliser data.</strong> The locksmith connects to the vehicle's
+            OBD port (or, on some marques, accesses the immobiliser module directly) and reads
+            the security data needed to generate a new key paired to the car.
+          </li>
+          <li>
+            <strong>Cut the mechanical blade.</strong> Most modern keys still have a metal blade
+            that operates the door and ignition lock cylinders. The locksmith decodes the lock
+            (either by reading the door lock or by looking up codes from the VIN) and cuts a
+            fresh blade on a precision key-cutting machine in the van.
+          </li>
+          <li>
+            <strong>Programme the transponder or proximity chip.</strong> The new key contains
+            a transponder chip (or, for keyless-entry vehicles, a proximity fob with rolling-code
+            radio). The locksmith programmes this to the vehicle's immobiliser using
+            manufacturer-grade tooling - the same kit used by main dealers.
+          </li>
+          <li>
+            <strong>Test all functions.</strong> Door locking and unlocking, boot release,
+            ignition, engine start, and any remote alarm functions are tested before the key
+            is signed off.
+          </li>
+        </ol>
+
+        <p>
+          If the keys may have been stolen rather than lost, ask the locksmith to wipe the old
+          keys from the immobiliser. On most modern vehicles this is a simple step that
+          invalidates any missing keys so they cannot be used to start the car. This is important
+          for theft prevention - and most insurers expect it after a key-theft incident.
+        </p>
+
+        <h2>How long does it take?</h2>
+
+        <p>
+          Common UK makes (Ford, Vauxhall, Volkswagen, Toyota, Hyundai, Kia, Peugeot) generally
+          take 30-60 minutes from arrival to a working key. Premium marques (BMW, Mercedes,
+          Audi, Land Rover) typically take 60-90 minutes because of longer immobiliser handshakes
+          and additional security on newer generations. An older 2000s vehicle without proximity
+          entry is usually at the faster end; a 2024 keyless-entry vehicle is at the slower end.
+        </p>
+
+        <h2>What does it cost?</h2>
+
+        <p>
+          See the
+          <a href="/guides/locksmith-cost-london">full pricing guide</a> for ranges. Headline
+          figures for the all-keys-lost situation specifically:
+        </p>
+
+        <ul>
+          <li><strong>Common UK makes (transponder key):</strong> £200–£300 typical</li>
+          <li><strong>Premium marques (proximity smart key):</strong> £300–£500 typical</li>
+          <li><strong>Latest-generation keyless-entry on prestige cars:</strong> £400–£700 typical</li>
+        </ul>
+
+        <p>
+          Compared with the dealer route (vehicle-recovery tow + main dealer key + 3-7 day wait,
+          often £600-£1200+ all-in), the auto locksmith approach is faster and cheaper for the
+          vast majority of vehicles.
+        </p>
+
+        <h2>When the dealer actually is the right call</h2>
+
+        <p>
+          Auto locksmiths handle the overwhelming majority of all-keys-lost cases, but a few
+          edge cases genuinely need a dealer:
+        </p>
+
+        <ul>
+          <li>Some very recent (post-2023) Tesla, Porsche and high-end Mercedes models with
+          proprietary key systems that haven't yet been broken into independent tooling</li>
+          <li>Vehicles with documented immobiliser ECU faults that need replacing rather than
+          re-programming</li>
+          <li>Cars under finance / lease where the lease company specifies dealer-only servicing</li>
+        </ul>
+
+        <p>
+          A reputable locksmith will tell you up-front if your vehicle falls into one of these
+          categories. If they pretend they can do it and turn up unable to complete the job, you
+          are dealing with a chancer rather than a professional.
+        </p>
+
+        <h2>Avoiding it next time</h2>
+
+        <p>
+          Once you have a working key again, get a spare cut and programmed at the same visit.
+          A second key on the same job is significantly cheaper than calling out again later -
+          typically £80-£150 extra rather than the full call-out cost. Keep the spare in the
+          house, not in the same coat or bag as the primary.
+        </p>
+
+        <p>
+          For high-value cars, a Faraday pouch for the proximity fob blocks relay-attack signal
+          theft - a £10 measure that prevents one of the most common theft routes for keyless-
+          entry vehicles in London.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section bg-light">
+      <div class="container-custom article-related">
+        <h2 class="section-title">Related Reading</h2>
+        <div class="related-grid">
+          <a href="/guides/locksmith-cost-london" class="related-card">
+            <h3>Locksmith Cost London</h3>
+            <p>Honest 2026 pricing guide for emergency, auto and safe locksmith services across London.</p>
+          </a>
+          <a href="/guides/auto-locksmith-vs-dealer" class="related-card">
+            <h3>Auto Locksmith vs Main Dealer</h3>
+            <p>Cost, turnaround and capability compared. When the dealer wins, when the mobile locksmith wins.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <CTASection
+    title="Lost All Your Car Keys? Call Now."
+    subtitle="On-site key generation · No dealer needed · Fixed price up front"
+  />
+</BaseLayout>
+
+<style>
+  /* Shared article styles - duplicated to keep page self-contained */
+  .article-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    background: linear-gradient(135deg, #0e4a4d 0%, #061e20 100%);
+  }
+
+  .article-hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 25% 50%, rgba(31,174,155,0.18) 0%, transparent 60%); }
+
+  .article-hero-content { position: relative; z-index: 1; padding: 64px 0 56px; max-width: 800px; }
+
+  .article-category {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(31,174,155,0.18);
+    color: #5ee8d4;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .article-title {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.15;
+    margin: 0 0 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .article-lead {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin: 0 0 30px;
+  }
+
+  .article-byline {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .byline-name { color: white; font-weight: 700; font-size: 0.95rem; margin: 0; }
+  .byline-name a { color: var(--color-accent); text-decoration: none; }
+  .byline-name a:hover { text-decoration: underline; }
+  .byline-meta { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin: 4px 0 0; }
+
+  .article-body { max-width: 760px; }
+
+  .lead-paragraph {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--color-text-main);
+    margin: 0 0 36px;
+    font-weight: 500;
+  }
+
+  .article-body h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 48px 0 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .article-body h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 32px 0 12px;
+  }
+
+  .article-body p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+    margin: 0 0 18px;
+  }
+
+  .article-body p a, .article-body li a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .article-body p a:hover, .article-body li a:hover { text-decoration: underline; }
+
+  .article-body ol, .article-body ul {
+    margin: 0 0 22px;
+    padding-left: 22px;
+  }
+
+  .article-body li {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-body strong { color: var(--color-text-main); font-weight: 700; }
+
+  .article-related { max-width: 980px; }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  .related-card {
+    display: block;
+    padding: 22px 24px;
+    background: white;
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .related-card:hover { border-color: var(--color-accent); transform: translateY(-2px); }
+
+  .related-card h3 { font-size: 1.05rem; font-weight: 800; margin: 0 0 8px; color: var(--color-text-main); }
+  .related-card p { font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted); margin: 0; }
+
+  @media (max-width: 768px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>

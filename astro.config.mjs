@@ -13,6 +13,10 @@ const dynamicPages = [
     ...services.map(s => `${siteUrl}/locations/${slug}/${s}`),
   ]),
   `${siteUrl}/locations/uk-wide/safe-engineer`,
+  `${siteUrl}/guides`,
+  `${siteUrl}/guides/locksmith-cost-london`,
+  `${siteUrl}/guides/lost-all-car-keys-what-to-do`,
+  `${siteUrl}/guides/auto-locksmith-vs-dealer`,
 ];
 
 import os from 'node:os';
@@ -63,6 +67,16 @@ export default defineConfig({
         // Locations hub
         if (url === `${siteUrl}/locations` || url === `${siteUrl}/locations/`) {
           return { ...item, priority: 0.8, changefreq: 'monthly' };
+        }
+
+        // Guides hub
+        if (url === `${siteUrl}/guides` || url === `${siteUrl}/guides/`) {
+          return { ...item, priority: 0.7, changefreq: 'monthly' };
+        }
+
+        // Individual guide articles
+        if (url.match(/\/guides\/[^/]+\/?$/)) {
+          return { ...item, priority: 0.6, changefreq: 'monthly' };
         }
 
         // About, contact

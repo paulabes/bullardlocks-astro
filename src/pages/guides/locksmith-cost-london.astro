@@ -1,0 +1,583 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const siteUrl = 'https://www.bullardlocks.com';
+const pageUrl = `${siteUrl}/guides/locksmith-cost-london`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'How Much Does a Locksmith Cost in London? 2026 Pricing Guide',
+    description: 'A transparent guide to locksmith pricing in London for home, auto and safe services - what affects the price, typical ranges, and how to avoid scam callouts.',
+    image: `${siteUrl}/images/william-bullard-trusted-london-locksmith.jpg`,
+    datePublished: '2026-04-26',
+    dateModified: '2026-04-26',
+    author: {
+      '@type': 'Person',
+      name: 'William Bullard',
+      jobTitle: 'Auto Locksmith & Safe Engineer',
+      url: `${siteUrl}/about`,
+      worksFor: { '@id': `${siteUrl}/#organization` },
+    },
+    publisher: { '@id': `${siteUrl}/#organization` },
+    mainEntityOfPage: pageUrl,
+    inLanguage: 'en-GB',
+    articleSection: 'Pricing',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How much does an emergency locksmith cost in London?',
+        acceptedAnswer: { '@type': 'Answer', text: 'An emergency locksmith call-out for a non-destructive home lockout in London typically costs £80–£150 during normal hours, with reputable independent locksmiths quoting at the lower end. Replacing a Euro cylinder afterwards adds approximately £80–£140 depending on the security rating fitted. Be wary of any locksmith advertising "from £39" - these are usually national call centres that quote a low headline figure on the phone, dispatch a subcontractor, and produce an inflated invoice on completion.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does a replacement car key cost in London?',
+        acceptedAnswer: { '@type': 'Answer', text: 'A standard transponder car key for common UK makes (Ford, Vauxhall, Volkswagen, Toyota) typically costs £80–£180 supplied and programmed by a mobile auto locksmith. Proximity smart keys for premium vehicles such as BMW, Mercedes, Audi and Land Rover range from £150–£350. All-keys-lost situations cost slightly more because the immobiliser must be re-paired from scratch. Auto locksmith pricing is usually 30–50% lower than the equivalent main dealer cost, with same-day on-site service.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Are locksmith call-out fees standard?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Call-out fees vary widely. National chains and call-centre operations typically charge a separate call-out fee of £40–£90 on top of the work itself, often with surcharges for evenings, weekends and bank holidays. Independent local locksmiths usually quote a single fixed price with no separate call-out fee. Bullard Locks does not charge a call-out fee at any time of day - the price quoted is the only amount paid.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does it cost to open a safe in the UK?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Safe opening costs depend on the safe type and lock mechanism. A small electronic home safe with a flat battery is usually under £150. A standard mechanical combination safe is typically £180–£280 for non-destructive opening. High-security commercial safes (Eurograde 0–6, cash-rated drop safes) can range from £250 to £600+ depending on the manipulation time required and whether drilling becomes necessary as a last resort. A reputable safe engineer provides a written quote before work begins.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why are some locksmith quotes so much higher than others?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Wide variation in locksmith quotes usually reflects the difference between independent local locksmiths and national call-centre operations. Call centres take a margin from each subcontracted job and are not directly accountable for pricing on site - this is the structure that produces the well-publicised £400 lockout horror stories. Independent locksmiths who answer their own phones, do their own work, and live in the area they serve are accountable for repeat business and reputation, which keeps pricing realistic.' },
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/guides` },
+      { '@type': 'ListItem', position: 3, name: 'Locksmith Cost London', item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Locksmith Cost London 2026 - Honest Price Guide | Bullard Locks"
+  description="Transparent 2026 guide to locksmith prices in London - emergency lockouts, car key replacement, lock changes and safe opening. Typical ranges, what affects price."
+  canonicalUrl={pageUrl}
+  schema={schema}
+  datePublished="2026-04-26"
+  dateModified="2026-04-26"
+>
+  <article class="article-page">
+    <section class="article-hero bg-dark">
+      <div class="article-hero-overlay" aria-hidden="true"></div>
+      <div class="container-custom article-hero-content">
+        <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/guides">Guides</a>
+          <span aria-hidden="true">/</span>
+          <span>Locksmith Cost London</span>
+        </nav>
+        <span class="article-category">Pricing Guide</span>
+        <h1 class="article-title">How Much Does a Locksmith Cost in London?</h1>
+        <p class="article-lead">
+          A transparent 2026 pricing guide for emergency, auto and safe locksmith services across
+          London - covering typical price ranges, what actually affects the bill, and how to spot
+          a scam callout before it lands on your doorstep.
+        </p>
+        <div class="article-byline">
+          <div class="article-byline-text">
+            <p class="byline-name">By <a href="/about">William Bullard</a></p>
+            <p class="byline-meta">Met Police approved locksmith · Published 26 April 2026 · 6 min read</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section bg-white">
+      <div class="container-custom article-body">
+        <p class="lead-paragraph">
+          Locksmith pricing in the UK is not regulated, and London is the worst place in the country
+          for inflated, opaque or scam pricing. This guide gives realistic ranges for the work most
+          people call a locksmith for, explains what genuinely changes the price, and flags the patterns
+          that turn a £100 lockout into a £400 invoice.
+        </p>
+
+        <h2>Typical locksmith prices in London (2026)</h2>
+
+        <p>
+          The figures below reflect what an independent, locally-based locksmith would quote for
+          common jobs across the capital - not the headline "from £29" rates advertised by national
+          call centres, which almost never reflect what is actually charged on completion.
+        </p>
+
+        <div class="price-table-wrap">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th>Job</th>
+                <th>Typical price (London)</th>
+                <th>What changes it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Standard home lockout (non-destructive)</td>
+                <td>£80–£150</td>
+                <td>Time of day, lock type, complexity</td>
+              </tr>
+              <tr>
+                <td>Replacement Euro cylinder fitted</td>
+                <td>£120–£220</td>
+                <td>Security rating (TS007 1★ vs 3★, anti-snap)</td>
+              </tr>
+              <tr>
+                <td>British Standard mortice deadlock fitted</td>
+                <td>£140–£240</td>
+                <td>Whether the door is morticed already</td>
+              </tr>
+              <tr>
+                <td>Multipoint UPVC repair / lock replacement</td>
+                <td>£180–£320</td>
+                <td>Mechanism brand, parts availability</td>
+              </tr>
+              <tr>
+                <td>Standard transponder car key (common makes)</td>
+                <td>£80–£180</td>
+                <td>Make, model, year of vehicle</td>
+              </tr>
+              <tr>
+                <td>Proximity / smart key (premium marques)</td>
+                <td>£150–£350</td>
+                <td>BMW / Mercedes / Audi / Land Rover etc.</td>
+              </tr>
+              <tr>
+                <td>Vehicle lockout (keys inside the car)</td>
+                <td>£80–£150</td>
+                <td>Vehicle make, lock type</td>
+              </tr>
+              <tr>
+                <td>All-keys-lost programming</td>
+                <td>£200–£450</td>
+                <td>Make, model, immobiliser generation</td>
+              </tr>
+              <tr>
+                <td>Safe opening (small electronic home)</td>
+                <td>£120–£180</td>
+                <td>Flat battery vs deeper fault</td>
+              </tr>
+              <tr>
+                <td>Safe opening (mechanical combination)</td>
+                <td>£180–£350</td>
+                <td>Brand, age, manipulation time</td>
+              </tr>
+              <tr>
+                <td>High-security commercial safe opening</td>
+                <td>£300–£600+</td>
+                <td>Eurograde rating, drilling vs manipulation</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="price-note">
+          Ranges assume an independent locksmith with a fixed-price quote and no call-out fee.
+          National call-centre operations typically add a £40–£90 call-out fee plus an unsociable-hours
+          surcharge that can double the headline figure.
+        </p>
+
+        <h2>What actually affects the price</h2>
+
+        <h3>Time of day</h3>
+        <p>
+          Outside normal working hours genuinely costs more for many locksmiths because labour rates
+          rise. With a one-person operation that answers its own phone, the increase is usually
+          modest (or absent altogether). With a national chain dispatching subcontractors, evening
+          and weekend surcharges can be 50–100%, applied without warning.
+        </p>
+
+        <h3>Lock or key complexity</h3>
+        <p>
+          A nightlatch is fundamentally different work to a 5-lever mortice deadlock or a multipoint
+          UPVC mechanism. On the auto side, a 2003 Ford Fiesta key takes minutes to programme;
+          a 2024 Range Rover proximity smart key requires manufacturer-specific tooling and longer
+          immobiliser handshakes. Honest quotes ask the make / model / lock type before pricing.
+        </p>
+
+        <h3>Parts</h3>
+        <p>
+          The cylinder, mortice case or key fob itself accounts for a significant share of the bill.
+          A TS007 3-star anti-snap Euro cylinder costs the locksmith roughly 3-4× more than a generic
+          1-star cylinder, and that's reflected in the quote. Insisting on the security rating your
+          insurance requires (typically 3-star or "Sold Secure SS312 Diamond") is usually money well
+          spent compared to the cost of replacing it again after a break-in.
+        </p>
+
+        <h3>Travel and area</h3>
+        <p>
+          A locksmith based in your borough typically quotes lower than one travelling from across
+          London because van time costs them less. This is one reason it is worth searching for
+          your specific area: an
+          <a href="/services/auto-locksmith">auto locksmith</a> based in N8 reaching N4 or N7 in
+          15-20 minutes has very different economics to a Slough-based operator routed via a
+          call centre.
+        </p>
+
+        <h2>How to spot a scam locksmith call-out</h2>
+
+        <p>
+          The standard scam pattern is well-documented and reported on by Which?, Trading Standards
+          and BBC consumer programmes regularly. It looks like this:
+        </p>
+
+        <ol>
+          <li>You search "locksmith near me" in an emergency.</li>
+          <li>The top paid result is a call-centre-driven site with a London number.</li>
+          <li>You're quoted a low headline rate (often "£35 call-out").</li>
+          <li>An anonymous van arrives, often from outside your area.</li>
+          <li>The "locksmith" insists the lock must be drilled even on a routine pick-able lock.</li>
+          <li>The final bill is £300–£600 with extras for parts, time and hours.</li>
+          <li>Card payment only, on the spot, with no proper receipt.</li>
+        </ol>
+
+        <p>
+          Reliable countermeasures: phone the number first and listen for whether you're talking to
+          an answering service or a working locksmith; ask for the locksmith's name and how long
+          they've been at the address they're coming from; check Google reviews under their actual
+          name (not the call-centre brand); and refuse drilling if the lock is undamaged and the
+          door isn't an emergency. A genuine locksmith will explain why drilling is or isn't
+          necessary in plain English.
+        </p>
+
+        <h2>How Bullard Locks prices work</h2>
+
+        <p>
+          For full transparency on the comparison: when you call Bullard Locks, William - a
+          <a href="/about">30-year independent locksmith</a> based in Crouch End N8 - answers the
+          phone himself. You give him the job details, he gives you a fixed price up front. There
+          is no call-out fee at any time of day or week. The price quoted is the only price paid.
+          He attends every job personally - no subcontractors - and accepts cash, card or bank
+          transfer with a proper VAT receipt.
+        </p>
+
+        <p>
+          For specifics, see the individual service pages:
+          <a href="/services/auto-locksmith">auto locksmith</a>,
+          <a href="/services/emergency-locksmith">emergency locksmith</a> and
+          <a href="/services/safe-engineer">safe engineer</a>.
+        </p>
+
+        <h2>Frequently asked questions</h2>
+
+        <details class="article-faq" open>
+          <summary>How much does an emergency locksmith cost in London?</summary>
+          <div class="faq-answer">
+            <p>An emergency locksmith call-out for a non-destructive home lockout in London typically costs £80–£150 during normal hours, with reputable independent locksmiths quoting at the lower end. Replacing a Euro cylinder afterwards adds approximately £80–£140 depending on the security rating fitted.</p>
+            <p>Be wary of any locksmith advertising "from £39" - these are usually national call centres that quote a low headline figure on the phone, dispatch a subcontractor, and produce an inflated invoice on completion.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>How much does a replacement car key cost in London?</summary>
+          <div class="faq-answer">
+            <p>A standard transponder car key for common UK makes (Ford, Vauxhall, Volkswagen, Toyota) typically costs £80–£180 supplied and programmed by a mobile auto locksmith. Proximity smart keys for premium vehicles such as BMW, Mercedes, Audi and Land Rover range from £150–£350.</p>
+            <p>All-keys-lost situations cost slightly more because the immobiliser must be re-paired from scratch. Auto locksmith pricing is usually 30–50% lower than the equivalent main dealer cost, with same-day on-site service.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>Are locksmith call-out fees standard?</summary>
+          <div class="faq-answer">
+            <p>Call-out fees vary widely. National chains and call-centre operations typically charge a separate call-out fee of £40–£90 on top of the work itself, often with surcharges for evenings, weekends and bank holidays. Independent local locksmiths usually quote a single fixed price with no separate call-out fee.</p>
+            <p>Bullard Locks does not charge a call-out fee at any time of day - the price quoted is the only amount paid.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>What does it cost to open a safe in the UK?</summary>
+          <div class="faq-answer">
+            <p>Safe opening costs depend on the safe type and lock mechanism. A small electronic home safe with a flat battery is usually under £150. A standard mechanical combination safe is typically £180–£280 for non-destructive opening.</p>
+            <p>High-security commercial safes (Eurograde 0–6, cash-rated drop safes) can range from £250 to £600+ depending on the manipulation time required and whether drilling becomes necessary as a last resort. A reputable safe engineer provides a written quote before work begins.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>Why are some locksmith quotes so much higher than others?</summary>
+          <div class="faq-answer">
+            <p>Wide variation in locksmith quotes usually reflects the difference between independent local locksmiths and national call-centre operations. Call centres take a margin from each subcontracted job and are not directly accountable for pricing on site - this is the structure that produces the well-publicised £400 lockout horror stories.</p>
+            <p>Independent locksmiths who answer their own phones, do their own work, and live in the area they serve are accountable for repeat business and reputation, which keeps pricing realistic.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="content-section bg-light">
+      <div class="container-custom article-related">
+        <h2 class="section-title">Related Reading</h2>
+        <div class="related-grid">
+          <a href="/guides/lost-all-car-keys-what-to-do" class="related-card">
+            <h3>Lost All Your Car Keys?</h3>
+            <p>Step-by-step on what to do, what it costs, and why a tow to the dealer is usually the wrong move.</p>
+          </a>
+          <a href="/guides/auto-locksmith-vs-dealer" class="related-card">
+            <h3>Auto Locksmith vs Main Dealer</h3>
+            <p>Cost, turnaround and capability compared. When the dealer wins, when the mobile locksmith wins.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <CTASection
+    title="Need a Quote Right Now?"
+    subtitle="Fixed price up front · No call-out fee · 30+ years experience"
+  />
+</BaseLayout>
+
+<style>
+  .article-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    background: linear-gradient(135deg, #0e4a4d 0%, #061e20 100%);
+  }
+
+  .article-hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 25% 50%, rgba(31,174,155,0.18) 0%, transparent 60%); }
+
+  .article-hero-content { position: relative; z-index: 1; padding: 64px 0 56px; max-width: 800px; }
+
+  .article-category {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(31,174,155,0.18);
+    color: #5ee8d4;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .article-title {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.15;
+    margin: 0 0 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .article-lead {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin: 0 0 30px;
+  }
+
+  .article-byline {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .byline-name { color: white; font-weight: 700; font-size: 0.95rem; margin: 0; }
+  .byline-name a { color: var(--color-accent); text-decoration: none; }
+  .byline-name a:hover { text-decoration: underline; }
+  .byline-meta { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin: 4px 0 0; }
+
+  .article-body {
+    max-width: 760px;
+  }
+
+  .lead-paragraph {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--color-text-main);
+    margin: 0 0 36px;
+    font-weight: 500;
+  }
+
+  .article-body h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 48px 0 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .article-body h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 32px 0 12px;
+  }
+
+  .article-body p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+    margin: 0 0 18px;
+  }
+
+  .article-body p a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .article-body p a:hover { text-decoration: underline; }
+
+  .article-body ol, .article-body ul {
+    margin: 0 0 22px;
+    padding-left: 22px;
+  }
+
+  .article-body li {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+  }
+
+  .price-table-wrap {
+    overflow-x: auto;
+    margin: 24px -8px 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+
+  .price-table th {
+    text-align: left;
+    padding: 14px 12px;
+    background: rgba(31,174,155,0.08);
+    color: var(--color-text-main);
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .price-table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .price-table td:nth-child(2) { font-weight: 700; color: var(--color-text-main); white-space: nowrap; }
+
+  .price-note {
+    font-size: 0.88rem !important;
+    color: var(--color-text-muted-light) !important;
+    font-style: italic;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 14px;
+    margin: 0 0 32px !important;
+  }
+
+  .article-faq {
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .article-faq[open] { border-color: var(--color-accent); }
+
+  .article-faq summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 18px 48px 18px 22px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    position: relative;
+  }
+
+  .article-faq summary::-webkit-details-marker { display: none; }
+
+  .article-faq summary::after {
+    content: '+';
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .article-faq[open] summary::after { content: '−'; }
+
+  .article-faq .faq-answer {
+    padding: 0 22px 18px;
+  }
+
+  .article-faq .faq-answer p {
+    font-size: 0.95rem;
+    margin: 0 0 12px;
+  }
+
+  .article-faq .faq-answer p:last-child { margin-bottom: 0; }
+
+  .article-related {
+    max-width: 980px;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  .related-card {
+    display: block;
+    padding: 22px 24px;
+    background: white;
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .related-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .related-card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+    color: var(--color-text-main);
+  }
+
+  .related-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>

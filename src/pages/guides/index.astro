@@ -1,0 +1,230 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const siteUrl = 'https://www.bullardlocks.com';
+
+const guides = [
+  {
+    slug: 'locksmith-cost-london',
+    title: 'How Much Does a Locksmith Cost in London?',
+    excerpt: 'A transparent 2026 pricing guide for home, auto and safe locksmith services across London, with typical ranges and what affects the price.',
+    category: 'Pricing',
+    readTime: '6 min read',
+    icon: 'fa-pound-sign',
+  },
+  {
+    slug: 'lost-all-car-keys-what-to-do',
+    title: 'Lost All Your Car Keys? Here\'s What to Do',
+    excerpt: 'Step-by-step guide for the all-keys-lost situation. How an auto locksmith resolves it without dealer involvement, and what it typically costs.',
+    category: 'Auto',
+    readTime: '7 min read',
+    icon: 'fa-key',
+  },
+  {
+    slug: 'auto-locksmith-vs-dealer',
+    title: 'Auto Locksmith vs Main Dealer: Which Should You Use?',
+    excerpt: 'Comparison of cost, turnaround, and capability when replacing or programming car keys. When the dealer makes sense, and when a mobile auto locksmith wins.',
+    category: 'Auto',
+    readTime: '5 min read',
+    icon: 'fa-car-side',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Locksmith Guides - Bullard Locks',
+    description: 'Practical guides to UK locksmith pricing, car key replacement, lock security and safe engineering from a 30-year North London locksmith.',
+    url: `${siteUrl}/guides`,
+    publisher: { '@id': `${siteUrl}/#organization` },
+    hasPart: guides.map((g) => ({
+      '@type': 'Article',
+      headline: g.title,
+      url: `${siteUrl}/guides/${g.slug}`,
+      author: { '@type': 'Person', name: 'William Bullard' },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/guides` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Locksmith Guides - Pricing, Car Keys & Security | Bullard Locks"
+  description="Practical guides to UK locksmith pricing, car key replacement, lock security and safe engineering. Written by William Bullard, 30-year North London locksmith."
+  canonicalUrl={`${siteUrl}/guides`}
+  schema={schema}
+>
+  <section class="guides-hero bg-dark">
+    <div class="guides-hero-overlay" aria-hidden="true"></div>
+    <div class="container-custom guides-hero-content">
+      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <span>Guides</span>
+      </nav>
+      <h1 class="guides-hero-title">Locksmith <span class="text-accent">Guides</span></h1>
+      <p class="guides-hero-lead">
+        Plain-English answers to the questions customers ask William most often - written from
+        30 years on the road across North and Central London.
+      </p>
+    </div>
+  </section>
+
+  <section class="content-section bg-white">
+    <div class="container-custom guides-narrow">
+      <div class="guides-grid">
+        {guides.map((g) => (
+          <a href={`/guides/${g.slug}`} class="guide-card">
+            <div class="guide-card-icon"><i class={`fas ${g.icon}`}></i></div>
+            <div class="guide-card-meta">
+              <span class="guide-card-category">{g.category}</span>
+              <span class="guide-card-readtime">{g.readTime}</span>
+            </div>
+            <h2 class="guide-card-title">{g.title}</h2>
+            <p class="guide-card-excerpt">{g.excerpt}</p>
+            <span class="guide-card-link">Read guide <i class="fas fa-arrow-right"></i></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Need a Locksmith Right Now?"
+    subtitle="Available 24/7 | No call-out fee | 30+ years experience"
+  />
+</BaseLayout>
+
+<style>
+  .guides-hero {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+    background: linear-gradient(135deg, #0e4a4d 0%, #061e20 100%);
+  }
+
+  .guides-hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(31,174,155,0.18) 0%, transparent 60%); }
+
+  .guides-hero-content { position: relative; z-index: 1; padding: 60px 0; max-width: 760px; }
+
+  .guides-hero-title {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 800;
+    color: white;
+    margin: 16px 0 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .guides-hero-lead {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  .guides-narrow { max-width: 1080px; }
+
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .guide-card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 26px;
+    background: white;
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 18px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  .guide-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  }
+
+  .guide-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(31,174,155,0.12);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 18px;
+  }
+
+  .guide-card-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 0.78rem;
+    margin-bottom: 12px;
+  }
+
+  .guide-card-category {
+    padding: 3px 10px;
+    background: rgba(31,174,155,0.12);
+    color: var(--color-accent);
+    border-radius: 100px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .guide-card-readtime { color: var(--color-text-muted); font-weight: 500; }
+
+  .guide-card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+
+  .guide-card-excerpt {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0 0 18px;
+    flex: 1;
+  }
+
+  .guide-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-top: auto;
+    transition: gap 0.18s ease;
+  }
+
+  .guide-card:hover .guide-card-link { gap: 12px; }
+
+  @media (max-width: 1024px) {
+    .guides-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .guides-grid { grid-template-columns: 1fr; }
+  }
+</style>
