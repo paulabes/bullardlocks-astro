@@ -6,7 +6,6 @@ import vercel from '@astrojs/vercel';
 import { boroughs } from './src/data/locations.ts';
 
 const siteUrl = 'https://www.bullardlocks.com';
-const lastmod = new Date().toISOString();
 
 const dynamicPages = [
   ...boroughs.flatMap(({ slug, services }) => [
@@ -33,46 +32,46 @@ export default defineConfig({
 
         // Homepage
         if (url === `${siteUrl}/` || url === siteUrl) {
-          return { ...item, lastmod, priority: 1.0, changefreq: 'weekly' };
+          return { ...item, priority: 1.0, changefreq: 'weekly' };
         }
 
         // Main service pages
         if (url.match(/\/services\/(auto-locksmith|emergency-locksmith|safe-engineer)\/?$/)) {
-          return { ...item, lastmod, priority: 0.8, changefreq: 'monthly' };
+          return { ...item, priority: 0.8, changefreq: 'monthly' };
         }
 
         // Services hub
         if (url === `${siteUrl}/services` || url === `${siteUrl}/services/`) {
-          return { ...item, lastmod, priority: 0.8, changefreq: 'monthly' };
+          return { ...item, priority: 0.8, changefreq: 'monthly' };
         }
 
         // Borough index pages
         if (url.match(/\/locations\/[^/]+\/?$/) && !url.endsWith('/locations/') && !url.endsWith('/locations')) {
-          return { ...item, lastmod, priority: 0.7, changefreq: 'monthly' };
+          return { ...item, priority: 0.7, changefreq: 'monthly' };
         }
 
         // UK-wide safe engineer page
         if (url.includes('/locations/uk-wide/safe-engineer')) {
-          return { ...item, lastmod, priority: 0.7, changefreq: 'monthly' };
+          return { ...item, priority: 0.7, changefreq: 'monthly' };
         }
 
         // Borough + service combo pages
         if (url.match(/\/locations\/[^/]+\/[^/]+\/?$/)) {
-          return { ...item, lastmod, priority: 0.7, changefreq: 'monthly' };
+          return { ...item, priority: 0.7, changefreq: 'monthly' };
         }
 
         // Locations hub
         if (url === `${siteUrl}/locations` || url === `${siteUrl}/locations/`) {
-          return { ...item, lastmod, priority: 0.8, changefreq: 'monthly' };
+          return { ...item, priority: 0.8, changefreq: 'monthly' };
         }
 
         // About, contact
         if (url.includes('/about') || url.includes('/contact')) {
-          return { ...item, lastmod, priority: 0.6, changefreq: 'monthly' };
+          return { ...item, priority: 0.6, changefreq: 'monthly' };
         }
 
         // Default for all other pages
-        return { ...item, lastmod, priority: 0.5, changefreq: 'monthly' };
+        return { ...item, priority: 0.5, changefreq: 'monthly' };
       },
     }),
   ],
