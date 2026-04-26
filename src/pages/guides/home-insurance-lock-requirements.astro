@@ -1,0 +1,338 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const siteUrl = 'https://www.bullardlocks.com';
+const pageUrl = `${siteUrl}/guides/home-insurance-lock-requirements`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'What Lock Does My Home Insurance Need? UK 2026 Guide',
+    description: 'Plain-English guide to the lock requirements imposed by UK home insurance policies - BS3621, TS007, anti-snap, multipoint UPVC - and how to comply without overspending.',
+    image: `${siteUrl}/images/hero-emergency-locksmith.webp`,
+    datePublished: '2026-04-26',
+    dateModified: '2026-04-26',
+    author: { '@type': 'Person', name: 'William Bullard', url: `${siteUrl}/about`, '@id': `${siteUrl}/#william` },
+    publisher: { '@id': `${siteUrl}/#organization` },
+    mainEntityOfPage: pageUrl,
+    inLanguage: 'en-GB',
+    articleSection: 'Security',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What lock standard does UK home insurance usually require?',
+        acceptedAnswer: { '@type': 'Answer', text: 'For wooden doors with mortice locks, UK insurers most commonly specify BS3621 - the British Standard for thief-resistant lockable mortice deadlocks with at least five levers and a 20 mm bolt throw. For UPVC and composite doors with Euro cylinder multipoint mechanisms, insurers increasingly specify TS007 3-star cylinders or a TS007 1-star cylinder paired with TS007 2-star security door furniture, sometimes with additional Sold Secure Diamond grade requirements for high-value contents.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I check if my existing lock meets BS3621?',
+        acceptedAnswer: { '@type': 'Answer', text: 'BS3621 mortice deadlocks carry a small kitemark on the faceplate (visible on the edge of the door when the door is open) showing the BSI kitemark and "BS3621" embossed or laser-etched into the metal. If the faceplate is unmarked or shows only "BS3621:1980" without the kitemark, it does not meet the current standard. Replacement and refit on a standard wooden door takes a qualified locksmith approximately 60-90 minutes.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is TS007 3-star and why does it matter?',
+        acceptedAnswer: { '@type': 'Answer', text: 'TS007 is the UK standard for Euro cylinder anti-snap performance, tested by Sold Secure or the Door and Hardware Federation. Cylinders are rated 1-star (basic), 2-star (intermediate, paired with 2-star door furniture for full protection) or 3-star (full anti-snap protection in the cylinder alone). Lock-snapping is the most common burglary entry method on UPVC doors in the UK; a TS007 3-star cylinder reduces the success rate of this attack from seconds to minutes, by which point most burglars give up.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Will my insurance pay out if my lock did not meet the policy specification?',
+        acceptedAnswer: { '@type': 'Answer', text: 'In practice, insurers can reduce or refuse a claim if the lock specification on the door breached at the time of a burglary did not meet the policy wording. This is one of the most common claim-disputes in UK home insurance. The amount you save by buying a £20 generic cylinder instead of a £50 TS007 3-star cylinder can easily be lost on a single declined claim. Read the security clause of your policy carefully and ask a qualified locksmith to confirm what is fitted matches what is required.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'What about windows? Do insurers specify window locks too?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Most UK home insurance policies require key-operated locks on all accessible ground-floor and basement windows, and on first-floor windows that are reachable from a flat roof or extension. Standard sash and casement window locks are widely available and inexpensive. Insurers rarely specify a particular standard for window locks, but expect them to be functional and engaged when the property is left unattended.' },
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/guides` },
+      { '@type': 'ListItem', position: 3, name: 'Insurance Lock Requirements', item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="What Lock Does My Home Insurance Need? UK 2026 | Bullard Locks"
+  description="Clear guide to UK home insurance lock requirements - BS3621, TS007 3-star anti-snap, multipoint UPVC. What insurers actually mean and how to comply."
+  canonicalUrl={pageUrl}
+  schema={schema}
+  datePublished="2026-04-26"
+  dateModified="2026-04-26"
+>
+  <article class="article-page">
+    <section class="article-hero bg-dark">
+      <div class="article-hero-overlay" aria-hidden="true"></div>
+      <div class="container-custom article-hero-content">
+        <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/guides">Guides</a>
+          <span aria-hidden="true">/</span>
+          <span>Insurance Lock Requirements</span>
+        </nav>
+        <span class="article-category">Security</span>
+        <h1 class="article-title">What Lock Does My Home Insurance Need?</h1>
+        <p class="article-lead">
+          UK home insurance policies almost all impose lock specifications on the property's
+          external doors, and a surprising number of claims are reduced or refused because the
+          lock fitted didn't actually meet the policy wording. This is what insurers really mean
+          by BS3621, TS007 3-star and "Sold Secure" - and how to comply without overspending.
+        </p>
+        <div class="article-byline">
+          <div class="article-byline-text">
+            <p class="byline-name">By <a href="/about">William Bullard</a></p>
+            <p class="byline-meta">Locksmith, Crouch End N8 · Published 26 April 2026 · 7 min read</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section bg-white">
+      <div class="container-custom article-body">
+        <p class="lead-paragraph">
+          Almost every UK home insurance policy includes a security clause. It usually appears
+          deep in the policy schedule, in language designed to be skipped. But it imposes
+          contractual obligations on what locks are fitted to your home, and getting it wrong is
+          one of the most common reasons home insurance claims are reduced or refused.
+        </p>
+
+        <h2>The two specifications that matter</h2>
+
+        <p>
+          For most UK homes, only two lock standards genuinely matter: <strong>BS3621</strong> for
+          wooden doors with mortice locks, and <strong>TS007</strong> for UPVC and composite doors
+          with Euro cylinder multipoint mechanisms. If your front and back doors meet whichever
+          standard applies, you have complied with virtually every standard UK home policy.
+        </p>
+
+        <h3>BS3621 — for wooden doors</h3>
+
+        <p>
+          BS3621 is the British Standard for thief-resistant mortice deadlocks - the chunky lock
+          that drops a square steel bolt sideways into the door frame when you turn the key. To
+          meet BS3621, a mortice deadlock must have at least 5 levers, a 20mm bolt throw, hardened
+          anti-saw inserts in the bolt, and a kitemarked faceplate. The current standard is
+          BS3621:2007.
+        </p>
+
+        <p>
+          You can identify a compliant lock by opening the door and looking at the faceplate on
+          the edge of the door. A genuine BS3621 lock has the BSI kitemark (a heart-shaped logo)
+          plus "BS3621" plus the year embossed or laser-etched into the metal. Generic locks, even
+          ones marked simply "5 lever", do not meet the standard.
+        </p>
+
+        <h3>TS007 — for UPVC and composite doors</h3>
+
+        <p>
+          UPVC and composite doors don't use mortice locks - they use a multipoint mechanism
+          driven by a Euro cylinder, and the security weakness has historically been the cylinder
+          itself, not the multipoint. Lock-snapping (where a burglar snaps the cylinder in half
+          with mole grips) was the dominant entry method on UPVC doors through the 2010s.
+        </p>
+
+        <p>
+          TS007 is the UK standard developed specifically to resist lock-snapping, tested by
+          Sold Secure or the Door and Hardware Federation:
+        </p>
+
+        <ul>
+          <li><strong>1-star cylinder</strong> — basic anti-snap protection. Must be paired with 2-star door furniture (handles, escutcheons) to give equivalent protection.</li>
+          <li><strong>2-star cylinder</strong> — intermediate. Rare in practice; insurers usually accept 1-star + 2-star furniture or 3-star alone.</li>
+          <li><strong>3-star cylinder</strong> — full anti-snap protection in the cylinder alone, no special door furniture required.</li>
+        </ul>
+
+        <p>
+          Sold Secure also publishes its own "Diamond" grade for UPVC cylinders, which is roughly
+          equivalent to TS007 3-star plus enhanced protection against picking, drilling and bumping.
+          Some high-value home policies require Sold Secure Diamond.
+        </p>
+
+        <h2>What your policy probably says</h2>
+
+        <p>
+          The specific wording varies by insurer, but the pattern is consistent. Look in your
+          policy schedule for a section titled "Security" or "Endorsements" or similar. You'll
+          find phrases like:
+        </p>
+
+        <ul>
+          <li>"All final exit doors must be fitted with a 5-lever mortice deadlock to BS3621 or a multipoint locking system with a TS007 3-star cylinder"</li>
+          <li>"All keys must be removed from internal locks when the property is left unattended"</li>
+          <li>"All accessible windows must be fitted with key-operated locks and locked when the property is left unattended"</li>
+          <li>"Patio doors must have an additional locking device approved by the insurer"</li>
+        </ul>
+
+        <p>
+          Pay particular attention to "final exit door" - this is whichever door is the last one
+          locked when leaving the property. On most homes this is the front door, but if you
+          routinely leave through the back door, the back door is the final exit and must meet
+          the same specification.
+        </p>
+
+        <h2>Common compliance failures</h2>
+
+        <h3>Wooden doors with the wrong lock</h3>
+        <p>
+          A 5-lever lock isn't automatically a BS3621 lock. Generic 5-lever mortice locks sold in
+          DIY shops typically don't carry the kitemark and don't meet the standard. Many
+          properties have these fitted from previous owners or budget-driven refits, and the
+          owner has no idea. A
+          <a href="/services/emergency-locksmith">qualified locksmith</a> can usually identify the
+          standard at a glance and replace the lock for £140-£240.
+        </p>
+
+        <h3>UPVC doors with generic Euro cylinders</h3>
+        <p>
+          Generic Euro cylinders (the kind sold for £8 in a hardware shop) snap in seconds with
+          a basic mole-grip attack. If the policy specifies TS007 3-star and the cylinder fitted
+          is generic, the policy isn't being met. A TS007 3-star anti-snap replacement cylinder
+          is approximately £35-£70 supply-only or £120-£180 fitted.
+        </p>
+
+        <h3>Patio and French doors with no secondary lock</h3>
+        <p>
+          Many policies specifically require a secondary locking device on patio and French doors -
+          a foot-bolt, a hook-style multipoint, or a key-operated patio lock at top and bottom of
+          the slider. This is one of the most-overlooked compliance gaps in UK homes.
+        </p>
+
+        <h3>Internal keys left in locks</h3>
+        <p>
+          Most policies require all keys to be removed from internal locks when the property is
+          left unattended - this prevents a burglar from breaking a glass panel and reaching in
+          to turn the key. Insurers can reject a claim purely on this basis if the policyholder
+          left a key in the back door. Habits matter here as much as hardware.
+        </p>
+
+        <h2>How a locksmith can audit your home</h2>
+
+        <p>
+          Most independent locksmiths will do a security audit at the same time as a standard
+          job - check every external door against your policy specification, check window locks,
+          and produce a written list of any non-compliant items with replacement costs. There's
+          usually no charge for the audit itself if work is being done at the same visit, and
+          it gives you documented evidence you've checked - useful in any future claim.
+        </p>
+
+        <p>
+          For the
+          <a href="/services/emergency-locksmith">emergency locksmith service</a>, a security
+          audit is included as part of any post-burglary or break-in repair visit. After a
+          break-in you'll typically be required by your insurer to upgrade locks anyway, so
+          getting the upgrade right matters.
+        </p>
+
+        <h2>Frequently asked questions</h2>
+
+        <details class="article-faq" open>
+          <summary>What lock standard does UK home insurance usually require?</summary>
+          <div class="faq-answer">
+            <p>For wooden doors with mortice locks, UK insurers most commonly specify BS3621 - the British Standard for thief-resistant lockable mortice deadlocks with at least five levers and a 20mm bolt throw.</p>
+            <p>For UPVC and composite doors with Euro cylinder multipoint mechanisms, insurers increasingly specify TS007 3-star cylinders or a TS007 1-star cylinder paired with TS007 2-star security door furniture, sometimes with additional Sold Secure Diamond grade requirements for high-value contents.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>How do I check if my existing lock meets BS3621?</summary>
+          <div class="faq-answer">
+            <p>BS3621 mortice deadlocks carry a small kitemark on the faceplate (visible on the edge of the door when the door is open) showing the BSI kitemark and "BS3621" embossed or laser-etched into the metal.</p>
+            <p>If the faceplate is unmarked or shows only "BS3621:1980" without the kitemark, it does not meet the current standard. Replacement and refit on a standard wooden door takes a qualified locksmith approximately 60-90 minutes.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>What is TS007 3-star and why does it matter?</summary>
+          <div class="faq-answer">
+            <p>TS007 is the UK standard for Euro cylinder anti-snap performance, tested by Sold Secure or the Door and Hardware Federation. Cylinders are rated 1-star (basic), 2-star (intermediate, paired with 2-star door furniture for full protection) or 3-star (full anti-snap protection in the cylinder alone).</p>
+            <p>Lock-snapping is the most common burglary entry method on UPVC doors in the UK; a TS007 3-star cylinder reduces the success rate of this attack from seconds to minutes, by which point most burglars give up.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>Will my insurance pay out if my lock did not meet the policy specification?</summary>
+          <div class="faq-answer">
+            <p>In practice, insurers can reduce or refuse a claim if the lock specification on the door breached at the time of a burglary did not meet the policy wording. This is one of the most common claim-disputes in UK home insurance.</p>
+            <p>The amount you save by buying a £20 generic cylinder instead of a £50 TS007 3-star cylinder can easily be lost on a single declined claim. Read the security clause of your policy carefully and ask a qualified locksmith to confirm what is fitted matches what is required.</p>
+          </div>
+        </details>
+
+        <AuthorBio />
+      </div>
+    </section>
+
+    <section class="content-section bg-light">
+      <div class="container-custom article-related">
+        <h2 class="section-title">Related Reading</h2>
+        <div class="related-grid">
+          <a href="/guides/anti-snap-cylinders-explained" class="related-card">
+            <h3>Anti-Snap Cylinders Explained</h3>
+            <p>Deep dive into TS007 1★, 2★, 3★ and Sold Secure Diamond ratings, and which one your door actually needs.</p>
+          </a>
+          <a href="/guides/what-to-do-after-burglary-london" class="related-card">
+            <h3>What to Do After a Burglary</h3>
+            <p>Practical step-by-step from police call through insurance claim through securing the property the same night.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <CTASection
+    title="Need Locks Upgraded to Insurance Spec?"
+    subtitle="Free security audit · British Standard locks fitted · No call-out fee"
+  />
+</BaseLayout>
+
+<style>
+  .article-hero { position: relative; padding-top: var(--header-height); background: linear-gradient(135deg, #0e4a4d 0%, #061e20 100%); }
+  .article-hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 25% 50%, rgba(31,174,155,0.18) 0%, transparent 60%); }
+  .article-hero-content { position: relative; z-index: 1; padding: 64px 0 56px; max-width: 800px; }
+  .article-category { display: inline-block; padding: 4px 12px; background: rgba(31,174,155,0.18); color: #5ee8d4; border-radius: 100px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+  .article-title { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; color: white; line-height: 1.15; margin: 0 0 20px; letter-spacing: -0.02em; }
+  .article-lead { font-size: 1.1rem; color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0 0 30px; }
+  .article-byline { display: flex; gap: 12px; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .byline-name { color: white; font-weight: 700; font-size: 0.95rem; margin: 0; }
+  .byline-name a { color: var(--color-accent); text-decoration: none; }
+  .byline-name a:hover { text-decoration: underline; }
+  .byline-meta { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin: 4px 0 0; }
+  .article-body { max-width: 760px; }
+  .lead-paragraph { font-size: 1.15rem; line-height: 1.7; color: var(--color-text-main); margin: 0 0 36px; font-weight: 500; }
+  .article-body h2 { font-size: 1.6rem; font-weight: 800; color: var(--color-text-main); margin: 48px 0 18px; letter-spacing: -0.01em; }
+  .article-body h3 { font-size: 1.2rem; font-weight: 700; color: var(--color-text-main); margin: 32px 0 12px; }
+  .article-body p { font-size: 1rem; line-height: 1.75; color: var(--color-text-muted); margin: 0 0 18px; }
+  .article-body p a, .article-body li a { color: var(--color-accent); text-decoration: none; font-weight: 600; }
+  .article-body p a:hover, .article-body li a:hover { text-decoration: underline; }
+  .article-body ol, .article-body ul { margin: 0 0 22px; padding-left: 22px; }
+  .article-body li { font-size: 1rem; line-height: 1.7; color: var(--color-text-muted); margin-bottom: 8px; }
+  .article-body strong { color: var(--color-text-main); font-weight: 700; }
+  .article-faq { border: 1.5px solid rgba(0,0,0,0.08); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: border-color 0.2s ease; }
+  .article-faq[open] { border-color: var(--color-accent); }
+  .article-faq summary { cursor: pointer; list-style: none; padding: 18px 48px 18px 22px; font-size: 1rem; font-weight: 700; color: var(--color-text-main); position: relative; }
+  .article-faq summary::-webkit-details-marker { display: none; }
+  .article-faq summary::after { content: '+'; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); color: var(--color-accent); font-size: 1.4rem; line-height: 1; }
+  .article-faq[open] summary::after { content: '−'; }
+  .article-faq .faq-answer { padding: 0 22px 18px; }
+  .article-faq .faq-answer p { font-size: 0.95rem; margin: 0 0 12px; }
+  .article-faq .faq-answer p:last-child { margin-bottom: 0; }
+  .article-related { max-width: 980px; }
+  .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+  .related-card { display: block; padding: 22px 24px; background: white; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 14px; text-decoration: none; color: inherit; transition: all 0.2s ease; }
+  .related-card:hover { border-color: var(--color-accent); transform: translateY(-2px); }
+  .related-card h3 { font-size: 1.05rem; font-weight: 800; margin: 0 0 8px; color: var(--color-text-main); }
+  .related-card p { font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted); margin: 0; }
+  @media (max-width: 768px) { .related-grid { grid-template-columns: 1fr; } }
+</style>

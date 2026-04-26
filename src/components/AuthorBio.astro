@@ -1,0 +1,120 @@
+---
+// Reusable author bio block for guide articles - reinforces E-E-A-T (author identity)
+// without duplicating boilerplate per page.
+---
+
+<aside class="author-bio">
+  <div class="author-bio-img">
+    <img
+      src="/images/william-bullard-trusted-london-locksmith.webp"
+      alt="William Bullard, independent locksmith in Crouch End N8"
+      width="120"
+      height="120"
+      loading="lazy"
+    />
+  </div>
+  <div class="author-bio-body">
+    <p class="author-bio-byline">About the author</p>
+    <h3 class="author-bio-name">William Bullard</h3>
+    <p class="author-bio-title">Auto Locksmith &amp; Safe Engineer · Crouch End N8</p>
+    <p class="author-bio-text">
+      William has worked as an independent locksmith across North and Central London for over 30 years.
+      He is a Master Locksmiths Association member, Metropolitan Police approved contractor, and a
+      British Gas emergency access contractor. Every Bullard Locks job is attended by William himself
+      - no subcontractors, no call centre.
+    </p>
+    <div class="author-bio-links">
+      <a href="/about">About William</a>
+      <span class="author-bio-sep">·</span>
+      <a href="/reviews">Customer reviews</a>
+      <span class="author-bio-sep">·</span>
+      <a href="tel:07809887883">07809 887 883</a>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .author-bio {
+    display: flex;
+    gap: 24px;
+    padding: 28px 30px;
+    margin-top: 56px;
+    background: linear-gradient(135deg, rgba(31,174,155,0.06) 0%, rgba(31,174,155,0.02) 100%);
+    border: 1.5px solid rgba(31,174,155,0.18);
+    border-radius: 16px;
+  }
+
+  .author-bio-img {
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+
+  .author-bio-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .author-bio-byline {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    font-weight: 700;
+    margin: 0 0 4px;
+  }
+
+  .author-bio-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 0 0 2px;
+  }
+
+  .author-bio-title {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+
+  .author-bio-text {
+    font-size: 0.93rem !important;
+    line-height: 1.65 !important;
+    color: var(--color-text-muted) !important;
+    margin: 0 0 14px !important;
+  }
+
+  .author-bio-links {
+    font-size: 0.85rem;
+    color: var(--color-text-muted-light);
+  }
+
+  .author-bio-links a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .author-bio-links a:hover {
+    text-decoration: underline;
+  }
+
+  .author-bio-sep {
+    margin: 0 8px;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 640px) {
+    .author-bio { flex-direction: column; align-items: center; text-align: center; padding: 24px 22px; }
+    .author-bio-links { display: flex; flex-direction: column; gap: 4px; }
+    .author-bio-sep { display: none; }
+  }
+</style>

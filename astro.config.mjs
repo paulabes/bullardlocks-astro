@@ -17,6 +17,9 @@ const dynamicPages = [
   `${siteUrl}/guides/locksmith-cost-london`,
   `${siteUrl}/guides/lost-all-car-keys-what-to-do`,
   `${siteUrl}/guides/auto-locksmith-vs-dealer`,
+  `${siteUrl}/guides/home-insurance-lock-requirements`,
+  `${siteUrl}/guides/anti-snap-cylinders-explained`,
+  `${siteUrl}/guides/what-to-do-after-burglary-london`,
 ];
 
 import os from 'node:os';

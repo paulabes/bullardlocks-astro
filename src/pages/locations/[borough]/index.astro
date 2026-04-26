@@ -147,6 +147,28 @@ const schema = [
       { '@type': 'ListItem', position: 3, name: borough.name, item: pageUrl },
     ],
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Place',
+    name: borough.name,
+    description: borough.description,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: borough.name,
+      addressRegion: 'London',
+      addressCountry: 'GB',
+    },
+    containsPlace: borough.landmarks.map((lm) => ({
+      '@type': 'Place',
+      name: lm,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: borough.name,
+        addressRegion: 'London',
+        addressCountry: 'GB',
+      },
+    })),
+  },
 ];
 
 

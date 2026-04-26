@@ -1,0 +1,340 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const siteUrl = 'https://www.bullardlocks.com';
+const pageUrl = `${siteUrl}/guides/what-to-do-after-burglary-london`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'What to Do After a Burglary in London - Step-by-Step Guide',
+    description: 'Practical step-by-step guide for what to do after a home burglary in London - from the 999 call through evidence preservation, insurance claim, and securing the property the same night.',
+    image: `${siteUrl}/images/hero-emergency-locksmith.webp`,
+    datePublished: '2026-04-26',
+    dateModified: '2026-04-26',
+    author: { '@type': 'Person', name: 'William Bullard', url: `${siteUrl}/about`, '@id': `${siteUrl}/#william` },
+    publisher: { '@id': `${siteUrl}/#organization` },
+    mainEntityOfPage: pageUrl,
+    inLanguage: 'en-GB',
+    articleSection: 'Emergency',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'What to do after a home burglary in London',
+    description: 'Step-by-step guide for the immediate aftermath of a residential burglary in London.',
+    totalTime: 'PT4H',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'Get to safety and call the police', text: 'If the intruder may still be inside, leave the property immediately and call 999. If you are sure the property is empty, call 101 to report the burglary as a non-emergency. Do not enter or move around the property unnecessarily before police arrive.' },
+      { '@type': 'HowToStep', position: 2, name: 'Preserve the scene for evidence', text: 'Do not touch anything until police have attended and finished their initial assessment. Avoid touching door handles, broken glass, dropped items, or anything obviously disturbed - these may carry forensic evidence (DNA, fingerprints, fibres). Take photographs of the entry point and any damage from a respectful distance.' },
+      { '@type': 'HowToStep', position: 3, name: 'Get a crime reference number', text: 'When the police log the incident, they will issue a crime reference number. Write this down - your insurer will not process a claim without it. The Met Police will also assign a follow-up officer if the case warrants it; their contact details should also be retained.' },
+      { '@type': 'HowToStep', position: 4, name: 'Contact your home insurance', text: 'Call your insurer immediately - most operate 24/7 emergency lines for break-in claims. Provide the crime reference number, describe what is missing or damaged, and ask whether they have a preferred locksmith or restoration contractor. Many insurers cover emergency locksmith and board-up costs as part of the claim.' },
+      { '@type': 'HowToStep', position: 5, name: 'Secure the property the same night', text: 'Do not leave damaged doors, locks, or windows unsecured overnight. Call an emergency locksmith to fit replacement British Standard locks (BS3621 mortice or TS007 3-star anti-snap cylinder, depending on door type) and board up any broken glass panels. Most insurers expect this within a few hours of the burglary.' },
+      { '@type': 'HowToStep', position: 6, name: 'Document everything for the claim', text: 'Take photos of all damage and missing items in their original locations where possible. Keep all receipts from emergency contractors (locksmith, glazier, board-up). Make a written list of stolen items with serial numbers, brands, purchase dates and approximate values. Your insurer will request all of this for the claim assessment.' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/guides` },
+      { '@type': 'ListItem', position: 3, name: 'After a Burglary', item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="What to Do After a Burglary in London - Step-by-Step | Bullard Locks"
+  description="Practical guide for the hours after a London burglary - 999/101 call, preserving evidence, insurance claim, and securing the property the same night."
+  canonicalUrl={pageUrl}
+  schema={schema}
+  datePublished="2026-04-26"
+  dateModified="2026-04-26"
+>
+  <article class="article-page">
+    <section class="article-hero bg-dark">
+      <div class="article-hero-overlay" aria-hidden="true"></div>
+      <div class="container-custom article-hero-content">
+        <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/guides">Guides</a>
+          <span aria-hidden="true">/</span>
+          <span>After a Burglary</span>
+        </nav>
+        <span class="article-category">Emergency</span>
+        <h1 class="article-title">What to Do After a Burglary in London</h1>
+        <p class="article-lead">
+          The first few hours after a home burglary set the tone for everything that follows -
+          the police investigation, the insurance claim, and how secure your property is when you
+          go to sleep that night. This is the practical sequence, written from 30 years of
+          attending London break-in repairs.
+        </p>
+        <div class="article-byline">
+          <div class="article-byline-text">
+            <p class="byline-name">By <a href="/about">William Bullard</a></p>
+            <p class="byline-meta">Met Police approved locksmith · Published 26 April 2026 · 8 min read</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section bg-white">
+      <div class="container-custom article-body">
+        <p class="lead-paragraph">
+          The advice below assumes you have just come home and discovered a burglary, or you've
+          been disturbed at home and the intruder has fled. If you are still inside the property
+          and believe an intruder is still present, stop reading this and call 999 from a safe
+          location immediately.
+        </p>
+
+        <div class="callout-warning">
+          <strong>Emergency:</strong> If you believe an intruder may still be inside the property
+          or in the immediate area, call 999. If the property is clearly empty and the burglary
+          is historical (you've come home to find it), call 101 (the Met Police non-emergency
+          line). Do not enter the property if you suspect the intruder is still present.
+        </div>
+
+        <h2>Step 1 — Get to safety and call the police</h2>
+
+        <p>
+          If you are uncertain whether the property is empty, do not investigate yourself. Stay
+          outside (or at a neighbour's), call 999, and wait. If you are sure the property is
+          empty - perhaps you've returned to find a window broken and items obviously missing -
+          call 101 to report the burglary as non-emergency. Both routes lead to the same
+          investigation; 101 typically gets a response within a few hours rather than minutes.
+        </p>
+
+        <p>
+          The Met Police will dispatch officers to attend the scene, take statements, and assess
+          whether scenes-of-crime examiners (SOCO) need to attend for forensic work. This is
+          especially likely if the burglary involved violence, valuable items, or unusual entry
+          methods.
+        </p>
+
+        <h2>Step 2 — Preserve the scene for evidence</h2>
+
+        <p>
+          The instinct to start cleaning up or checking what is missing is strong. Resist it.
+          Forensic evidence (DNA, fingerprints, footwear marks, fibres) is most likely to be
+          recovered from the immediate hours after the offence, and is destroyed by handling.
+          Specifically, do not:
+        </p>
+
+        <ul>
+          <li>Touch the entry point (broken window, forced door, pried frame)</li>
+          <li>Pick up dropped tools, torn glove fragments, or anything obviously dropped by the intruder</li>
+          <li>Step on broken glass or other floor debris near the entry point</li>
+          <li>Use the bathroom (intruders sometimes do, leaving DNA evidence)</li>
+          <li>Touch door handles, drawer pulls, or surfaces obviously disturbed</li>
+        </ul>
+
+        <p>
+          Take photographs from a respectful distance. Wide-angle shots of the entry point and
+          each affected room are useful for the insurance claim and for the police record. Do
+          this from the doorway of each room rather than walking through it.
+        </p>
+
+        <h2>Step 3 — Get a crime reference number</h2>
+
+        <p>
+          When the police log the incident, they will issue a crime reference number (CRN). Write
+          this down. Without it, your insurer will not progress a claim. The CRN is a Met Police
+          identifier (typically a long alphanumeric string) and the insurer's claims handler will
+          ask for it on the first call.
+        </p>
+
+        <p>
+          The attending officer will also give you a card or written summary of next steps. If
+          SOCO are coming, they may ask you not to clean or move anything in particular rooms
+          until they've attended - this can take up to 24 hours.
+        </p>
+
+        <h2>Step 4 — Contact your home insurance</h2>
+
+        <p>
+          Call your insurer as soon as the police are content for you to do so. Most major UK
+          home insurers (Direct Line, Aviva, Admiral, AXA, etc.) operate 24/7 emergency lines
+          specifically for break-in claims. Have ready:
+        </p>
+
+        <ul>
+          <li>Your policy number</li>
+          <li>The crime reference number</li>
+          <li>A rough description of what is damaged and what appears to be missing</li>
+          <li>Photographs of damage where possible</li>
+        </ul>
+
+        <p>
+          The claims handler will tell you what is covered, whether they have preferred
+          contractors for emergency locksmith and board-up work, and what receipts they need.
+          Many insurers cover the emergency response costs (locksmith, glazier) as part of the
+          claim - keep all receipts. Some insurers will dispatch their own approved emergency
+          contractor; others let you appoint your own. If your policy covers the cost, ask
+          before instructing a locksmith yourself.
+        </p>
+
+        <h2>Step 5 — Secure the property the same night</h2>
+
+        <p>
+          A burgled property with a damaged door or broken window cannot be left unsecured -
+          insurers consider this a breach of the duty of care that voids subsequent claims, and
+          repeat-burglary on the same property within days of the original is a documented
+          phenomenon (intruders sometimes return for items they couldn't carry the first time).
+        </p>
+
+        <p>
+          A reputable
+          <a href="/services/emergency-locksmith">emergency locksmith</a> will:
+        </p>
+
+        <ul>
+          <li>Replace any damaged or compromised locks - typically with BS3621 mortice deadlocks
+          for wooden doors or TS007 3-star anti-snap cylinders for UPVC, both of which usually
+          satisfy insurer specifications</li>
+          <li>Repair or reinforce damaged door frames where possible</li>
+          <li>Board up broken glass panels with marine-grade plywood, fitted to the frame so it
+          can't be easily removed</li>
+          <li>Fit additional bolts, chains or door reinforcers where the existing security has
+          been shown to be inadequate</li>
+          <li>Provide an itemised receipt for the insurance claim</li>
+        </ul>
+
+        <p>
+          For Crouch End, Hornsey, Muswell Hill, Camden, Islington, Hackney, Barnet and
+          surrounding areas, Bullard Locks attends post-burglary calls 24/7 and keeps insurer-
+          spec replacement locks in stock on the van so the work is completed in a single visit.
+          See the <a href="/guides/home-insurance-lock-requirements">insurance lock guide</a>
+          for detail on what to ask for.
+        </p>
+
+        <h2>Step 6 — Document everything for the claim</h2>
+
+        <p>
+          Once the property is secure and you have time, work through the property room by room
+          and write a list of:
+        </p>
+
+        <ul>
+          <li>Items missing - description, brand, model, serial number where known, purchase
+          date, approximate value, where in the property it was kept</li>
+          <li>Items damaged but not removed - same fields, plus the damage type</li>
+          <li>Structural damage - doors, frames, windows, walls, locks, glazing</li>
+        </ul>
+
+        <p>
+          Photograph each missing item's normal location (the empty drawer, the bare wall where
+          a TV was) and the damage. Original purchase receipts, manufacturer warranties, and
+          existing photos that incidentally show the items in your home are all useful for the
+          claim. Most insurers accept reasonable estimates where receipts are unavailable, but
+          large items (electronics, jewellery, watches) typically require some form of
+          documentation.
+        </p>
+
+        <h2>Step 7 — Plan the security upgrade</h2>
+
+        <p>
+          A burglary is a wake-up call about how the property's security held up under attack.
+          Once the immediate emergency is dealt with, it's worth doing a calm, full security
+          review of the home. Common upgrades after a London burglary:
+        </p>
+
+        <ul>
+          <li>Upgrading remaining doors to BS3621 / TS007 3-star spec</li>
+          <li>Adding hook-bolt locks to French and patio doors</li>
+          <li>Fitting key-operated window locks to all accessible windows</li>
+          <li>Installing a wireless burglar alarm (insurer-approved type may reduce premiums)</li>
+          <li>Fitting smart doorbell cameras and outdoor lighting at entry points</li>
+          <li>Considering a small home safe for jewellery, documents and watches</li>
+        </ul>
+
+        <p>
+          Your <a href="/services/emergency-locksmith">emergency locksmith</a> can advise on the
+          first three at the same visit. The alarm and camera installation is typically a separate
+          contractor.
+        </p>
+
+        <h2>The longer-term emotional impact</h2>
+
+        <p>
+          Most people don't think of a home burglary as a violent crime, but research consistently
+          shows it is experienced as one. Sleep disruption, hypervigilance, and a profound sense
+          of violation are common for weeks afterwards, even when nothing of major financial value
+          was taken. Victim Support (free, independent, 0808 168 9111) and the Met Police's
+          victim-support officers offer practical and emotional support to anyone affected. There
+          is no minimum severity required to access these services.
+        </p>
+
+        <AuthorBio />
+      </div>
+    </section>
+
+    <section class="content-section bg-light">
+      <div class="container-custom article-related">
+        <h2 class="section-title">Related Reading</h2>
+        <div class="related-grid">
+          <a href="/guides/home-insurance-lock-requirements" class="related-card">
+            <h3>Insurance Lock Requirements</h3>
+            <p>What UK home insurance policies actually specify - BS3621, TS007 3-star, Sold Secure - and how to comply.</p>
+          </a>
+          <a href="/guides/anti-snap-cylinders-explained" class="related-card">
+            <h3>Anti-Snap Cylinders Explained</h3>
+            <p>Deep dive into TS007 1★, 2★, 3★ and Sold Secure Diamond ratings, and which one your door actually needs.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <CTASection
+    title="Need Emergency Lockout or Break-In Repair?"
+    subtitle="24/7 across North London · Same-night repair · Insurer-grade locks fitted"
+  />
+</BaseLayout>
+
+<style>
+  .article-hero { position: relative; padding-top: var(--header-height); background: linear-gradient(135deg, #0e4a4d 0%, #061e20 100%); }
+  .article-hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 25% 50%, rgba(31,174,155,0.18) 0%, transparent 60%); }
+  .article-hero-content { position: relative; z-index: 1; padding: 64px 0 56px; max-width: 800px; }
+  .article-category { display: inline-block; padding: 4px 12px; background: rgba(239,68,68,0.18); color: #fecaca; border-radius: 100px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+  .article-title { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; color: white; line-height: 1.15; margin: 0 0 20px; letter-spacing: -0.02em; }
+  .article-lead { font-size: 1.1rem; color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0 0 30px; }
+  .article-byline { display: flex; gap: 12px; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .byline-name { color: white; font-weight: 700; font-size: 0.95rem; margin: 0; }
+  .byline-name a { color: var(--color-accent); text-decoration: none; }
+  .byline-name a:hover { text-decoration: underline; }
+  .byline-meta { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin: 4px 0 0; }
+  .article-body { max-width: 760px; }
+  .lead-paragraph { font-size: 1.15rem; line-height: 1.7; color: var(--color-text-main); margin: 0 0 36px; font-weight: 500; }
+  .article-body h2 { font-size: 1.6rem; font-weight: 800; color: var(--color-text-main); margin: 48px 0 18px; letter-spacing: -0.01em; }
+  .article-body h3 { font-size: 1.2rem; font-weight: 700; color: var(--color-text-main); margin: 32px 0 12px; }
+  .article-body p { font-size: 1rem; line-height: 1.75; color: var(--color-text-muted); margin: 0 0 18px; }
+  .article-body p a, .article-body li a { color: var(--color-accent); text-decoration: none; font-weight: 600; }
+  .article-body p a:hover, .article-body li a:hover { text-decoration: underline; }
+  .article-body ol, .article-body ul { margin: 0 0 22px; padding-left: 22px; }
+  .article-body li { font-size: 1rem; line-height: 1.7; color: var(--color-text-muted); margin-bottom: 8px; }
+  .article-body strong { color: var(--color-text-main); font-weight: 700; }
+  .callout-warning {
+    background: rgba(239,68,68,0.06);
+    border-left: 4px solid #dc2626;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 0 0 32px;
+    color: var(--color-text-main);
+    font-size: 0.97rem;
+    line-height: 1.65;
+  }
+  .callout-warning strong { color: #991b1b; }
+  .article-related { max-width: 980px; }
+  .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+  .related-card { display: block; padding: 22px 24px; background: white; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 14px; text-decoration: none; color: inherit; transition: all 0.2s ease; }
+  .related-card:hover { border-color: var(--color-accent); transform: translateY(-2px); }
+  .related-card h3 { font-size: 1.05rem; font-weight: 800; margin: 0 0 8px; color: var(--color-text-main); }
+  .related-card p { font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted); margin: 0; }
+  @media (max-width: 768px) { .related-grid { grid-template-columns: 1fr; } }
+</style>

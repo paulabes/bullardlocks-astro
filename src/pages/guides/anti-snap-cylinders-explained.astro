@@ -1,0 +1,295 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const siteUrl = 'https://www.bullardlocks.com';
+const pageUrl = `${siteUrl}/guides/anti-snap-cylinders-explained`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Anti-Snap Cylinders Explained: TS007 1★, 2★, 3★ and Sold Secure Diamond',
+    description: 'Practical guide to UK anti-snap Euro cylinder ratings - what each star rating actually resists, how lock-snapping works, and which cylinder your UPVC door needs.',
+    image: `${siteUrl}/images/hero-emergency-locksmith.webp`,
+    datePublished: '2026-04-26',
+    dateModified: '2026-04-26',
+    author: { '@type': 'Person', name: 'William Bullard', url: `${siteUrl}/about`, '@id': `${siteUrl}/#william` },
+    publisher: { '@id': `${siteUrl}/#organization` },
+    mainEntityOfPage: pageUrl,
+    inLanguage: 'en-GB',
+    articleSection: 'Security',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/guides` },
+      { '@type': 'ListItem', position: 3, name: 'Anti-Snap Cylinders', item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Anti-Snap Cylinders: TS007 1★ vs 3★ Explained 2026 | Bullard Locks"
+  description="What anti-snap Euro cylinder ratings actually mean - TS007 1-star, 2-star, 3-star, Sold Secure Diamond. How lock-snapping works and which cylinder your door needs."
+  canonicalUrl={pageUrl}
+  schema={schema}
+  datePublished="2026-04-26"
+  dateModified="2026-04-26"
+>
+  <article class="article-page">
+    <section class="article-hero bg-dark">
+      <div class="article-hero-overlay" aria-hidden="true"></div>
+      <div class="container-custom article-hero-content">
+        <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/guides">Guides</a>
+          <span aria-hidden="true">/</span>
+          <span>Anti-Snap Cylinders</span>
+        </nav>
+        <span class="article-category">Security</span>
+        <h1 class="article-title">Anti-Snap Cylinders Explained</h1>
+        <p class="article-lead">
+          Lock-snapping is the most common burglary entry method on UPVC doors in the UK - a basic
+          attack with mole grips that can defeat a generic Euro cylinder in under 30 seconds.
+          Anti-snap cylinders are the answer. This is what TS007 1★, 2★, 3★ and Sold Secure
+          Diamond actually mean, and how to pick the right one.
+        </p>
+        <div class="article-byline">
+          <div class="article-byline-text">
+            <p class="byline-name">By <a href="/about">William Bullard</a></p>
+            <p class="byline-meta">Locksmith, Crouch End N8 · Published 26 April 2026 · 6 min read</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section bg-white">
+      <div class="container-custom article-body">
+        <p class="lead-paragraph">
+          If you have a UPVC or composite front door in the UK and you've never specifically
+          replaced the cylinder, the cylinder fitted is almost certainly a generic non-rated
+          Euro - and it can be defeated in seconds by a teenager with a £10 pair of mole grips.
+          Anti-snap cylinders solve this. They are inexpensive (£35-£70 supply-only), easy to
+          fit, and almost certainly required by your home insurance whether you've checked or not.
+        </p>
+
+        <h2>How lock-snapping actually works</h2>
+
+        <p>
+          A standard Euro cylinder is a brass cylinder roughly 70-100mm long, with a thinner
+          waist in the middle where the cam is. The cylinder is fixed to the door by a single
+          screw running through the door from the inside. To attack it, a burglar grips the part
+          of the cylinder protruding outside the door with mole grips, levers it upward, and
+          snaps it at the waist. The cam is then exposed and can be turned by hand, opening the
+          multipoint mechanism.
+        </p>
+
+        <p>
+          The whole process takes 10-30 seconds on an unprotected cylinder, makes very little
+          noise, and leaves the door operationally functional afterwards (you can close it
+          again). It is the dominant entry method on UPVC doors precisely because it is so fast,
+          quiet and reliable. Anti-snap cylinders are designed to defeat this specific attack.
+        </p>
+
+        <h2>The TS007 standard</h2>
+
+        <p>
+          TS007 is a UK technical specification developed in 2011 by the Door and Hardware
+          Federation in response to the lock-snapping epidemic. Cylinders are tested by Sold
+          Secure or DHF Certfire and rated 1, 2 or 3 stars based on how long they resist a
+          standardised attack.
+        </p>
+
+        <h3>1-star (TS007 1★) cylinder</h3>
+
+        <p>
+          A 1-star cylinder has basic anti-snap construction - typically a sacrificial outer
+          section that breaks off cleanly under attack, leaving the locking mechanism intact and
+          inaccessible. By itself, a 1-star cylinder offers some protection but is not considered
+          enough on its own. Insurers usually require a 1-star cylinder to be paired with TS007
+          2-star security door furniture (handles and escutcheons that protect the cylinder from
+          gripping) to give equivalent protection to a 3-star cylinder.
+        </p>
+
+        <h3>2-star (TS007 2★) cylinder</h3>
+
+        <p>
+          A 2-star cylinder is intermediate - rare in practice. Most manufacturers either make
+          1-star cylinders (for the budget market) or 3-star cylinders (for the security market).
+          You can largely treat 2-star as theoretical when shopping.
+        </p>
+
+        <h3>3-star (TS007 3★) cylinder</h3>
+
+        <p>
+          A 3-star cylinder has full anti-snap protection in the cylinder alone - no special door
+          furniture is required. Construction usually includes hardened internal pins, multiple
+          sacrificial break points, anti-pick pins, and anti-drill plates. A 3-star cylinder
+          typically extends a lock-snapping attack from seconds to several minutes, by which
+          point most burglars give up and try a softer target. This is the cylinder rating most
+          UK home insurers now specify on UPVC doors.
+        </p>
+
+        <h2>Sold Secure Diamond — going further than TS007</h2>
+
+        <p>
+          Sold Secure publishes its own grading independently of TS007. The "Diamond" grade for
+          Euro cylinders is roughly equivalent to TS007 3-star plus enhanced protection against
+          picking, drilling, bumping and impressioning. A Diamond-rated cylinder typically also
+          resists more sophisticated attacks beyond basic snapping. Some high-value home
+          contents policies (typically £75k+ contents cover) require Sold Secure Diamond rather
+          than TS007 3-star.
+        </p>
+
+        <p>
+          Most major manufacturers - Avocet ABS, Brisant Ultion, Mul-T-Lock, ERA, Yale - produce
+          cylinders that hold both TS007 3-star and Sold Secure Diamond grades simultaneously.
+        </p>
+
+        <h2>How to identify what you have</h2>
+
+        <p>
+          Open your front or back door and look at the brass-coloured cylinder visible on the
+          edge of the door, between the handle and the lock body. Genuine TS007-rated cylinders
+          have the rating stamped or laser-etched into the cylinder face or the cam visible from
+          outside the door. Look for:
+        </p>
+
+        <ul>
+          <li><strong>★ ★ ★</strong> markings (3 small stars)</li>
+          <li><strong>"TS007"</strong> in small text</li>
+          <li>The Sold Secure logo plus "DIAMOND" or "GOLD"</li>
+          <li>Brand identifiers like "Ultion", "ABS", "Mul-T-Lock"</li>
+        </ul>
+
+        <p>
+          Generic, non-rated cylinders typically have no markings on the face beyond the
+          manufacturer's logo (often unbranded or generic Chinese-made). If you see no rating
+          marks at all, your cylinder is almost certainly non-anti-snap.
+        </p>
+
+        <h2>Cost to upgrade</h2>
+
+        <p>
+          A TS007 3-star anti-snap cylinder typically costs £35-£70 supply-only depending on
+          brand and length. A locksmith fitting a replacement is straightforward 15-30 minute
+          work, with total fitted cost around £120-£180. See the full pricing breakdown in our
+          <a href="/guides/locksmith-cost-london">London locksmith cost guide</a>.
+        </p>
+
+        <p>
+          DIY fitting is possible if you're comfortable with measuring (cylinder length is
+          critical - too short and it can be levered out; too long and it can be gripped) but
+          most homeowners pay a locksmith because the measurement and adjustment is easy to get
+          wrong. A wrongly-sized cylinder is sometimes worse than the original.
+        </p>
+
+        <h2>Which brand to choose</h2>
+
+        <p>
+          For most UK homes, three brands cover the field:
+        </p>
+
+        <ul>
+          <li><strong>Brisant Ultion</strong> — TS007 3★ + Sold Secure Diamond, with a hidden
+          additional lock that engages if the cylinder is attacked. Premium but widely respected.</li>
+          <li><strong>Avocet ABS</strong> — TS007 3★ + Sold Secure Diamond, well-tested over a
+          decade, slightly cheaper than Ultion.</li>
+          <li><strong>ERA Fortress / Yale Platinum 3★</strong> — TS007 3★, more affordable
+          mainstream options. Adequate for most applications.</li>
+        </ul>
+
+        <p>
+          For high-value homes, prestige London postcodes, or anywhere the door has been
+          targeted previously, the additional spend on Ultion or ABS is usually worth it. For a
+          standard suburban property where nothing has happened before, ERA or Yale 3-star is
+          fine.
+        </p>
+
+        <h2>What anti-snap doesn't fix</h2>
+
+        <p>
+          Anti-snap cylinders solve cylinder-snapping. They don't fix:
+        </p>
+
+        <ul>
+          <li>Worn or failed multipoint mechanisms - the gearbox inside the door that drives
+          the hooks and rollers can wear out independently of the cylinder. If your door is
+          getting harder to lock or you have to lift the handle hard to engage the multipoint,
+          the gearbox is failing.</li>
+          <li>Damaged or warped door frames - a flexed UPVC frame can let the hooks disengage
+          even with a perfect cylinder.</li>
+          <li>Glass panel attacks - some UPVC doors have full-height glass panels that can be
+          smashed and reached through. A door chain or hook-bolt with high-security glazing
+          addresses this.</li>
+        </ul>
+
+        <p>
+          A
+          <a href="/services/emergency-locksmith">qualified locksmith</a> doing a security audit
+          will check all of these, not just the cylinder.
+        </p>
+
+        <AuthorBio />
+      </div>
+    </section>
+
+    <section class="content-section bg-light">
+      <div class="container-custom article-related">
+        <h2 class="section-title">Related Reading</h2>
+        <div class="related-grid">
+          <a href="/guides/home-insurance-lock-requirements" class="related-card">
+            <h3>Insurance Lock Requirements</h3>
+            <p>What UK home insurance policies actually specify - BS3621, TS007 3-star, Sold Secure - and how to comply.</p>
+          </a>
+          <a href="/guides/what-to-do-after-burglary-london" class="related-card">
+            <h3>What to Do After a Burglary</h3>
+            <p>Practical step-by-step from police call through insurance claim through securing the property.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <CTASection
+    title="Need a 3-Star Cylinder Fitted?"
+    subtitle="TS007 3★ supplied & fitted same day · No call-out fee · Crouch End-based"
+  />
+</BaseLayout>
+
+<style>
+  .article-hero { position: relative; padding-top: var(--header-height); background: linear-gradient(135deg, #0e4a4d 0%, #061e20 100%); }
+  .article-hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 25% 50%, rgba(31,174,155,0.18) 0%, transparent 60%); }
+  .article-hero-content { position: relative; z-index: 1; padding: 64px 0 56px; max-width: 800px; }
+  .article-category { display: inline-block; padding: 4px 12px; background: rgba(31,174,155,0.18); color: #5ee8d4; border-radius: 100px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+  .article-title { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; color: white; line-height: 1.15; margin: 0 0 20px; letter-spacing: -0.02em; }
+  .article-lead { font-size: 1.1rem; color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0 0 30px; }
+  .article-byline { display: flex; gap: 12px; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .byline-name { color: white; font-weight: 700; font-size: 0.95rem; margin: 0; }
+  .byline-name a { color: var(--color-accent); text-decoration: none; }
+  .byline-name a:hover { text-decoration: underline; }
+  .byline-meta { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin: 4px 0 0; }
+  .article-body { max-width: 760px; }
+  .lead-paragraph { font-size: 1.15rem; line-height: 1.7; color: var(--color-text-main); margin: 0 0 36px; font-weight: 500; }
+  .article-body h2 { font-size: 1.6rem; font-weight: 800; color: var(--color-text-main); margin: 48px 0 18px; letter-spacing: -0.01em; }
+  .article-body h3 { font-size: 1.2rem; font-weight: 700; color: var(--color-text-main); margin: 32px 0 12px; }
+  .article-body p { font-size: 1rem; line-height: 1.75; color: var(--color-text-muted); margin: 0 0 18px; }
+  .article-body p a, .article-body li a { color: var(--color-accent); text-decoration: none; font-weight: 600; }
+  .article-body p a:hover, .article-body li a:hover { text-decoration: underline; }
+  .article-body ol, .article-body ul { margin: 0 0 22px; padding-left: 22px; }
+  .article-body li { font-size: 1rem; line-height: 1.7; color: var(--color-text-muted); margin-bottom: 8px; }
+  .article-body strong { color: var(--color-text-main); font-weight: 700; }
+  .article-related { max-width: 980px; }
+  .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+  .related-card { display: block; padding: 22px 24px; background: white; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 14px; text-decoration: none; color: inherit; transition: all 0.2s ease; }
+  .related-card:hover { border-color: var(--color-accent); transform: translateY(-2px); }
+  .related-card h3 { font-size: 1.05rem; font-weight: 800; margin: 0 0 8px; color: var(--color-text-main); }
+  .related-card p { font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted); margin: 0; }
+  @media (max-width: 768px) { .related-grid { grid-template-columns: 1fr; } }
+</style>
