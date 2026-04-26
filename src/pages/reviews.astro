@@ -1,0 +1,396 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const siteUrl = 'https://www.bullardlocks.com';
+const pageUrl = `${siteUrl}/reviews`;
+
+const reviews = [
+  {
+    name: 'Elisha Lewis',
+    date: 'August 2025',
+    rating: 5,
+    service: 'Emergency Locksmith',
+    location: 'North London',
+    text: "Locksmith arrived within 10 minutes on a sunny Sunday afternoon and got us back into the flat within an hour. He tried his best to get in without replacing the lock but had to replace it in the end. Very friendly and efficient service at a very good price.",
+  },
+  {
+    name: 'Pete',
+    date: '2025',
+    rating: 5,
+    service: 'Emergency Locksmith',
+    location: 'London',
+    text: "William was excellent. Came out promptly, clearly knows what he's doing. A really nice guy too! We'd called out another so called \"locksmith\" beforehand who turned out to be a right conman. When William turned up you immediately felt he was someone who could be trusted, and he managed to unlock the door without damaging anything. Highly recommend!",
+  },
+  {
+    name: 'Lucy',
+    date: 'December 2025',
+    rating: 5,
+    service: 'Lock Replacement',
+    location: 'London',
+    text: "Replaced the locks in my new home, super professional and friendly, also managed to resolve an issue with my door being difficult to close due to the original locking mechanism. Thank you!",
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Reviews of Bullard Locks - 5.0 Star Locksmith London',
+    description: '5.0 Google rating from 23 verified customer reviews. Read what North London customers say about William Bullard\'s auto locksmith, emergency locksmith and safe engineer services.',
+    url: pageUrl,
+    mainEntity: {
+      '@id': `${siteUrl}/#business`,
+    },
+    publisher: { '@id': `${siteUrl}/#organization` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Reviews', item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Reviews of Bullard Locks - 5.0 Stars on Google | North London Locksmith"
+  description="5.0 Google rating from 23 verified customers. Read what London customers say about William Bullard's auto, emergency and safe locksmith service across N4, N6, N8, N10 and beyond."
+  canonicalUrl={pageUrl}
+  schema={schema}
+>
+  <section class="reviews-hero bg-dark">
+    <div class="reviews-hero-overlay" aria-hidden="true"></div>
+    <div class="container-custom reviews-hero-content">
+      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <span>Reviews</span>
+      </nav>
+
+      <div class="reviews-hero-grid">
+        <div>
+          <h1 class="reviews-hero-title">
+            <span class="reviews-hero-rating">5.0</span>
+            <span class="reviews-hero-stars">★ ★ ★ ★ ★</span>
+          </h1>
+          <p class="reviews-hero-subtitle">on Google · 23 verified customer reviews</p>
+          <p class="reviews-hero-lead">
+            William Bullard has held a perfect 5.0-star Google rating since opening review collection.
+            Below is a selection of recent reviews from customers across North and Central London.
+            All reviews can be verified directly on the
+            <a href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4" target="_blank" rel="noopener noreferrer">Bullard Locks Google profile</a>.
+          </p>
+          <div class="reviews-hero-ctas">
+            <a href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+              <i class="fab fa-google"></i> Read All on Google
+            </a>
+            <a href="tel:07809887883" class="btn-hero-whatsapp">
+              <i class="fas fa-phone"></i> 07809 887 883
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section bg-white">
+    <div class="container-custom reviews-narrow">
+      <div class="section-header">
+        <h2 class="section-title">Recent Customer Reviews</h2>
+        <p class="section-subtitle">A selection of verified Google reviews from North London customers.</p>
+      </div>
+
+      <div class="full-reviews-list">
+        {reviews.map((r) => (
+          <article class="full-review">
+            <div class="full-review-header">
+              <div class="full-review-avatar">{r.name.charAt(0)}</div>
+              <div class="full-review-meta">
+                <p class="full-review-name">{r.name}</p>
+                <p class="full-review-date">{r.date} · {r.service} · {r.location}</p>
+              </div>
+              <div class="full-review-stars">
+                {Array.from({ length: r.rating }).map(() => (
+                  <i class="fas fa-star"></i>
+                ))}
+              </div>
+            </div>
+            <blockquote class="full-review-text">{r.text}</blockquote>
+          </article>
+        ))}
+      </div>
+
+      <div class="reviews-cta-block">
+        <p>
+          Want to read more? All 23 reviews are visible on the
+          <a href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4" target="_blank" rel="noopener noreferrer">Bullard Locks Google profile</a>,
+          where customers can also leave their own review after a service.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section bg-light">
+    <div class="container-custom reviews-narrow">
+      <div class="section-header">
+        <h2 class="section-title">Why Customers Choose William</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <i class="fas fa-user-shield why-icon"></i>
+          <h3>One person, every job</h3>
+          <p>William personally answers the phone, drives to your location and does the work. No subcontractors, no call centre.</p>
+        </div>
+        <div class="why-card">
+          <i class="fas fa-tag why-icon"></i>
+          <h3>Fixed price up front</h3>
+          <p>You get a written quote before any work begins. No call-out fee. The price quoted is the only price paid.</p>
+        </div>
+        <div class="why-card">
+          <i class="fas fa-shield-alt why-icon"></i>
+          <h3>Met Police &amp; British Gas approved</h3>
+          <p>Independently vetted to the highest standards. DBS checked, fully insured, Master Locksmiths Association member.</p>
+        </div>
+        <div class="why-card">
+          <i class="fas fa-tools why-icon"></i>
+          <h3>30+ years on the road</h3>
+          <p>Three decades handling lockouts, key replacements and safe work across North and Central London.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to Experience the Service?"
+    subtitle="Available 24/7 | No call-out fee | 5.0 Google · 23 reviews"
+  />
+</BaseLayout>
+
+<style>
+  .reviews-hero {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+    background: linear-gradient(135deg, #0e4a4d 0%, #061e20 100%);
+  }
+
+  .reviews-hero-overlay {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(31,174,155,0.18) 0%, transparent 60%);
+  }
+
+  .reviews-hero-content { position: relative; z-index: 1; padding: 64px 0 48px; }
+
+  .reviews-hero-grid { max-width: 760px; }
+
+  .reviews-hero-title {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin: 18px 0 8px;
+    flex-wrap: wrap;
+  }
+
+  .reviews-hero-rating {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .reviews-hero-stars {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: #FFD700;
+    letter-spacing: 6px;
+    font-weight: 400;
+  }
+
+  .reviews-hero-subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 600;
+    margin: 0 0 24px;
+  }
+
+  .reviews-hero-lead {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin: 0 0 30px;
+    max-width: 620px;
+  }
+
+  .reviews-hero-lead a { color: var(--color-accent); text-decoration: none; }
+  .reviews-hero-lead a:hover { text-decoration: underline; }
+
+  .reviews-hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 100px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-hero-primary:hover { background: var(--color-accent-hover); transform: translateY(-2px); }
+
+  .btn-hero-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 100px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-hero-whatsapp:hover { background: rgba(255,255,255,0.2); }
+
+  .reviews-narrow { max-width: 880px; }
+
+  .full-reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .full-review {
+    padding: 28px 30px;
+    background: var(--color-bg-light);
+    border: 1.5px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+  }
+
+  .full-review-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .full-review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .full-review-meta { flex: 1; min-width: 0; }
+  .full-review-name { font-weight: 700; color: var(--color-text-main); margin: 0; font-size: 0.98rem; }
+  .full-review-date { font-size: 0.82rem; color: var(--color-text-muted); margin: 2px 0 0; }
+
+  .full-review-stars {
+    display: flex;
+    gap: 2px;
+    color: #FFD700;
+    font-size: 0.85rem;
+  }
+
+  .full-review-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-main);
+    margin: 0;
+    padding-left: 0;
+    border-left: 3px solid var(--color-accent);
+    padding: 4px 0 4px 16px;
+    font-style: italic;
+  }
+
+  .reviews-cta-block {
+    margin-top: 32px;
+    padding: 22px 26px;
+    background: rgba(31,174,155,0.06);
+    border: 1.5px dashed var(--color-accent);
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  .reviews-cta-block p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .reviews-cta-block a {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .reviews-cta-block a:hover { text-decoration: underline; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .why-card {
+    background: white;
+    padding: 26px 28px;
+    border-radius: 14px;
+    border: 1.5px solid rgba(0,0,0,0.06);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .why-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .why-icon {
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .why-card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 0 0 8px;
+  }
+
+  .why-card p {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .full-review-header { flex-wrap: wrap; }
+  }
+</style>

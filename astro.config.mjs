@@ -79,8 +79,8 @@ export default defineConfig({
           return { ...item, priority: 0.6, changefreq: 'monthly' };
         }
 
-        // About, contact
-        if (url.includes('/about') || url.includes('/contact')) {
+        // About, contact, reviews
+        if (url.includes('/about') || url.includes('/contact') || url.endsWith('/reviews')) {
           return { ...item, priority: 0.6, changefreq: 'monthly' };
         }
 

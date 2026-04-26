@@ -74,6 +74,9 @@ const reviews = [
     </div>
 
     <div class="reviews-cta">
+      <a href="/reviews" class="btn-reviews-page">
+        <i class="fas fa-star"></i> Read All Reviews
+      </a>
       <a
         href="https://www.google.com/maps/place/?q=place_id:ChIJU7O3P5IbdkgRVm-wppoH9-4"
         class="btn-google-reviews"
@@ -86,7 +89,7 @@ const reviews = [
           <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
           <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
         </svg>
-        View All 23 Reviews on Google
+        View on Google
       </a>
     </div>
   </div>
@@ -218,6 +221,31 @@ const reviews = [
   .reviews-cta {
     text-align: center;
     margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-reviews-page {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(31,174,155,0.3);
+    transition: all 0.2s ease;
+  }
+
+  .btn-reviews-page:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(31,174,155,0.4);
   }
 
   .btn-google-reviews {
