@@ -15,6 +15,8 @@ interface Props {
   schema?: object | object[];
   preloadImage?: string;
   robots?: string;
+  datePublished?: string;
+  dateModified?: string;
 }
 
 const {
@@ -25,10 +27,34 @@ const {
   ogType = 'website',
   schema,
   preloadImage,
-  robots = 'index, follow'
+  robots = 'index, follow',
+  datePublished = '2026-01-15',
+  dateModified = new Date().toISOString().split('T')[0],
 } = Astro.props;
 
 const siteUrl = 'https://www.bullardlocks.com';
+
+// Auto-injected WebPage schema — gives every page a dateModified for E-E-A-T freshness signals
+// and a publisher reference. Consumers can still pass their own page-specific schema.
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  url: canonicalUrl,
+  name: title,
+  description,
+  inLanguage: 'en-GB',
+  datePublished,
+  dateModified,
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+};
+
+// Combine page-specific schema with the auto WebPage schema
+const allSchema = schema
+  ? Array.isArray(schema)
+    ? [...schema, webPageSchema]
+    : [schema, webPageSchema]
+  : [webPageSchema];
 ---
 
 <!DOCTYPE html>
@@ -146,11 +172,7 @@ const siteUrl = 'https://www.bullardlocks.com';
   </style>
 
   <!-- Schema.org markup -->
-  {schema && (
-    Array.isArray(schema)
-      ? schema.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)
-      : <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-  )}
+  {allSchema.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
 
   <!-- Favicon & Manifest -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

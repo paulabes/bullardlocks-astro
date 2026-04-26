@@ -16,7 +16,7 @@ const currentYear = new Date().getFullYear();
           "Where there's a Will there's a way!"
         </blockquote>
       </div>
-      
+
       <div class="footer-col-links">
         <h4 class="footer-heading">Services</h4>
         <ul class="footer-links">
@@ -25,7 +25,31 @@ const currentYear = new Date().getFullYear();
           <li><a href="/services/safe-engineer">Safe Engineer</a></li>
         </ul>
       </div>
-      
+
+      <div class="footer-col-links">
+        <h4 class="footer-heading">North London</h4>
+        <ul class="footer-links">
+          <li><a href="/locations/haringey">Haringey</a></li>
+          <li><a href="/locations/islington">Islington</a></li>
+          <li><a href="/locations/camden">Camden</a></li>
+          <li><a href="/locations/hackney">Hackney</a></li>
+          <li><a href="/locations/barnet">Barnet</a></li>
+          <li><a href="/locations/enfield">Enfield</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col-links">
+        <h4 class="footer-heading">Central London</h4>
+        <ul class="footer-links">
+          <li><a href="/locations/westminster">Westminster</a></li>
+          <li><a href="/locations/city-of-london">City of London</a></li>
+          <li><a href="/locations/kensington-chelsea">Kensington &amp; Chelsea</a></li>
+          <li><a href="/locations/hammersmith-fulham">Hammersmith &amp; Fulham</a></li>
+          <li><a href="/locations/uk-wide/safe-engineer">Safe Engineer UK-Wide</a></li>
+          <li><a href="/locations">All Locations</a></li>
+        </ul>
+      </div>
+
       <div class="footer-col-contact">
         <h4 class="footer-heading">Contact</h4>
         <ul class="footer-contact-list">
@@ -92,8 +116,8 @@ const currentYear = new Date().getFullYear();
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 64px;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+    gap: 40px;
     margin-bottom: 40px;
   }
 
@@ -235,10 +259,10 @@ const currentYear = new Date().getFullYear();
   
   .footer-credit a { color: inherit; text-decoration: underline; }
   
-  @media (max-width: 992px) {
+  @media (max-width: 1200px) {
     .footer-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 36px;
     }
     .footer-col-brand {
       grid-column: 1 / -1;
@@ -251,7 +275,11 @@ const currentYear = new Date().getFullYear();
       padding: 60px 0 32px;
     }
     .footer-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-col-brand {
+      grid-column: 1 / -1;
     }
     .footer-bottom {
       flex-direction: column;
@@ -261,6 +289,12 @@ const currentYear = new Date().getFullYear();
     .footer-bottom-content {
       flex-direction: column;
       gap: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

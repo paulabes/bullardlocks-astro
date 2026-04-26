@@ -39,23 +39,22 @@ const siblingServices = borough.services.filter(s => s !== serviceSlug);
 const faqItems = getFAQItems(serviceSlug as ServiceSlug, borough);
 const areaContent = getAreaContent(boroughSlug!, serviceSlug as ServiceSlug);
 
-// SEO
+// SEO - unique per (borough × service) pairing using borough-specific signals
 const postcodeString = borough.postcodes.join(', ');
-const pageTitle = `${service.name} ${borough.name} | ${
-  serviceSlug === 'auto-locksmith'
-    ? `Car Key Replacement ${borough.postcodes[0]}`
-    : serviceSlug === 'emergency-locksmith'
-    ? '24/7 Lockout & Break-in Repair'
-    : 'Safe Opening & Installation'
-} | Bullard Locks`;
+const primaryPostcode = borough.postcodes[0];
+const primaryArea = borough.areas[0];
 
-const metaDescription = `${service.name} in ${borough.name} (${borough.postcodes.slice(0, 3).join(', ')}). ${
-  serviceSlug === 'auto-locksmith'
-    ? 'Car key replacement, programming & vehicle lockout. All makes & models.'
-    : serviceSlug === 'emergency-locksmith'
-    ? '24/7 rapid response, 20-40 min arrival. Lockouts, break-in repair.'
-    : 'Non-destructive safe opening, installation & combination changes.'
-} No call-out fee. Call 07809 887 883.`;
+const pageTitle = serviceSlug === 'auto-locksmith'
+  ? `Auto Locksmith ${borough.name} - Car Key Replacement ${primaryPostcode} | Bullard Locks`
+  : serviceSlug === 'emergency-locksmith'
+  ? `Emergency Locksmith ${borough.name} - ${borough.responseTime} response ${primaryPostcode} | Bullard Locks`
+  : `Safe Engineer ${borough.name} - Opening & Installation ${primaryPostcode} | Bullard Locks`;
+
+const metaDescription = serviceSlug === 'auto-locksmith'
+  ? `Mobile auto locksmith ${borough.name} (${borough.postcodes.slice(0, 3).join(', ')}) - car key replacement, transponder programming & vehicle lockout from ${primaryArea}. All makes. ${borough.responseTime} response. No call-out fee. 07809 887 883.`
+  : serviceSlug === 'emergency-locksmith'
+  ? `24/7 emergency locksmith ${borough.name} - ${borough.responseTime} arrival across ${borough.postcodes.slice(0, 3).join(', ')}. Lockouts, break-in repair, urgent lock changes from ${primaryArea} to all areas. No call-out fee. 07809 887 883.`
+  : `Safe engineer ${borough.name} - non-destructive safe opening, installation & combination changes across ${borough.postcodes.slice(0, 3).join(', ')}. All major brands. From ${primaryArea} to wider ${borough.name}. By appointment. 07809 887 883.`;
 
 // Hero images (local)
 const heroImages: Record<ServiceSlug, string> = {
@@ -68,6 +67,12 @@ const heroImage = heroImages[serviceSlug as ServiceSlug];
 // Schema
 const siteUrl = 'https://www.bullardlocks.com';
 const pageUrl = `${siteUrl}/locations/${boroughSlug}/${serviceSlug}`;
+// Safe engineering is a UK-wide specialist service - canonicalise the 10 borough×safe-engineer
+// combos to the main service page so ranking equity consolidates rather than fragments across
+// near-duplicate templated pages. The borough URLs remain crawlable for users who land on them.
+const canonicalUrl = serviceSlug === 'safe-engineer'
+  ? `${siteUrl}/services/safe-engineer`
+  : pageUrl;
 const geoData = boroughGeoData[boroughSlug!];
 
 // HowTo schema - service-specific steps
@@ -203,7 +208,7 @@ const schema = [
 <BaseLayout
   title={pageTitle}
   description={metaDescription}
-  canonicalUrl={pageUrl}
+  canonicalUrl={canonicalUrl}
   ogImage={`https://www.bullardlocks.com${heroImage}`}
   schema={schema}
   preloadImage={heroImage}
@@ -370,9 +375,45 @@ const schema = [
     </div>
   </section>
 
+  <!-- LOCAL COVERAGE - unique per borough (areas, postcodes, landmarks) -->
+  <section class="content-section bg-white">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">{service.name} Coverage in {borough.name}</h2>
+        <p class="section-subtitle">Neighbourhoods, postcodes and landmarks within our {borough.name} {service.name.toLowerCase()} catchment.</p>
+      </div>
+
+      <div class="coverage-grid">
+        <div class="coverage-card">
+          <div class="coverage-card-icon"><i class="fas fa-map-pin"></i></div>
+          <h3 class="coverage-card-title">Neighbourhoods</h3>
+          <ul class="coverage-list">
+            {borough.areas.map((area) => <li>{area}</li>)}
+          </ul>
+        </div>
+
+        <div class="coverage-card">
+          <div class="coverage-card-icon"><i class="fas fa-mail-bulk"></i></div>
+          <h3 class="coverage-card-title">Postcodes</h3>
+          <ul class="coverage-list coverage-list-pills">
+            {borough.postcodes.map((pc) => <li><span class="postcode-pill">{pc}</span></li>)}
+          </ul>
+        </div>
+
+        <div class="coverage-card">
+          <div class="coverage-card-icon"><i class="fas fa-landmark"></i></div>
+          <h3 class="coverage-card-title">Local Landmarks</h3>
+          <ul class="coverage-list">
+            {borough.landmarks.map((lm) => <li>Near {lm}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Related Services in this Borough -->
   {siblingServices.length > 0 && (
-    <section class="content-section bg-white">
+    <section class="content-section bg-light">
       <div class="container-custom">
         <div class="section-header">
           <h2 class="section-title">Related Services in {borough.name}</h2>
@@ -523,6 +564,85 @@ const schema = [
 </BaseLayout>
 
 <style>
+  /* ===== COVERAGE GRID ===== */
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .coverage-card {
+    background: var(--color-bg-light);
+    border: 1.5px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .coverage-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .coverage-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(31, 174, 155, 0.12);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+  }
+
+  .coverage-card-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 0 0 14px;
+  }
+
+  .coverage-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .coverage-list li {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .coverage-list-pills {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .postcode-pill {
+    display: inline-block;
+    padding: 6px 12px;
+    background: white;
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 768px) {
+    .coverage-grid { grid-template-columns: 1fr; }
+  }
+
   /* ===== HERO ===== */
   .loc-hero {
     position: relative;

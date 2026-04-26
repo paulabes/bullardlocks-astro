@@ -303,6 +303,42 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
     </div>
   </section>
 
+  <!-- LOCAL COVERAGE - unique borough data (areas, postcodes, landmarks) -->
+  <section class="content-section bg-white">
+    <div class="container-custom">
+      <div class="section-header">
+        <h2 class="section-title">Locksmith Coverage in {borough.name}</h2>
+        <p class="section-subtitle">Neighbourhoods, postcodes and landmarks within our {borough.name} catchment - {borough.responseTime} typical response.</p>
+      </div>
+
+      <div class="coverage-grid">
+        <div class="coverage-card">
+          <div class="coverage-card-icon"><i class="fas fa-map-pin"></i></div>
+          <h3 class="coverage-card-title">Neighbourhoods</h3>
+          <ul class="coverage-list">
+            {borough.areas.map((area) => <li>{area}</li>)}
+          </ul>
+        </div>
+
+        <div class="coverage-card">
+          <div class="coverage-card-icon"><i class="fas fa-mail-bulk"></i></div>
+          <h3 class="coverage-card-title">Postcodes</h3>
+          <ul class="coverage-list coverage-list-pills">
+            {borough.postcodes.map((pc) => <li><span class="postcode-pill">{pc}</span></li>)}
+          </ul>
+        </div>
+
+        <div class="coverage-card">
+          <div class="coverage-card-icon"><i class="fas fa-landmark"></i></div>
+          <h3 class="coverage-card-title">Local Landmarks</h3>
+          <ul class="coverage-list">
+            {borough.landmarks.map((lm) => <li>Near {lm}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS -->
   <section class="content-section bg-dark">
     <div class="container-custom">
@@ -498,6 +534,85 @@ const heroImage = '/images/hero-emergency-locksmith.webp';
 </BaseLayout>
 
 <style>
+  /* ===== COVERAGE GRID ===== */
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .coverage-card {
+    background: var(--color-bg-light);
+    border: 1.5px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .coverage-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .coverage-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(31, 174, 155, 0.12);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+  }
+
+  .coverage-card-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 0 0 14px;
+  }
+
+  .coverage-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .coverage-list li {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .coverage-list-pills {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .postcode-pill {
+    display: inline-block;
+    padding: 6px 12px;
+    background: white;
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 768px) {
+    .coverage-grid { grid-template-columns: 1fr; }
+  }
+
   /* ===== HERO ===== */
   .loc-hero {
     position: relative;
