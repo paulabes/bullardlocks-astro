@@ -5,40 +5,6 @@ interface Props {
 
 const { bg = 'light' } = Astro.props;
 
-const reviewSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  '@id': 'https://www.bullardlocks.com/#business',
-  name: 'Bullard Locks',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5.0',
-    reviewCount: '23',
-    bestRating: '5',
-    worstRating: '1',
-  },
-  review: [
-    {
-      '@type': 'Review',
-      author: { '@type': 'Person', name: 'Elisha Lewis' },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      reviewBody: 'Locksmith arrived within 10 minutes on a sunny Sunday afternoon and got us back into the flat within an hour. He tried his best to get in without replacing the lock but had to replace it in the end. Very friendly and efficient service at a very good price.',
-    },
-    {
-      '@type': 'Review',
-      author: { '@type': 'Person', name: 'Pete' },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      reviewBody: 'William was excellent. Came out promptly, clearly knows what he\'s doing. A really nice guy too! We\'d called out another so called "locksmith" beforehand who turned out to be a right conman. When William turned up you immediately felt he was someone who could be trusted, and he managed to unlock the door without damaging anything. Highly recommend!',
-    },
-    {
-      '@type': 'Review',
-      author: { '@type': 'Person', name: 'Lucy' },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      reviewBody: 'Replaced the locks in my new home, super professional and friendly, also managed to resolve an issue with my door being difficult to close due to the original locking mechanism. Thank you!',
-    },
-  ],
-};
-
 const reviews = [
   {
     name: 'Elisha Lewis',
@@ -61,7 +27,6 @@ const reviews = [
 ];
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
 <section class={`reviews-section bg-${bg}`} id="reviews">
   <div class="container-custom">
     <div class="reviews-header">
