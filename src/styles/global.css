@@ -734,6 +734,29 @@ section.bg-dark .trust-badge-item {
     color: rgba(255, 255, 255, 0.9);
 }
 
+/* Trust badge card stays dark even on light sections (white text inside) */
+section.bg-light .contact-sidebar-card.trust-card,
+section.bg-white .contact-sidebar-card.trust-card {
+    background: var(--color-bg-dark);
+    color: white;
+}
+
+/* Contact method cards — distinct tinted backgrounds per channel */
+section.bg-white .contact-method-primary,
+section.bg-light .contact-method-primary {
+    background: rgba(31, 174, 155, 0.1);
+}
+
+section.bg-white .contact-method-whatsapp,
+section.bg-light .contact-method-whatsapp {
+    background: rgba(37, 211, 102, 0.1);
+}
+
+section.bg-white .contact-method-location,
+section.bg-light .contact-method-location {
+    background: rgba(14, 74, 77, 0.07);
+}
+
 /* Accordion (article-faq, home-faq-item, faq-item) — no borders, distinct bgs */
 .article-faq,
 .home-faq-item,

@@ -190,7 +190,7 @@ export const servicesMeta: Record<ServiceSlug, ServiceMeta> = {
   },
   'emergency-locksmith': {
     name: 'Emergency Locksmith',
-    icon: 'fas fa-shield-alt',
+    icon: 'fas fa-bolt',
     color: '#0e4a4d',
     tagline: '24/7 emergency locksmith - fast response for lockouts, break-ins & urgent security',
     features: [

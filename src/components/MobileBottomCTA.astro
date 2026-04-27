@@ -21,6 +21,15 @@
     <i class="fab fa-whatsapp"></i>
     <span>WhatsApp</span>
   </a>
+  <button
+    type="button"
+    class="m-cta-btn m-cta-chat"
+    id="m-cta-chat-trigger"
+    aria-label="Open chat"
+  >
+    <i class="fas fa-robot"></i>
+    <span>Chat</span>
+  </button>
 </nav>
 
 <style is:global>
@@ -35,10 +44,10 @@
       left: 0;
       right: 0;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1px;
-      background: rgba(0, 0, 0, 0.08);
-      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      background: var(--color-bg-dark);
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
       z-index: 998;
       padding-bottom: env(safe-area-inset-bottom);
     }
@@ -49,52 +58,55 @@
       align-items: center;
       justify-content: center;
       gap: 4px;
-      padding: 12px 8px;
+      padding: 11px 6px 10px;
       color: white;
       text-decoration: none;
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 700;
       text-align: center;
       transition: background 0.15s ease;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
     }
 
     .m-cta-btn i {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
     }
 
-    .m-cta-quote {
-      background: var(--color-text-main);
+    .m-cta-quote i { color: #f1f3f2; }
+    .m-cta-call i { color: var(--color-accent); }
+    .m-cta-whatsapp i { color: #25D366; }
+    .m-cta-chat i { color: #93c5fd; }
+
+    .m-cta-btn:active {
+      background: rgba(255, 255, 255, 0.08);
     }
 
-    .m-cta-quote:active {
-      background: #082c2e;
-    }
-
-    .m-cta-call {
-      background: var(--color-accent);
-    }
-
-    .m-cta-call:active {
-      background: var(--color-accent-hover);
-    }
-
-    .m-cta-whatsapp {
-      background: #25D366;
-    }
-
-    .m-cta-whatsapp:active {
-      background: #1DA851;
-    }
-
-    /* Lift the chat widget above the bottom CTA bar */
+    /* Hide the floating chat widget button — chat is now in the bottom bar */
     .chat-btn {
-      bottom: calc(72px + env(safe-area-inset-bottom)) !important;
-      right: 16px !important;
+      display: none !important;
     }
 
-    /* Lift cookie banner if present */
+    /* Lift content above the bottom CTA bar */
     body {
       padding-bottom: calc(64px + env(safe-area-inset-bottom));
     }
+
+    /* Lift cookie banner above the bottom bar */
+    .cookie-banner,
+    .cookie-consent,
+    [class*="cookie"] {
+      bottom: calc(64px + env(safe-area-inset-bottom)) !important;
+    }
   }
 </style>
+
+<script>
+  const chatTrigger = document.getElementById('m-cta-chat-trigger');
+  chatTrigger?.addEventListener('click', () => {
+    const chatToggle = document.getElementById('chat-toggle') as HTMLButtonElement | null;
+    chatToggle?.click();
+  });
+</script>

@@ -194,15 +194,15 @@ const schema = [
       <!-- Three coloured service chips -->
       <div class="hero-chips">
         <a href="/services/auto-locksmith" class="chip chip-amber">
-          <i class="fas fa-car"></i>
+          <i class="fas fa-car-side"></i>
           <span>Auto Locksmith</span>
         </a>
         <a href="/services/emergency-locksmith" class="chip chip-coral">
-          <i class="fas fa-clock"></i>
+          <i class="fas fa-bolt"></i>
           <span>Emergency Locksmith</span>
         </a>
         <a href="/services/safe-engineer" class="chip chip-blue">
-          <i class="fas fa-shield-alt"></i>
+          <i class="fas fa-shield-halved"></i>
           <span>Safe Engineer</span>
         </a>
       </div>
@@ -606,9 +606,9 @@ const schema = [
     66% { background: #93c5fd; }
   }
 
-  /* H1 */
+  /* H1 - matches PageHero (clamp 2rem - 3.5rem) on internal pages */
   .hero-title {
-    font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
     line-height: 1.1;
     color: #ffffff;
@@ -970,16 +970,16 @@ const schema = [
   .star-rating { font-weight: 700; color: var(--color-text-main); font-size: 0.95rem; }
   .star-source { font-size: 0.78rem; color: var(--color-text-muted); }
 
-  /* Experience badge */
+  /* Experience badge - disc */
   .exp-badge {
     position: absolute;
     top: -18px;
     right: -18px;
-    width: 110px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
     background: var(--color-accent);
     color: white;
-    border-radius: 3px;
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
