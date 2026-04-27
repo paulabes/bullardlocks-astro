@@ -31,10 +31,10 @@
     --spacing-3xl: 64px;
     --spacing-4xl: 96px;
 
-    --border-radius-xl: 32px;
-    --border-radius-lg: 24px;
-    --border-radius-md: 16px;
-    --border-radius-sm: 8px;
+    --border-radius-xl: 3px;
+    --border-radius-lg: 3px;
+    --border-radius-md: 3px;
+    --border-radius-sm: 3px;
 
     /* Semantic Colors */
     --color-success: #10B981;

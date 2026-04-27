@@ -99,7 +99,7 @@ const schema = [
   />
 
   <section class="content-section bg-white">
-    <div class="container-custom guides-narrow">
+    <div class="container-custom">
       <div class="guides-grid">
         {guides.map((g) => (
           <a href={`/guides/${g.slug}`} class="guide-card">
@@ -124,8 +124,6 @@ const schema = [
 </BaseLayout>
 
 <style>
-  .guides-narrow { max-width: 1080px; }
-
   .guides-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -138,7 +136,7 @@ const schema = [
     padding: 28px 26px;
     background: white;
     border: 1.5px solid rgba(0,0,0,0.08);
-    border-radius: 18px;
+    border-radius: 3px;
     text-decoration: none;
     color: inherit;
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
@@ -153,7 +151,7 @@ const schema = [
   .guide-card-icon {
     width: 48px;
     height: 48px;
-    border-radius: 14px;
+    border-radius: 3px;
     background: rgba(31,174,155,0.12);
     color: var(--color-accent);
     display: flex;
@@ -174,7 +172,7 @@ const schema = [
     padding: 3px 10px;
     background: rgba(31,174,155,0.12);
     color: var(--color-accent);
-    border-radius: 100px;
+    border-radius: 3px;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
