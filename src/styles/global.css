@@ -892,6 +892,31 @@ table tr:hover td,
     background: rgba(31, 174, 155, 0.04);
 }
 
+/* === Lozenge enforcement on every CTA-like element === */
+.btn,
+.btn-primary-lg,
+.btn-secondary-lg,
+.btn-whatsapp,
+.btn-hero-primary,
+.btn-hero-whatsapp,
+.btn-nav-quote,
+.btn-nav-call,
+.btn-nav-whatsapp,
+.btn-call,
+.btn-reviews-page,
+.btn-google-reviews,
+.btn-share,
+.btn-cta,
+.conv-submit,
+.conv-whatsapp,
+.cta-btn,
+.chip,
+button.submit-btn,
+a[class*="btn-"],
+button[class*="btn-"] {
+    border-radius: 100px !important;
+}
+
 /* === Standardised CTA buttons (light + dark variants) === */
 /* Primary call button — accent green pill (default/light surfaces) */
 .btn-primary-lg,
