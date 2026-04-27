@@ -266,7 +266,7 @@ const schema = [
 
         <!-- Left: copy -->
         <div class="william-copy">
-          <p class="eyebrow">Your Local Locksmith Expert</p>
+          <p class="eyebrow">Your Local Expert Locksmith</p>
           <h2 class="william-heading">
             30+ Years Experience.<br />
             <span class="text-accent">Trusted by London.</span>
@@ -629,27 +629,30 @@ const schema = [
     color: var(--color-accent);
   }
 
-  /* ---- Service chips ---- */
+  /* ---- Service chips ---- stacked, full-width */
   .hero-chips {
     display: flex;
+    flex-direction: column;
     gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 32px;
+    margin: 0 auto 32px;
+    max-width: 420px;
+    width: 100%;
   }
 
   .chip {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    border-radius: 3px;
-    font-size: 0.9rem;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 100px;
+    font-size: 0.95rem;
     font-weight: 700;
     text-decoration: none;
     border: 1.5px solid transparent;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
     letter-spacing: 0.01em;
+    width: 100%;
   }
 
   .chip:hover {

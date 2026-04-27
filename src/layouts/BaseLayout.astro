@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ChatWidget from '../components/ChatWidget.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import MobileBottomCTA from '../components/MobileBottomCTA.astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
@@ -196,6 +197,9 @@ const allSchema = schema
 
   <!-- Chat Widget -->
   <ChatWidget />
+
+  <!-- Mobile bottom CTA bar -->
+  <MobileBottomCTA />
 
   <!-- Cookie Consent -->
   <CookieConsent />

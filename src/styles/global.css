@@ -167,20 +167,29 @@ img {
     }
 }
 
-/* --- Buttons --- */
+/* --- Buttons --- All sitewide buttons are pill-shaped (lozenge)
+   and the same height as the nav buttons (~42px). */
 .btn,
 .btn-primary-lg,
 .btn-secondary-lg,
-.btn-whatsapp {
+.btn-whatsapp,
+.btn-hero-primary,
+.btn-hero-whatsapp,
+.conv-submit,
+.conv-whatsapp,
+.btn-call,
+.btn-reviews-page,
+.btn-google-reviews {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 16px 32px;
-    border-radius: 3px;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 100px !important;
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     border: none;
     white-space: nowrap;

@@ -1,0 +1,100 @@
+---
+// Floating bottom CTA bar - mobile only
+---
+
+<nav class="mobile-bottom-cta" aria-label="Quick contact">
+  <a href="/contact" class="m-cta-btn m-cta-quote" aria-label="Request a quote">
+    <i class="fas fa-file-invoice"></i>
+    <span>Quote</span>
+  </a>
+  <a href="tel:07809887883" class="m-cta-btn m-cta-call" aria-label="Call 07809 887 883">
+    <i class="fas fa-phone"></i>
+    <span>Call</span>
+  </a>
+  <a
+    href="https://wa.me/447809887883"
+    class="m-cta-btn m-cta-whatsapp"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp"
+  >
+    <i class="fab fa-whatsapp"></i>
+    <span>WhatsApp</span>
+  </a>
+</nav>
+
+<style is:global>
+  .mobile-bottom-cta {
+    display: none;
+  }
+
+  @media (max-width: 992px) {
+    .mobile-bottom-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+      z-index: 998;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .m-cta-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 12px 8px;
+      color: white;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-align: center;
+      transition: background 0.15s ease;
+    }
+
+    .m-cta-btn i {
+      font-size: 1.15rem;
+    }
+
+    .m-cta-quote {
+      background: var(--color-text-main);
+    }
+
+    .m-cta-quote:active {
+      background: #082c2e;
+    }
+
+    .m-cta-call {
+      background: var(--color-accent);
+    }
+
+    .m-cta-call:active {
+      background: var(--color-accent-hover);
+    }
+
+    .m-cta-whatsapp {
+      background: #25D366;
+    }
+
+    .m-cta-whatsapp:active {
+      background: #1DA851;
+    }
+
+    /* Lift the chat widget above the bottom CTA bar */
+    .chat-btn {
+      bottom: calc(72px + env(safe-area-inset-bottom)) !important;
+      right: 16px !important;
+    }
+
+    /* Lift cookie banner if present */
+    body {
+      padding-bottom: calc(64px + env(safe-area-inset-bottom));
+    }
+  }
+</style>
