@@ -87,16 +87,16 @@ const schema = [
   canonicalUrl={`${siteUrl}/guides`}
   schema={schema}
 >
-  <section class="guides-hero bg-dark">
-    <div class="guides-hero-overlay" aria-hidden="true"></div>
-    <div class="container-custom guides-hero-content">
+  <section class="policy-hero bg-dark">
+    <div class="policy-hero-overlay" aria-hidden="true"></div>
+    <div class="container-custom policy-hero-content">
       <nav class="loc-breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a>
         <span aria-hidden="true">/</span>
         <span>Guides</span>
       </nav>
-      <h1 class="guides-hero-title">Locksmith <span class="text-accent">Guides</span></h1>
-      <p class="guides-hero-lead">
+      <h1 class="policy-hero-title">Locksmith <span class="title-accent">Guides</span></h1>
+      <p class="policy-hero-lead">
         Plain-English answers to the questions customers ask William most often - written from
         30 years on the road across North and Central London.
       </p>
@@ -129,32 +129,53 @@ const schema = [
 </BaseLayout>
 
 <style>
-  .guides-hero {
+  .policy-hero {
     position: relative;
-    min-height: 50vh;
+    background: var(--color-bg-dark);
+    padding: calc(var(--header-height) + 60px) 0 60px;
+  }
+
+  .policy-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(31,174,155,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .policy-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .loc-breadcrumb {
     display: flex;
     align-items: center;
-    padding-top: var(--header-height);
-    background: linear-gradient(135deg, #0e4a4d 0%, #061e20 100%);
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
   }
 
-  .guides-hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(31,174,155,0.18) 0%, transparent 60%); }
+  .loc-breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .loc-breadcrumb a:hover { color: white; }
+  .loc-breadcrumb span { color: rgba(255,255,255,0.35); }
+  .loc-breadcrumb span:last-child { color: rgba(255,255,255,0.75); }
 
-  .guides-hero-content { position: relative; z-index: 1; padding: 60px 0; max-width: 760px; }
-
-  .guides-hero-title {
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
+  .policy-hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
     color: white;
-    margin: 16px 0 20px;
-    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1.1;
   }
 
-  .guides-hero-lead {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.78);
+  .title-accent { color: var(--color-accent); }
+
+  .policy-hero-lead {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.05rem;
+    margin-bottom: 32px;
     line-height: 1.7;
-    max-width: 640px;
+    max-width: 620px;
   }
 
   .guides-narrow { max-width: 1080px; }
