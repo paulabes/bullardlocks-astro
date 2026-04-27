@@ -47,6 +47,10 @@
     </ul>
 
     <div class="nav-actions">
+      <a href="/contact" class="btn-nav-quote">
+        <i class="fas fa-file-invoice"></i>
+        <span class="call-text">Request a Quote</span>
+      </a>
       <a href="tel:07809887883" class="btn-nav-call">
         <i class="fas fa-phone"></i>
         <span class="call-text">07809 887 883</span>
@@ -416,17 +420,35 @@
     justify-content: flex-end;
   }
 
-  .btn-nav-call {
-    background-color: var(--color-accent);
+  .btn-nav-quote,
+  .btn-nav-call,
+  .btn-nav-whatsapp {
     color: white;
     padding: 10px 20px;
-    border-radius: 3px;
+    border-radius: 100px;
     font-weight: 700;
     font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 8px;
     transition: var(--transition-normal);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-nav-quote {
+    background-color: var(--color-text-main);
+    box-shadow: 0 4px 12px rgba(14, 74, 77, 0.3);
+  }
+
+  .btn-nav-quote:hover {
+    background-color: #082c2e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(14, 74, 77, 0.4);
+  }
+
+  .btn-nav-call {
+    background-color: var(--color-accent);
     box-shadow: 0 4px 12px rgba(31, 174, 155, 0.3);
   }
 
@@ -438,15 +460,6 @@
 
   .btn-nav-whatsapp {
     background-color: #25D366;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 3px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: var(--transition-normal);
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
   }
 
@@ -583,6 +596,7 @@
       display: none;
     }
 
+    .btn-nav-quote,
     .btn-nav-call,
     .btn-nav-whatsapp {
       padding: 10px;
@@ -607,6 +621,7 @@
       display: none;
     }
 
+    .btn-nav-quote,
     .btn-nav-call,
     .btn-nav-whatsapp {
       display: none;

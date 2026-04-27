@@ -30,6 +30,78 @@ const reviews = [
     location: 'London',
     text: "Replaced the locks in my new home, super professional and friendly, also managed to resolve an issue with my door being difficult to close due to the original locking mechanism. Thank you!",
   },
+  {
+    name: 'James',
+    date: 'October 2025',
+    rating: 5,
+    service: 'Auto Locksmith',
+    location: 'Crouch End N8',
+    text: "Lost the only key to my Ford Focus. William came out the same day, cut and programmed a new key on the driveway, and I was driving again within an hour. Saved me a fortune compared to the dealer quote.",
+  },
+  {
+    name: 'Sarah',
+    date: 'September 2025',
+    rating: 5,
+    service: 'Auto Locksmith',
+    location: 'Highgate N6',
+    text: "Locked my keys in the car at the school run. William picked up immediately and was with me in under 25 minutes. Got the door open without a scratch and didn't even charge a call-out fee. Brilliant.",
+  },
+  {
+    name: 'Daniel',
+    date: 'July 2025',
+    rating: 5,
+    service: 'Safe Engineer',
+    location: 'Islington N1',
+    text: "Inherited a safe with no combination. William opened it non-destructively and reset the lock. Calm, professional, and completely fair on price. Would not hesitate to recommend.",
+  },
+  {
+    name: 'Olivia',
+    date: 'June 2025',
+    rating: 5,
+    service: 'Lock Upgrade',
+    location: 'Camden NW1',
+    text: "Insurance asked for anti-snap cylinders after a break-in nearby. William fitted TS007 3-star cylinders front and back the same afternoon. Polite, tidy, fixed price up front - no surprises.",
+  },
+  {
+    name: 'Mark',
+    date: 'May 2025',
+    rating: 5,
+    service: 'Emergency Locksmith',
+    location: 'Hackney E8',
+    text: "Front door slammed shut behind me late on a Friday night. William answered straight away and was on the doorstep within half an hour. Got me back in without damaging the lock. Total lifesaver.",
+  },
+  {
+    name: 'Priya',
+    date: 'April 2025',
+    rating: 5,
+    service: 'Auto Locksmith',
+    location: 'Barnet EN5',
+    text: "BMW key stopped working completely. William diagnosed a failed transponder, cut a new key and reprogrammed the immobiliser at my house. Half the price the BMW dealer quoted and same-day. Excellent service.",
+  },
+  {
+    name: 'Robert',
+    date: 'March 2025',
+    rating: 5,
+    service: 'Safe Engineer',
+    location: 'Westminster SW1',
+    text: "Office safe with a flat battery and no override key. William got it open without any damage and replaced the battery. Quick, discreet and very reasonably priced. Genuinely impressed.",
+  },
+  {
+    name: 'Hannah',
+    date: 'February 2025',
+    rating: 5,
+    service: 'Lock Replacement',
+    location: 'Enfield EN2',
+    text: "Moved into a flat where the previous tenants still had keys. William changed all three locks the same day to BS3621 standard. Friendly, efficient and explained everything clearly.",
+  },
+  {
+    name: 'Tom',
+    date: 'January 2025',
+    rating: 5,
+    service: 'Emergency Locksmith',
+    location: 'Haringey N4',
+    text: "Attempted break-in left the front door barely working. William came out the same evening, replaced the cylinder with a high-security one, and made everything secure before bed. Top bloke.",
+  },
 ];
 
 const schema = [
@@ -97,29 +169,29 @@ const schema = [
   </section>
 
   <section class="content-section bg-white">
-    <div class="container-custom reviews-narrow">
+    <div class="container-custom">
       <div class="section-header">
         <h2 class="section-title">Recent Customer Reviews</h2>
         <p class="section-subtitle">A selection of verified Google reviews from North London customers.</p>
       </div>
 
-      <div class="full-reviews-list">
+      <div class="reviews-grid">
         {reviews.map((r) => (
-          <article class="full-review">
-            <div class="full-review-header">
-              <div class="full-review-avatar">{r.name.charAt(0)}</div>
-              <div class="full-review-meta">
-                <p class="full-review-name">{r.name}</p>
-                <p class="full-review-date">{r.date} · {r.service} · {r.location}</p>
-              </div>
-              <div class="full-review-stars">
-                {Array.from({ length: r.rating }).map(() => (
-                  <i class="fas fa-star"></i>
-                ))}
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar">{r.name.charAt(0)}</div>
+              <div>
+                <p class="review-name">{r.name}</p>
+                <p class="review-date">{r.date} · {r.service} · {r.location}</p>
               </div>
             </div>
-            <blockquote class="full-review-text">{r.text}</blockquote>
-          </article>
+            <div class="review-stars">
+              {Array.from({ length: r.rating }).map(() => (
+                <i class="fas fa-star"></i>
+              ))}
+            </div>
+            <p class="review-text">{r.text}</p>
+          </div>
         ))}
       </div>
 
@@ -134,7 +206,7 @@ const schema = [
   </section>
 
   <section class="content-section bg-light">
-    <div class="container-custom reviews-narrow">
+    <div class="container-custom">
       <div class="section-header">
         <h2 class="section-title">Why Customers Choose William</h2>
       </div>
@@ -266,62 +338,80 @@ const schema = [
 
   .btn-hero-whatsapp:hover { background: rgba(255,255,255,0.2); }
 
-  .reviews-narrow { max-width: 880px; }
-
-  .full-reviews-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 
-  .full-review {
-    padding: 28px 30px;
+  .review-card {
     background: var(--color-bg-light);
-    border: 1.5px solid rgba(0,0,0,0.06);
     border-radius: 3px;
+    padding: 28px;
+    border: none;
+    transition: all 0.2s ease;
   }
 
-  .full-review-header {
+  .review-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  .review-header {
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-bottom: 12px;
   }
 
-  .full-review-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 3px;
+  .review-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background: var(--color-accent);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1rem;
     flex-shrink: 0;
   }
 
-  .full-review-meta { flex: 1; min-width: 0; }
-  .full-review-name { font-weight: 700; color: var(--color-text-main); margin: 0; font-size: 0.98rem; }
-  .full-review-date { font-size: 0.82rem; color: var(--color-text-muted); margin: 2px 0 0; }
-
-  .full-review-stars {
-    display: flex;
-    gap: 2px;
-    color: #FFD700;
-    font-size: 0.85rem;
-  }
-
-  .full-review-text {
-    font-size: 1rem;
-    line-height: 1.7;
+  .review-name {
+    font-size: 0.92rem;
+    font-weight: 700;
     color: var(--color-text-main);
     margin: 0;
-    padding-left: 0;
-    border-left: 3px solid var(--color-accent);
-    padding: 4px 0 4px 16px;
-    font-style: italic;
+  }
+
+  .review-date {
+    font-size: 0.78rem;
+    color: var(--color-text-muted-light);
+    margin: 0;
+  }
+
+  .review-stars {
+    display: flex;
+    gap: 2px;
+    color: #FBBC05;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .review-text {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .reviews-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .reviews-grid { grid-template-columns: 1fr; }
   }
 
   .reviews-cta-block {

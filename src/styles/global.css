@@ -725,26 +725,96 @@ section.bg-dark .trust-badge-item {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* Accordion (article-faq) open/closed states — no borders, distinct bgs */
-.article-faq {
+/* Accordion (article-faq, home-faq-item, faq-item) — no borders, distinct bgs */
+.article-faq,
+.home-faq-item,
+.faq-item {
     background: var(--color-bg-light);
+    border: none !important;
+    border-color: transparent !important;
+    border-radius: 3px;
+    margin-bottom: 12px;
+    overflow: hidden;
     transition: background 0.2s ease;
 }
 
-.article-faq[open] {
+.article-faq[open],
+.home-faq-item[open],
+.faq-item[open] {
     background: rgba(31, 174, 155, 0.08);
 }
 
-section.bg-light .article-faq {
+section.bg-light .article-faq,
+section.bg-light .home-faq-item,
+section.bg-light .faq-item {
     background: var(--color-bg-white);
 }
 
-section.bg-light .article-faq[open] {
+section.bg-light .article-faq[open],
+section.bg-light .home-faq-item[open],
+section.bg-light .faq-item[open] {
     background: rgba(31, 174, 155, 0.1);
 }
 
-.article-faq summary::after {
+.article-faq summary,
+.home-faq-item summary,
+.faq-item summary,
+.faq-question {
+    cursor: pointer;
+    list-style: none;
+    padding: 18px 48px 18px 22px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    position: relative;
+    border: none !important;
+}
+
+.article-faq summary::-webkit-details-marker,
+.home-faq-item summary::-webkit-details-marker,
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.article-faq summary::after,
+.home-faq-item summary::after,
+.faq-item summary::after,
+.faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--color-accent);
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.article-faq[open] summary::after,
+.home-faq-item[open] summary::after,
+.faq-item[open] summary::after {
+    content: '−';
+}
+
+.article-faq .faq-answer,
+.home-faq-item .faq-answer,
+.faq-item .faq-answer {
+    padding: 0 22px 18px;
+}
+
+.article-faq .faq-answer p,
+.home-faq-item .faq-answer p,
+.faq-item .faq-answer p {
+    font-size: 0.95rem;
+    margin: 0 0 12px;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+}
+
+.article-faq .faq-answer p:last-child,
+.home-faq-item .faq-answer p:last-child,
+.faq-item .faq-answer p:last-child {
+    margin-bottom: 0;
 }
 
 /* Tables — site-wide standard matching locations/services pattern */
