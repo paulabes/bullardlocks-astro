@@ -588,8 +588,9 @@
   }
 
 
-  /* Tablet - hide button text, keep icons */
-  @media (max-width: 1200px) {
+  /* Below 1400px: collapse the action buttons to icon-only so they
+     don't crowd the nav links. */
+  @media (max-width: 1400px) {
     .call-text {
       display: none;
     }
@@ -609,7 +610,29 @@
     }
 
     .nav-links {
-      gap: 20px;
+      gap: 22px;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Below 1180px: tighten further so 6 menu items + 3 icon buttons
+     fit comfortably without overlap. */
+  @media (max-width: 1180px) {
+    .nav-links {
+      gap: 16px;
+    }
+    .nav-link {
+      font-size: 0.85rem;
+    }
+    .nav-actions {
+      gap: 10px;
+    }
+    .nav-container {
+      padding: 0 16px;
+      column-gap: 16px;
     }
   }
 
