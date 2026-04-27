@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GoogleReviews from '../components/GoogleReviews.astro';
 import CTASection from '../components/CTASection.astro';
+import PageHero from '../components/PageHero.astro';
 
 const schema = [
   {
@@ -44,47 +45,15 @@ const schema = [
   canonicalUrl="https://www.bullardlocks.com/contact"
   schema={schema}
 >
-  <!-- HERO -->
-  <section class="policy-hero bg-dark">
-    <div class="policy-hero-overlay" aria-hidden="true"></div>
-    <div class="container-custom policy-hero-content">
-
-      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a>
-        <span aria-hidden="true">/</span>
-        <span>Contact</span>
-      </nav>
-
-      <h1 class="policy-hero-title">Contact <span class="title-accent">Bullard Locks</span></h1>
-
-      <p class="policy-hero-lead">
-        Get in touch for professional auto locksmith and emergency locksmith services across North London. Available 24/7. <strong>No call-out fee.</strong>
-      </p>
-
-      <div class="loc-trust-bar">
-        <div class="loc-trust-item">
-          <i class="fas fa-star"></i>
-          <span>5.0 Google</span>
-        </div>
-        <div class="loc-trust-item">
-          <i class="fas fa-shield-alt"></i>
-          <span>Met Police Approved</span>
-        </div>
-        <div class="loc-trust-item">
-          <i class="fas fa-award"></i>
-          <span>30+ Years Experience</span>
-        </div>
-        <div class="loc-trust-item">
-          <i class="fas fa-tag"></i>
-          <span>No Call-Out Fee</span>
-        </div>
-        <div class="loc-trust-item">
-          <i class="fas fa-check"></i>
-          <span>Fully Insured</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    breadcrumbItems={[
+      { name: 'Home', href: '/' },
+      { name: 'Contact' },
+    ]}
+    service="Contact"
+    location="Bullard Locks"
+    lead="Get in touch for professional auto locksmith and emergency locksmith services across North London. Available 24/7. No call-out fee."
+  />
 
   <!-- Contact Methods -->
   <section class="content-section bg-white">
@@ -323,76 +292,6 @@ const schema = [
 </BaseLayout>
 
 <style>
-  /* Hero */
-  .policy-hero {
-    position: relative;
-    background: var(--color-bg-dark);
-    padding: calc(var(--header-height) + 60px) 0 60px;
-  }
-
-  .policy-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 80% 50%, rgba(31,174,155,0.08) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .policy-hero-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .loc-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 24px;
-    font-size: 0.85rem;
-  }
-
-  .loc-breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
-  .loc-breadcrumb a:hover { color: white; }
-  .loc-breadcrumb span { color: rgba(255,255,255,0.35); }
-  .loc-breadcrumb span:last-child { color: rgba(255,255,255,0.75); }
-
-  .policy-hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    color: white;
-    margin-bottom: 16px;
-    line-height: 1.1;
-  }
-
-  .title-accent { color: var(--color-accent); }
-
-  .policy-hero-lead {
-    color: rgba(255,255,255,0.7);
-    font-size: 1.05rem;
-    margin-bottom: 32px;
-    line-height: 1.7;
-    max-width: 620px;
-  }
-
-  .loc-trust-bar {
-    display: flex;
-    gap: 0;
-    flex-wrap: wrap;
-  }
-
-  .loc-trust-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 16px;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.7);
-    font-weight: 500;
-  }
-
-  .loc-trust-item:first-child { padding-left: 0; }
-  .loc-trust-item + .loc-trust-item { border-left: 1px solid rgba(255,255,255,0.28); }
-  .loc-trust-item i { color: var(--color-accent); font-size: 0.8rem; }
-
   /* Contact Methods */
   .contact-methods-grid {
     display: grid;
@@ -748,11 +647,6 @@ const schema = [
     color: rgba(255,255,255,0.8);
     font-weight: 500;
     line-height: 1.3;
-  }
-
-  @media (max-width: 768px) {
-    .loc-trust-bar { gap: 10px; }
-    .loc-trust-item { padding: 0; border-left: none; }
   }
 
   @media (max-width: 992px) {

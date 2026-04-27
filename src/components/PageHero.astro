@@ -1,0 +1,230 @@
+---
+interface BreadcrumbItem {
+  name: string;
+  href?: string;
+}
+
+interface Props {
+  breadcrumbItems: BreadcrumbItem[];
+  service: string;
+  location?: string;
+  lead: string;
+  showCtas?: boolean;
+  showTrustBar?: boolean;
+  heroImage?: string;
+}
+
+const {
+  breadcrumbItems,
+  service,
+  location,
+  lead,
+  showCtas = true,
+  showTrustBar = true,
+  heroImage = '/images/hero-emergency-locksmith.webp',
+} = Astro.props;
+
+const lastIndex = breadcrumbItems.length - 1;
+---
+
+<section class="page-hero bg-dark">
+  <div class="page-hero-bg" style={`background-image: url('${heroImage}')`} aria-hidden="true"></div>
+  <div class="page-hero-overlay" aria-hidden="true"></div>
+  <div class="container-custom page-hero-inner">
+    <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+      {breadcrumbItems.map((item, i) => (
+        <>
+          {item.href && i < lastIndex ? (
+            <a href={item.href}>{item.name}</a>
+          ) : (
+            <span>{item.name}</span>
+          )}
+          {i < lastIndex && <span aria-hidden="true">/</span>}
+        </>
+      ))}
+    </nav>
+
+    <h1 class="page-hero-title">
+      <span class="page-hero-service">{service}</span>
+      {location && <span class="page-hero-location">{location}</span>}
+    </h1>
+
+    <p class="page-hero-lead">{lead}</p>
+
+    {showCtas && (
+      <div class="page-hero-ctas">
+        <a href="tel:07809887883" class="btn-hero-primary">
+          <i class="fas fa-phone"></i> 07809 887 883
+        </a>
+        <a href="https://wa.me/447809887883" class="btn-hero-whatsapp" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    )}
+
+    {showTrustBar && (
+      <div class="page-hero-trust">
+        <div class="page-hero-trust-item"><i class="fas fa-star"></i><span>5.0 Google</span></div>
+        <div class="page-hero-trust-item"><i class="fas fa-shield-alt"></i><span>Met Police Approved</span></div>
+        <div class="page-hero-trust-item"><i class="fas fa-award"></i><span>30+ Years Experience</span></div>
+        <div class="page-hero-trust-item"><i class="fas fa-tag"></i><span>No Call-Out Fee</span></div>
+        <div class="page-hero-trust-item"><i class="fas fa-check"></i><span>Fully Insured</span></div>
+      </div>
+    )}
+
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    overflow: hidden;
+  }
+
+  .page-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.25) saturate(0.8);
+  }
+
+  .page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(14, 74, 77, 0.85) 0%, rgba(0, 0, 0, 0.6) 100%);
+  }
+
+  .page-hero-inner {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+    padding-bottom: 80px;
+    max-width: 1080px;
+  }
+
+  .page-hero-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .page-hero-breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .page-hero-breadcrumb a:hover { color: white; }
+  .page-hero-breadcrumb span:last-child { color: var(--color-accent); }
+
+  .page-hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    letter-spacing: -0.02em;
+  }
+
+  .page-hero-service { color: var(--color-accent); }
+
+  .page-hero-location {
+    color: white;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    font-family: var(--font-body);
+    margin-top: 8px;
+  }
+
+  .page-hero-lead {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0 0 32px;
+    max-width: 640px;
+  }
+
+  .page-hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .page-hero-trust {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .page-hero-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+
+  .page-hero-trust-item:first-child { padding-left: 0; }
+  .page-hero-trust-item + .page-hero-trust-item { border-left: 1px solid rgba(255,255,255,0.28); }
+  .page-hero-trust-item i { color: var(--color-accent); font-size: 0.9rem; }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(31, 174, 155, 0.4);
+  }
+
+  .btn-hero-primary:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(31, 174, 155, 0.5);
+  }
+
+  .btn-hero-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: #25D366;
+    color: white;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-hero-whatsapp:hover {
+    background: #1DA851;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.45);
+  }
+
+  @media (max-width: 768px) {
+    .page-hero-trust { gap: 12px; }
+    .page-hero-trust-item { padding: 0; border-left: none; }
+    .page-hero-trust-item + .page-hero-trust-item { border-left: none; }
+  }
+
+  @media (max-width: 640px) {
+    .page-hero-inner { padding-top: 40px; padding-bottom: 48px; }
+    .page-hero-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    .page-hero-lead { font-size: 0.95rem; }
+  }
+</style>

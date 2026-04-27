@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import PageHero from '../../components/PageHero.astro';
 
 const siteUrl = 'https://www.bullardlocks.com';
 const pageUrl = `${siteUrl}/guides/what-to-do-after-burglary-london`;
@@ -58,33 +59,21 @@ const schema = [
   dateModified="2026-04-26"
 >
   <article class="article-page">
-    <section class="article-hero bg-dark">
-      <div class="article-hero-bg" style="background-image: url('/images/hero-emergency-locksmith.webp')" aria-hidden="true"></div>
-      <div class="article-hero-overlay" aria-hidden="true"></div>
-      <div class="container-custom article-hero-content">
-        <nav class="loc-breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a>
-          <span aria-hidden="true">/</span>
-          <a href="/guides">Guides</a>
-          <span aria-hidden="true">/</span>
-          <span>After a Burglary</span>
-        </nav>
-        <span class="article-category">Emergency</span>
-        <h1 class="article-title">What to Do After a Burglary in London</h1>
-        <p class="article-lead">
-          The first few hours after a home burglary set the tone for everything that follows -
-          the police investigation, the insurance claim, and how secure your property is when you
-          go to sleep that night. This is the practical sequence, written from 30 years of
-          attending London break-in repairs.
-        </p>
-        <div class="article-byline">
-          <div class="article-byline-text">
-            <p class="byline-name">By <a href="/about">William Bullard</a></p>
-            <p class="byline-meta">Met Police approved locksmith · Published 26 April 2026 · 8 min read</p>
-          </div>
-        </div>
+    <PageHero
+      breadcrumbItems={[
+        { name: 'Home', href: '/' },
+        { name: 'Guides', href: '/guides' },
+        { name: 'After a Burglary' },
+      ]}
+      service="Emergency"
+      location="What to Do After a Burglary in London"
+      lead="The first few hours after a home burglary set the tone for everything that follows - the police investigation, the insurance claim, and how secure your property is when you go to sleep that night. This is the practical sequence, written from 30 years of attending London break-in repairs."
+    >
+      <div class="article-byline">
+        <p class="byline-name">By <a href="/about">William Bullard</a></p>
+        <p class="byline-meta">Met Police approved locksmith · Published 26 April 2026 · 8 min read</p>
       </div>
-    </section>
+    </PageHero>
 
     <section class="content-section bg-white">
       <div class="container-custom article-body">
@@ -300,18 +289,7 @@ const schema = [
 </BaseLayout>
 
 <style>
-  .article-hero { position: relative; padding-top: var(--header-height); overflow: hidden; background: linear-gradient(135deg, #0e4a4d 0%, #061e20 100%); }
-  .article-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(0.25) saturate(0.8); }
-  .article-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(14, 74, 77, 0.85) 0%, rgba(0, 0, 0, 0.6) 100%); }
-  .article-hero-content { position: relative; z-index: 1; padding: 60px 0 80px; max-width: 800px; }
-  .loc-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 28px; flex-wrap: wrap; }
-  .loc-breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
-  .loc-breadcrumb a:hover { color: white; }
-  .loc-breadcrumb span:last-child { color: var(--color-accent); }
-  .article-category { display: inline-block; padding: 4px 12px; background: rgba(239,68,68,0.18); color: #fecaca; border-radius: 100px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
-  .article-title { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; color: white; line-height: 1.15; margin: 0 0 20px; letter-spacing: -0.02em; }
-  .article-lead { font-size: 1.1rem; color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0 0 30px; }
-  .article-byline { display: flex; gap: 12px; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .article-byline { margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
   .byline-name { color: white; font-weight: 700; font-size: 0.95rem; margin: 0; }
   .byline-name a { color: var(--color-accent); text-decoration: none; }
   .byline-name a:hover { text-decoration: underline; }

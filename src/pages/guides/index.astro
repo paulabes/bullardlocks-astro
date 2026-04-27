@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
+import PageHero from '../../components/PageHero.astro';
 
 const siteUrl = 'https://www.bullardlocks.com';
 
@@ -87,21 +88,15 @@ const schema = [
   canonicalUrl={`${siteUrl}/guides`}
   schema={schema}
 >
-  <section class="policy-hero bg-dark">
-    <div class="policy-hero-overlay" aria-hidden="true"></div>
-    <div class="container-custom policy-hero-content">
-      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a>
-        <span aria-hidden="true">/</span>
-        <span>Guides</span>
-      </nav>
-      <h1 class="policy-hero-title">Locksmith <span class="title-accent">Guides</span></h1>
-      <p class="policy-hero-lead">
-        Plain-English answers to the questions customers ask William most often - written from
-        30 years on the road across North and Central London.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    breadcrumbItems={[
+      { name: 'Home', href: '/' },
+      { name: 'Guides' },
+    ]}
+    service="Locksmith Guides"
+    location="Plain-English answers from 30 years on the road"
+    lead="Practical guides to UK locksmith pricing, car key replacement, lock security and safe engineering - written from 30 years on the road across North and Central London."
+  />
 
   <section class="content-section bg-white">
     <div class="container-custom guides-narrow">
@@ -129,55 +124,6 @@ const schema = [
 </BaseLayout>
 
 <style>
-  .policy-hero {
-    position: relative;
-    background: var(--color-bg-dark);
-    padding: calc(var(--header-height) + 60px) 0 60px;
-  }
-
-  .policy-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 80% 50%, rgba(31,174,155,0.08) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .policy-hero-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .loc-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 24px;
-    font-size: 0.85rem;
-  }
-
-  .loc-breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
-  .loc-breadcrumb a:hover { color: white; }
-  .loc-breadcrumb span { color: rgba(255,255,255,0.35); }
-  .loc-breadcrumb span:last-child { color: rgba(255,255,255,0.75); }
-
-  .policy-hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    color: white;
-    margin-bottom: 16px;
-    line-height: 1.1;
-  }
-
-  .title-accent { color: var(--color-accent); }
-
-  .policy-hero-lead {
-    color: rgba(255,255,255,0.7);
-    font-size: 1.05rem;
-    margin-bottom: 32px;
-    line-height: 1.7;
-    max-width: 620px;
-  }
-
   .guides-narrow { max-width: 1080px; }
 
   .guides-grid {
