@@ -618,6 +618,15 @@ const schema = [
 
   .hero-title .hero-line {
     display: block;
+    white-space: nowrap;
+  }
+
+  /* On narrower viewports the long phrase can't fit one line at this
+     font size — let it wrap then. */
+  @media (max-width: 720px) {
+    .hero-title .hero-line {
+      white-space: normal;
+    }
   }
 
   .hero-title .hero-accent {

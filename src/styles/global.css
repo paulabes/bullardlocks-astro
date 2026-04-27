@@ -727,7 +727,14 @@ section.bg-light .policy-business-info {
     background: var(--color-bg-white);
 }
 
-section.bg-dark .conv-panel,
+/* Conv-panel keeps its bright white card appearance on dark heros so the
+   phone number / form fields stay legible. Only trust-badge tiles get
+   the translucent treatment. */
+section.bg-dark .conv-panel {
+    background: white;
+    color: var(--color-text-main);
+}
+
 section.bg-dark .contact-sidebar-card.trust-card,
 section.bg-dark .trust-badge-item {
     background: rgba(255, 255, 255, 0.06);
@@ -757,35 +764,39 @@ section.bg-light .contact-method-location {
     background: rgba(14, 74, 77, 0.07);
 }
 
-/* Accordion (article-faq, home-faq-item, faq-item) — no borders, distinct bgs */
+/* Accordion (article-faq, home-faq-item, faq-item) — no borders, distinct bgs.
+   !important here because individual pages have older inline accordion CSS
+   with their own bg/border declarations and we want the canonical guides-page
+   look to win sitewide. */
 .article-faq,
 .home-faq-item,
 .faq-item {
-    background: var(--color-bg-light);
+    background: var(--color-bg-light) !important;
     border: none !important;
     border-color: transparent !important;
-    border-radius: 3px;
+    border-radius: 3px !important;
     margin-bottom: 12px;
     overflow: hidden;
     transition: background 0.2s ease;
+    box-shadow: none !important;
 }
 
 .article-faq[open],
 .home-faq-item[open],
 .faq-item[open] {
-    background: rgba(31, 174, 155, 0.08);
+    background: rgba(31, 174, 155, 0.1) !important;
 }
 
 section.bg-light .article-faq,
 section.bg-light .home-faq-item,
 section.bg-light .faq-item {
-    background: var(--color-bg-white);
+    background: var(--color-bg-white) !important;
 }
 
 section.bg-light .article-faq[open],
 section.bg-light .home-faq-item[open],
 section.bg-light .faq-item[open] {
-    background: rgba(31, 174, 155, 0.1);
+    background: rgba(31, 174, 155, 0.12) !important;
 }
 
 .article-faq summary,
