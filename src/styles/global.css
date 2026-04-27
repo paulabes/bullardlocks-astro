@@ -645,3 +645,194 @@ textarea.form-control-modern {
         scroll-behavior: auto !important;
     }
 }
+
+/* ===================================================== */
+/* DESIGN SYSTEM OVERRIDES                               */
+/* Site-wide normalisation: no borders on cards, use     */
+/* background contrast against the parent section.       */
+/* ===================================================== */
+
+/* Card classes - no borders, use bg contrast for separation */
+.guide-card,
+.service-icon-card,
+.related-card,
+.article-faq,
+.conv-panel,
+.contact-method-card,
+.contact-sidebar-card,
+.review-card,
+.credential-card,
+.guide-sidebar-card,
+.callout-warning,
+.callout-info,
+.matrix-borough-cell,
+.policy-business-info,
+.author-bio,
+.trust-badge-item,
+.faq-card,
+.feature-card,
+.area-card,
+.borough-card,
+.process-step,
+.matrix-cell {
+    border: none !important;
+    border-color: transparent !important;
+}
+
+/* Card backgrounds — contrast against the parent section */
+section.bg-white .guide-card,
+section.bg-white .service-icon-card,
+section.bg-white .related-card,
+section.bg-white .article-faq,
+section.bg-white .conv-panel,
+section.bg-white .contact-method-card,
+section.bg-white .contact-sidebar-card,
+section.bg-white .review-card,
+section.bg-white .credential-card,
+section.bg-white .guide-sidebar-card,
+section.bg-white .feature-card,
+section.bg-white .area-card,
+section.bg-white .borough-card,
+section.bg-white .process-step,
+section.bg-white .author-bio,
+section.bg-white .policy-business-info {
+    background: var(--color-bg-light);
+}
+
+section.bg-light .guide-card,
+section.bg-light .service-icon-card,
+section.bg-light .related-card,
+section.bg-light .article-faq,
+section.bg-light .conv-panel,
+section.bg-light .contact-method-card,
+section.bg-light .contact-sidebar-card,
+section.bg-light .review-card,
+section.bg-light .credential-card,
+section.bg-light .guide-sidebar-card,
+section.bg-light .feature-card,
+section.bg-light .area-card,
+section.bg-light .borough-card,
+section.bg-light .process-step,
+section.bg-light .author-bio,
+section.bg-light .policy-business-info {
+    background: var(--color-bg-white);
+}
+
+section.bg-dark .conv-panel,
+section.bg-dark .contact-sidebar-card.trust-card,
+section.bg-dark .trust-badge-item {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Accordion (article-faq) open/closed states — no borders, distinct bgs */
+.article-faq {
+    background: var(--color-bg-light);
+    transition: background 0.2s ease;
+}
+
+.article-faq[open] {
+    background: rgba(31, 174, 155, 0.08);
+}
+
+section.bg-light .article-faq {
+    background: var(--color-bg-white);
+}
+
+section.bg-light .article-faq[open] {
+    background: rgba(31, 174, 155, 0.1);
+}
+
+.article-faq summary::after {
+    color: var(--color-accent);
+}
+
+/* Tables — site-wide standard matching locations/services pattern */
+table,
+.price-table,
+.policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    border: none;
+}
+
+table th,
+.price-table th,
+.policy-table th {
+    text-align: left;
+    padding: 14px 12px;
+    background: rgba(31, 174, 155, 0.08);
+    color: var(--color-text-main);
+    font-weight: 700;
+    border: none;
+    border-bottom: 2px solid var(--color-accent);
+}
+
+table td,
+.price-table td,
+.policy-table td {
+    padding: 12px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    border: none;
+}
+
+table tr:nth-child(even) td,
+.price-table tr:nth-child(even) td,
+.policy-table tr:nth-child(even) td {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+table tr:hover td,
+.price-table tr:hover td,
+.policy-table tr:hover td {
+    background: rgba(31, 174, 155, 0.04);
+}
+
+/* === Standardised CTA buttons (light + dark variants) === */
+/* Primary call button — accent green pill (default/light surfaces) */
+.btn-primary-lg,
+.btn-hero-primary,
+.btn-call,
+a.btn-call {
+    background: var(--color-accent);
+    color: white !important;
+    box-shadow: 0 4px 20px rgba(31, 174, 155, 0.4);
+}
+
+.btn-primary-lg:hover,
+.btn-hero-primary:hover,
+.btn-call:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(31, 174, 155, 0.5);
+}
+
+/* WhatsApp button — green pill */
+.btn-whatsapp,
+.btn-hero-whatsapp {
+    background: #25D366 !important;
+    color: white !important;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+}
+
+.btn-whatsapp:hover,
+.btn-hero-whatsapp:hover {
+    background: #1DA851 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+}
+
+/* Secondary outline button (dark sections) */
+.btn-secondary-lg.on-dark,
+section.bg-dark .btn-secondary-lg {
+    background: transparent;
+    color: white;
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.4);
+}
+
+section.bg-dark .btn-secondary-lg:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.7);
+}
