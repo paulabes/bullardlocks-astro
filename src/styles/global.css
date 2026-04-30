@@ -1127,3 +1127,39 @@ section.bg-dark .btn-secondary-lg:hover {
 .guide-sidebar-all:hover {
     text-decoration: underline;
 }
+
+/* ============================================================
+   Two-button CTA rows: keep inline at desktop / wide mobile,
+   stack full-width on narrow phones (< 540px).
+   Applies to every hero/section button-pair across the site.
+   ============================================================ */
+.hero-ctas,
+.loc-hero-ctas,
+.reviews-hero-ctas,
+.cta-buttons,
+.area-content-ctas,
+.reviews-cta {
+    flex-wrap: wrap;
+}
+
+@media (max-width: 540px) {
+    .hero-ctas,
+    .loc-hero-ctas,
+    .reviews-hero-ctas,
+    .cta-buttons,
+    .area-content-ctas,
+    .reviews-cta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .hero-ctas > a,
+    .loc-hero-ctas > a,
+    .reviews-hero-ctas > a,
+    .cta-buttons > a,
+    .area-content-ctas > a,
+    .reviews-cta > a {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+}
