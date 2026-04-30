@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GoogleReviews from '../../components/GoogleReviews.astro';
+import HighlightsBar from '../../components/HighlightsBar.astro';
 import CTASection from '../../components/CTASection.astro';
 
 const heroImage = '/images/hero-safe-engineer.webp';
@@ -527,7 +528,14 @@ const schema = [
     </div>
   </section>
 
-  <GoogleReviews bg="white" />
+  <HighlightsBar items={[
+    { icon: 'fa-globe', text: 'UK-wide' },
+    { icon: 'fa-tools', text: 'Non-destructive' },
+    { icon: 'fa-shield-alt', text: 'All major brands' },
+    { icon: 'fa-history', text: '30+ years' },
+  ]} />
+
+  <GoogleReviews bg="light" />
 
   <CTASection
     title="Need a Professional Safe Engineer?"
@@ -712,7 +720,7 @@ const schema = [
   .services-4-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 40px; }
 
   .service-detail-card { background: var(--color-bg-light); border-radius: 3px; padding: 28px 24px; border: 1px solid rgba(0,0,0,0.05); transition: all 0.2s ease; }
-  .service-detail-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-accent); }
+  .service-detail-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
   .sdc-icon { width: 48px; height: 48px; background: rgba(31, 174, 155, 0.1); border-radius: 3px; display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 1.2rem; margin-bottom: 16px; }
   .sdc-title { font-size: 1rem; font-weight: 700; margin: 0 0 8px; color: var(--color-text-main); }
@@ -811,7 +819,7 @@ const schema = [
 
   .nearby-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .nearby-card { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px; background: var(--color-bg-light); border-radius: 3px; border: 1.5px solid rgba(0,0,0,0.06); text-decoration: none; color: inherit; transition: all 0.2s ease; }
-  .nearby-card:hover { border-color: var(--color-accent); background: white; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .nearby-card:hover { background: white; transform: translateY(-2px); box-shadow: var(--shadow-md); }
   .nearby-all { background: rgba(31, 174, 155, 0.05); border-color: rgba(31, 174, 155, 0.2); }
   .nearby-uk { background: rgba(0, 48, 143, 0.05); border-color: rgba(0, 48, 143, 0.25); }
   .nearby-name { font-size: 0.95rem; font-weight: 700; margin: 0 0 4px; color: var(--color-text-main); }

@@ -145,6 +145,30 @@ const schema = [
   },
   {
     '@context': 'https://schema.org',
+    '@type': 'AggregateRating',
+    itemReviewed: { '@id': `${siteUrl}/#business` },
+    ratingValue: '5.0',
+    bestRating: '5',
+    worstRating: '1',
+    ratingCount: '23',
+    reviewCount: '23',
+  },
+  ...reviews.map((r) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    itemReviewed: { '@id': `${siteUrl}/#business` },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: String(r.rating),
+      bestRating: '5',
+      worstRating: '1',
+    },
+    author: { '@type': 'Person', name: r.name },
+    reviewBody: r.text,
+    publisher: { '@type': 'Organization', name: 'Google' },
+  })),
+  {
+    '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
@@ -482,8 +506,8 @@ const schema = [
   }
 
   .why-card:hover {
-    border-color: var(--color-accent);
     transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   }
 
   .why-icon {

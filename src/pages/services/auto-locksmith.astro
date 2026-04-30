@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GoogleReviews from '../../components/GoogleReviews.astro';
+import HighlightsBar from '../../components/HighlightsBar.astro';
 import CTASection from '../../components/CTASection.astro';
 
 const heroImage = '/images/hero-auto-locksmith.webp';
@@ -518,7 +519,14 @@ const schema = [
     </div>
   </section>
 
-  <GoogleReviews bg="white" />
+  <HighlightsBar items={[
+    { icon: 'fa-car-side', text: 'Mobile to you' },
+    { icon: 'fa-key', text: 'All UK makes' },
+    { icon: 'fa-bolt', text: 'Same-day service' },
+    { icon: 'fa-pound-sign', text: 'Beats dealer prices' },
+  ]} />
+
+  <GoogleReviews bg="light" />
 
   <CTASection
     title="Need a Mobile Auto Locksmith in London?"
@@ -853,7 +861,6 @@ const schema = [
   .service-detail-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-    border-color: var(--color-accent);
   }
 
   .sdc-icon {
@@ -1058,7 +1065,6 @@ const schema = [
   }
 
   .nearby-card:hover {
-    border-color: var(--color-accent);
     background: white;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);

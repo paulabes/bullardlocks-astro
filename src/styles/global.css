@@ -393,7 +393,6 @@ main>section:nth-of-type(even):not(.bg-dark):not(.bg-white):not(.bg-light):not(.
 .service-icon-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-    border-color: rgba(31, 174, 155, 0.3);
 }
 
 .icon-circle {
@@ -468,7 +467,6 @@ main>section:nth-of-type(even):not(.bg-dark):not(.bg-white):not(.bg-light):not(.
 .guide-sidebar-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-    border-color: rgba(31, 174, 155, 0.3);
 }
 
 .guide-sidebar-card .card-header {
@@ -821,9 +819,7 @@ section.bg-light .faq-item[open] {
 }
 
 .article-faq summary::after,
-.home-faq-item summary::after,
-.faq-item summary::after,
-.faq-question::after {
+.home-faq-item summary::after {
     content: '+';
     position: absolute;
     right: 22px;
@@ -835,8 +831,7 @@ section.bg-light .faq-item[open] {
 }
 
 .article-faq[open] summary::after,
-.home-faq-item[open] summary::after,
-.faq-item[open] summary::after {
+.home-faq-item[open] summary::after {
     content: '−';
 }
 
@@ -1076,6 +1071,12 @@ section.bg-dark .btn-secondary-lg:hover {
     font-size: 0.85rem;
     flex-shrink: 0;
     margin-top: 2px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.guide-sidebar-item > a:hover .guide-sidebar-icon {
+    background: var(--color-accent);
+    color: white;
 }
 
 .guide-sidebar-item.active .guide-sidebar-icon {

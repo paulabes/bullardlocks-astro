@@ -1037,13 +1037,16 @@ const schema = [
 
   /* Amber card (Auto) */
   .svc-amber { background: rgba(245,158,11,0.06); }
-  .svc-amber .svc-icon { background: rgba(245,158,11,0.1); color: #d97706; }
+  .svc-amber .svc-icon { background: rgba(245,158,11,0.1); color: #d97706; transition: background 0.2s ease; }
+  .svc-amber:hover .svc-icon { background: rgba(245,158,11,0.22); }
   .svc-amber .svc-title { color: #92400e; }
   .svc-amber .svc-link { color: #d97706; }
   .svc-amber .svc-list i { color: #d97706; }
 
   /* Coral card (Emergency) */
   .svc-coral.svc-featured { background: rgba(239,68,68,0.06); }
+  .svc-coral.svc-featured .svc-icon { transition: background 0.2s ease; }
+  .svc-coral.svc-featured:hover .svc-icon { background: rgba(239,68,68,0.22); }
   .svc-coral.svc-featured .svc-title { color: #991b1b; }
   .svc-coral.svc-featured .svc-desc { color: var(--color-text-muted); }
   .svc-coral.svc-featured .svc-list li { color: var(--color-text-muted); }
@@ -1053,7 +1056,8 @@ const schema = [
 
   /* Blue card (Safe) */
   .svc-blue { background: rgba(59,130,246,0.06); }
-  .svc-blue .svc-icon { background: rgba(59,130,246,0.1); color: #2563eb; }
+  .svc-blue .svc-icon { background: rgba(59,130,246,0.1); color: #2563eb; transition: background 0.2s ease; }
+  .svc-blue:hover .svc-icon { background: rgba(59,130,246,0.22); }
   .svc-blue .svc-title { color: #1e3a5f; }
   .svc-blue .svc-link { color: #2563eb; }
   .svc-blue .svc-list i { color: #2563eb; }

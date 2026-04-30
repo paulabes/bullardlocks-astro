@@ -1,0 +1,80 @@
+---
+export interface HighlightItem {
+  icon: string;
+  text: string;
+}
+
+interface Props {
+  items: HighlightItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="content-section bg-dark highlights-bar">
+  <div class="container-custom">
+    <ul class="highlights-list">
+      {items.map((item) => (
+        <li class="highlights-item">
+          <i class={`fas ${item.icon}`} aria-hidden="true"></i>
+          <span>{item.text}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .highlights-bar {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  .highlights-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .highlights-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .highlights-item {
+      white-space: normal;
+    }
+  }
+
+  .highlights-item i {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .highlights-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .highlights-list {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  }
+</style>

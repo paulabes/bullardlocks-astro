@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GoogleReviews from '../components/GoogleReviews.astro';
+import HighlightsBar from '../components/HighlightsBar.astro';
 import CTASection from '../components/CTASection.astro';
 import ServiceCards from '../components/ServiceCards.astro';
 
@@ -364,6 +365,13 @@ const schema = [
     </div>
   </section>
 
+  <HighlightsBar items={[
+    { icon: 'fa-history', text: 'Since 1992' },
+    { icon: 'fa-shield-alt', text: 'Met Police approved' },
+    { icon: 'fa-id-badge', text: 'Fully insured' },
+    { icon: 'fa-user', text: 'No subcontractors' },
+  ]} />
+
   <GoogleReviews bg="light" />
 
   <CTASection
@@ -583,7 +591,7 @@ const schema = [
     transition: all 0.2s ease;
   }
 
-  .cred-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-accent); }
+  .cred-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
   .cred-icon {
     width: 56px; height: 56px;

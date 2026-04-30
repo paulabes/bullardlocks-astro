@@ -101,9 +101,12 @@ function linkLabel(slug: string) {
     box-shadow: var(--shadow-lg);
   }
 
+  .svc-card .svc-icon { transition: background 0.2s ease; }
+
   /* Amber card (Auto) */
   .svc-amber { background: rgba(245,158,11,0.08); }
   .svc-amber .svc-icon { background: rgba(245,158,11,0.15); color: #d97706; }
+  .svc-amber:hover .svc-icon { background: rgba(245,158,11,0.28); }
   .svc-amber .svc-title { color: #92400e; }
   .svc-amber .svc-link { color: #d97706; }
   .svc-amber .svc-list i { color: #d97706; }
@@ -115,11 +118,13 @@ function linkLabel(slug: string) {
   .svc-coral.svc-featured .svc-list li { color: var(--color-text-muted); }
   .svc-coral.svc-featured .svc-link { color: #dc2626; }
   .svc-coral.svc-featured .svc-icon { background: rgba(239,68,68,0.15); color: #dc2626; }
+  .svc-coral.svc-featured:hover .svc-icon { background: rgba(239,68,68,0.28); }
   .svc-coral.svc-featured .svc-list i { color: #ef4444; }
 
   /* Blue card (Safe) */
   .svc-blue { background: rgba(59,130,246,0.08); }
   .svc-blue .svc-icon { background: rgba(59,130,246,0.15); color: #2563eb; }
+  .svc-blue:hover .svc-icon { background: rgba(59,130,246,0.28); }
   .svc-blue .svc-title { color: #1e3a5f; }
   .svc-blue .svc-link { color: #2563eb; }
   .svc-blue .svc-list i { color: #2563eb; }
