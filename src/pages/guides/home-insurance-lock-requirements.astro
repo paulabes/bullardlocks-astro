@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import GuidesSidebar from '../../components/GuidesSidebar.astro';
 import PageHero from '../../components/PageHero.astro';
 
 const siteUrl = 'https://www.bullardlocks.com';
@@ -92,7 +93,8 @@ const schema = [
     </PageHero>
 
     <section class="content-section bg-white">
-      <div class="container-custom article-body">
+      <div class="container-custom guide-layout">
+        <div class="article-body">
         <p class="lead-paragraph">
           Almost every UK home insurance policy includes a security clause. It usually appears
           deep in the policy schedule, in language designed to be skipped. But it imposes
@@ -262,6 +264,8 @@ const schema = [
         </details>
 
         <AuthorBio />
+        </div>
+        <GuidesSidebar currentSlug="home-insurance-lock-requirements" />
       </div>
     </section>
 

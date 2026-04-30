@@ -34,7 +34,18 @@
       "Bash(npx:*)",
       "Bash(ls:*)",
       "Bash(tasklist:*)",
-      "WebFetch(domain:localhost)"
+      "WebFetch(domain:localhost)",
+      "Bash(gh api:*)",
+      "Bash(npm update:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm ls:*)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.astro.build)",
+      "Bash(npm view:*)",
+      "Bash(rm \"D:/Dropbox/code/bullardlocks-astro/public/ad21e825eb56ad3c303f28ae7ddf2aa6.txt\" \"D:/Dropbox/code/bullardlocks-astro/scripts/indexnow-ping.mjs\")",
+      "Bash(rmdir \"D:/Dropbox/code/bullardlocks-astro/scripts\")",
+      "Bash(rm -rf \"D:/Dropbox/code/bullardlocks-astro/.claude/skills/indexnow\")"
     ]
   }
 }

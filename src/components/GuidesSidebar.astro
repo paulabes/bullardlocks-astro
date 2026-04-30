@@ -1,0 +1,40 @@
+---
+import { guides } from '../data/guides';
+
+interface Props {
+  currentSlug?: string;
+}
+
+const { currentSlug } = Astro.props;
+---
+
+<aside class="guide-sidebar" aria-label="All guides">
+  <div class="guide-sidebar-inner">
+    <h2 class="guide-sidebar-title">All Guides</h2>
+    <ul class="guide-sidebar-list">
+      {guides.map((g) => {
+        const isActive = g.slug === currentSlug;
+        const inner = (
+          <>
+            <span class="guide-sidebar-icon" aria-hidden="true">
+              <i class={`fas ${g.icon}`}></i>
+            </span>
+            <span class="guide-sidebar-text">
+              <span class="guide-sidebar-item-title">{g.title}</span>
+              <span class="guide-sidebar-meta">{g.category} · {g.readTime}</span>
+            </span>
+          </>
+        );
+        return (
+          <li class:list={['guide-sidebar-item', { active: isActive }]}>
+            {isActive
+              ? <span aria-current="page">{inner}</span>
+              : <a href={`/guides/${g.slug}`}>{inner}</a>
+            }
+          </li>
+        );
+      })}
+    </ul>
+    <a href="/guides" class="guide-sidebar-all">View guides hub →</a>
+  </div>
+</aside>

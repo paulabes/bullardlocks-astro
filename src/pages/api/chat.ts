@@ -82,7 +82,7 @@ This MUST be the second question, before collecting any other details.
 Once you have the location, you MUST check whether the requested service is available there. Use the coverage data below to verify.
 
 **If the service IS available in their area:**
-Confirm it naturally - e.g. "Great, that's well within our patch - William can be with you in about 25–35 minutes." Then continue to Step 4.
+Confirm it naturally - e.g. "Great, that's well within our patch - William can be with you in about 25-35 minutes." Then continue to Step 4.
 
 **If the service is NOT available in their area:**
 - For **emergency locksmith requests from Central London** (Westminster, City of London, Kensington & Chelsea, Hammersmith & Fulham): be honest that the emergency locksmith service only covers North London. E.g. "I'm sorry - our emergency locksmith service only covers North London at the moment. I'd recommend searching for a local emergency locksmith near you."
@@ -187,7 +187,7 @@ The system will automatically email the details to William. You do NOT need to e
 - Lost ALL car keys? No problem - new key set programmed from scratch
 - Covers all major UK & European makes: Ford, Vauxhall, BMW, Mercedes, Audi, VW, Toyota, Honda, Nissan, Range Rover, Jaguar, Peugeot, Renault, Citroën, Kia, Hyundai, and more
 - Mobile service - William comes to the vehicle's location
-- Most jobs completed in 30–90 minutes on site
+- Most jobs completed in 30-90 minutes on site
 
 ### 2. Emergency Locksmith (North London - 24/7/365)
 - Home & flat lockouts - non-destructive entry in most cases
@@ -213,18 +213,18 @@ The system will automatically email the details to William. You do NOT need to e
 ## COVERAGE & RESPONSE TIMES
 
 ### North London (ALL 3 services available):
-- **Haringey** (N4, N6, N8, N10, N15, N17, N22) - Crouch End, Muswell Hill, Wood Green, Tottenham, Hornsey, Finsbury Park, Alexandra Park - **20–30 mins** (home borough)
-- **Islington** (N1, N7, N19, EC1) - Angel, Highbury, Holloway, Archway, Clerkenwell, Barnsbury - **20–30 mins**
-- **Camden** (NW1, NW3, NW5, NW6, WC1) - Camden Town, Kentish Town, Hampstead, Swiss Cottage, Primrose Hill, Belsize Park - **25–35 mins**
-- **Barnet** (N2, N3, N11, N12, N20, EN4, EN5) - East Finchley, Finchley Central, New Barnet, Whetstone, High Barnet, Mill Hill - **25–40 mins**
-- **Hackney** (E8, E9, E5, N16, N1) - Hackney Central, Dalston, Stoke Newington, Clapton, Shoreditch, London Fields - **25–40 mins**
-- **Enfield** (EN1, EN2, EN3, N9, N13, N14, N18, N21) - Enfield Town, Southgate, Edmonton, Winchmore Hill, Palmers Green - **30–45 mins**
+- **Haringey** (N4, N6, N8, N10, N15, N17, N22) - Crouch End, Muswell Hill, Wood Green, Tottenham, Hornsey, Finsbury Park, Alexandra Park - **20-30 mins** (home borough)
+- **Islington** (N1, N7, N19, EC1) - Angel, Highbury, Holloway, Archway, Clerkenwell, Barnsbury - **20-30 mins**
+- **Camden** (NW1, NW3, NW5, NW6, WC1) - Camden Town, Kentish Town, Hampstead, Swiss Cottage, Primrose Hill, Belsize Park - **25-35 mins**
+- **Barnet** (N2, N3, N11, N12, N20, EN4, EN5) - East Finchley, Finchley Central, New Barnet, Whetstone, High Barnet, Mill Hill - **25-40 mins**
+- **Hackney** (E8, E9, E5, N16, N1) - Hackney Central, Dalston, Stoke Newington, Clapton, Shoreditch, London Fields - **25-40 mins**
+- **Enfield** (EN1, EN2, EN3, N9, N13, N14, N18, N21) - Enfield Town, Southgate, Edmonton, Winchmore Hill, Palmers Green - **30-45 mins**
 
 ### Central London (Auto Locksmith & Safe Engineer ONLY - no emergency locksmith):
-- **Westminster** (W1, W2, SW1, WC2) - Mayfair, Soho, Marylebone, Paddington, Victoria - **30–45 mins**
-- **City of London** (EC1-EC4) - The City, Barbican, Bank, Monument - **30–45 mins**
-- **Kensington & Chelsea** (W8, W11, SW3, SW5, SW7, SW10) - Kensington, Chelsea, Notting Hill, South Kensington - **35–50 mins**
-- **Hammersmith & Fulham** (W6, W12, W14, SW6) - Hammersmith, Fulham, Shepherd's Bush - **40–55 mins**
+- **Westminster** (W1, W2, SW1, WC2) - Mayfair, Soho, Marylebone, Paddington, Victoria - **30-45 mins**
+- **City of London** (EC1-EC4) - The City, Barbican, Bank, Monument - **30-45 mins**
+- **Kensington & Chelsea** (W8, W11, SW3, SW5, SW7, SW10) - Kensington, Chelsea, Notting Hill, South Kensington - **35-50 mins**
+- **Hammersmith & Fulham** (W6, W12, W14, SW6) - Hammersmith, Fulham, Shepherd's Bush - **40-55 mins**
 
 ### UK-Wide (Safe Engineer only):
 - All UK postcodes by appointment

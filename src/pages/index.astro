@@ -80,7 +80,7 @@ const schema = [
       "@type": "OfferCatalog",
       "name": "Locksmith Services",
       "itemListElement": [
-        {"@type": "Offer","itemOffered": {"@type": "Service","name": "Auto Locksmith","description": "Mobile auto locksmith – car key replacement, programming & vehicle lockout. All makes and models."}},
+        {"@type": "Offer","itemOffered": {"@type": "Service","name": "Auto Locksmith","description": "Mobile auto locksmith - car key replacement, programming & vehicle lockout. All makes and models."}},
         {"@type": "Offer","itemOffered": {"@type": "Service","name": "Emergency Locksmith","description": "24/7 emergency lockout & locksmith services North London."}},
         {"@type": "Offer","itemOffered": {"@type": "Service","name": "Safe Engineer","description": "Professional safe opening, installation & repair UK-wide."}}
       ]
@@ -116,7 +116,7 @@ const schema = [
       {
         "@type": "Question",
         "name": "How quickly can a locksmith reach me in London?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Bullard Locks typically arrives within 20–40 minutes across North London and 30–55 minutes across Central London. William Bullard operates a fully equipped mobile workshop from Crouch End N8, which places him among the closest professional locksmiths to most of Haringey, Islington, Camden, Hackney, Barnet and Enfield. For emergencies, call 07809 887 883 - you speak directly to William, not a call centre, and receive an accurate ETA based on your exact location and current traffic."}
+        "acceptedAnswer": {"@type": "Answer", "text": "Bullard Locks typically arrives within 20-40 minutes across North London and 30-55 minutes across Central London. William Bullard operates a fully equipped mobile workshop from Crouch End N8, which places him among the closest professional locksmiths to most of Haringey, Islington, Camden, Hackney, Barnet and Enfield. For emergencies, call 07809 887 883 - you speak directly to William, not a call centre, and receive an accurate ETA based on your exact location and current traffic."}
       },
       {
         "@type": "Question",
@@ -126,7 +126,7 @@ const schema = [
       {
         "@type": "Question",
         "name": "What does a locksmith cost in London?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Locksmith prices in London depend on the job. As a guide: a standard home lockout typically ranges from £80–£150, a replacement Euro cylinder fitted is £120–£220, a basic transponder car key is £80–£180, and a proximity smart key for a premium vehicle is £150–£350. Safe opening varies widely with safe type, from £150 for a battery-dead electronic safe to £400+ for high-security mechanical safes. Bullard Locks provides a fixed written quote before any work begins, with no call-out fee."}
+        "acceptedAnswer": {"@type": "Answer", "text": "Locksmith prices in London depend on the job. As a guide: a standard home lockout typically ranges from £80-£150, a replacement Euro cylinder fitted is £120-£220, a basic transponder car key is £80-£180, and a proximity smart key for a premium vehicle is £150-£350. Safe opening varies widely with safe type, from £150 for a battery-dead electronic safe to £400+ for high-security mechanical safes. Bullard Locks provides a fixed written quote before any work begins, with no call-out fee."}
       },
       {
         "@type": "Question",
@@ -456,7 +456,7 @@ const schema = [
         <details class="home-faq-item">
           <summary class="home-faq-q">How quickly can a locksmith reach me in London?</summary>
           <div class="faq-answer">
-            <p>Bullard Locks typically arrives within 20–40 minutes across North London and 30–55 minutes across Central London. William Bullard operates a fully equipped mobile workshop from Crouch End N8, which places him among the closest professional locksmiths to most of <a href="/locations/haringey">Haringey</a>, <a href="/locations/islington">Islington</a>, <a href="/locations/camden">Camden</a>, <a href="/locations/hackney">Hackney</a>, <a href="/locations/barnet">Barnet</a> and <a href="/locations/enfield">Enfield</a>.</p>
+            <p>Bullard Locks typically arrives within 20-40 minutes across North London and 30-55 minutes across Central London. William Bullard operates a fully equipped mobile workshop from Crouch End N8, which places him among the closest professional locksmiths to most of <a href="/locations/haringey">Haringey</a>, <a href="/locations/islington">Islington</a>, <a href="/locations/camden">Camden</a>, <a href="/locations/hackney">Hackney</a>, <a href="/locations/barnet">Barnet</a> and <a href="/locations/enfield">Enfield</a>.</p>
             <p>For emergencies, call <a href="tel:07809887883">07809 887 883</a> - you speak directly to William, not a call centre, and receive an accurate ETA based on your exact location and current traffic.</p>
           </div>
         </details>
@@ -474,10 +474,10 @@ const schema = [
           <div class="faq-answer">
             <p>Locksmith prices in London depend on the job. As a guide:</p>
             <ul>
-              <li>Standard home lockout - typically £80–£150</li>
-              <li>Replacement Euro cylinder fitted - £120–£220</li>
-              <li>Basic transponder car key - £80–£180</li>
-              <li>Proximity smart key for premium vehicle - £150–£350</li>
+              <li>Standard home lockout - typically £80-£150</li>
+              <li>Replacement Euro cylinder fitted - £120-£220</li>
+              <li>Basic transponder car key - £80-£180</li>
+              <li>Proximity smart key for premium vehicle - £150-£350</li>
               <li>Safe opening - from £150 (battery-dead electronic) to £400+ (high-security mechanical)</li>
             </ul>
             <p>Bullard Locks provides a fixed written quote before any work begins, with no call-out fee.</p>
@@ -622,7 +622,7 @@ const schema = [
   }
 
   /* On narrower viewports the long phrase can't fit one line at this
-     font size — let it wrap then. */
+     font size. Let it wrap then. */
   @media (max-width: 720px) {
     .hero-title .hero-line {
       white-space: normal;
@@ -1023,7 +1023,7 @@ const schema = [
     flex-direction: column;
     border-radius: 3px;
     padding: 36px 30px;
-    border: 2px solid rgba(0,0,0,0.06);
+    border: none;
     background: white;
     text-decoration: none;
     color: inherit;
@@ -1036,14 +1036,14 @@ const schema = [
   }
 
   /* Amber card (Auto) */
-  .svc-amber { border-color: #d97706; background: rgba(245,158,11,0.06); }
+  .svc-amber { background: rgba(245,158,11,0.06); }
   .svc-amber .svc-icon { background: rgba(245,158,11,0.1); color: #d97706; }
   .svc-amber .svc-title { color: #92400e; }
   .svc-amber .svc-link { color: #d97706; }
   .svc-amber .svc-list i { color: #d97706; }
 
   /* Coral card (Emergency) */
-  .svc-coral.svc-featured { border-color: #dc2626; background: rgba(239,68,68,0.06); }
+  .svc-coral.svc-featured { background: rgba(239,68,68,0.06); }
   .svc-coral.svc-featured .svc-title { color: #991b1b; }
   .svc-coral.svc-featured .svc-desc { color: var(--color-text-muted); }
   .svc-coral.svc-featured .svc-list li { color: var(--color-text-muted); }
@@ -1052,7 +1052,7 @@ const schema = [
   .svc-coral.svc-featured .svc-list i { color: #ef4444; }
 
   /* Blue card (Safe) */
-  .svc-blue { border-color: #2563eb; background: rgba(59,130,246,0.06); }
+  .svc-blue { background: rgba(59,130,246,0.06); }
   .svc-blue .svc-icon { background: rgba(59,130,246,0.1); color: #2563eb; }
   .svc-blue .svc-title { color: #1e3a5f; }
   .svc-blue .svc-link { color: #2563eb; }

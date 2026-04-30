@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import GuidesSidebar from '../../components/GuidesSidebar.astro';
 import PageHero from '../../components/PageHero.astro';
 
 const siteUrl = 'https://www.bullardlocks.com';
@@ -107,7 +108,8 @@ const schema = [
     </PageHero>
 
     <section class="content-section bg-white">
-      <div class="container-custom article-body">
+      <div class="container-custom guide-layout">
+        <div class="article-body">
         <p class="lead-paragraph">
           A surprising number of "lost all keys" callers end up paying a small fortune to a main
           dealer because they assume that's the only option. It almost never is. A qualified mobile
@@ -231,9 +233,9 @@ const schema = [
         </p>
 
         <ul>
-          <li><strong>Common UK makes (transponder key):</strong> £200–£300 typical</li>
-          <li><strong>Premium marques (proximity smart key):</strong> £300–£500 typical</li>
-          <li><strong>Latest-generation keyless-entry on prestige cars:</strong> £400–£700 typical</li>
+          <li><strong>Common UK makes (transponder key):</strong> £200-£300 typical</li>
+          <li><strong>Premium marques (proximity smart key):</strong> £300-£500 typical</li>
+          <li><strong>Latest-generation keyless-entry on prestige cars:</strong> £400-£700 typical</li>
         </ul>
 
         <p>
@@ -279,6 +281,8 @@ const schema = [
         </p>
 
         <AuthorBio />
+        </div>
+        <GuidesSidebar currentSlug="lost-all-car-keys-what-to-do" />
       </div>
     </section>
 

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import GuidesSidebar from '../../components/GuidesSidebar.astro';
 import PageHero from '../../components/PageHero.astro';
 
 const siteUrl = 'https://www.bullardlocks.com';
@@ -67,7 +68,8 @@ const schema = [
     </PageHero>
 
     <section class="content-section bg-white">
-      <div class="container-custom article-body">
+      <div class="container-custom guide-layout">
+        <div class="article-body">
         <p class="lead-paragraph">
           A qualified mobile auto locksmith is now equipped to handle almost everything a main
           dealer service desk can do for keys and immobilisers - on the same day, at your location,
@@ -90,23 +92,23 @@ const schema = [
             <tbody>
               <tr>
                 <td>Standard transponder key (common make)</td>
-                <td>£80–£180</td>
-                <td>£180–£300</td>
+                <td>£80-£180</td>
+                <td>£180-£300</td>
               </tr>
               <tr>
                 <td>Proximity smart key (premium make)</td>
-                <td>£150–£350</td>
-                <td>£350–£600</td>
+                <td>£150-£350</td>
+                <td>£350-£600</td>
               </tr>
               <tr>
                 <td>All-keys-lost</td>
-                <td>£200–£500</td>
-                <td>£600–£1,200+</td>
+                <td>£200-£500</td>
+                <td>£600-£1,200+</td>
               </tr>
               <tr>
                 <td>Turnaround</td>
                 <td>Same day, often same hour</td>
-                <td>3–10 working days typical</td>
+                <td>3-10 working days typical</td>
               </tr>
               <tr>
                 <td>Vehicle recovery / tow</td>
@@ -116,7 +118,7 @@ const schema = [
               <tr>
                 <td>Hours</td>
                 <td>Often 24/7 (emergencies)</td>
-                <td>Mon–Fri service desk hours</td>
+                <td>Mon-Fri service desk hours</td>
               </tr>
               <tr>
                 <td>Latest 2024+ keyless on Tesla / Porsche</td>
@@ -244,6 +246,8 @@ const schema = [
         </ul>
 
         <AuthorBio />
+        </div>
+        <GuidesSidebar currentSlug="auto-locksmith-vs-dealer" />
       </div>
     </section>
 

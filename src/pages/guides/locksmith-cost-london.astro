@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import GuidesSidebar from '../../components/GuidesSidebar.astro';
 import PageHero from '../../components/PageHero.astro';
 
 const siteUrl = 'https://www.bullardlocks.com';
@@ -35,22 +36,22 @@ const schema = [
       {
         '@type': 'Question',
         name: 'How much does an emergency locksmith cost in London?',
-        acceptedAnswer: { '@type': 'Answer', text: 'An emergency locksmith call-out for a non-destructive home lockout in London typically costs £80–£150 during normal hours, with reputable independent locksmiths quoting at the lower end. Replacing a Euro cylinder afterwards adds approximately £80–£140 depending on the security rating fitted. Be wary of any locksmith advertising "from £39" - these are usually national call centres that quote a low headline figure on the phone, dispatch a subcontractor, and produce an inflated invoice on completion.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'An emergency locksmith call-out for a non-destructive home lockout in London typically costs £80-£150 during normal hours, with reputable independent locksmiths quoting at the lower end. Replacing a Euro cylinder afterwards adds approximately £80-£140 depending on the security rating fitted. Be wary of any locksmith advertising "from £39" - these are usually national call centres that quote a low headline figure on the phone, dispatch a subcontractor, and produce an inflated invoice on completion.' },
       },
       {
         '@type': 'Question',
         name: 'How much does a replacement car key cost in London?',
-        acceptedAnswer: { '@type': 'Answer', text: 'A standard transponder car key for common UK makes (Ford, Vauxhall, Volkswagen, Toyota) typically costs £80–£180 supplied and programmed by a mobile auto locksmith. Proximity smart keys for premium vehicles such as BMW, Mercedes, Audi and Land Rover range from £150–£350. All-keys-lost situations cost slightly more because the immobiliser must be re-paired from scratch. Auto locksmith pricing is usually 30–50% lower than the equivalent main dealer cost, with same-day on-site service.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'A standard transponder car key for common UK makes (Ford, Vauxhall, Volkswagen, Toyota) typically costs £80-£180 supplied and programmed by a mobile auto locksmith. Proximity smart keys for premium vehicles such as BMW, Mercedes, Audi and Land Rover range from £150-£350. All-keys-lost situations cost slightly more because the immobiliser must be re-paired from scratch. Auto locksmith pricing is usually 30-50% lower than the equivalent main dealer cost, with same-day on-site service.' },
       },
       {
         '@type': 'Question',
         name: 'Are locksmith call-out fees standard?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Call-out fees vary widely. National chains and call-centre operations typically charge a separate call-out fee of £40–£90 on top of the work itself, often with surcharges for evenings, weekends and bank holidays. Independent local locksmiths usually quote a single fixed price with no separate call-out fee. Bullard Locks does not charge a call-out fee at any time of day - the price quoted is the only amount paid.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Call-out fees vary widely. National chains and call-centre operations typically charge a separate call-out fee of £40-£90 on top of the work itself, often with surcharges for evenings, weekends and bank holidays. Independent local locksmiths usually quote a single fixed price with no separate call-out fee. Bullard Locks does not charge a call-out fee at any time of day - the price quoted is the only amount paid.' },
       },
       {
         '@type': 'Question',
         name: 'What does it cost to open a safe in the UK?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Safe opening costs depend on the safe type and lock mechanism. A small electronic home safe with a flat battery is usually under £150. A standard mechanical combination safe is typically £180–£280 for non-destructive opening. High-security commercial safes (Eurograde 0–6, cash-rated drop safes) can range from £250 to £600+ depending on the manipulation time required and whether drilling becomes necessary as a last resort. A reputable safe engineer provides a written quote before work begins.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Safe opening costs depend on the safe type and lock mechanism. A small electronic home safe with a flat battery is usually under £150. A standard mechanical combination safe is typically £180-£280 for non-destructive opening. High-security commercial safes (Eurograde 0-6, cash-rated drop safes) can range from £250 to £600+ depending on the manipulation time required and whether drilling becomes necessary as a last resort. A reputable safe engineer provides a written quote before work begins.' },
       },
       {
         '@type': 'Question',
@@ -98,7 +99,8 @@ const schema = [
     </PageHero>
 
     <section class="content-section bg-white">
-      <div class="container-custom article-body">
+      <div class="container-custom guide-layout">
+        <div class="article-body">
         <p class="lead-paragraph">
           Locksmith pricing in the UK is not regulated, and London is the worst place in the country
           for inflated, opaque or scam pricing. This guide gives realistic ranges for the work most
@@ -126,57 +128,57 @@ const schema = [
             <tbody>
               <tr>
                 <td>Standard home lockout (non-destructive)</td>
-                <td>£80–£150</td>
+                <td>£80-£150</td>
                 <td>Time of day, lock type, complexity</td>
               </tr>
               <tr>
                 <td>Replacement Euro cylinder fitted</td>
-                <td>£120–£220</td>
+                <td>£120-£220</td>
                 <td>Security rating (TS007 1★ vs 3★, anti-snap)</td>
               </tr>
               <tr>
                 <td>British Standard mortice deadlock fitted</td>
-                <td>£140–£240</td>
+                <td>£140-£240</td>
                 <td>Whether the door is morticed already</td>
               </tr>
               <tr>
                 <td>Multipoint UPVC repair / lock replacement</td>
-                <td>£180–£320</td>
+                <td>£180-£320</td>
                 <td>Mechanism brand, parts availability</td>
               </tr>
               <tr>
                 <td>Standard transponder car key (common makes)</td>
-                <td>£80–£180</td>
+                <td>£80-£180</td>
                 <td>Make, model, year of vehicle</td>
               </tr>
               <tr>
                 <td>Proximity / smart key (premium marques)</td>
-                <td>£150–£350</td>
+                <td>£150-£350</td>
                 <td>BMW / Mercedes / Audi / Land Rover etc.</td>
               </tr>
               <tr>
                 <td>Vehicle lockout (keys inside the car)</td>
-                <td>£80–£150</td>
+                <td>£80-£150</td>
                 <td>Vehicle make, lock type</td>
               </tr>
               <tr>
                 <td>All-keys-lost programming</td>
-                <td>£200–£450</td>
+                <td>£200-£450</td>
                 <td>Make, model, immobiliser generation</td>
               </tr>
               <tr>
                 <td>Safe opening (small electronic home)</td>
-                <td>£120–£180</td>
+                <td>£120-£180</td>
                 <td>Flat battery vs deeper fault</td>
               </tr>
               <tr>
                 <td>Safe opening (mechanical combination)</td>
-                <td>£180–£350</td>
+                <td>£180-£350</td>
                 <td>Brand, age, manipulation time</td>
               </tr>
               <tr>
                 <td>High-security commercial safe opening</td>
-                <td>£300–£600+</td>
+                <td>£300-£600+</td>
                 <td>Eurograde rating, drilling vs manipulation</td>
               </tr>
             </tbody>
@@ -185,7 +187,7 @@ const schema = [
 
         <p class="price-note">
           Ranges assume an independent locksmith with a fixed-price quote and no call-out fee.
-          National call-centre operations typically add a £40–£90 call-out fee plus an unsociable-hours
+          National call-centre operations typically add a £40-£90 call-out fee plus an unsociable-hours
           surcharge that can double the headline figure.
         </p>
 
@@ -196,7 +198,7 @@ const schema = [
           Outside normal working hours genuinely costs more for many locksmiths because labour rates
           rise. With a one-person operation that answers its own phone, the increase is usually
           modest (or absent altogether). With a national chain dispatching subcontractors, evening
-          and weekend surcharges can be 50–100%, applied without warning.
+          and weekend surcharges can be 50-100%, applied without warning.
         </p>
 
         <h3>Lock or key complexity</h3>
@@ -239,7 +241,7 @@ const schema = [
           <li>You're quoted a low headline rate (often "£35 call-out").</li>
           <li>An anonymous van arrives, often from outside your area.</li>
           <li>The "locksmith" insists the lock must be drilled even on a routine pick-able lock.</li>
-          <li>The final bill is £300–£600 with extras for parts, time and hours.</li>
+          <li>The final bill is £300-£600 with extras for parts, time and hours.</li>
           <li>Card payment only, on the spot, with no proper receipt.</li>
         </ol>
 
@@ -275,7 +277,7 @@ const schema = [
         <details class="article-faq" open>
           <summary>How much does an emergency locksmith cost in London?</summary>
           <div class="faq-answer">
-            <p>An emergency locksmith call-out for a non-destructive home lockout in London typically costs £80–£150 during normal hours, with reputable independent locksmiths quoting at the lower end. Replacing a Euro cylinder afterwards adds approximately £80–£140 depending on the security rating fitted.</p>
+            <p>An emergency locksmith call-out for a non-destructive home lockout in London typically costs £80-£150 during normal hours, with reputable independent locksmiths quoting at the lower end. Replacing a Euro cylinder afterwards adds approximately £80-£140 depending on the security rating fitted.</p>
             <p>Be wary of any locksmith advertising "from £39" - these are usually national call centres that quote a low headline figure on the phone, dispatch a subcontractor, and produce an inflated invoice on completion.</p>
           </div>
         </details>
@@ -283,15 +285,15 @@ const schema = [
         <details class="article-faq">
           <summary>How much does a replacement car key cost in London?</summary>
           <div class="faq-answer">
-            <p>A standard transponder car key for common UK makes (Ford, Vauxhall, Volkswagen, Toyota) typically costs £80–£180 supplied and programmed by a mobile auto locksmith. Proximity smart keys for premium vehicles such as BMW, Mercedes, Audi and Land Rover range from £150–£350.</p>
-            <p>All-keys-lost situations cost slightly more because the immobiliser must be re-paired from scratch. Auto locksmith pricing is usually 30–50% lower than the equivalent main dealer cost, with same-day on-site service.</p>
+            <p>A standard transponder car key for common UK makes (Ford, Vauxhall, Volkswagen, Toyota) typically costs £80-£180 supplied and programmed by a mobile auto locksmith. Proximity smart keys for premium vehicles such as BMW, Mercedes, Audi and Land Rover range from £150-£350.</p>
+            <p>All-keys-lost situations cost slightly more because the immobiliser must be re-paired from scratch. Auto locksmith pricing is usually 30-50% lower than the equivalent main dealer cost, with same-day on-site service.</p>
           </div>
         </details>
 
         <details class="article-faq">
           <summary>Are locksmith call-out fees standard?</summary>
           <div class="faq-answer">
-            <p>Call-out fees vary widely. National chains and call-centre operations typically charge a separate call-out fee of £40–£90 on top of the work itself, often with surcharges for evenings, weekends and bank holidays. Independent local locksmiths usually quote a single fixed price with no separate call-out fee.</p>
+            <p>Call-out fees vary widely. National chains and call-centre operations typically charge a separate call-out fee of £40-£90 on top of the work itself, often with surcharges for evenings, weekends and bank holidays. Independent local locksmiths usually quote a single fixed price with no separate call-out fee.</p>
             <p>Bullard Locks does not charge a call-out fee at any time of day - the price quoted is the only amount paid.</p>
           </div>
         </details>
@@ -299,8 +301,8 @@ const schema = [
         <details class="article-faq">
           <summary>What does it cost to open a safe in the UK?</summary>
           <div class="faq-answer">
-            <p>Safe opening costs depend on the safe type and lock mechanism. A small electronic home safe with a flat battery is usually under £150. A standard mechanical combination safe is typically £180–£280 for non-destructive opening.</p>
-            <p>High-security commercial safes (Eurograde 0–6, cash-rated drop safes) can range from £250 to £600+ depending on the manipulation time required and whether drilling becomes necessary as a last resort. A reputable safe engineer provides a written quote before work begins.</p>
+            <p>Safe opening costs depend on the safe type and lock mechanism. A small electronic home safe with a flat battery is usually under £150. A standard mechanical combination safe is typically £180-£280 for non-destructive opening.</p>
+            <p>High-security commercial safes (Eurograde 0-6, cash-rated drop safes) can range from £250 to £600+ depending on the manipulation time required and whether drilling becomes necessary as a last resort. A reputable safe engineer provides a written quote before work begins.</p>
           </div>
         </details>
 
@@ -313,6 +315,8 @@ const schema = [
         </details>
 
         <AuthorBio />
+        </div>
+        <GuidesSidebar currentSlug="locksmith-cost-london" />
       </div>
     </section>
 
