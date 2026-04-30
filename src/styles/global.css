@@ -1136,6 +1136,7 @@ section.bg-dark .btn-secondary-lg:hover {
 .hero-ctas,
 .loc-hero-ctas,
 .reviews-hero-ctas,
+.page-hero-ctas,
 .cta-buttons,
 .area-content-ctas,
 .reviews-cta {
@@ -1146,6 +1147,7 @@ section.bg-dark .btn-secondary-lg:hover {
     .hero-ctas,
     .loc-hero-ctas,
     .reviews-hero-ctas,
+    .page-hero-ctas,
     .cta-buttons,
     .area-content-ctas,
     .reviews-cta {
@@ -1155,6 +1157,7 @@ section.bg-dark .btn-secondary-lg:hover {
     .hero-ctas > a,
     .loc-hero-ctas > a,
     .reviews-hero-ctas > a,
+    .page-hero-ctas > a,
     .cta-buttons > a,
     .area-content-ctas > a,
     .reviews-cta > a {
