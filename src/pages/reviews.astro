@@ -475,7 +475,8 @@ const schema = [
   }
   @media (max-width: 768px) {
     .loc-trust-bar { gap: 12px; }
-    .loc-trust-item { padding: 0; border-left: none; }
+    .loc-trust-item { padding: 0; }
+    .loc-trust-item + .loc-trust-item { border-left: none; }
   }
   @media (max-width: 640px) {
     .loc-hero { min-height: auto; }
