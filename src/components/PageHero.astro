@@ -12,6 +12,12 @@ interface Props {
   showCtas?: boolean;
   showTrustBar?: boolean;
   heroImage?: string;
+  /**
+   * 'default' = service is the dominant heading (big accent), location is the smaller line.
+   * 'article' = service is rendered as a small uppercase eyebrow above a dominant white headline (location).
+   *             Use for guides and other long-form pages where the article title is the H1 content.
+   */
+  variant?: 'default' | 'article';
 }
 
 const {
@@ -22,9 +28,11 @@ const {
   showCtas = true,
   showTrustBar = true,
   heroImage = '/images/hero-emergency-locksmith.webp',
+  variant = 'default',
 } = Astro.props;
 
 const lastIndex = breadcrumbItems.length - 1;
+const isArticle = variant === 'article';
 ---
 
 <section class="page-hero bg-dark">
@@ -44,7 +52,7 @@ const lastIndex = breadcrumbItems.length - 1;
       ))}
     </nav>
 
-    <h1 class="page-hero-title">
+    <h1 class:list={['page-hero-title', isArticle && 'page-hero-title-article']}>
       <span class="page-hero-service">{service}</span>
       {location && <span class="page-hero-location">{location}</span>}
     </h1>
@@ -136,6 +144,31 @@ const lastIndex = breadcrumbItems.length - 1;
     font-weight: 400;
     font-family: var(--font-body);
     margin-top: 8px;
+  }
+
+  /* Article variant — used for guides. Service becomes a small eyebrow,
+     location becomes the dominant white headline (the actual article H1 content). */
+  .page-hero-title-article {
+    flex-direction: column;
+    margin-top: 8px;
+  }
+  .page-hero-title-article .page-hero-service {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-accent);
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+  .page-hero-title-article .page-hero-location {
+    color: white;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    font-family: inherit;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-top: 0;
   }
 
   .page-hero-lead {
