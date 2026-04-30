@@ -27,8 +27,10 @@ export const POST: APIRoute = async ({ request }) => {
     const DVLA_API_KEY = import.meta.env.DVLA_API_KEY;
 
     if (!DVLA_API_KEY) {
-      // Return mock data for development/testing
-      // DVLA_API_KEY not configured - return fallback response
+      // Return fallback "Unknown" data so the chat UI keeps working without
+      // the DVLA integration. We warn loudly in the logs because in production
+      // a missing key means we silently lose the auto-locksmith UX.
+      console.warn('DVLA_API_KEY not configured - returning fallback vehicle data. Set DVLA_API_KEY in env to enable lookups.');
       return new Response(
         JSON.stringify({
           success: true,
@@ -52,7 +54,8 @@ export const POST: APIRoute = async ({ request }) => {
         'x-api-key': DVLA_API_KEY,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ registrationNumber: cleanReg })
+      body: JSON.stringify({ registrationNumber: cleanReg }),
+      signal: AbortSignal.timeout(8_000),
     });
 
     if (!response.ok) {
@@ -92,10 +95,11 @@ export const POST: APIRoute = async ({ request }) => {
     );
 
   } catch (error) {
-    console.error('DVLA lookup error:', error);
+    const aborted = error instanceof DOMException && error.name === 'TimeoutError';
+    console.error(aborted ? 'DVLA timeout' : 'DVLA lookup error:', aborted ? '' : error);
     return new Response(
-      JSON.stringify({ error: 'An error occurred during vehicle lookup' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({ error: aborted ? 'Vehicle lookup timed out. Please enter details manually.' : 'An error occurred during vehicle lookup' }),
+      { status: aborted ? 504 : 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 };

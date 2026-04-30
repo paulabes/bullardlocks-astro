@@ -32,3 +32,9 @@ pnpm-debug.log*
 
 # claude
 .claude/
+
+# Dev/QA screenshots in repo root (move to .screenshots/ if you need to keep them)
+/*.png
+
+# OS files
+Thumbs.db

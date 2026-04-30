@@ -25,9 +25,9 @@
     </p>
     <div class="author-bio-links">
       <a href="/about">About William</a>
-      <span class="author-bio-sep">·</span>
+      <span class="author-bio-sep" aria-hidden="true">|</span>
       <a href="/reviews">Customer reviews</a>
-      <span class="author-bio-sep">·</span>
+      <span class="author-bio-sep" aria-hidden="true">|</span>
       <a href="tel:07809887883">07809 887 883</a>
     </div>
   </div>
@@ -103,14 +103,16 @@
   }
 
   .author-bio-links {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: var(--color-text-muted-light);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
   }
 
   .author-bio-links a {
     color: var(--color-accent);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .author-bio-links a:hover {
@@ -118,8 +120,8 @@
   }
 
   .author-bio-sep {
-    margin: 0 8px;
-    opacity: 0.5;
+    margin: 0 12px;
+    opacity: 0.4;
   }
 
   @media (max-width: 640px) {

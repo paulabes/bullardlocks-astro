@@ -18,6 +18,28 @@ interface PhotoAttachment {
   content: string; // base64
 }
 
+const MAX_PHOTOS = 5;
+const MAX_PHOTO_SIZE = 10 * 1024 * 1024; // 10MB
+const ALLOWED_PHOTO_TYPES = new Set([
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+  'image/heic',
+  'image/heif',
+  'image/gif',
+]);
+
+function tooManyPhotos(count: number): Response | null {
+  if (count > MAX_PHOTOS) {
+    return new Response(
+      JSON.stringify({ success: false, error: `Maximum ${MAX_PHOTOS} photos per submission.` }),
+      { status: 400, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+  return null;
+}
+
 export const POST: APIRoute = async ({ request }) => {
   // Security: rate limit and origin check
   const rateLimited = checkRateLimit(request, { maxRequests: 5, windowMs: 60_000, prefix: 'email' });
@@ -45,8 +67,19 @@ export const POST: APIRoute = async ({ request }) => {
 
       // Handle base64 photos from JSON
       if (Array.isArray(body.photos)) {
+        const limitErr = tooManyPhotos(body.photos.length);
+        if (limitErr) return limitErr;
+
         for (const photo of body.photos) {
           if (photo.filename && photo.content) {
+            // base64 → bytes ≈ length × 3 / 4 (minus padding)
+            const approxBytes = (photo.content.length * 3) / 4;
+            if (approxBytes > MAX_PHOTO_SIZE) {
+              return new Response(
+                JSON.stringify({ success: false, error: `"${photo.filename}" exceeds the 10MB photo limit.` }),
+                { status: 400, headers: { 'Content-Type': 'application/json' } }
+              );
+            }
             photoAttachments.push({
               filename: photo.filename,
               content: photo.content,
@@ -67,9 +100,24 @@ export const POST: APIRoute = async ({ request }) => {
 
       // Process photo attachments
       const photoCount = parseInt((formData.get('photo_count') as string) || '0', 10);
+      const limitErr = tooManyPhotos(photoCount);
+      if (limitErr) return limitErr;
+
       for (let i = 0; i < photoCount; i++) {
         const photoFile = formData.get(`photo_${i}`) as File | null;
         if (photoFile && photoFile.size > 0) {
+          if (photoFile.size > MAX_PHOTO_SIZE) {
+            return new Response(
+              JSON.stringify({ success: false, error: `"${photoFile.name || 'photo'}" exceeds the 10MB photo limit.` }),
+              { status: 400, headers: { 'Content-Type': 'application/json' } }
+            );
+          }
+          if (photoFile.type && !ALLOWED_PHOTO_TYPES.has(photoFile.type.toLowerCase())) {
+            return new Response(
+              JSON.stringify({ success: false, error: `"${photoFile.name || 'photo'}" is not a supported image type.` }),
+              { status: 400, headers: { 'Content-Type': 'application/json' } }
+            );
+          }
           const arrayBuffer = await photoFile.arrayBuffer();
           const base64 = Buffer.from(arrayBuffer).toString('base64');
           photoAttachments.push({
@@ -330,18 +378,28 @@ export const POST: APIRoute = async ({ request }) => {
       }));
     }
 
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailPayload),
-    });
+    let response: Response;
+    try {
+      response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailPayload),
+        signal: AbortSignal.timeout(15_000),
+      });
+    } catch (err) {
+      const aborted = err instanceof DOMException && err.name === 'TimeoutError';
+      console.error(aborted ? 'Resend timeout' : 'Resend fetch error');
+      return new Response(
+        JSON.stringify({ success: false, error: 'Email service is slow right now. Please call 07809 887 883.' }),
+        { status: 504, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Resend API error:', response.status, errorText);
+      console.error('Resend API error status:', response.status);
       return new Response(
         JSON.stringify({ success: false, error: 'Failed to send email. Please try again.' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
