@@ -15,15 +15,10 @@ const { currentSlug } = Astro.props;
       {guides.map((g) => {
         const isActive = g.slug === currentSlug;
         const inner = (
-          <>
-            <span class="guide-sidebar-icon" aria-hidden="true">
-              <i class={`fas ${g.icon}`}></i>
-            </span>
-            <span class="guide-sidebar-text">
-              <span class="guide-sidebar-item-title">{g.title}</span>
-              <span class="guide-sidebar-meta">{g.category} · {g.readTime}</span>
-            </span>
-          </>
+          <span class="guide-sidebar-text">
+            <span class="guide-sidebar-item-title">{g.title}</span>
+            <span class="guide-sidebar-meta">{g.category} · {g.readTime}</span>
+          </span>
         );
         return (
           <li class:list={['guide-sidebar-item', { active: isActive }]}>
@@ -35,6 +30,5 @@ const { currentSlug } = Astro.props;
         );
       })}
     </ul>
-    <a href="/guides" class="guide-sidebar-all">View guides hub →</a>
   </div>
 </aside>

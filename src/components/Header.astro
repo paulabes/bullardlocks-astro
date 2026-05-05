@@ -4,8 +4,9 @@
 
 <nav class="navbar-floating">
   <div class="nav-container">
-    <a href="/" class="nav-brand">
-      Bullard <span class="text-accent">Locks</span>
+    <a href="/" class="nav-brand" aria-label="Bullard Locks - home">
+      <img src="/images/bull-logo.png" alt="" class="brand-mark" width="34" height="34" loading="eager" decoding="async" fetchpriority="high" />
+      <span class="brand-mark-text">Bullard <span class="text-accent">Locks</span></span>
     </a>
     
     <ul class="nav-links">
@@ -73,7 +74,10 @@
       <i class="fas fa-times"></i>
     </button>
     
-    <div class="mobile-brand">Bullard <span class="text-accent">Locks</span></div>
+    <div class="mobile-brand">
+      <img src="/images/bull-logo.png" alt="" class="brand-mark" width="34" height="34" loading="lazy" decoding="async" />
+      <span class="brand-mark-text">Bullard <span class="text-accent">Locks</span></span>
+    </div>
     
     <ul class="mobile-nav-links">
       <li><a href="/">Home</a></li>
@@ -187,6 +191,22 @@
     z-index: 1001;
     white-space: nowrap;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    text-decoration: none;
+  }
+
+  .nav-brand .brand-mark {
+    width: 34px;
+    height: 34px;
+    display: block;
+    flex-shrink: 0;
+    transform: translateY(1px);
+  }
+
+  .nav-brand .brand-mark-text {
+    color: #000;
   }
 
   .brand-icon {

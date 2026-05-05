@@ -8,7 +8,10 @@ const currentYear = new Date().getFullYear();
   <div class="container-custom">
     <div class="footer-grid">
       <div class="footer-col-brand">
-        <span class="footer-brand">Bullard <span class="text-accent">Locks</span></span>
+        <span class="footer-brand">
+          <img src="/images/bull-logo.png" alt="" class="brand-mark brand-mark-light" width="34" height="34" loading="lazy" decoding="async" />
+          <span class="footer-brand-text">Bullard <span class="text-accent">Locks</span></span>
+        </span>
         <p class="text-muted-light footer-desc">
           24/7 Mobile Locksmith & Safe Engineer based in Crouch End, serving North London and beyond.
         </p>
@@ -28,6 +31,8 @@ const currentYear = new Date().getFullYear();
         <ul class="footer-links">
           <li><a href="/guides/locksmith-cost-london">Locksmith Cost</a></li>
           <li><a href="/guides/lost-all-car-keys-what-to-do">Lost Car Keys</a></li>
+          <li><a href="/guides/auto-locksmith-vs-dealer">Auto vs Dealer</a></li>
+          <li><a href="/guides/ford-key-replacement-london">Ford Keys</a></li>
           <li><a href="/guides/home-insurance-lock-requirements">Insurance Locks</a></li>
           <li><a href="/guides/anti-snap-cylinders-explained">Anti-Snap Cylinders</a></li>
           <li><a href="/guides/what-to-do-after-burglary-london">After a Burglary</a></li>
@@ -36,48 +41,30 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="footer-col-links">
-        <h4 class="footer-heading">North London</h4>
+        <h4 class="footer-heading">Locations</h4>
         <ul class="footer-links">
           <li><a href="/locations/haringey">Haringey</a></li>
-          <li><a href="/locations/islington">Islington</a></li>
-          <li><a href="/locations/camden">Camden</a></li>
-          <li><a href="/locations/hackney">Hackney</a></li>
           <li><a href="/locations/barnet">Barnet</a></li>
+          <li><a href="/locations/camden">Camden</a></li>
+          <li><a href="/locations/islington">Islington</a></li>
+          <li><a href="/locations/hackney">Hackney</a></li>
           <li><a href="/locations/enfield">Enfield</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col-links">
-        <h4 class="footer-heading">Central London</h4>
-        <ul class="footer-links">
           <li><a href="/locations/westminster">Westminster</a></li>
           <li><a href="/locations/city-of-london">City of London</a></li>
           <li><a href="/locations/kensington-chelsea">Kensington &amp; Chelsea</a></li>
           <li><a href="/locations/hammersmith-fulham">Hammersmith &amp; Fulham</a></li>
-          <li><a href="/locations/uk-wide/safe-engineer">Safe Engineer UK-Wide</a></li>
+          <li><a href="/locations/uk-wide/safe-engineer">UK Wide</a></li>
           <li><a href="/locations">All Locations</a></li>
         </ul>
       </div>
 
-      <div class="footer-col-contact">
+      <div class="footer-col-links">
         <h4 class="footer-heading">Contact</h4>
-        <ul class="footer-contact-list">
-          <li>
-            <i class="fas fa-phone footer-icon"></i>
-            <a href="tel:07809887883">07809 887 883</a>
-          </li>
-          <li>
-            <i class="fab fa-whatsapp footer-icon"></i>
-            <a href="https://wa.me/447809887883" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          </li>
-          <li>
-            <i class="fas fa-map-marker-alt footer-icon"></i>
-            <span>67 Weston Park, Crouch End, London N8 9TA</span>
-          </li>
-          <li>
-            <i class="fas fa-clock footer-icon"></i>
-            <span>Open 24/7/365</span>
-          </li>
+        <ul class="footer-links">
+          <li><a href="tel:07809887883">07809 887 883</a></li>
+          <li><a href="https://wa.me/447809887883" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li>67 Weston Park, Crouch End, London N8 9TA</li>
+          <li>Open 24/7/365</li>
         </ul>
       </div>
     </div>
@@ -125,7 +112,7 @@ const currentYear = new Date().getFullYear();
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1.5fr 1.2fr 1fr 1fr;
     gap: 40px;
     margin-bottom: 40px;
   }
@@ -135,9 +122,24 @@ const currentYear = new Date().getFullYear();
     font-size: 1.5rem;
     font-weight: 800;
     color: white;
-    display: block;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
     margin-bottom: 20px;
     letter-spacing: -0.02em;
+  }
+
+  .footer-brand .brand-mark {
+    width: 34px;
+    height: 34px;
+    display: block;
+    flex-shrink: 0;
+    transform: translateY(1px);
+  }
+
+  .footer-brand .brand-mark-light {
+    /* Inverts the black silhouette to white for the dark footer background */
+    filter: invert(1);
   }
 
   .footer-brand .brand-icon {
@@ -181,47 +183,25 @@ const currentYear = new Date().getFullYear();
     padding: 0;
     margin: 0;
   }
-  
-  .footer-links li { margin-bottom: 12px; }
-  
+
+  .footer-links li {
+    margin-bottom: 10px;
+    color: var(--color-text-muted-light);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
   .footer-links a {
     color: var(--color-text-muted-light);
-    transition: all 0.2s ease;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    transition: color 0.2s ease;
     display: block;
   }
-  
+
   .footer-links a:hover {
     color: white;
-    transform: translateX(4px);
   }
-
-  .footer-contact-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-contact-list li {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 16px;
-    color: var(--color-text-muted-light);
-    font-size: 0.95rem;
-  }
-
-  .footer-icon {
-    color: var(--color-accent);
-    width: 24px;
-    margin-right: 12px;
-    margin-top: 4px;
-  }
-  
-  .footer-contact-list a {
-    color: var(--color-text-muted-light);
-    transition: color 0.2s;
-  }
-  
-  .footer-contact-list a:hover { color: white; }
 
   .footer-bottom {
     margin-top: 80px;
@@ -270,7 +250,8 @@ const currentYear = new Date().getFullYear();
     opacity: 0.5;
   }
   
-  .footer-credit a { color: inherit; text-decoration: underline; }
+  .footer-credit a { color: inherit; text-decoration: none; }
+  .footer-credit a:hover { text-decoration: underline; }
   
   @media (max-width: 1200px) {
     .footer-grid {

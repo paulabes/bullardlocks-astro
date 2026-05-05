@@ -1,0 +1,673 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+import GuidesSidebar from '../../components/GuidesSidebar.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const siteUrl = 'https://www.bullardlocks.com';
+const pageUrl = `${siteUrl}/guides/ford-key-replacement-london`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Ford Key Replacement in London: Costs, Models & On-Site Programming',
+    description: 'On-site Ford key cutting and programming across London for Fiesta, Focus, Puma, Kuga, Mondeo, Transit, Ranger, Mustang and Mach-E. Fixed-price, no main dealer needed.',
+    image: `${siteUrl}/images/hero-auto-locksmith.webp`,
+    datePublished: '2026-05-05',
+    dateModified: '2026-05-05',
+    author: {
+      '@type': 'Person',
+      name: 'William Bullard',
+      jobTitle: 'Auto Locksmith & Safe Engineer',
+      url: `${siteUrl}/about`,
+      worksFor: { '@id': `${siteUrl}/#organization` },
+    },
+    publisher: { '@id': `${siteUrl}/#organization` },
+    mainEntityOfPage: pageUrl,
+    inLanguage: 'en-GB',
+    articleSection: 'Auto',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How a mobile auto locksmith replaces a Ford key on-site',
+    description: 'The step-by-step process for cutting and programming a Ford transponder or proximity key at the roadside in London.',
+    totalTime: 'PT60M',
+    estimatedCost: { '@type': 'MonetaryAmount', currency: 'GBP', value: '180' },
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Confirm vehicle details',
+        text: 'Before attending, the locksmith confirms the make, model, year and VIN of the vehicle - this determines the correct key blank, transponder type and programming method. The VIN is on the driver-side dashboard, the door frame sticker and the V5C logbook.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Verify ownership',
+        text: 'For all key replacement work, the locksmith verifies that the person requesting the key is the registered keeper. This means producing the V5C logbook and matching photo ID at the roadside before any cutting begins. This is standard practice for any reputable UK auto locksmith and protects against vehicle theft.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Cut the mechanical blade',
+        text: 'A fresh key blank with the correct Ford profile (HU101 on most modern Fords) is cut to match the door and ignition lock. On older Fords this is done from the lock code; on newer keyless models the blade is cut from the VIN.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Programme the transponder or proximity chip',
+        text: 'The new key contains either a Ford transponder chip (older Fiesta, Focus, Mondeo, Transit) or a proximity smart-key module (Puma, newer Kuga, Mustang, Mach-E, F-150). Using dealer-grade diagnostic tooling connected to the OBD port, the locksmith pairs the new key to the vehicle immobiliser.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 5,
+        name: 'Test all functions and wipe missing keys',
+        text: 'Door locking and unlocking, boot release, ignition, engine start and any remote functions are tested. If keys may have been stolen rather than lost, the locksmith wipes the missing keys from the immobiliser so they cannot be used to start the vehicle.',
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can a locksmith programme a Ford key without the original?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. An independent auto locksmith with dealer-grade Ford diagnostic equipment can pair a brand new key to the vehicle immobiliser even when no original key exists. The process is more involved than cutting a spare from an existing key but is fully achievable on-site for almost every Ford on UK roads, including Fiesta, Focus, Puma, Kuga, Mondeo, Transit, Ranger and Mustang.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does a Ford Fiesta or Focus replacement key cost in London?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A spare transponder key for a Ford Fiesta or Focus (cut and programmed alongside an existing working key) typically costs £100-£200 from a London auto locksmith. A full replacement when one key is missing is £150-£250. An all-keys-lost job on a transponder Ford is £250-£400. Newer proximity smart keys on the latest Fiesta, Focus and Puma sit in the £200-£400 range.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you cover Ford Transit and commercial fleet keys?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Ford Transit and Transit Custom are among the most common commercial keys we replace - cut and programmed at the depot, the kerbside or on a job site. Spare keys typically cost £120-£220 with one original. We also cover fleets across multiple vehicles where ownership documentation is held by the company rather than an individual.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can a locksmith open a locked Ford without damaging it?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In the vast majority of cases, yes. Non-destructive entry tools manipulate the door lock or use the door-frame gap to release the latch without leaving any mark on the bodywork, seals or lock cylinder. Drilling is only ever discussed if the lock is already damaged, and never done without explicit agreement and a clear explanation of why it is necessary.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you programme keys for the Ford Mustang Mach-E and electric Fords?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. The Mustang Mach-E uses a proximity smart-key system with phone-as-a-key support; the physical key card and backup proximity fob are both programmable on-site with the correct diagnostic platform. Pricing is in the £250-£450 range depending on whether it is a spare or an all-keys-lost job. Other Ford EVs and hybrids (Kuga PHEV, Puma Hybrid, etc.) use the same proximity key family as their petrol-equivalent siblings.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is a mobile auto locksmith really cheaper than a Ford main dealer?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes - typically 30-50% cheaper for the same key. The main dealer route also requires the vehicle to be towed in (because without a working key it cannot be driven), adds a 3-7 day wait for the key to be ordered, and charges main-dealer labour rates on top of the part. A mobile auto locksmith resolves the same job at the kerbside in 30-90 minutes with a fixed price quoted up front.',
+        },
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/guides` },
+      { '@type': 'ListItem', position: 3, name: 'Ford Key Replacement London', item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Ford Key Replacement London - On-Site Cutting & Programming | Bullard Locks"
+  description="Lost or broken Ford key in London? On-site cutting and programming for Fiesta, Focus, Puma, Kuga, Mondeo, Transit, Ranger, Mustang and Mach-E. Fixed-price, no dealer."
+  canonicalUrl={pageUrl}
+  schema={schema}
+  preloadImage="/images/hero-auto-locksmith.webp"
+  datePublished="2026-05-05"
+  dateModified="2026-05-05"
+>
+  <article class="article-page">
+    <PageHero
+      variant="article"
+      breadcrumbItems={[
+        { name: 'Home', href: '/' },
+        { name: 'Guides', href: '/guides' },
+        { name: 'Ford Key Replacement London' },
+      ]}
+      service="Auto Locksmith"
+      location="Ford Key Replacement in London"
+      lead="Lost, broken or stolen Ford key in London? Most replacements are done at the kerbside in 30-60 minutes with dealer-grade tooling - faster and 30-50% cheaper than a main dealer. This guide covers the costs, the models, the process and the questions worth asking before you call."
+    >
+      <div class="article-byline">
+        <p class="byline-name">By <a href="/about">William Bullard</a></p>
+        <p class="byline-meta">Auto locksmith, Crouch End N8 · Published 5 May 2026 · 7 min read</p>
+      </div>
+    </PageHero>
+
+    <section class="content-section bg-white">
+      <div class="container-custom guide-layout">
+        <div class="article-body">
+        <p class="lead-paragraph">
+          Most lost or broken Ford keys in London do not need a tow to a main dealer. A mobile
+          auto locksmith with the correct Ford diagnostic equipment can cut and programme a fresh
+          key for almost every Ford on UK roads - Fiesta, Focus, Puma, Kuga, Mondeo, Transit,
+          Ranger, Mustang and Mach-E - on-site, in around 30-60 minutes, typically 30-50% less
+          than the dealer route.
+        </p>
+
+        <h2>Quick answers</h2>
+
+        <div class="price-table-wrap">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Short answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Can a mobile locksmith really programme a Ford key?</td>
+                <td>Yes - using the same dealer-grade Ford diagnostic tooling, paired to the immobiliser via OBD.</td>
+              </tr>
+              <tr>
+                <td>How long does it take?</td>
+                <td>30-60 minutes for a spare or replacement. 60-90 minutes if all keys are lost.</td>
+              </tr>
+              <tr>
+                <td>Cost in London?</td>
+                <td>£100-£250 for a transponder Fiesta/Focus/Mondeo. £200-£400 for newer Puma/Kuga/Mustang proximity smart keys.</td>
+              </tr>
+              <tr>
+                <td>Do you come to me?</td>
+                <td>Yes - kerbside, driveway, depot, work car park. The whole job is mobile.</td>
+              </tr>
+              <tr>
+                <td>Do I need to prove I own the car?</td>
+                <td>Yes. V5C logbook plus photo ID matching the registered keeper - this is standard practice with any reputable UK auto locksmith.</td>
+              </tr>
+              <tr>
+                <td>What if every key is lost?</td>
+                <td>Still doable on-site for almost every Ford. The new key is paired from scratch through the OBD port.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Common Ford key problems we solve</h2>
+
+        <h3>Spare key needed (you still have one working key)</h3>
+        <p>
+          The cheapest and quickest scenario. With one working Ford key on hand, a fresh transponder
+          or proximity key is cut and programmed in 20-40 minutes. Always keep the new spare in the
+          house, not in the same coat or bag as the primary - that is how most "lost all keys" calls
+          start.
+        </p>
+
+        <h3>Lost or stolen key (one key still works)</h3>
+        <p>
+          A new replacement is cut and programmed, and the missing key is wiped from the immobiliser
+          on most Fords from 2003 onwards. That last step matters - if the keys may have been stolen,
+          wiping them invalidates them so they cannot be used to start the car. Most insurers
+          expect this after a key-theft incident.
+        </p>
+
+        <h3>All Ford keys lost</h3>
+        <p>
+          More involved than a spare, but still nearly always resolvable on-site. The locksmith
+          accesses the immobiliser through the OBD port, generates a new key from the security data
+          stored on the car, and pairs it from scratch. See the dedicated
+          <a href="/guides/lost-all-car-keys-what-to-do">all-keys-lost step-by-step</a> for the
+          full sequence.
+        </p>
+
+        <h3>Key fob not working / case broken / buttons unresponsive</h3>
+        <p>
+          Often the cheapest job of all. A flat coin cell, a cracked fob casing or a worn rubber
+          button pad can usually be fixed in 10-15 minutes for £40-£80 - no programming required.
+          If the fob itself has failed electronically, the transponder chip can be transferred into
+          a new shell and remote module without re-pairing.
+        </p>
+
+        <h3>Locked out of the Ford with the keys inside</h3>
+        <p>
+          Non-destructive entry on the kerbside. No drilling, no damage to bodywork or door seals.
+          See the <a href="/services/emergency-locksmith">24/7 emergency locksmith</a> service for
+          response times.
+        </p>
+
+        <h3>Key snapped in the ignition or door lock</h3>
+        <p>
+          Broken section is extracted with specialist key-extraction tools, the lock is checked for
+          internal damage, and a fresh key is cut to replace the original. Done at the kerbside on
+          the same visit.
+        </p>
+
+        <h2>Why Ford keys need specialist tooling</h2>
+
+        <p>
+          Ford has used a layered immobiliser system - PATS (Passive Anti-Theft System) - on every
+          UK passenger Ford since 1998. The technology has moved through three generations:
+        </p>
+
+        <ul>
+          <li><strong>PATS Gen 1 (1998-2007):</strong> fixed-code transponder chips. Found on older Fiesta Mk5/6, Focus Mk1, Mondeo Mk3, Transit. Quick to programme.</li>
+          <li><strong>PATS with rolling-code remote (2007-2017):</strong> transponder + remote-locking fob. Fiesta Mk6/7, Focus Mk2/3, Mondeo Mk4, Kuga Mk1/2, Transit Mk7/8. Slightly longer programming, still routine.</li>
+          <li><strong>Proximity smart keys (2017-present):</strong> keyless entry and push-button start. Puma, current Fiesta Mk8, current Focus Mk4, Kuga Mk3, Mustang, Mustang Mach-E, current Ranger, current Transit Custom. Requires a manufacturer-grade diagnostic platform with up-to-date Ford software.</li>
+        </ul>
+
+        <p>
+          A general-purpose key cutter cannot programme any Ford from 1998 onwards - the chip has
+          to talk to the car's immobiliser during pairing. This is why dedicated Ford-compatible
+          tooling matters: without it, the new key will cut to fit the lock but the engine will not
+          start.
+        </p>
+
+        <h2>UK Ford models we replace and programme</h2>
+
+        <ul>
+          <li><strong>Ford Fiesta</strong> - Mk5, Mk6, Mk7 and Mk8 (including ST and ST-Line)</li>
+          <li><strong>Ford Focus</strong> - Mk1, Mk2, Mk3 and Mk4 (including ST and RS)</li>
+          <li><strong>Ford Puma</strong> - including ST and ST-Line</li>
+          <li><strong>Ford Kuga</strong> - Mk1, Mk2 and Mk3 (including PHEV)</li>
+          <li><strong>Ford Mondeo</strong> - Mk3, Mk4 and Mk5</li>
+          <li><strong>Ford Transit</strong> and <strong>Transit Custom</strong> - all current generations, fleet keys included</li>
+          <li><strong>Ford Ranger</strong> - including Wildtrak and Raptor</li>
+          <li><strong>Ford Mustang</strong> and <strong>Mustang Mach-E</strong></li>
+          <li><strong>Ford Galaxy</strong>, <strong>S-Max</strong>, <strong>B-Max</strong>, <strong>C-Max</strong></li>
+          <li><strong>Ford EcoSport</strong> and <strong>Edge</strong></li>
+          <li><strong>Ford Tourneo</strong> and <strong>Tourneo Custom</strong></li>
+        </ul>
+
+        <p>
+          If your Ford model is not listed above, <a href="/contact">give us a ring</a> with the
+          year, model and VIN - the equipment database is updated regularly to keep pace with new
+          security generations, and we will tell you honestly if the job is one for us or one for
+          the dealer.
+        </p>
+
+        <h2>Ford key replacement costs in London (2026)</h2>
+
+        <p>
+          Realistic ranges from an independent London auto locksmith. Figures assume a fixed-price
+          quote with no separate call-out fee.
+        </p>
+
+        <div class="price-table-wrap">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th>Job</th>
+                <th>Typical price</th>
+                <th>What changes it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Spare transponder key (Fiesta/Focus/Mondeo Mk6-Mk7)</td>
+                <td>£100-£200</td>
+                <td>Year, remote-locking version</td>
+              </tr>
+              <tr>
+                <td>Replacement key (one key lost, one working)</td>
+                <td>£150-£250</td>
+                <td>Whether stolen keys need wiping</td>
+              </tr>
+              <tr>
+                <td>Proximity smart key (Puma, Kuga Mk3, Mustang, Mach-E)</td>
+                <td>£200-£400</td>
+                <td>Latest-generation keyless models at the higher end</td>
+              </tr>
+              <tr>
+                <td>Key fob repair (case, buttons, battery)</td>
+                <td>£40-£80</td>
+                <td>Whether transponder needs transferring</td>
+              </tr>
+              <tr>
+                <td>All keys lost - transponder Ford</td>
+                <td>£250-£400</td>
+                <td>Year, immobiliser generation</td>
+              </tr>
+              <tr>
+                <td>All keys lost - proximity smart-key Ford</td>
+                <td>£350-£550</td>
+                <td>Mach-E and latest Kuga/Puma at the top end</td>
+              </tr>
+              <tr>
+                <td>Vehicle lockout (keys inside)</td>
+                <td>£80-£150</td>
+                <td>Time of day, model</td>
+              </tr>
+              <tr>
+                <td>Key extraction (snapped key)</td>
+                <td>£80-£140 + replacement key</td>
+                <td>Lock damage assessment</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="price-note">
+          For broader context across all locksmith work in the capital, see the
+          <a href="/guides/locksmith-cost-london">full London locksmith pricing guide</a>.
+        </p>
+
+        <h2>How the on-site replacement works</h2>
+
+        <p>
+          Whether you have one working key, a broken key or none at all, the process at the
+          kerbside follows the same five steps:
+        </p>
+
+        <ol>
+          <li><strong>Confirm vehicle details.</strong> Make, model, year and VIN. The VIN is on the driver-side dashboard, the door-frame sticker and your V5C.</li>
+          <li><strong>Verify ownership.</strong> V5C logbook plus photo ID matching the registered keeper. This is standard for any reputable UK auto locksmith and protects against vehicle theft - if anyone offers to skip it, walk away.</li>
+          <li><strong>Cut the mechanical blade.</strong> Most modern Fords use the HU101 blade profile. Cut from the existing key, the door lock, or the VIN depending on what is available.</li>
+          <li><strong>Programme the chip.</strong> Transponder or proximity module paired to the immobiliser via the OBD port using Ford-compatible diagnostic software.</li>
+          <li><strong>Test all functions and wipe missing keys.</strong> Door locking, boot release, ignition, engine start, remote functions. Missing keys wiped from the immobiliser if there is any chance they were stolen.</li>
+        </ol>
+
+        <h2>Mobile auto locksmith vs Ford main dealer</h2>
+
+        <p>
+          The honest comparison for any London Ford driver weighing the two routes:
+        </p>
+
+        <div class="price-table-wrap">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th>Factor</th>
+                <th>Mobile auto locksmith</th>
+                <th>Ford main dealer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Where the work happens</td>
+                <td>Where your car is parked</td>
+                <td>Workshop - vehicle must be recovered to site</td>
+              </tr>
+              <tr>
+                <td>Lead time</td>
+                <td>Same day, usually within hours</td>
+                <td>3-7 days for the key to be ordered</td>
+              </tr>
+              <tr>
+                <td>Recovery / tow</td>
+                <td>Not needed</td>
+                <td>£150-£300 typical London tow</td>
+              </tr>
+              <tr>
+                <td>Out-of-hours</td>
+                <td>24/7 including weekends</td>
+                <td>Closed evenings, Sundays, bank holidays</td>
+              </tr>
+              <tr>
+                <td>Typical all-in cost</td>
+                <td>£250-£550 (job complete)</td>
+                <td>£500-£900+ (key + tow + dealer labour)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          For a deeper breakdown of when the dealer route does still make sense (very rare on
+          Ford), see <a href="/guides/auto-locksmith-vs-dealer">auto locksmith vs main dealer</a>.
+        </p>
+
+        <h2>What to have ready when you call</h2>
+
+        <ul>
+          <li><strong>Make, model and year</strong> - "2018 Ford Fiesta Titanium 1.0 EcoBoost" is exactly the level of detail that helps</li>
+          <li><strong>VIN</strong> - the 17-character number on the dashboard, door frame or V5C</li>
+          <li><strong>V5C logbook and matching photo ID</strong> - required at the roadside before any cutting starts</li>
+          <li><strong>Where the car is parked</strong> - exact address, plus any access constraints (CPZ, gated estate, basement bay)</li>
+          <li><strong>What happened</strong> - lost, stolen, snapped key, key fob fault, locked out</li>
+          <li><strong>Whether you still have a working key</strong> - this materially changes the price</li>
+        </ul>
+
+        <h2>Locked out of your Ford right now?</h2>
+
+        <p>
+          Non-destructive entry on the kerbside, day or night. Call directly through the
+          <a href="/services/emergency-locksmith">24/7 emergency locksmith</a> line. We answer the
+          phone ourselves - no call-centre, no subcontractors, no surprise invoice.
+        </p>
+
+        <h2>Frequently asked questions</h2>
+
+        <details class="article-faq" open>
+          <summary>Can a locksmith programme a Ford key without the original?</summary>
+          <div class="faq-answer">
+            <p>Yes. An independent auto locksmith with dealer-grade Ford diagnostic equipment can pair a brand new key to the vehicle immobiliser even when no original key exists. The process is more involved than cutting a spare from an existing key but is fully achievable on-site for almost every Ford on UK roads.</p>
+            <p>This applies to Fiesta, Focus, Puma, Kuga, Mondeo, Transit, Ranger, Mustang and Mach-E from the late 1990s onwards. The new key is paired through the OBD port using manufacturer-specific software.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>How much does a Ford Fiesta or Focus replacement key cost in London?</summary>
+          <div class="faq-answer">
+            <p>A spare transponder key for a Fiesta or Focus (cut and programmed alongside an existing working key) typically costs £100-£200. A full replacement when one key is missing is £150-£250.</p>
+            <p>An all-keys-lost job on a transponder Ford is £250-£400. The latest proximity-key Fiesta Mk8 and Focus Mk4 sit slightly higher, in the £200-£400 range for a spare.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>Do you cover Ford Transit and commercial fleet keys?</summary>
+          <div class="faq-answer">
+            <p>Yes. Ford Transit and Transit Custom are among the most common commercial keys we replace - cut and programmed at the depot, the kerbside or on a job site. Spare keys typically cost £120-£220 with one original.</p>
+            <p>For fleets across multiple vehicles, ownership documentation can be held by the company rather than an individual. We are happy to arrange paperwork up front so jobs are not held up at the roadside.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>Can a locksmith open a locked Ford without damaging it?</summary>
+          <div class="faq-answer">
+            <p>In the vast majority of cases, yes. Non-destructive entry tools manipulate the door lock or use the door-frame gap to release the latch without leaving any mark on the bodywork, seals or lock cylinder.</p>
+            <p>Drilling is only ever discussed if the lock is already damaged, and never done without explicit agreement and a clear explanation of why it is necessary. Any "locksmith" who insists on drilling an undamaged Ford door is one to refuse.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>Do you programme keys for the Ford Mustang Mach-E and electric Fords?</summary>
+          <div class="faq-answer">
+            <p>Yes. The Mustang Mach-E uses a proximity smart-key system with phone-as-a-key support; the physical key card and backup proximity fob are both programmable on-site with the correct diagnostic platform. Pricing is in the £250-£450 range depending on whether it is a spare or an all-keys-lost job.</p>
+            <p>Other Ford EVs and hybrids (Kuga PHEV, Puma Hybrid, etc.) use the same proximity-key family as their petrol-equivalent siblings.</p>
+          </div>
+        </details>
+
+        <details class="article-faq">
+          <summary>Is a mobile auto locksmith really cheaper than a Ford main dealer?</summary>
+          <div class="faq-answer">
+            <p>Yes - typically 30-50% cheaper for the same key. The main dealer route also requires the vehicle to be towed in (because without a working key it cannot be driven), adds a 3-7 day wait for the key to be ordered, and charges main-dealer labour rates on top of the part.</p>
+            <p>A mobile auto locksmith resolves the same job at the kerbside in 30-90 minutes with a fixed price quoted up front. The only situations where the dealer is genuinely the right call are very rare proprietary cases - see <a href="/guides/auto-locksmith-vs-dealer">auto locksmith vs main dealer</a> for the detail.</p>
+          </div>
+        </details>
+
+        <AuthorBio />
+        </div>
+        <GuidesSidebar currentSlug="ford-key-replacement-london" />
+      </div>
+    </section>
+
+  </article>
+
+  <CTASection
+    title="Need a Ford Key Right Now?"
+    subtitle="On-site cutting & programming · Fixed price up front · No call-out fee"
+  />
+</BaseLayout>
+
+<style>
+  .article-byline {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .byline-name { color: white; font-weight: 700; font-size: 0.95rem; margin: 0; }
+  .byline-name a { color: var(--color-accent); text-decoration: none; }
+  .byline-name a:hover { text-decoration: underline; }
+  .byline-meta { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin: 4px 0 0; }
+
+  .article-body { max-width: 760px; }
+
+  .lead-paragraph {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--color-text-main);
+    margin: 0 0 36px;
+    font-weight: 500;
+  }
+
+  .article-body h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin: 48px 0 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .article-body h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 32px 0 12px;
+  }
+
+  .article-body p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+    margin: 0 0 18px;
+  }
+
+  .article-body p a, .article-body li a, .article-faq .faq-answer p a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .article-body p a:hover, .article-body li a:hover, .article-faq .faq-answer p a:hover {
+    text-decoration: underline;
+  }
+
+  .article-body ol, .article-body ul {
+    margin: 0 0 22px;
+    padding-left: 22px;
+  }
+
+  .article-body li {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-body strong { color: var(--color-text-main); font-weight: 700; }
+
+  .price-table-wrap {
+    overflow-x: auto;
+    margin: 24px -8px 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+
+  .price-table th {
+    text-align: left;
+    padding: 14px 12px;
+    background: rgba(31,174,155,0.08);
+    color: var(--color-text-main);
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .price-table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .price-table td:nth-child(2) { font-weight: 700; color: var(--color-text-main); }
+
+  .price-note {
+    font-size: 0.88rem !important;
+    color: var(--color-text-muted-light) !important;
+    font-style: italic;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 14px;
+    margin: 0 0 32px !important;
+  }
+
+  .article-faq {
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 3px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .article-faq[open] { border-color: var(--color-accent); }
+
+  .article-faq summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 18px 48px 18px 22px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    position: relative;
+  }
+
+  .article-faq summary::-webkit-details-marker { display: none; }
+
+  .article-faq summary::after {
+    content: '+';
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .article-faq[open] summary::after { content: '−'; }
+
+  .article-faq .faq-answer {
+    padding: 0 22px 18px;
+  }
+
+  .article-faq .faq-answer p {
+    font-size: 0.95rem;
+    margin: 0 0 12px;
+  }
+
+  .article-faq .faq-answer p:last-child { margin-bottom: 0; }
+</style>
