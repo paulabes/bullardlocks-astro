@@ -37,6 +37,8 @@ const siteUrl = 'https://www.bullardlocks.com';
 
 // Auto-injected WebPage schema - gives every page a dateModified for E-E-A-T freshness signals
 // and a publisher reference. Consumers can still pass their own page-specific schema.
+// SpeakableSpecification flags FAQ answers and lead paragraphs as suitable for voice assistants
+// and AI answer engines (Bing, Siri, Alexa). Pages without these selectors are just ignored.
 const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -48,6 +50,10 @@ const webPageSchema = {
   dateModified,
   isPartOf: { '@id': `${siteUrl}/#website` },
   publisher: { '@id': `${siteUrl}/#organization` },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['.lead-paragraph', '.faq-answer'],
+  },
 };
 
 // Combine page-specific schema with the auto WebPage schema
