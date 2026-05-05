@@ -4,7 +4,7 @@
 
 <!-- Chat Button -->
 <button id="chat-toggle" class="chat-btn" aria-label="Open chat">
-  <i id="chat-icon" class="fas fa-robot" style="font-size:1.5rem;"></i>
+  <img id="chat-icon" src="/images/bull-logo.png" alt="" class="chat-bull-icon" width="36" height="36" loading="lazy" decoding="async" />
   <i id="close-icon" class="fas fa-times" style="font-size:1.5rem; display:none;"></i>
 </button>
 
@@ -13,7 +13,7 @@
   <div class="chat-modal-header">
     <div class="chat-modal-header-info">
       <div>
-        <h3>Bullard Locks</h3>
+        <h3>The Bull</h3>
         <p>Ask me anything</p>
       </div>
     </div>
@@ -62,6 +62,14 @@
     transform: scale(1.08);
     animation: none;
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+  }
+
+  .chat-bull-icon {
+    width: 36px;
+    height: 36px;
+    display: block;
+    /* Inverts the black silhouette to white for the teal chat button */
+    filter: invert(1);
   }
 
   .chat-btn.open {
@@ -300,7 +308,7 @@
 
   // Show welcome message
   function showWelcome() {
-    addMessage('assistant', "Hey there! I'm the Bullard Locks assistant - here to help with anything lock, key, or safe related.\n\nWhat can I help with today?");
+    addMessage('assistant', "I'm The Bull - here to help with anything lock, key, or safe related.\n\nWhat can I help with today?");
   }
 
   // Parse [LEAD] block from AI response
