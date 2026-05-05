@@ -263,6 +263,10 @@
 </style>
 
 <script>
+  // Defer all chat init until the browser is idle so the widget script
+  // doesn't sit in the critical render path. The toggle button lives in
+  // the DOM with hover/focus styles; only listeners and state need to wait.
+  const initChat = () => {
   // Chat state
   let messages: { role: string; content: string }[] = [];
   let isLoading = false;
@@ -487,4 +491,29 @@
     addMessage('user', text);
     await sendToAI();
   });
+  };
+
+  let initialised = false;
+  const initOnce = () => {
+    if (initialised) return;
+    initialised = true;
+    initChat();
+  };
+
+  // Init when browser is idle…
+  if ('requestIdleCallback' in window) {
+    (window as any).requestIdleCallback(initOnce, { timeout: 3000 });
+  } else {
+    setTimeout(initOnce, 1500);
+  }
+
+  // …or as soon as the user actually interacts with the chat button,
+  // whichever comes first. Re-fire the click so the toggle still opens.
+  const earlyToggle = document.getElementById('chat-toggle');
+  earlyToggle?.addEventListener('click', function once() {
+    if (initialised) return;
+    earlyToggle.removeEventListener('click', once);
+    initOnce();
+    earlyToggle.click();
+  }, { once: false });
 </script>

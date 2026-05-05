@@ -181,7 +181,6 @@ const schema = [
 
       <!-- Live availability badge -->
       <div class="hero-badge">
-        <span class="badge-pulse"></span>
         Available Now - 24 / 7 Emergency Response
       </div>
 
@@ -573,37 +572,11 @@ const schema = [
   .hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.03em;
     margin-bottom: 32px;
-    animation: badgeFlash 4s ease-in-out infinite;
-  }
-
-  @keyframes badgeFlash {
-    0%, 100% { color: #fcd34d; }
-    33% { color: #fca5a5; }
-    66% { color: #93c5fd; }
-  }
-
-  .badge-pulse {
-    width: 8px;
-    height: 8px;
-    border-radius: 3px;
-    flex-shrink: 0;
-    animation: pulse 2s ease-in-out infinite, dotFlash 4s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 currentColor; }
-    60%       { box-shadow: 0 0 0 7px transparent; }
-  }
-
-  @keyframes dotFlash {
-    0%, 100% { background: #fcd34d; }
-    33% { background: #fca5a5; }
-    66% { background: #93c5fd; }
+    color: #fcd34d;
   }
 
   /* H1 - matches PageHero (clamp 2rem - 3.5rem) on internal pages */
@@ -726,6 +699,14 @@ const schema = [
     margin-bottom: 44px;
   }
 
+  /* Reserve icon glyph width so FontAwesome swap doesn't shift the CTAs (CLS) */
+  .btn-call i,
+  .btn-whatsapp i {
+    display: inline-block;
+    width: 1em;
+    text-align: center;
+  }
+
   .btn-call {
     display: inline-flex;
     align-items: center;
@@ -816,7 +797,7 @@ const schema = [
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.14em;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     margin: 0 0 14px;
   }
 
@@ -844,11 +825,16 @@ const schema = [
   }
 
   .william-lead a, .william-body a {
-    color: var(--color-accent);
-    text-decoration: none;
+    color: var(--color-accent-text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(10, 122, 108, 0.45);
     transition: text-decoration-color 0.2s;
   }
-  .william-lead a:hover, .william-body a:hover { text-decoration: underline; }
+  .william-lead a:hover, .william-body a:hover {
+    text-decoration-color: var(--color-accent-text);
+  }
 
   .william-creds {
     list-style: none;

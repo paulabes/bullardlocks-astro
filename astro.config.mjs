@@ -31,6 +31,9 @@ export default defineConfig({
     cacheDir: path.join(os.tmpdir(), 'bullardlocks-vite'),
   },
   site: siteUrl,
+  build: {
+    inlineStylesheets: 'auto',
+  },
   integrations: [
     sitemap({
       customPages: dynamicPages,

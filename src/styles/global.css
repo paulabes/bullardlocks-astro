@@ -96,6 +96,18 @@ a {
     transition: var(--transition-fast);
 }
 
+/* Body-copy inline links must not rely on colour alone (WCAG 1.4.1).
+   Any <a> inside a paragraph gets a subtle underline; hover solidifies.
+   Lists are excluded so footer / nav / dropdown links keep their plain
+   look — they have visual context (list, container) distinguishing them. */
+p a:not(.no-underline) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: currentColor;
+    text-decoration-skip-ink: auto;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -246,6 +258,14 @@ img {
     color: var(--color-accent);
 }
 
+/* Darker accent for h2/h3 emphasis on white or light backgrounds —
+   the brand teal #1fae9b is ~2.7:1 on white, just below the 3:1
+   large-text AA threshold. Swap span.text-accent → text-accent-strong
+   on white-bg sections to lift contrast without breaking dark-bg usage. */
+.text-accent-strong {
+    color: var(--color-accent-text);
+}
+
 .text-muted {
     color: var(--color-text-muted);
 }
@@ -308,6 +328,19 @@ img {
 .bg-dark {
     background-color: var(--color-bg-dark);
     color: white;
+}
+
+/* On dark backgrounds the darker brand teal (#0a7a6c) loses contrast
+   and visibility, so swap --color-accent back to the original bright
+   teal inside any dark-themed container. Buttons, .text-accent spans,
+   focus rings, eyebrows etc. inside these containers automatically
+   pick up the brighter colour without any markup changes. */
+.bg-dark,
+.home-hero,
+.page-hero,
+.footer-redesign {
+    --color-accent: var(--color-accent-bright);
+    --color-accent-hover: var(--color-accent-bright-hover);
 }
 
 

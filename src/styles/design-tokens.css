@@ -1,7 +1,16 @@
 :root {
     /* Color Palette - Teal / Forest */
-    --color-accent: #1fae9b;
-    --color-accent-hover: #179e8c;
+    /* Brand teal — darker than the original #1fae9b so white text on
+       accent backgrounds (buttons) hits WCAG AA 4.5:1.
+       Use --color-accent-bright in dark-bg contexts (hero, footer,
+       .bg-dark) where the original vivid teal still reads well; this
+       happens automatically via the override block in global.css. */
+    --color-accent: #0a7a6c;
+    --color-accent-hover: #075f54;
+    --color-accent-bright: #1fae9b;
+    --color-accent-bright-hover: #179e8c;
+    /* Alias kept for backward compatibility — equivalent to --color-accent now. */
+    --color-accent-text: #0a7a6c;
 
     --color-bg-light: #f1f3f2;
     --color-bg-white: #ffffff;
