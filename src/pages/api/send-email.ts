@@ -11,6 +11,7 @@ interface EmailData {
   message: string;
   type?: string;
   to?: string;
+  location?: string;
 }
 
 interface PhotoAttachment {
@@ -63,6 +64,7 @@ export const POST: APIRoute = async ({ request }) => {
         message: body.message || '',
         type: body.type || 'contact',
         to: body.to,
+        location: body.location || '',
       };
 
       // Handle base64 photos from JSON
@@ -96,6 +98,7 @@ export const POST: APIRoute = async ({ request }) => {
         service: (formData.get('service') as string) || 'General enquiry',
         message: (formData.get('message') as string) || '',
         type: (formData.get('form_type') as string) || 'contact',
+        location: (formData.get('location') as string) || '',
       };
 
       // Process photo attachments
@@ -128,7 +131,7 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    const { name, phone, email, service, message, type, to } = emailData;
+    const { name, phone, email, service, message, type, to, location } = emailData;
 
     // --- Validation helpers ---
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -287,11 +290,18 @@ export const POST: APIRoute = async ({ request }) => {
 
     const serviceLabels: Record<string, string> = {
       emergency: 'Emergency Locksmith',
+      'emergency-locksmith': 'Emergency Locksmith',
       auto: 'Auto Locksmith',
+      'auto-locksmith': 'Auto Locksmith',
       safe: 'Safe Engineer',
-      other: 'Other',
-      '': 'Not specified',
+      'safe-engineer': 'Safe Engineer',
     };
+
+    // Fall back to the generic brand-safe values when we can't infer either field
+    // from the form values (e.g. callback came from a generic page, or service slug
+    // wasn't a known one).
+    const serviceLabel = serviceLabels[service] || 'Locksmith';
+    const locationLabel = location && !location.startsWith('/') ? location : 'London';
 
     const recipient = to || 'william@bullardlocks.com';
     const isChatbotLead = type === 'chatbot-lead' || type === 'chatbot';
@@ -348,7 +358,8 @@ export const POST: APIRoute = async ({ request }) => {
       <div class="field"><span class="label">Name</span><p>${escapeHtml(name)}</p></div>
       <div class="field"><span class="label">Phone</span><p><a href="tel:${escapeHtml(phone)}">${escapeHtml(phone)}</a></p></div>
       <div class="field"><span class="label">Email</span><p><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p></div>
-      <div class="field"><span class="label">Service</span><p>${escapeHtml(serviceLabels[service] || service)}</p></div>
+      <div class="field"><span class="label">Service</span><p>${escapeHtml(serviceLabel)}</p></div>
+      <div class="field"><span class="label">Location</span><p>${escapeHtml(locationLabel)}</p></div>
       <div class="field"><span class="label">Message</span><p>${escapeHtml(message).replace(/\n/g, '<br>')}</p></div>
       ${hasPhotos ? `<div class="field"><span class="label">Photos</span><p><span class="photo-badge">${photoAttachments.length} photo(s) attached</span></p></div>` : ''}
     </div>
@@ -360,7 +371,7 @@ export const POST: APIRoute = async ({ request }) => {
 </html>`;
 
     const sourceLabel = isChatbotLead ? 'Chatbot' : type === 'callback' ? 'Callback' : 'Contact Form';
-    const subject = `[${sourceLabel}] ${message.includes('IMMEDIATE') ? 'URGENT: ' : ''}${serviceLabels[service] || 'Enquiry'} - ${name}${hasPhotos ? ` (${photoAttachments.length} photo${photoAttachments.length > 1 ? 's' : ''})` : ''}`;
+    const subject = `[${sourceLabel}] ${message.includes('IMMEDIATE') ? 'URGENT: ' : ''}${serviceLabel} - ${name} (${locationLabel})${hasPhotos ? ` (${photoAttachments.length} photo${photoAttachments.length > 1 ? 's' : ''})` : ''}`;
 
     const emailPayload: Record<string, unknown> = {
       from: 'Bullard Locks <noreply@bullardlocks.com>',
